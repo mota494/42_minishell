@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include <readline/history.h>
 
 int main()
 {
@@ -18,8 +19,10 @@ int main()
 
 	while (1)
 	{
-		test = readline("[minishell][:)]~> ");
-		printf("%s", test);
+		test = readline(" \033[1;34mminishell~> ");
+		if (ft_strlen(test) > 0)
+			add_history(test);
+		printf("%d", history_base);
 	}
 	free(test);
 	return (0);
