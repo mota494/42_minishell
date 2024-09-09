@@ -3,27 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/09 15:40:01 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/09 17:58:50 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <readline/history.h>
 
-int main()
+void	read_command(void)
 {
-	char	*test;
+	char	*line;
 
 	while (1)
 	{
-		test = readline(" \033[1;34mminishell~> ");
-		if (ft_strlen(test) > 0)
-			add_history(test);
-		printf("%d", history_base);
+		line = readline("minishell~> ");
+		if (ft_strlen(line) > 0)
+			add_history(line);
 	}
-	free(test);
+	free(line);
+}
+
+void	check_input(int ac, char **av)
+{
+	if (ac != 1 || av[1])
+	{
+		printf("Minishell doesn't accept any arguments\n");
+		exit (1);
+	}
+}
+
+int	main(int ac, char **av)
+{
+	check_input(ac, av);
+	read_command();
 	return (0);
 }
