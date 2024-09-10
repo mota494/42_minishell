@@ -12,26 +12,16 @@
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
-# include <stdio.h>
-# include <readline/history.h>
-# include <readline/readline.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/types.h>
-# include <sys/wait.h>
-# include <errno.h>
-# include "includes/libft/libft.h"
-
+#include "inc.h"
 
 /*structs*/
-
 typedef enum s_types
 {
 	string,
-	pipe,
+	pipes,
 	command,
 	builtin,
+	error,
 }	t_types;
 
 /*token list*/
@@ -46,6 +36,17 @@ typedef struct s_token
 typedef struct s_shell
 {
 	t_token	*token;
+	int	n_inputs;
 }			t_shell;
 
+/* ============ functions ============ */
+
+/*utils.c*/
+char	*alocpy(char *str);
+int		ft_strcmp(char *tocomp, char *str);
+t_token	*add_node(char	*content);
+int	ft_ispace(int c);
+/*get_line.c*/
+t_types	get_type(char *cmd);
+void	treat_line(char *line, t_shell *cmd);
 #endif
