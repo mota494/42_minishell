@@ -34,7 +34,7 @@ void	check_input(int ac, char **av)
 	}
 }
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **envp)
 {
 	check_input(ac, av);
 	read_command();
