@@ -7,7 +7,7 @@ int	ft_strcmp(char *tocomp, char *str)
 	i = 0;
 	while (tocomp[i] == str[i] && tocomp[i] && str[i])
 		i++;
-	if (i == strlen(tocomp) && i == strlen(str))
+	if (i == ft_strlen(tocomp) && i == ft_strlen(str))
 		return (1);
 	return (0);
 }

@@ -12,7 +12,7 @@ t_types	get_type(char *cmd)
 	return (error);
 }
 
-char	*strjchr(char *str, char c)
+char	*strjoinchr(char *str, char c)
 {
 	char	*newstr;
 	size_t	i;
@@ -41,7 +41,7 @@ char	*get_cmd(char *line)
 	{
 		while (line[i++] != 34 && line[i])
 		{
-			toret = strjchr(toret, line[i]);
+			toret = strjoinchr(toret, line[i]);
 			i++;
 		}
 	}
@@ -49,7 +49,7 @@ char	*get_cmd(char *line)
 	{
 		while (ft_ispace(line[i]) == 0 && line[i])
 		{
-			toret = strjchr(toret, line[i]);
+			toret = strjoinchr(toret, line[i]);
 			i++;
 		}
 	}
