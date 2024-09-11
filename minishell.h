@@ -6,15 +6,16 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/09 21:50:13 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/10 16:52:43 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-#include "inc.h"
 
-/*structs*/
+# include "inc.h"
+
+/* ============ structs ============ */
 typedef enum s_types
 {
 	string,
@@ -36,7 +37,7 @@ typedef struct s_token
 typedef struct s_shell
 {
 	t_token	*token;
-	int	n_inputs;
+	int		n_inputs;
 }			t_shell;
 
 /* ============ functions ============ */
@@ -45,7 +46,7 @@ typedef struct s_shell
 char	*alocpy(char *str);
 int		ft_strcmp(char *tocomp, char *str);
 t_token	*add_node(char	*content);
-int	ft_ispace(int c);
+int		ft_ispace(int c);
 /*get_line.c*/
 t_types	get_type(char *cmd);
 void	treat_line(char *line, t_shell *cmd);

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/11 15:43:53 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:19:46 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void	read_command(t_shell *cmd)
 {
 	char	*line;
 
+	(void)*cmd;
 	while (1)
 	{
 		line = readline("minishell: ");
@@ -28,6 +29,7 @@ void	read_command(t_shell *cmd)
 	free(line);
 }
 
+/*checks if the program receives any input*/
 void	check_input(int ac, char **av)
 {
 	if (ac != 1 || av[1])
@@ -37,9 +39,10 @@ void	check_input(int ac, char **av)
 	}
 }
 
+/*initiates the main structure*/
 void	init(t_shell *cmd)
 {
-	cmd->n_inputs = 0;
+	ft_bzero(cmd, sizeof(t_shell));
 }
 
 int	main(int ac, char **av)
