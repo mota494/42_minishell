@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/09 17:58:50 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/11 15:43:53 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	read_command(t_shell *cmd)
 
 	while (1)
 	{
-		line = readline("\033[36;1mminishell: \033[0m");
+		line = readline("minishell: ");
 		if (ft_strlen(line) > 0)
 		{
 			add_history(line);

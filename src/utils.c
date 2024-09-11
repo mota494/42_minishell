@@ -17,7 +17,7 @@ char	*alocpy(char *str)
 	char	*toret;
 	int		i;
 
-	toret = malloc(ft_strlen(str) * sizeof(char));
+	toret = malloc(ft_strlen(str) * sizeof(char) + 1);
 	i = 0;
 	while (str[i])
 	{
