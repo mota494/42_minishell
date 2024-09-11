@@ -6,42 +6,17 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/11 16:19:35 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/11 16:50:34 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	jump_spaces(char *line)
-{
-	while (*line == 32)
-		line++;
-}
-
 t_types	get_type(char *cmd)
 {
-	printf("%s\n", cmd);
+	printf("\n%s\n", cmd);
 	return (error);
 }
-
-char	*strjoinchr(char *str, char c)
-{
-	char	*newstr;
-	size_t	i;
-
-	newstr = malloc(ft_strlen(str) + sizeof(char) + 1);
-	i = 0;
-	while (i < ft_strlen(str))
-	{
-		newstr[i] = str[i];
-		i++;
-	}
-	newstr[i] = c;
-	newstr[i + 1] = '\0';
-	free(str);
-	return (newstr);
-}
-
 char	*get_cmd(char *line)
 {
 	char	*toret;
@@ -50,22 +25,12 @@ char	*get_cmd(char *line)
 	i = 0;
 	toret = ft_calloc(1 ,1);
 	if (line[i] == 34)
-	{
-		i++;
-		while (line[i] != 34 && line[i])
-		{
-			toret = strjoinchr(toret, line[i]);
-			i++;
-		}
-	}
+		adv_dbl_quote(toret, line, &i);
+	else if (line[i == 39])
+		adv_sig_quote(toret, line, &i);
 	else
-	{
-		while (ft_ispace(line[i]) == 0 && line[i])
-		{
-			toret = strjoinchr(toret, line[i]);
-			i++;
-		}
-	}
+		adv_spaces(toret, line, &i);
+	line = line + i;
 	return (toret);
 }
 
