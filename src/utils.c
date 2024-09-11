@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
+/*   Updated: 2024/09/11 16:19:40 by mloureir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 int	ft_strcmp(char *tocomp, char *str)
@@ -7,7 +19,7 @@ int	ft_strcmp(char *tocomp, char *str)
 	i = 0;
 	while (tocomp[i] == str[i] && tocomp[i] && str[i])
 		i++;
-	if (i == strlen(tocomp) && i == strlen(str))
+	if (i == ft_strlen(tocomp) && i == ft_strlen(str))
 		return (1);
 	return (0);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_line.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
+/*   Updated: 2024/09/11 16:19:35 by mloureir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 void	jump_spaces(char *line)
@@ -12,7 +24,7 @@ t_types	get_type(char *cmd)
 	return (error);
 }
 
-char	*strjchr(char *str, char c)
+char	*strjoinchr(char *str, char c)
 {
 	char	*newstr;
 	size_t	i;
@@ -42,7 +54,7 @@ char	*get_cmd(char *line)
 		i++;
 		while (line[i] != 34 && line[i])
 		{
-			toret = strjchr(toret, line[i]);
+			toret = strjoinchr(toret, line[i]);
 			i++;
 		}
 	}
@@ -50,7 +62,7 @@ char	*get_cmd(char *line)
 	{
 		while (ft_ispace(line[i]) == 0 && line[i])
 		{
-			toret = strjchr(toret, line[i]);
+			toret = strjoinchr(toret, line[i]);
 			i++;
 		}
 	}
