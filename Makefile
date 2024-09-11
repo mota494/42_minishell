@@ -40,6 +40,10 @@ $(LIBFT):
 	make -s -C includes/libft
 	make bonus -s -C includes/libft
 
+valgrind:
+	@make re
+	@valgrind --quiet --leak-check=full --show-leak-kinds=all --track-origins=yes --tool=memcheck ./minishell
+
 fclean: clean
 	$(RM) $(NAME)
 	make -s -C includes/libft fclean

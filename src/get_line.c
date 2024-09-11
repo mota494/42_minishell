@@ -8,7 +8,7 @@ void	jump_spaces(char *line)
 
 t_types	get_type(char *cmd)
 {
-	printf("%s", cmd);
+	printf("%s\n", cmd);
 	return (error);
 }
 
@@ -39,7 +39,8 @@ char	*get_cmd(char *line)
 	toret = ft_calloc(1 ,1);
 	if (line[i] == 34)
 	{
-		while (line[i++] != 34 && line[i])
+		i++;
+		while (line[i] != 34 && line[i])
 		{
 			toret = strjchr(toret, line[i]);
 			i++;
@@ -60,5 +61,4 @@ void	treat_line(char *line, t_shell *cmd)
 {
 	jump_spaces(line);
 	cmd->token = add_node(get_cmd(line));
-	printf("%s", cmd->token->cmd_line);
 }
