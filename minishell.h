@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/10 16:52:43 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/11 16:49:51 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,21 @@ typedef struct s_shell
 
 /* ============ functions ============ */
 
-/*utils.c*/
-char	*alocpy(char *str);
-int		ft_strcmp(char *tocomp, char *str);
-t_token	*add_node(char	*content);
-int		ft_ispace(int c);
+/*get_line_utils.c*/
+void	adv_dbl_quote(char *oldtoret, char *line, int *pos);
+void    adv_spaces(char *oldtoret, char *line, int *pos);
+void    adv_sig_quote(char *oldtoret, char *line, int *pos);
 /*get_line.c*/
 t_types	get_type(char *cmd);
+char	*get_cmd(char *line);
 void	treat_line(char *line, t_shell *cmd);
+/*utils.c*/
+char	*alocpy(char *str); //allocs a new string and coppies the string sent to the new string
+t_token	*add_node(char	*content);
+int		is_builtin(char *str);
+/*utils2.c*/
+void	jump_spaces(char *line);
+int		ft_ispace(int c);
+int		ft_strcmp(char *tocomp, char *str);
+char	*strjoinchr(char *str, char c); //adds the char received to the string sent
 #endif
