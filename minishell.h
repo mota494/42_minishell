@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/11 16:49:51 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:36:07 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ typedef struct s_shell
 /* ============ functions ============ */
 
 /*get_line_utils.c*/
-void	adv_dbl_quote(char *oldtoret, char *line, int *pos);
-void    adv_spaces(char *oldtoret, char *line, int *pos);
-void    adv_sig_quote(char *oldtoret, char *line, int *pos);
+char	*adv_dbl_quote(char *oldtoret, char *line, int *pos);
+char	*adv_spaces(char *oldtoret, char *line, int *pos);
+char	*adv_sig_quote(char *oldtoret, char *line, int *pos);
 /*get_line.c*/
 t_types	get_type(char *cmd);
 char	*get_cmd(char *line);
