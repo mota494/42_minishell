@@ -42,7 +42,7 @@ $(LIBFT):
 
 valgrind:
 	@make re
-	@valgrind --quiet --leak-check=full --show-leak-kinds=all --track-origins=yes --tool=memcheck ./minishell
+	@valgrind --quiet --leak-check=full --suppressions=readline_leaks --show-leak-kinds=all --track-origins=yes --tool=memcheck ./minishell
 
 fclean: clean
 	$(RM) $(NAME)

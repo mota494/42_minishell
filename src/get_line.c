@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/11 16:50:34 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/13 16:36:50 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,11 @@ char	*get_cmd(char *line)
 	i = 0;
 	toret = ft_calloc(1 ,1);
 	if (line[i] == 34)
-		adv_dbl_quote(toret, line, &i);
-	else if (line[i == 39])
-		adv_sig_quote(toret, line, &i);
+		toret = adv_dbl_quote(toret, line, &i);
+	else if (line[i] == 39)
+		toret = adv_sig_quote(toret, line, &i);
 	else
-		adv_spaces(toret, line, &i);
+		toret = adv_spaces(toret, line, &i);
 	line = line + i;
 	return (toret);
 }
