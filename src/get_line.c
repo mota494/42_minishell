@@ -6,16 +6,30 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/13 16:36:50 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/16 16:04:35 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+void	clean_line(char *cmd, char *line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i + ft_strlen(cmd)])
+	{
+		line[i] = line[i + ft_strlen(cmd)];
+		i++;
+	}
+	line[i] = '\0';
+}
+
 t_types	get_type(char *cmd)
 {
-	printf("\n%s\n", cmd);
-	return (error);
+	if (is_builtin(cmd) == 1)
+		return (builtin);
+	return (string);
 }
 char	*get_cmd(char *line)
 {
@@ -30,12 +44,23 @@ char	*get_cmd(char *line)
 		toret = adv_sig_quote(toret, line, &i);
 	else
 		toret = adv_spaces(toret, line, &i);
-	line = line + i;
+	clean_line(toret, line);
 	return (toret);
 }
 
 void	treat_line(char *line, t_shell *cmd)
 {
+	t_token *cmd_list;
+
 	jump_spaces(line);
 	cmd->token = add_node(get_cmd(line));
+	cmd_list = cmd->token;
+	printf("%s \n %u ", cmd_list->cmd_line, cmd_list->type);
+	// while (ft_strlen(line) > 0)
+	// {
+	// 	jump_spaces(line);
+	// 	while (cmd->token->next)
+	// 		cmd->token = cmd->token->next;
+	// 	cmd->token->next = add_node(get_cmd(line));
+	// }
 }

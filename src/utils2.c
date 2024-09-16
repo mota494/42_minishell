@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:30:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/13 16:32:26 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/16 15:53:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	jump_spaces(char *line)
 {
-	while (*line == 32)
+	while (*line == 32 && *line != '\0')
 		line++;
 }
 
@@ -25,15 +25,26 @@ int	ft_ispace(int c)
 	return (0);
 }
 
-int	ft_strcmp(char *tocomp, char *str)
+int	scmp(char *tocomp, char *str)
 {
 	size_t	i;
 
 	i = 0;
+	if (tocomp[0] == 34 || tocomp[0] == 39)
+	{
+	i += 1;
+	while ((tocomp[i] == str[i] && tocomp[i] && str[i]))
+		i++;
+	if (i == ft_strlen(tocomp) - 1 && i == ft_strlen(str))
+		return (1);
+	}
+	else
+	{
 	while (tocomp[i] == str[i] && tocomp[i] && str[i])
 		i++;
 	if (i == ft_strlen(tocomp) && i == ft_strlen(str))
 		return (1);
+	}
 	return (0);
 }
 

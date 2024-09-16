@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/13 16:36:07 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/16 16:04:02 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,6 @@ int		is_builtin(char *str);
 /*utils2.c*/
 void	jump_spaces(char *line);
 int		ft_ispace(int c);
-int		ft_strcmp(char *tocomp, char *str);
+int		scmp(char *tocomp, char *str);
 char	*strjoinchr(char *str, char c); //adds the char received to the string sent
 #endif
