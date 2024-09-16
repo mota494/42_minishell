@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_line.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/11 16:19:35 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:44:13 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	jump_spaces(char *line)
 
 t_types	get_type(char *cmd)
 {
-	printf("%s\n", cmd);
+	(void)*cmd;
+	//printf("%s\n", cmd);
 	return (error);
 }
 
@@ -60,7 +61,7 @@ char	*get_cmd(char *line)
 	}
 	else
 	{
-		while (ft_ispace(line[i]) == 0 && line[i])
+		while (ft_isspace(line[i]) == 0 && line[i])
 		{
 			toret = strjoinchr(toret, line[i]);
 			i++;

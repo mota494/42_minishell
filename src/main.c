@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/11 16:19:46 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/11 17:55:13 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ void	read_command(t_shell *cmd)
 {
 	char	*line;
 
-	(void)*cmd;
 	while (1)
 	{
 		line = readline("minishell: ");
 		if (ft_strlen(line) > 0)
 		{
 			add_history(line);
+			if (check_syntax(cmd, line) == 1)
+			{
+				free(line);
+				continue ;
+			}
 			treat_line(line, cmd);
 		}
 	}
