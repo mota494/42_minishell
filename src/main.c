@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/11 16:19:46 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:14:03 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	read_command(t_shell *cmd)
 	(void)*cmd;
 	while (1)
 	{
+		cmd->n_inputs = 0;
 		line = readline("minishell: ");
 		if (ft_strlen(line) > 0)
 		{

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/16 16:04:35 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:15:49 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,17 @@ void	treat_line(char *line, t_shell *cmd)
 
 	jump_spaces(line);
 	cmd->token = add_node(get_cmd(line));
+	cmd->n_inputs += 1;
 	cmd_list = cmd->token;
-	printf("%s \n %u ", cmd_list->cmd_line, cmd_list->type);
-	// while (ft_strlen(line) > 0)
-	// {
-	// 	jump_spaces(line);
-	// 	while (cmd->token->next)
-	// 		cmd->token = cmd->token->next;
-	// 	cmd->token->next = add_node(get_cmd(line));
-	// }
+	while (ft_strlen(line) > 0)
+	{
+		jump_spaces(line);
+		if (ft_strlen(line) > 0)
+		{
+			while (cmd->token->next)
+				cmd->token = cmd->token->next;
+			cmd->token->next = add_node(get_cmd(line));
+			cmd->n_inputs += 1;
+		}
+	}
 }

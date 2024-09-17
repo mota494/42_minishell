@@ -44,6 +44,10 @@ valgrind:
 	@make re
 	@valgrind --quiet --leak-check=full --suppressions=readline_leaks --show-leak-kinds=all --track-origins=yes --tool=memcheck ./minishell
 
+clean:
+	$(RM) $(OBJS)
+	make -s -C includes/libft clean
+
 fclean: clean
 	$(RM) $(NAME)
 	make -s -C includes/libft fclean

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:30:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/16 15:53:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 10:19:20 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,23 @@
 
 void	jump_spaces(char *line)
 {
-	while (*line == 32 && *line != '\0')
-		line++;
+	int	count_space;
+	int	i;
+
+	count_space = 0;
+	i = 0;
+	while (ft_ispace(line[i]))
+	{
+		i++;
+		count_space++;
+	}
+	i = 0;
+	while (line[i + count_space])
+	{
+		line[i] = line[i + count_space];
+		i++;
+	}
+	line[i] = '\0';
 }
 
 int	ft_ispace(int c)
