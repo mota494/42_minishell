@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 13:46:34 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 16:44:38 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include "inc.h"
 
-/* ============ structs ============ */
+/* ============ enums ===============*/
+
 typedef enum s_types
 {
 	string,
@@ -25,11 +26,20 @@ typedef enum s_types
 	control,
 }	t_types;
 
+typedef enum s_quotes
+{
+	dbl,
+	sgl,
+	no,
+}	t_quotes;
+
+/* ============ structs ============ */
 /*token list*/
 typedef struct s_token
 {
 	char			*cmd_line;
 	t_types			type;
+	t_quotes		quote;
 	struct s_token	*next;
 }			t_token;
 
@@ -50,6 +60,7 @@ char	*adv_separator(char *oldtoret, char *line, int *pos);
 /*get_line.c*/
 t_types	get_type(char *cmd);
 char	*get_cmd(char *line);
+t_quotes	get_quote_type(char *cmd);
 void	treat_line(char *line, t_shell *cmd);
 /*utils.c*/
 char	*alocpy(char *str); //allocs a new string and coppies the string sent to the new string
