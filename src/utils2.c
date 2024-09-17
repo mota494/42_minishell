@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:30:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 13:46:36 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:25:30 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,11 @@ int	scmp(char *tocomp, char *str)
 	size_t	i;
 
 	i = 0;
-	if (tocomp[0] == 34 || tocomp[0] == 39)
+	if (str[0] == 34 || str[0] == 39)
 	{
-		i += 1;
-		while ((tocomp[i] == str[i] && tocomp[i] && str[i]))
+		while ((tocomp[i] == str[i + 1] && tocomp[i] && str[i + 1]))
 			i++;
-		if (i == ft_strlen(tocomp) - 1 && i == ft_strlen(str))
+		if (i == ft_strlen(tocomp) && i == ft_strlen(str) - 2)
 			return (1);
 	}
 	else
