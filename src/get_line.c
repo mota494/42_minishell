@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 13:46:33 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 15:25:57 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,7 @@ char	*get_cmd(char *line)
 
 	i = 0;
 	toret = ft_calloc(1 ,1);
-	if (line[i] == 34)
-		toret = adv_dbl_quote(toret, line, &i);
-	else if (line[i] == 39)
-		toret = adv_sig_quote(toret, line, &i);
-	else if (ft_iseparator(line[i]) == 1)
+	if (ft_iseparator(line[i]) == 1)
 		toret = adv_separator(toret, line, &i);
 	else
 		toret = adv_spaces(toret, line, &i);
@@ -75,7 +71,7 @@ void	treat_line(char *line, t_shell *cmd)
 	}
 	while (cmd_list)
 	{
-		printf("Input:%s, Type:%u\n", cmd_list->cmd_line, cmd_list->type);
+		printf("[Input:%s | Type:%u]\n", cmd_list->cmd_line, cmd_list->type);
 		cmd_list = cmd_list->next;
 	}
 }
