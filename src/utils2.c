@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:30:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 10:19:20 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:46:36 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,19 @@ int	ft_ispace(int c)
 	return (0);
 }
 
+int	ft_iseparator(int c)
+{
+	if ((ft_ispace(c)) == 1)
+		return (1);
+	else if (c == 124 || c == 38 || c == 59)
+		return (1);
+	else if (c == 44 || c == 60 || c == 62)
+		return (1);
+	else if (c == 40 || c == 41)
+		return (1);
+	return (0);
+}
+
 int	scmp(char *tocomp, char *str)
 {
 	size_t	i;
@@ -47,18 +60,18 @@ int	scmp(char *tocomp, char *str)
 	i = 0;
 	if (tocomp[0] == 34 || tocomp[0] == 39)
 	{
-	i += 1;
-	while ((tocomp[i] == str[i] && tocomp[i] && str[i]))
-		i++;
-	if (i == ft_strlen(tocomp) - 1 && i == ft_strlen(str))
-		return (1);
+		i += 1;
+		while ((tocomp[i] == str[i] && tocomp[i] && str[i]))
+			i++;
+		if (i == ft_strlen(tocomp) - 1 && i == ft_strlen(str))
+			return (1);
 	}
 	else
 	{
-	while (tocomp[i] == str[i] && tocomp[i] && str[i])
-		i++;
-	if (i == ft_strlen(tocomp) && i == ft_strlen(str))
-		return (1);
+		while (tocomp[i] == str[i] && tocomp[i] && str[i])
+			i++;
+		if (i == ft_strlen(tocomp) && i == ft_strlen(str))
+			return (1);
 	}
 	return (0);
 }

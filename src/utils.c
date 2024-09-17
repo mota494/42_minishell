@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 09:56:49 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:46:35 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,4 @@ t_token	*add_node(char	*content)
 	new_node->next = NULL;
 	new_node->type = get_type(new_node->cmd_line);
 	return (new_node);
-}
-
-int	is_builtin(char *str)
-{
-	if (scmp("echo", str))
-		return (1);
-	else if (scmp("cd", str))
-		return (1);
-	else if (scmp("pwd", str))
-		return (1);
-	else if (scmp("export", str))
-		return (1);
-	else if (scmp("unset", str))
-		return (1);
-	else if (scmp("env", str))
-		return (1);
-	else if (scmp("exit", str))
-		return (1);
-	else
-		return (0);
 }
