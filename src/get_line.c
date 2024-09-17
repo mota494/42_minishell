@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 10:15:49 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/17 13:46:33 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,10 @@ t_types	get_type(char *cmd)
 {
 	if (is_builtin(cmd) == 1)
 		return (builtin);
+	else if (cmd[0] == 39 || cmd[0] == 34)
+        return (string);
+	else if (is_controler(cmd) == 1)
+		return (control);
 	return (string);
 }
 char	*get_cmd(char *line)
@@ -42,6 +46,8 @@ char	*get_cmd(char *line)
 		toret = adv_dbl_quote(toret, line, &i);
 	else if (line[i] == 39)
 		toret = adv_sig_quote(toret, line, &i);
+	else if (ft_iseparator(line[i]) == 1)
+		toret = adv_separator(toret, line, &i);
 	else
 		toret = adv_spaces(toret, line, &i);
 	clean_line(toret, line);
@@ -66,5 +72,10 @@ void	treat_line(char *line, t_shell *cmd)
 			cmd->token->next = add_node(get_cmd(line));
 			cmd->n_inputs += 1;
 		}
+	}
+	while (cmd_list)
+	{
+		printf("Input:%s, Type:%u\n", cmd_list->cmd_line, cmd_list->type);
+		cmd_list = cmd_list->next;
 	}
 }
