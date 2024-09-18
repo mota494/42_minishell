@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 16:44:38 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:00:59 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ typedef enum s_types
 	command,
 	builtin,
 	control,
-}	t_types;
+}					t_types;
 
 typedef enum s_quotes
 {
 	dbl,
 	sgl,
 	no,
-}	t_quotes;
+}					t_quotes;
 
 /* ============ structs ============ */
 /*token list*/
@@ -41,37 +41,37 @@ typedef struct s_token
 	t_types			type;
 	t_quotes		quote;
 	struct s_token	*next;
-}			t_token;
+}					t_token;
 
 /*main structure - work in progress*/
 typedef struct s_shell
 {
-	t_token	*token;
-	int		n_inputs;
-}			t_shell;
+	t_token			*token;
+	int				n_inputs;
+}					t_shell;
 
 /* ============ functions ============ */
 
 /*get_line_utils.c*/
-char	*adv_dbl_quote(char *oldtoret, char *line, int *pos);
-char	*adv_spaces(char *oldtoret, char *line, int *pos);
-char	*adv_sig_quote(char *oldtoret, char *line, int *pos);
-char	*adv_separator(char *oldtoret, char *line, int *pos);
+char				*adv_dbl_quote(char *oldtoret, char *line, int *pos);
+char				*adv_spaces(char *oldtoret, char *line, int *pos);
+char				*adv_sig_quote(char *oldtoret, char *line, int *pos);
+char				*adv_separator(char *oldtoret, char *line, int *pos);
 /*get_line.c*/
-t_types	get_type(char *cmd);
-char	*get_cmd(char *line);
-t_quotes	get_quote_type(char *cmd);
-void	treat_line(char *line, t_shell *cmd);
+t_types				get_type(char *cmd);
+char				*get_cmd(char *line);
+t_quotes			get_quote_type(char *cmd);
+void				treat_line(char *line, t_shell *cmd);
 /*utils.c*/
-char	*alocpy(char *str); //allocs a new string and coppies the string sent to the new string
-t_token	*add_node(char	*content);
+char				*alocpy(char *str);
+t_token				*add_node(char *content);
 /*utils2.c*/
-void	jump_spaces(char *line);
-int		ft_ispace(int c);
-int		ft_iseparator(int c);
-int		scmp(char *tocomp, char *str);
-char	*strjoinchr(char *str, char c); //adds the char received to the string sent
+void				jump_spaces(char *line);
+int					ft_ispace(int c);
+int					ft_iseparator(int c);
+int					scmp(char *tocomp, char *str);
+char				*strjoinchr(char *str, char c);
 /*define_type.c*/
-int		is_builtin(char *str);
-int		is_controler(char *str);
+int					is_builtin(char *str);
+int					is_controler(char *str);
 #endif

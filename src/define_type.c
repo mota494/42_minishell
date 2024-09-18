@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:15:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 16:43:41 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:03:45 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ int	is_builtin(char *str)
 	return (0);
 }
 
-int is_controler(char *str)
+int	is_controler(char *str)
 {
-    if (scmp("\n", str))
-        return (1);
-    if (scmp("|", str) || scmp("||", str))
-        return (1);
-    if (scmp("&", str) || scmp("&&", str))
-        return (1);
-    if (scmp(";", str) || scmp(";;", str) || scmp(";&", str))
-        return (1);
-    if (scmp(";;&", str) || scmp("|&", str))
-        return (1);
-    if (scmp("(", str) || scmp(")", str))
-        return (1);
-    return (0);
+	if (scmp("\n", str))
+		return (1);
+	if (scmp("|", str) || scmp("||", str))
+		return (1);
+	if (scmp("&", str) || scmp("&&", str))
+		return (1);
+	if (scmp(";", str) || scmp(";;", str) || scmp(";&", str))
+		return (1);
+	if (scmp(";;&", str) || scmp("|&", str))
+		return (1);
+	if (scmp("(", str) || scmp(")", str))
+		return (1);
+	return (0);
 }

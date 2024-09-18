@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 10:47:50 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:04:00 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	free_all(t_shell *cmd)
 {
-	t_token *temp;
+	t_token	*temp;
 
 	while (cmd->token)
 	{
