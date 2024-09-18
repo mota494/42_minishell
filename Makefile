@@ -55,6 +55,9 @@ fclean: clean
 
 re: fclean all
 
+norm:
+	norminette $(SRCS) minishell.h inc.h
+
 .PHONY: all clean fclean re
 
 .SILENT:

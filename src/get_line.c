@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 10:48:12 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:04:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	clean_line(char *cmd, char *line)
 	line[i] = '\0';
 }
 
-t_quotes get_quote_type(char *cmd)
+t_quotes	get_quote_type(char *cmd)
 {
 	if (cmd[0] == 34)
 		return (dbl);
@@ -43,13 +43,14 @@ t_types	get_type(char *cmd)
 		return (control);
 	return (string);
 }
+
 char	*get_cmd(char *line)
 {
 	char	*toret;
 	int		i;
 
 	i = 0;
-	toret = ft_calloc(1 ,1);
+	toret = ft_calloc(1, 1);
 	if (line[i] == 39)
 		toret = adv_sig_quote(toret, line, &i);
 	else if (line[i] == 34)
@@ -65,7 +66,7 @@ char	*get_cmd(char *line)
 
 void	treat_line(char *line, t_shell *cmd)
 {
-	t_token *cmd_list;
+	t_token	*cmd_list;
 
 	jump_spaces(line);
 	cmd->token = add_node(get_cmd(line));
