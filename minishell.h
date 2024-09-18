@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 11:00:59 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:20:45 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ typedef enum s_types
 	command,
 	builtin,
 	control,
+	error,
 }					t_types;
 
 typedef enum s_quotes
@@ -74,4 +75,5 @@ char				*strjoinchr(char *str, char c);
 /*define_type.c*/
 int					is_builtin(char *str);
 int					is_controler(char *str);
+
 #endif
