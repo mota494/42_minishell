@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 11:04:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 11:33:32 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,21 @@ t_quotes	get_quote_type(char *cmd)
 
 t_types	get_type(char *cmd)
 {
-	if (is_builtin(cmd) == 1)
-		return (builtin);
-	else if (is_controler(cmd) == 1)
+	static int	is_arg;
+	
+	if (is_controler(cmd) == 1)
+	{
+		is_arg = 0;
 		return (control);
-	return (string);
+	}
+	else if (is_arg == 1)
+		return (string);
+	else if (is_builtin(cmd) == 1)
+	{
+		is_arg = 1;
+		return (builtin);
+	}
+	return (error);
 }
 
 char	*get_cmd(char *line)
@@ -64,6 +74,18 @@ char	*get_cmd(char *line)
 	return (toret);
 }
 
+void	print_list(t_shell *cmd)
+{
+	t_token *temp;
+
+	temp = cmd->token;
+	while (temp)
+	{
+		printf("[%s | %d]\n", temp->cmd_line, temp->type);
+		temp = temp->next;
+	}
+}
+
 void	treat_line(char *line, t_shell *cmd)
 {
 	t_token	*cmd_list;
@@ -84,4 +106,5 @@ void	treat_line(char *line, t_shell *cmd)
 		}
 	}
 	cmd->token = cmd_list;
+	print_list(cmd);
 }
