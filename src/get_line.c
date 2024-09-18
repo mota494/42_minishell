@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 10:18:15 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:48:12 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,5 @@ void	treat_line(char *line, t_shell *cmd)
 			cmd->n_inputs += 1;
 		}
 	}
+	cmd->token = cmd_list;
 }

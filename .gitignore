@@ -4,6 +4,7 @@
 
 # Prerequisites
 *.d
+commit_message
 
 # Object files
 *.o
