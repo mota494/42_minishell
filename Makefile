@@ -42,7 +42,7 @@ $(LIBFT):
 
 valgrind:
 	@make re
-	@valgrind --quiet --leak-check=full --suppressions=readline_leaks --show-leak-kinds=all --track-origins=yes --tool=memcheck ./minishell
+	@valgrind --leak-check=full --suppressions=readline_leaks --show-leak-kinds=all --track-origins=yes --tool=memcheck ./minishell
 
 clean:
 	$(RM) $(OBJS)

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 16:48:24 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:18:15 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ char	*get_cmd(char *line)
 		toret = adv_separator(toret, line, &i);
 	else
 		toret = adv_spaces(toret, line, &i);
-	clean_line(toret, line);
+	if (toret)
+		clean_line(toret, line);
 	return (toret);
 }
 
@@ -80,10 +81,5 @@ void	treat_line(char *line, t_shell *cmd)
 			cmd->token->next = add_node(get_cmd(line));
 			cmd->n_inputs += 1;
 		}
-	}
-	while (cmd_list)
-	{
-		printf("[Input:%s | Type:%u]\n", cmd_list->cmd_line, cmd_list->type);
-		cmd_list = cmd_list->next;
 	}
 }

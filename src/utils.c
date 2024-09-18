@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/17 17:01:34 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/18 10:02:03 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ char	*alocpy(char *str)
 	char	*toret;
 	int		i;
 
+	if (!str)
+		return (NULL);
 	toret = malloc(ft_strlen(str) * sizeof(char) + 1);
 	i = 0;
 	while (str[i])
@@ -34,6 +36,7 @@ t_token	*add_node(char	*content)
 
 	new_node = malloc(sizeof(t_token));
 	new_node->cmd_line = alocpy(content);
+	free(content);
 	new_node->next = NULL;
 	new_node->quote = get_quote_type(new_node->cmd_line);
 	new_node->type = get_type(new_node->cmd_line);
