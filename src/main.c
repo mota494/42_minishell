@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 11:04:00 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:02:34 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ void	read_command(t_shell *cmd)
 		if (ft_strlen(line) > 0)
 		{
 			add_history(line);
-			treat_line(line, cmd);
-			free_all(cmd);
-			free(line);
+			parser(line, cmd);
 		}
 		i++;
 	}

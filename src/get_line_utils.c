@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:43:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 11:20:01 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:34:35 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,8 @@ char	*adv_separator(char *oldtoret, char *line, int *pos)
 	novo_toro = alocpy(oldtoret);
 	while (ft_iseparator(line[*pos]) && line[*pos])
 	{
+		if (ft_ispace(line[*pos]) == 1)
+			break ;
 		novo_toro = strjoinchr(novo_toro, line[*pos]);
 		*pos += 1;
 	}

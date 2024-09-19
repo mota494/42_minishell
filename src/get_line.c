@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 11:33:32 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:35:00 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_types	get_type(char *cmd)
 		is_arg = 0;
 		return (control);
 	}
-	else if (is_arg == 1)
+	else if (is_arg == 1 && is_controler(cmd) == 0)
 		return (string);
 	else if (is_builtin(cmd) == 1)
 	{
@@ -81,7 +81,7 @@ void	print_list(t_shell *cmd)
 	temp = cmd->token;
 	while (temp)
 	{
-		printf("[%s | %d]\n", temp->cmd_line, temp->type);
+		printf("[%s⊗%d]\n", temp->cmd_line, temp->type);
 		temp = temp->next;
 	}
 }

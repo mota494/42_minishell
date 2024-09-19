@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 11:20:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/19 10:35:08 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,10 @@ typedef struct s_shell
 
 /* ============ functions ============ */
 
+/*main.c*/
+void				free_all(t_shell *cmd);
+/*parser.c*/
+void				parser(char *line, t_shell *cmd);
 /*get_line_utils.c*/
 char				*adv_dbl_quote(char *oldtoret, char *line, int *pos);
 char				*adv_spaces(char *oldtoret, char *line, int *pos);
@@ -66,6 +70,7 @@ void				treat_line(char *line, t_shell *cmd);
 /*utils.c*/
 char				*alocpy(char *str);
 t_token				*add_node(char *content);
+void				trim_space(char *str);
 /*utils2.c*/
 void				jump_spaces(char *line);
 int					ft_ispace(int c);
