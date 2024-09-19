@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/19 11:35:00 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/19 12:11:44 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,13 +38,18 @@ t_quotes	get_quote_type(char *cmd)
 t_types	get_type(char *cmd)
 {
 	static int	is_arg;
-	
+
 	if (is_controler(cmd) == 1)
 	{
 		is_arg = 0;
 		return (control);
 	}
-	else if (is_arg == 1 && is_controler(cmd) == 0)
+	if (is_redirect(cmd) == 1)
+	{
+		is_arg = 0;
+		return (redirect);
+	}
+	else if (is_arg == 1)
 		return (string);
 	else if (is_builtin(cmd) == 1)
 	{
@@ -72,18 +77,6 @@ char	*get_cmd(char *line)
 	if (toret)
 		clean_line(toret, line);
 	return (toret);
-}
-
-void	print_list(t_shell *cmd)
-{
-	t_token *temp;
-
-	temp = cmd->token;
-	while (temp)
-	{
-		printf("[%s⊗%d]\n", temp->cmd_line, temp->type);
-		temp = temp->next;
-	}
 }
 
 void	treat_line(char *line, t_shell *cmd)

@@ -1,10 +1,13 @@
+# Custom files
+commit_message
+minishell
+
 # Folders
 .idea/
 .vscode/
 
 # Prerequisites
 *.d
-commit_message
 
 # Object files
 *.o

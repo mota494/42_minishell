@@ -22,7 +22,7 @@ SRCD = src/
 OBJD = obj/
 
 #FILES
-SRCS = $(SRCD)parser.c $(SRCD)define_type.c $(SRCD)main.c $(SRCD)utils.c  $(SRCD)utils2.c $(SRCD)get_line.c $(SRCD)get_line_utils.c
+SRCS = $(SRCD)utils3.c $(SRCD)parser.c $(SRCD)define_type.c $(SRCD)main.c $(SRCD)utils.c  $(SRCD)utils2.c $(SRCD)get_line.c $(SRCD)get_line_utils.c
 
 OBJS = $(patsubst $(SRCD)%.c, $(OBJD)%.o, $(SRCS))
 $(OBJD)%.o: $(SRCD)%.c

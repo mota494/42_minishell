@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/19 10:53:56 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/19 11:41:27 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,3 +42,16 @@ t_token	*add_node(char	*content)
 	new_node->type = get_type(new_node->cmd_line);
 	return (new_node);
 }
+
+void	print_list(t_shell *cmd)
+{
+	t_token	*temp;
+
+	temp = cmd->token;
+	while (temp)
+	{
+		printf("[%s⊗%d]\n", temp->cmd_line, temp->type);
+		temp = temp->next;
+	}
+}
+
