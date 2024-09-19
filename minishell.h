@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/16 11:10:28 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/19 15:08:14 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 /* ========== define error ========== */
 
 # define OPERATORS "|<>"
+# define ERROR_QUOTE "quotation has not been closed"
 # define ERROR_PIPE "syntax error near unexpected token `|'"
 # define ERROR_DOUBLE_PIPE "syntax error near unexpected token `||'"
 # define ERROR_PIPE_END "minishell does not support this type of pipe"
@@ -62,10 +63,18 @@ t_token	*add_node(char	*content);
 int		ft_isspace(int c);
 /*get_line.c*/
 t_types	get_type(char *cmd);
+char	*strjoinchr(char *str, char c);
 void	treat_line(char *line, t_shell *cmd);
 /*syntax_error*/
 void	print_error(t_shell *cmd, char *error_type, int error_code);
-void	syntax_err_msg(t_shell *cmd, char *str, unsigned long i);
+void	syntax_err_msg(t_shell *cmd, char *error_msg, int i);
 /*check_syntax*/
 int		check_syntax(t_shell *cmd, char *line);
+/*syntax_utils*/
+void	trim_spaces(char **str);
+void	trim_in_between(char **str);
+char	is_operator(char c);
+char	*find_quote_closure(char *str, int *i, char quote_type);
+/*operators_check*/
+int		check_pipe(t_shell *cmd, char *str, int op_index);
 #endif

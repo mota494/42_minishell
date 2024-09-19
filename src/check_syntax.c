@@ -6,76 +6,77 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/09/16 11:12:56 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/19 15:15:25 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-/*go to utils*/
-int	only_spaces(char *str)
+int	check_quotes(t_shell *cmd, char *str)
 {
-	while (*str)
-	{
-		if (!ft_isspace(*str))
-			return (0);
-		str++;
-	}
-	return (1);
-}
-
-int	double_redirect(t_shell *cmd, char *str)
-{
+	int	d_quotes;
+	int	s_quotes;
 	int	i;
 
-	i = 0;
-	while (str[i] && (str[i + 1]))
+	d_quotes = 0;
+	s_quotes = 0;
+	i = -1;
+	while (str[++i])
 	{
-		if (ft_strchr("|<>", str[i]) && ft_isspace(str[i + 1]))
+		if (str[i] == 34)
+			d_quotes++;
+		else if (str[i] == 39)
+			s_quotes++;
+	}
+	if (d_quotes % 2 != 0 || s_quotes % 2 != 0)
+	{
+		print_error(cmd, ERROR_QUOTE, 2);
+		return (1);
+	}
+	return (0);
+}
+
+void	fix_spaces(char **str)
+{
+	trim_spaces(str);
+	trim_in_between(str);
+	return ;
+}
+
+int	check_operators(t_shell *cmd, char *str)
+{
+	int		i;
+	char	op;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '"' || str[i] == '\'')
+			find_quote_closure(str, &i, str[i]);
+		else
 		{
-			if (str[i + 2] && ft_strchr("|<>", str[i + 2]))
-			{
-				syntax_err_msg(cmd, str, i + 2);
-				return (1);
-			}
+			op = is_operator(str[i]);
+			if (op == '|')
+				if (check_pipe(cmd, str, i))
+					return (1);
+			// else if (op == '>')
+			// 	if (check_red_out_apend(cmd, str))
+			// 		return (1);
+			// else if (op == '<')
+			// 	if (check_red_in_here_doc(cmd, str))
+			// 		return (1);
 		}
-		i++;
 	}
 	return (0);
 }
 
-int	check_last_char(t_shell *cmd, char *str)
-{
-	if (!str || !str[0])
-		return (0);
-	if (ft_strchr("|<>", str[ft_strlen(str) - 1]))
-	{
-		syntax_err_msg(cmd, str, ft_strlen(str) - 1);
-		return (1);
-	}
-	return (0);
-}
-
-int	check_first_char(t_shell *cmd, char *str)
-{
-	if (!str || !str[0])
-		return (0);
-	if (ft_strchr("|<>", str[0]))
-	{
-		syntax_err_msg(cmd, str, 0);
-		return (1);
-	}
-	return (0);
-}
 /*checar os codigos de erro*/
 int	check_syntax(t_shell *cmd, char *line)
 {
-	line = ft_strtrim(line, " \t");
-	if (check_first_char(cmd, line))
+	if (check_quotes(cmd, line))
 		return (1);
-	if (check_last_char(cmd, line))
-		return (1);
-	if (double_redirect(cmd, line))
+	fix_spaces(&line);
+	if (check_operators(cmd, line))
 		return (1);
 	return (0);
 }

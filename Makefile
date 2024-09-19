@@ -23,7 +23,8 @@ OBJD = obj/
 
 #FILES
 SRCS =	$(SRCD)main.c $(SRCD)utils.c $(SRCD)get_line.c \
-		$(SRCD)check_syntax.c $(SRCD)syntax_error.c 
+		$(SRCD)check_syntax.c $(SRCD)syntax_error.c \
+		$(SRCD)syntax_utils.c $(SRCD)operators_check.c
 
 OBJS = $(patsubst $(SRCD)%.c, $(OBJD)%.o, $(SRCS))
 $(OBJD)%.o: $(SRCD)%.c
