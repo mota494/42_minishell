@@ -54,4 +54,3 @@ void	print_list(t_shell *cmd)
 		temp = temp->next;
 	}
 }
-

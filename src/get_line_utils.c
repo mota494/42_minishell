@@ -58,7 +58,7 @@ char	*adv_spaces(char *oldtoret, char *line, int *pos)
 		{
 			*pos += 1;
 			while ((line[*pos] != 39 && line[*pos])
-			|| (line[*pos] != 34 && line[*pos]))
+				|| (line[*pos] != 34 && line[*pos]))
 			{
 				novo_toro = strjoinchr(novo_toro, line[*pos]);
 				*pos += 1;

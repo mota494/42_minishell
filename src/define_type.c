@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:15:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/19 12:27:38 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/19 13:20:52 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,17 @@ int	is_redirect(char *str)
 	if (sstrcmp("<<", str) || sstrcmp(">>", str))
 		return (1);
 	if (sstrcmp("<&", str) || sstrcmp("<>", str) || sstrcmp(">&", str))
+		return (1);
+	return (0);
+}
+
+int	is_var(char *str)
+{
+	if (str[0] == '$' && str[1] == 0)
+		return (0);
+	else if (str[0] == '$' && !ft_iseparator(str[1]))
+		return (1);
+	else if (str[0] == 34 && str[1] == '$')
 		return (1);
 	return (0);
 }
