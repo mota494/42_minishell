@@ -27,12 +27,18 @@ void	clean_line(char *cmd, char *line)
 
 t_quotes	get_quote_type(char *cmd)
 {
-	if (cmd[0] == 34)
-		return (dbl);
-	else if (cmd[0] == 39)
-		return (sgl);
-	else
-		return (no);
+	int	i;
+
+	i = 0;
+	while (cmd[i])
+	{
+		if (cmd[i] == 34)
+			return (dbl);
+		else if (cmd[i] == 39)
+			return (sgl);
+		i++;
+	}
+	return (no);
 }
 
 t_types	get_type(char *cmd)
@@ -101,5 +107,4 @@ void	treat_line(char *line, t_shell *cmd)
 		}
 	}
 	cmd->token = cmd_list;
-	print_list(cmd);
 }
