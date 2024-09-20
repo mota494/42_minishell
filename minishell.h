@@ -25,6 +25,7 @@ typedef enum s_types
 	builtin,
 	control,
 	redirect,
+	var,
 	error,
 }					t_types;
 
@@ -82,6 +83,7 @@ char				*strjoinchr(char *str, char c);
 int					is_builtin(char *str);
 int					is_controler(char *str);
 int					is_redirect(char *str);
+int					is_var(char *str);
 /* ==== utils3.c ==== */
 int					sstrcmp(char *tocomp, char *str);
 

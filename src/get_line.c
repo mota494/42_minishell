@@ -49,6 +49,8 @@ t_types	get_type(char *cmd)
 		is_arg = 0;
 		return (redirect);
 	}
+	if (is_var(cmd) == 1)
+		return (var);
 	else if (is_arg == 1)
 		return (string);
 	else if (is_builtin(cmd) == 1)
