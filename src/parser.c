@@ -15,6 +15,8 @@
 void	parser(char *line, t_shell *cmd)
 {
 	treat_line(line, cmd);
+	//quote remove
+	//actualy running the commands
 	free_all(cmd);
 	free(line);
 	get_type("|");
