@@ -41,8 +41,11 @@ void	trim_in_between(char **str)
 		str_trim = strjoinchr(str_trim, (*str)[i]);
 		i++;
 	}
-	free(*str);
-	*str = str_trim;
+	if (str_trim && str_trim != *str)
+	{
+		free(*str);
+		*str = str_trim;
+	}
 }
 
 void	trim_spaces(char **str)
@@ -52,7 +55,7 @@ void	trim_spaces(char **str)
 	if (!str || !*str)
 		return ;
 	str_trim = ft_strtrim(*str, " \t");
-	if (str_trim)
+	if (str_trim && str_trim != *str)
 	{
 		free(*str);
 		*str = str_trim;

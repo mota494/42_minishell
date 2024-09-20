@@ -19,19 +19,17 @@ void	read_command(t_shell *cmd)
 	while (1)
 	{
 		line = readline("minishell: ");
+		if (!line)
+			break ;
 		if (ft_strlen(line) > 0)
 		{
 			add_history(line);
 			if (check_syntax(cmd, line) == 1)
-			{
-				free(line);
-				line = NULL;
 				continue ;
-			}
-			//treat_line(line, cmd);
+			treat_line(line, cmd);
 		}
+		free(line);
 	}
-	//free(line);
 }
 
 /*checks if the program receives any input*/

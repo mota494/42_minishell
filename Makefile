@@ -35,7 +35,7 @@ $(OBJD)%.o: $(SRCD)%.c
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -lreadline $(INC) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS)  $(INC) $(OBJS) $(LIBFT) -L/lib/x86_64-linux-gnu -lreadline -lncurses -o $(NAME)
 	echo "$(GREEN)All files compiled!$(RESET)"
 
 $(LIBFT):
