@@ -6,15 +6,16 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/19 13:21:27 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/20 16:13:10 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	remove_quote(char *cmd)
+void	remove_quote(char *cmd, t_quotes quote)
 {
-
+	if (quote == sgl)
+		del_char(cmd, 39);
 }
 
 void	quote_removal(t_token *cmds)
@@ -24,7 +25,7 @@ void	quote_removal(t_token *cmds)
 	temp = cmds;
 	while (temp)
 	{
-		remove_quote(temp->cmd_line);
+		remove_quote(temp->cmd_line, temp->quote);
 		temp = temp->next;
 	}
 }
