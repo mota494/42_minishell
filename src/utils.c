@@ -50,7 +50,8 @@ void	print_list(t_shell *cmd)
 	temp = cmd->token;
 	while (temp)
 	{
-		printf("[%s⊗%d]\n", temp->cmd_line, temp->type);
+		printf("[%s∮%d∮%d]\n",
+			temp->cmd_line, temp->type, temp->quote);
 		temp = temp->next;
 	}
 }

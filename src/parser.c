@@ -12,10 +12,28 @@
 
 #include "../minishell.h"
 
+void	remove_quote(char *cmd)
+{
+
+}
+
+void	quote_removal(t_token *cmds)
+{
+	t_token	*temp;
+
+	temp = cmds;
+	while (temp)
+	{
+		remove_quote(temp->cmd_line);
+		temp = temp->next;
+	}
+}
+
 void	parser(char *line, t_shell *cmd)
 {
 	treat_line(line, cmd);
-	//quote remove
+	print_list(cmd);
+	quote_removal(cmd->token);
 	//actualy running the commands
 	free_all(cmd);
 	free(line);
