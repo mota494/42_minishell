@@ -23,3 +23,22 @@ int	sstrcmp(char *tocomp, char *str)
 		return (1);
 	return (0);
 }
+
+void	del_char(char *str, int to_del)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if (str[i] != to_del)
+		{
+			str[j] = str[i];
+			j++;
+		}
+		i++;
+	}
+	str[j] = 0;
+}

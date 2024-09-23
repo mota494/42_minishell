@@ -59,6 +59,7 @@ typedef struct s_shell
 void				free_all(t_shell *cmd);
 /* ==== parser.c ==== */
 void				parser(char *line, t_shell *cmd);
+void				runtime(t_shell *cmd);
 /* ==== get_line_utils.c ==== */
 char				*adv_dbl_quote(char *oldtoret, char *line, int *pos);
 char				*adv_spaces(char *oldtoret, char *line, int *pos);
@@ -86,5 +87,6 @@ int					is_redirect(char *str);
 int					is_var(char *str);
 /* ==== utils3.c ==== */
 int					sstrcmp(char *tocomp, char *str);
+void				del_char(char *str, int to_del);
 
 #endif
