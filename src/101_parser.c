@@ -12,9 +12,9 @@
 
 #include "../minishell.h"
 
-void	runtime(t_shell *cmd)
-{
-}
+// void	runtime(t_shell *cmd)
+// {
+// }
 
 void	remove_quote(char *cmd, t_quotes quote)
 {
@@ -40,7 +40,8 @@ void	parser(char *line, t_shell *cmd)
 {
 	treat_line(line, cmd);
 	quote_removal(cmd->token);
-	runtime(cmd);
+	print_list(cmd);
+	// runtime(cmd);
 	free_all(cmd);
 	free(line);
 	get_type("|");
