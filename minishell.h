@@ -88,5 +88,18 @@ int					is_var(char *str);
 /* ==== utils3.c ==== */
 int					sstrcmp(char *tocomp, char *str);
 void				del_char(char *str, int to_del);
+/* ==== syntax_error.c ==== */
+void				print_error(t_shell *cmd, char *error_type,
+ 				int error_code, char *compl);
+/* ==== check_syntax ==== */
+int					check_syntax(t_shell *cmd, char *line);
+/* ==== syntax_utils ==== */
+void				trim_spaces(char **str);
+void				trim_in_between(char **str);
+char				is_operator(char c);
+char				*find_quote_closure(char *str, int *i, char quote_type);
+/* ==== operators_check ==== */
+int				check_pipe(t_shell *cmd, char *str, int op_index);
+int				check_redout_apend(t_shell *cmd, char *str, int op_index);
 
 #endif
