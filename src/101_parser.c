@@ -12,10 +12,16 @@
 
 #include "../minishell.h"
 
+void	runtime(t_shell *cmd)
+{
+}
+
 void	remove_quote(char *cmd, t_quotes quote)
 {
 	if (quote == sgl)
 		del_char(cmd, 39);
+	else if (quote == dbl)
+		del_char(cmd, 34);
 }
 
 void	quote_removal(t_token *cmds)
@@ -33,9 +39,8 @@ void	quote_removal(t_token *cmds)
 void	parser(char *line, t_shell *cmd)
 {
 	treat_line(line, cmd);
-	print_list(cmd);
 	quote_removal(cmd->token);
-	//actualy running the commands
+	runtime(cmd);
 	free_all(cmd);
 	free(line);
 	get_type("|");
