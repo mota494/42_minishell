@@ -33,9 +33,9 @@ $(OBJD)%.o: $(SRCD)%.c
 
 #RULES
 all: $(NAME)
-
+#-L/lib/x86_64-linux-gnu#
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS)  $(INC) $(OBJS) $(LIBFT) -L/lib/x86_64-linux-gnu -lreadline -lncurses -o $(NAME)
+	$(CC) $(CFLAGS)  $(INC) $(OBJS) $(LIBFT) -lreadline -lncurses -o $(NAME)
 	echo "$(GREEN)All files compiled!$(RESET)"
 
 $(LIBFT):

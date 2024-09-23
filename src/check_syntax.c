@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/09/19 15:15:25 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/23 14:43:54 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_quotes(t_shell *cmd, char *str)
 	}
 	if (d_quotes % 2 != 0 || s_quotes % 2 != 0)
 	{
-		print_error(cmd, ERROR_QUOTE, 2);
+		print_error(cmd, ERROR_QUOTE, 2, NULL);
 		return (1);
 	}
 	return (0);
@@ -57,11 +57,15 @@ int	check_operators(t_shell *cmd, char *str)
 		{
 			op = is_operator(str[i]);
 			if (op == '|')
+			{
 				if (check_pipe(cmd, str, i))
 					return (1);
-			// else if (op == '>')
-			// 	if (check_red_out_apend(cmd, str))
-			// 		return (1);
+			}
+			else if (op == '>')
+			{
+				if (check_redout_apend(cmd, str, i))
+					return (1);
+			}
 			// else if (op == '<')
 			// 	if (check_red_in_here_doc(cmd, str))
 			// 		return (1);

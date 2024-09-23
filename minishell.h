@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/19 15:08:14 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/23 14:40:23 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,7 @@
 # define ERROR_DOUBLE_PIPE "syntax error near unexpected token `||'"
 # define ERROR_PIPE_END "minishell does not support this type of pipe"
 # define ERROR_REDIRECT "syntax error near unexpected token `newline'"
-# define ERR_RED_IN "syntax error near unexpected token `<'"
-# define ERR_RED_DOUB_IN "syntax error near unexpected token `<<'"
-# define ERR_RED_OUT "syntax error near unexpected token `>'"
-# define ERR_RED_DOUB_OUT "syntax error near unexpected token `>>'"
+# define ERR_GENERAL "syntax error near unexpected token"
 
 /* ============ structs ============ */
 typedef enum s_types
@@ -66,8 +63,8 @@ t_types	get_type(char *cmd);
 char	*strjoinchr(char *str, char c);
 void	treat_line(char *line, t_shell *cmd);
 /*syntax_error*/
-void	print_error(t_shell *cmd, char *error_type, int error_code);
-void	syntax_err_msg(t_shell *cmd, char *error_msg, int i);
+void	print_error(t_shell *cmd, char *error_type, int error_code,
+			char *compl);
 /*check_syntax*/
 int		check_syntax(t_shell *cmd, char *line);
 /*syntax_utils*/
@@ -77,4 +74,5 @@ char	is_operator(char c);
 char	*find_quote_closure(char *str, int *i, char quote_type);
 /*operators_check*/
 int		check_pipe(t_shell *cmd, char *str, int op_index);
+int		check_redout_apend(t_shell *cmd, char *str, int op_index);
 #endif
