@@ -86,6 +86,7 @@ int	check_append(t_shell *cmd, char *str, int i)
 	}
 	return (0);
 }
+
 /** checar caso >| verificar se dá erro em check_pipes */
 int	check_redout_apend(t_shell *cmd, char *str, int op_index)
 {

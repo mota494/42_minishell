@@ -25,7 +25,6 @@ void	print_error(t_shell *cmd, char *error_type, int error_code, char *compl)
 	cmd->error_code = error_code;
 }
 
-
 // void	syntax_err_msg(t_shell *cmd, char *str, unsigned long i)
 // {
 // 	if (str[i] == '|')
