@@ -12,9 +12,27 @@
 
 #include "../minishell.h"
 
-// void	runtime(t_shell *cmd)
-// {
-// }
+int	check_err(t_shell *cmd)
+{
+	t_token	*temp;
+	int		in_command;
+
+	temp = cmd->token;
+	in_command = 0;
+	while (temp)
+	{
+		if (temp->type == error && in_command == 0)
+		{
+			cmd->error_code = 127;
+			in_command = 1;
+			printf("%s: command not found\n", temp->cmd_line);
+		}
+		if (temp->type == control)
+			in_command = 0;
+		temp = temp->next;
+	}
+	return (1);
+}
 
 void	remove_quote(char *cmd, t_quotes quote)
 {
@@ -40,7 +58,9 @@ void	parser(char *line, t_shell *cmd)
 {
 	treat_line(line, cmd);
 	quote_removal(cmd->token);
-	// runtime(cmd);
+	cmd->n_inputs = true_ninput(cmd->token);
+	check_err(cmd);
+	runtime(cmd);
 	free_all(cmd);
 	free(line);
 	get_type("|");

@@ -40,6 +40,7 @@ typedef enum s_quotes
 /*token list*/
 typedef struct s_token
 {
+	int			cmd_id;
 	char			*cmd_line;
 	t_types			type;
 	t_quotes		quote;
@@ -60,7 +61,6 @@ typedef struct s_shell
 void				free_all(t_shell *cmd);
 /* ==== parser.c ==== */
 void				parser(char *line, t_shell *cmd);
-void				runtime(t_shell *cmd);
 /* ==== get_line_utils.c ==== */
 char				*adv_dbl_quote(char *oldtoret, char *line, int *pos);
 char				*adv_spaces(char *oldtoret, char *line, int *pos);
@@ -73,7 +73,7 @@ t_quotes			get_quote_type(char *cmd);
 void				treat_line(char *line, t_shell *cmd);
 /* ==== utils.c ==== */
 char				*alocpy(char *str);
-t_token				*add_node(char *content);
+t_token				*add_node(char *content, int id);
 void				print_list(t_shell *cmd);
 /* ==== utils2.c ==== */
 void				jump_spaces(char *line);
@@ -89,6 +89,8 @@ int					is_var(char *str);
 /* ==== utils3.c ==== */
 int					sstrcmp(char *tocomp, char *str);
 void				del_char(char *str, int to_del);
+int					fix_exit(int val);
+int					true_ninput(t_token *cmds);
 /* ==== syntax_error.c ==== */
 void				print_error(t_shell *cmd, char *error_type,
  				int error_code, char *compl);
@@ -102,6 +104,11 @@ char				*find_quote_closure(char *str, int *i, char quote_type);
 /* ==== operators_check ==== */
 int				check_pipe(t_shell *cmd, char *str, int op_index);
 int				check_redout_apend(t_shell *cmd, char *str, int op_index);
+/* ==== runtime.c ==== */
+void				runtime(t_shell *cmd);
+
+/* ==== exit.c ==== */
+void				exit_main(t_shell *cmd);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
