@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include <stdio.h>
 
 int	check_quotes(t_shell *cmd, char *str)
 {
@@ -31,9 +32,9 @@ int	check_quotes(t_shell *cmd, char *str)
 	if (d_quotes % 2 != 0 || s_quotes % 2 != 0)
 	{
 		print_error(cmd, ERROR_QUOTE, 2, NULL);
-		return (1);
+		return (0);
 	}
-	return (0);
+	return (1);
 }
 
 void	fix_spaces(char **str)
@@ -41,6 +42,30 @@ void	fix_spaces(char **str)
 	trim_spaces(str);
 	trim_in_between(str);
 	return ;
+}
+
+void	remove_spaces(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (ft_ispace(str[i]) == 1)
+		i++;
+	if (i > 0)
+	{
+		while (str[j + i])
+		{
+			str[j] = str[j + i];
+			j++;
+		}
+		str[j] = '\0';
+	}
+	i = ft_strlen(str);
+	while (ft_ispace(str[i - 1]) == 1)
+		i--;
+	str[i] = '\0';
 }
 
 int	check_operators(t_shell *cmd, char *str)
@@ -59,28 +84,28 @@ int	check_operators(t_shell *cmd, char *str)
 			if (op == '|')
 			{
 				if (check_pipe(cmd, str, i))
-					return (1);
+					return (0);
 			}
 			else if (op == '>')
 			{
 				if (check_redout_apend(cmd, str, i))
-					return (1);
+					return (0);
 			}
 			// else if (op == '<')
 			// 	if (check_red_in_here_doc(cmd, str))
 			// 		return (1);
 		}
 	}
-	return (0);
+	return (1);
 }
 
 /*checar os codigos de erro*/
 int	check_syntax(t_shell *cmd, char *line)
 {
-	if (check_quotes(cmd, line))
-		return (1);
-	fix_spaces(&line);
-	if (check_operators(cmd, line))
-		return (1);
-	return (0);
+	remove_spaces(line);
+	if (!check_quotes(cmd, line))
+		return (0);
+	if (!check_operators(cmd, line))
+		return (0);
+	return (1);
 }

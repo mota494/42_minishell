@@ -35,7 +35,7 @@ int	check_pipe(t_shell *cmd, char *str, int op_index)
 		print_error(cmd, ERROR_DOUBLE_PIPE, 2, NULL);
 		return (1);
 	}
-	else if ((ft_isspace(str[i]) && str[i + 1] == '|'))
+	else if ((ft_ispace(str[i]) && str[i + 1] == '|'))
 	{
 		print_error(cmd, ERROR_PIPE, 2, NULL);
 		return (1);
@@ -73,12 +73,12 @@ int	check_append(t_shell *cmd, char *str, int i)
 	}
 	else
 	{
-		if (ft_isspace(str[i + 1]) && str[i + 2] && is_operator(str[i + 2]))
+		if (ft_ispace(str[i + 1]) && str[i + 2] && is_operator(str[i + 2]))
 		{
 			check_next_op(cmd, str, i + 2);
 			return (1);
 		}
-		else if (ft_isspace(str[i + 1]))
+		else if (ft_ispace(str[i + 1]))
 		{
 			check_next_op(cmd, str, i + 1);
 			return (1);
@@ -109,7 +109,7 @@ int	check_redout_apend(t_shell *cmd, char *str, int op_index)
 				return (1);
 			}
 		}
-		else if (ft_isspace(str[i]) && is_operator(str[i + 1]))
+		else if (ft_ispace(str[i]) && is_operator(str[i + 1]))
 			if (check_next_op(cmd, str, i + 1))
 				return (1);
 	}

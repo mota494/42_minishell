@@ -51,6 +51,7 @@ typedef struct s_shell
 {
 	t_token			*token;
 	int				n_inputs;
+	int 			error_code;
 }					t_shell;
 
 /* ============ functions ============ */
@@ -102,4 +103,9 @@ char				*find_quote_closure(char *str, int *i, char quote_type);
 int				check_pipe(t_shell *cmd, char *str, int op_index);
 int				check_redout_apend(t_shell *cmd, char *str, int op_index);
 
+/*
+sstrcmp is a normal strcmp that will return 1 if the strings are correct
+scmp is a strcmp but it ignores quotes and double quotes, only used for certain
+actions
+*/
 #endif

@@ -36,7 +36,7 @@ void	read_command(t_shell *cmd)
 	{
 		cmd->n_inputs = 0;
 		line = readline("minishell: ");
-		if (ft_strlen(line) > 0)
+		if (check_syntax(cmd, line) == 1)
 		{
 			add_history(line);
 			parser(line, cmd);
