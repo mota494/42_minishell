@@ -17,7 +17,7 @@ int	only_spaces(char *str)
 {
 	while (*str)
 	{
-		if (!ft_isspace(*str))
+		if (!ft_ispace(*str))
 			return (0);
 		str++;
 	}
@@ -33,9 +33,9 @@ void	trim_in_between(char **str)
 	i = 0;
 	while ((*str)[i])
 	{
-		if (ft_isspace((*str)[i]) && (*str)[i + 1] && ft_isspace((*str)[i + 1]))
+		if (ft_ispace((*str)[i]) && (*str)[i + 1] && ft_ispace((*str)[i + 1]))
 		{
-			while (ft_isspace((*str)[i + 1]))
+			while (ft_ispace((*str)[i + 1]))
 				i++;
 		}
 		str_trim = strjoinchr(str_trim, (*str)[i]);
