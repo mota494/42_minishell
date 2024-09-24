@@ -35,6 +35,7 @@ void	read_command(t_shell *cmd)
 	while (i < 3)
 	{
 		cmd->n_inputs = 0;
+		cmd->error_code = 0;
 		line = readline("minishell: ");
 		if (check_syntax(cmd, line) == 1)
 		{
@@ -43,6 +44,8 @@ void	read_command(t_shell *cmd)
 		}
 		i++;
 	}
+	if (cmd->error_code > 255)
+		cmd->error_code = fix_exit(cmd->error_code);
 }
 
 /*checks if the program receives any input*/
@@ -68,5 +71,5 @@ int	main(int ac, char **av)
 	check_input(ac, av);
 	init(&cmd);
 	read_command(&cmd);
-	return (0);
+	return (cmd.error_code);
 }

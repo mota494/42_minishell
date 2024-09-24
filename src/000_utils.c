@@ -30,7 +30,7 @@ char	*alocpy(char *str)
 	return (toret);
 }
 
-t_token	*add_node(char	*content)
+t_token	*add_node(char	*content, int id)
 {
 	t_token	*new_node;
 
@@ -40,6 +40,7 @@ t_token	*add_node(char	*content)
 	new_node->next = NULL;
 	new_node->quote = get_quote_type(new_node->cmd_line);
 	new_node->type = get_type(new_node->cmd_line);
+	new_node->cmd_id = id;
 	return (new_node);
 }
 

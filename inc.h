@@ -21,6 +21,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <errno.h>
+# include <signal.h>
 # include "includes/libft/libft.h"
 # define OPERATORS "|<>"
 # define ERROR_QUOTE "quotation has not been closed"

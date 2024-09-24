@@ -90,9 +90,11 @@ char	*get_cmd(char *line)
 void	treat_line(char *line, t_shell *cmd)
 {
 	t_token	*cmd_list;
+	int	i;
+	i = 0;
 
 	jump_spaces(line);
-	cmd->token = add_node(get_cmd(line));
+	cmd->token = add_node(get_cmd(line), i);
 	cmd->n_inputs += 1;
 	cmd_list = cmd->token;
 	while (ft_strlen(line) > 0)
@@ -102,7 +104,8 @@ void	treat_line(char *line, t_shell *cmd)
 		{
 			while (cmd->token->next)
 				cmd->token = cmd->token->next;
-			cmd->token->next = add_node(get_cmd(line));
+			cmd->token->next = add_node(get_cmd(line), i);
+			i++;
 			cmd->n_inputs += 1;
 		}
 	}

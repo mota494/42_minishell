@@ -42,3 +42,14 @@ void	del_char(char *str, int to_del)
 	}
 	str[j] = 0;
 }
+
+int	fix_exit(int val)
+{
+	int	toret;
+	int	sup;
+
+	sup = val / 256;
+	toret = 256 * sup;
+	toret = val - toret;
+	return (toret);
+}

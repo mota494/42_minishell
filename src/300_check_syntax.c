@@ -92,6 +92,8 @@ int	check_operators(t_shell *cmd, char *str)
 /*checar os codigos de erro*/
 int	check_syntax(t_shell *cmd, char *line)
 {
+	if (ft_strlen(line) <= 0)
+		return (0);
 	remove_spaces(line);
 	if (!check_quotes(cmd, line))
 		return (0);
