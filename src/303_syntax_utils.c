@@ -85,7 +85,6 @@ char	*find_quote_closure(char *str, int *i, char quote_type)
 	return (NULL);
 }
 
-
 char	is_operator(char c)
 {
 	char	*str;
@@ -95,4 +94,3 @@ char	is_operator(char c)
 		return (0);
 	return (str[0]);
 }
-

@@ -37,13 +37,6 @@ int	check_quotes(t_shell *cmd, char *str)
 	return (1);
 }
 
-void	fix_spaces(char **str)
-{
-	trim_spaces(str);
-	trim_in_between(str);
-	return ;
-}
-
 void	remove_spaces(char *str)
 {
 	int	i;
@@ -91,9 +84,6 @@ int	check_operators(t_shell *cmd, char *str)
 				if (check_redout_apend(cmd, str, i))
 					return (0);
 			}
-			// else if (op == '<')
-			// 	if (check_red_in_here_doc(cmd, str))
-			// 		return (1);
 		}
 	}
 	return (1);

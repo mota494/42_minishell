@@ -40,7 +40,6 @@ void	parser(char *line, t_shell *cmd)
 {
 	treat_line(line, cmd);
 	quote_removal(cmd->token);
-	print_list(cmd);
 	// runtime(cmd);
 	free_all(cmd);
 	free(line);
