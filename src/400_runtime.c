@@ -12,10 +12,17 @@
 
 #include "../minishell.h"
 
-void	check_command(t_shell *cmd)
+int	go_builtin(t_shell *cmd)
 {
 	if (sstrcmp(cmd->token->cmd_line, "exit"))
 		cmd->error_code = exit_main(cmd);
+	return (1);
+}
+
+void	check_command(t_shell *cmd)
+{
+	if (go_builtin(cmd))
+		return ;
 }
 
 void	runtime(t_shell *cmd)
