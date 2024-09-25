@@ -103,8 +103,13 @@ void				trim_in_between(char **str);
 char				is_operator(char c);
 char				*find_quote_closure(char *str, int *i, char quote_type);
 /* ==== operators_check ==== */
-int				check_pipe(t_shell *cmd, char *str, int op_index);
-int				check_redout_apend(t_shell *cmd, char *str, int op_index);
+int					check_pipe(t_shell *cmd, char *str, int op_index);
+int					check_next_op(t_shell *cmd, char *str, int op_index);
+int					check_redout_apend(t_shell *cmd, char *str, int op_index);
+int					check_redin_heredoc(t_shell *cmd, char *str, int op_index);
+/* ==== operators_check2 ==== */
+int					check_heredoc(t_shell *cmd, char *str, int i);
+
 /* ==== runtime.c ==== */
 void				runtime(t_shell *cmd);
 

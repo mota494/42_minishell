@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <stdio.h>
 
 int	check_quotes(t_shell *cmd, char *str)
 {
@@ -75,15 +74,14 @@ int	check_operators(t_shell *cmd, char *str)
 		{
 			op = is_operator(str[i]);
 			if (op == '|')
-			{
 				if (check_pipe(cmd, str, i))
 					return (0);
-			}
-			else if (op == '>')
-			{
+			if (op == '>')
 				if (check_redout_apend(cmd, str, i))
 					return (0);
-			}
+			if (op == '<')
+				if (check_redin_heredoc(cmd, str, i))
+					return (1);
 		}
 	}
 	return (1);

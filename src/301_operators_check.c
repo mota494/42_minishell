@@ -116,3 +116,25 @@ int	check_redout_apend(t_shell *cmd, char *str, int op_index)
 	}
 	return (0);
 }
+
+int	check_redin_heredoc(t_shell *cmd, char *str, int op_index)
+{
+	int	i;
+
+	i = op_index + 1;
+	if (!str[i])
+	{
+		print_error(cmd, ERROR_REDIRECT, 2, NULL);
+		return (1);
+	}
+	else if (is_operator(str[i]))
+	{
+		if (str[i] == '<')
+			return (check_heredoc(cmd, str, i), 1);
+		else if (str[i] == '|')
+			return (print_error(cmd, ERROR_PIPE, 2, NULL), 1);
+	}
+	else if (ft_ispace(str[i]) && is_operator(str[i + 1]))
+		return (check_next_op(cmd, str, i + 1), 1);
+	return (0);
+}
