@@ -46,7 +46,7 @@ int	ft_iseparator(int c)
 		return (1);
 	else if (c == 124 || c == 38 || c == 59)
 		return (1);
-	else if (c == 44 || c == 60 || c == 62)
+	else if (c == 60 || c == 62)
 		return (1);
 	else if (c == 40 || c == 41)
 		return (1);

@@ -1,40 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   400_runtime.c                                      :+:      :+:    :+:   */
+/*   402_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/25 09:43:29 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/25 09:43:31 by mloureir         ###   ########.fr       */
+/*   Created: 2024/09/25 13:58:43 by mloureir          #+#    #+#             */
+/*   Updated: 2024/09/25 13:58:45 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	go_builtin(t_shell *cmd)
+void	print_echo(t_token *cmd)
 {
-	if (sstrcmp(cmd->token->cmd_line, "exit"))
-		cmd->error_code = exit_main(cmd);
-	else if (sstrcmp(cmd->token->cmd_line, "echo"))
-		echo_main(cmd);
-	return (1);
+	int	count_print;
+	int	is_n;
+
+	count_print = 0;
+	is_n = 0;
+	while (cmd)
+	{
+		if (cmd->type != string)
+			break ;
+		if (sstrcmp(cmd->cmd_line, "-n") && count_print == 0)
+			is_n = 1;
+		else
+			printf("%s ", cmd->cmd_line);
+		count_print++;
+		cmd = cmd->next;
+	}
+	if (is_n == 0)
+		printf("\n");
 }
 
-void	check_command(t_shell *cmd)
-{
-	go_builtin(cmd);
-}
-
-void	runtime(t_shell *cmd)
+void	echo_main(t_shell *cmd)
 {
 	t_token	*temp;
 
 	temp = cmd->token;
-	while (cmd->token)
-	{
-		check_command(cmd);
-		cmd->token = cmd->token->next;
-	}
-	cmd->token = temp;
+	temp = temp->next;
+	//if (is_there_pipe(temp))
+		//send args to pipe
+	print_echo(temp);
 }

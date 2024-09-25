@@ -92,6 +92,7 @@ int					sstrcmp(char *tocomp, char *str);
 void				del_char(char *str, int to_del);
 int					fix_exit(int val);
 int					true_ninput(t_token *cmds);
+int					is_there_pipe(t_token *cmd);
 /* ==== syntax_error.c ==== */
 void				print_error(t_shell *cmd, char *error_type,
  				int error_code, char *compl);
@@ -115,6 +116,8 @@ void				runtime(t_shell *cmd);
 
 /* ==== exit.c ==== */
 int					exit_main(t_shell *cmd);
+/* ==== echo.c ==== */
+void				echo_main(t_shell *cmd);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
