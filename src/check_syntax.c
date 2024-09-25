@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/09/23 14:43:54 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/24 18:12:05 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,11 @@ int	check_operators(t_shell *cmd, char *str)
 				if (check_redout_apend(cmd, str, i))
 					return (1);
 			}
-			// else if (op == '<')
-			// 	if (check_red_in_here_doc(cmd, str))
-			// 		return (1);
+			else if (op == '<')
+			{
+				if (check_redin_heredoc(cmd, str, i))
+					return (1);
+			}
 		}
 	}
 	return (0);

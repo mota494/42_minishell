@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/23 14:40:23 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/09/24 18:09:49 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,4 +75,5 @@ char	*find_quote_closure(char *str, int *i, char quote_type);
 /*operators_check*/
 int		check_pipe(t_shell *cmd, char *str, int op_index);
 int		check_redout_apend(t_shell *cmd, char *str, int op_index);
+int		check_redin_heredoc(t_shell *cmd, char *str, int op_index);
 #endif
