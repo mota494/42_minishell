@@ -34,13 +34,13 @@ void	read_command(t_shell *cmd)
 	i = 0;
 	while (i < 3)
 	{
-		cmd->n_inputs = 0;
-		cmd->error_code = 0;
 		line = readline("minishell: ");
 		if (check_syntax(cmd, line) == 1)
 		{
 			add_history(line);
 			parser(line, cmd);
+			if (cmd->leave == true)
+				break ;
 		}
 		i++;
 	}
@@ -61,6 +61,9 @@ void	check_input(int ac, char **av)
 /*initiates the main structure*/
 void	init(t_shell *cmd)
 {
+	cmd->leave = false;
+	cmd->n_inputs = 0;
+	cmd->error_code = 0;
 	ft_bzero(cmd, sizeof(t_shell));
 }
 

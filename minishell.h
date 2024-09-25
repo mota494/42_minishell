@@ -53,6 +53,7 @@ typedef struct s_shell
 	t_token			*token;
 	int				n_inputs;
 	int 			error_code;
+	bool			leave;
 }					t_shell;
 
 /* ============ functions ============ */
@@ -108,7 +109,7 @@ int				check_redout_apend(t_shell *cmd, char *str, int op_index);
 void				runtime(t_shell *cmd);
 
 /* ==== exit.c ==== */
-void				exit_main(t_shell *cmd);
+int					exit_main(t_shell *cmd);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
