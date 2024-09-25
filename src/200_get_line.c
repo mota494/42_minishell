@@ -90,9 +90,9 @@ char	*get_cmd(char *line)
 void	treat_line(char *line, t_shell *cmd)
 {
 	t_token	*cmd_list;
-	int	i;
-	i = 0;
+	int		i;
 
+	i = 0;
 	jump_spaces(line);
 	cmd->token = add_node(get_cmd(line), i);
 	cmd->n_inputs += 1;

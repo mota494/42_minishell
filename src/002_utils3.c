@@ -69,3 +69,17 @@ int	true_ninput(t_token *cmds)
 	}
 	return (toret);
 }
+
+int	is_there_pipe(t_token *cmd)
+{
+	t_token	*temp;
+
+	temp = cmd;
+	while (temp)
+	{
+		if (temp->type == control)
+			return (1);
+		temp = temp->next;
+	}
+	return (0);
+}
