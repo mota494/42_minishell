@@ -29,10 +29,8 @@ void	free_all(t_shell *cmd)
 void	read_command(t_shell *cmd)
 {
 	char	*line;
-	int		i;
 
-	i = 0;
-	while (i < 3)
+	while (1)
 	{
 		line = readline("minishell: ");
 		if (check_syntax(cmd, line) == 1)
@@ -42,7 +40,6 @@ void	read_command(t_shell *cmd)
 			if (cmd->leave == true)
 				break ;
 		}
-		i++;
 	}
 	if (cmd->error_code > 255)
 		cmd->error_code = fix_exit(cmd->error_code);
