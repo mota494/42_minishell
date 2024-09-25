@@ -53,3 +53,19 @@ int	fix_exit(int val)
 	toret = val - toret;
 	return (toret);
 }
+
+int	true_ninput(t_token *cmds)
+{
+	int		toret;
+	t_token	*temp;
+
+	temp = cmds;
+	toret = 0;
+	while (temp)
+	{
+		if (temp->type == builtin || temp->type == control)
+			toret++;
+		temp = temp->next;
+	}
+	return (toret);
+}

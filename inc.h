@@ -23,6 +23,7 @@
 # include <errno.h>
 # include <signal.h>
 # include "includes/libft/libft.h"
+# include <stdbool.h>
 # define OPERATORS "|<>"
 # define ERROR_QUOTE "quotation has not been closed"
 # define ERROR_PIPE "syntax error near unexpected token `|'"
