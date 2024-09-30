@@ -12,21 +12,41 @@
 
 #include "../minishell.h"
 
+int	count_echo(t_token *cmd)
+{
+	t_token	*temp;
+	int		toret;
+
+	temp = cmd;
+	toret = 0;
+	while (temp)
+	{
+		if (temp->type != string)
+			return (toret);
+		temp = temp->next;
+		toret++;
+	}
+	return (toret);
+}
+
 void	print_echo(t_token *cmd)
 {
 	int	count_print;
 	int	is_n;
+	int	to_print;
 
 	count_print = 0;
 	is_n = 0;
-	while (cmd)
+	to_print = count_echo(cmd);
+	while (to_print >= 0 && cmd)
 	{
-		if (cmd->type != string)
-			break ;
+		to_print--;
 		if (sstrcmp(cmd->cmd_line, "-n") && count_print == 0)
 			is_n = 1;
-		else
+		else if (to_print > 0)
 			printf("%s ", cmd->cmd_line);
+		else
+			printf("%s", cmd->cmd_line);
 		count_print++;
 		cmd = cmd->next;
 	}
