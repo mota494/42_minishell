@@ -23,7 +23,8 @@ int	go_builtin(t_shell *cmd)
 
 void	check_command(t_shell *cmd)
 {
-	go_builtin(cmd);
+	if (cmd->token->type != string)
+		go_builtin(cmd);
 }
 
 void	runtime(t_shell *cmd)
