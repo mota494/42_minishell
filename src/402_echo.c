@@ -62,5 +62,6 @@ void	echo_main(t_shell *cmd)
 	temp = temp->next;
 	//if (is_there_pipe(temp))
 		//send args to pipe
+	//else
 	print_echo(temp);
 }
