@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   inc.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/18 10:59:29 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:14:51 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include <signal.h>
 # include "includes/libft/libft.h"
 # include <stdbool.h>
+
+/********* syntax errors ********/
 # define OPERATORS "|<>"
 # define ERROR_QUOTE "quotation has not been closed"
 # define ERROR_PIPE "syntax error near unexpected token `|'"
@@ -32,10 +34,25 @@
 # define ERROR_REDIRECT "syntax error near unexpected token `newline'"
 # define ERR_GENERAL "syntax error near unexpected token"
 
+/********* syntax structs ********/
 typedef struct s_index_counter
 {
 	size_t	i;
 	size_t	count;
 }		t_ic;
+
+/*Structure which contains an array of integers - a pipe's couple of fds*/
+typedef struct s_fd
+{
+	int	fd[2];
+}		t_fd;
+
+/*Structure which keeps execve's arguments*/
+typedef struct s_exec
+{
+	char	*pathname;
+	char	**args;
+	char	**dirs;
+}			t_exec;
 
 #endif
