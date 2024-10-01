@@ -21,7 +21,7 @@ int	count_echo(t_token *cmd)
 	toret = 0;
 	while (temp)
 	{
-		if (temp->type != string)
+		if (temp->type != string && temp->type != var)
 			return (toret);
 		temp = temp->next;
 		toret++;
