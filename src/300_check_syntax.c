@@ -68,7 +68,6 @@ int	check_operators(t_shell *cmd, char *str)
 	i = -1;
 	while (str[++i])
 	{
-		printf("%d", i);
 		if (str[i] == '"' || str[i] == '\'')
 			find_quote_closure(str, &i, str[i]);
 		else
