@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/19 10:02:34 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/30 16:06:48 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,15 @@ void	read_command(t_shell *cmd)
 		cmd->error_code = fix_exit(cmd->error_code);
 }
 
+/*initiates the main structure*/
+void	init_tshell(t_shell *cmd)
+{
+	cmd->leave = false;
+	cmd->n_inputs = 0;
+	cmd->error_code = 0;
+	ft_bzero(cmd, sizeof(t_shell));
+}
+
 /*checks if the program receives any input*/
 void	check_input(int ac, char **av)
 {
@@ -55,21 +64,12 @@ void	check_input(int ac, char **av)
 	}
 }
 
-/*initiates the main structure*/
-void	init(t_shell *cmd)
-{
-	cmd->leave = false;
-	cmd->n_inputs = 0;
-	cmd->error_code = 0;
-	ft_bzero(cmd, sizeof(t_shell));
-}
-
 int	main(int ac, char **av)
 {
 	t_shell	cmd;
 
 	check_input(ac, av);
-	init(&cmd);
+	init_tshell(&cmd);
 	read_command(&cmd);
 	return (cmd.error_code);
 }

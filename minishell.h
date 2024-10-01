@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/20 16:12:55 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/09/30 17:47:42 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef enum s_quotes
 /*token list*/
 typedef struct s_token
 {
-	int			cmd_id;
+	int				cmd_id;
 	char			*cmd_line;
 	t_types			type;
 	t_quotes		quote;
@@ -52,8 +52,11 @@ typedef struct s_shell
 {
 	t_token			*token;
 	int				n_inputs;
-	int 			error_code;
+	int				error_code;
 	bool			leave;
+	pid_t			*pids;
+	t_fd			*p_fds;
+	t_exec			*exec;
 }					t_shell;
 
 /* ============ functions ============ */
@@ -118,6 +121,12 @@ void				runtime(t_shell *cmd);
 int					exit_main(t_shell *cmd);
 /* ==== echo.c ==== */
 void				echo_main(t_shell *cmd);
+/* ==== redirect_and_wait ==== */
+void				first_redirect(t_shell *cmd);
+void				last_redirect(t_shell *cmd, int i);
+void				std_redirect(t_shell *cmd, int i);
+void				close_fds(t_shell *cmd);
+int					wait_for_child(t_shell *cmd);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
