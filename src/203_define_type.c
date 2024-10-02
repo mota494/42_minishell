@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   define_type.c                                      :+:      :+:    :+:   */
+/*   203_define_type.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:15:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/19 13:20:52 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:30:51 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,20 @@ int	is_var(char *str)
 	else if (str[0] == '$' && !ft_iseparator(str[1]))
 		return (1);
 	else if (str[0] == 34 && str[1] == '$')
+		return (1);
+	return (0);
+}
+
+/*malloc em strdup liberar path_name no fim*/
+int	is_command(t_shell *cmd, t_token *new_node, char *str)
+{
+	printf("hello chego em is command\n");
+	if (find_slash(str) && (access(str, X_OK) == 0))
+	{
+		new_node->path_name = ft_strdup(str);
+		return (1);
+	}
+	else if (find_absolute_path(cmd, new_node, str))
 		return (1);
 	return (0);
 }

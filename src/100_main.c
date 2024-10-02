@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/30 16:06:48 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/10/02 08:03:03 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	free_all(t_shell *cmd)
 	}
 	cmd->token = NULL;
 }
-
+/**reads command line in a loop, checks for syntax errors
+ * and tokenizes it*/
 void	read_command(t_shell *cmd)
 {
 	char	*line;
@@ -46,12 +47,13 @@ void	read_command(t_shell *cmd)
 }
 
 /*initiates the main structure*/
-void	init_tshell(t_shell *cmd)
+void	init_tshell(t_shell *cmd, char **envp)
 {
+	ft_bzero(cmd, sizeof(t_shell));
 	cmd->leave = false;
 	cmd->n_inputs = 0;
 	cmd->error_code = 0;
-	ft_bzero(cmd, sizeof(t_shell));
+	init_path_dirs(cmd, envp);
 }
 
 /*checks if the program receives any input*/
@@ -64,12 +66,12 @@ void	check_input(int ac, char **av)
 	}
 }
 
-int	main(int ac, char **av)
+int	main(int ac, char **av, char **envp)
 {
 	t_shell	cmd;
 
 	check_input(ac, av);
-	init_tshell(&cmd);
+	init_tshell(&cmd, envp);
 	read_command(&cmd);
 	return (cmd.error_code);
 }

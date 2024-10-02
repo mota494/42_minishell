@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/30 17:47:42 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/10/02 08:21:29 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_token
 {
 	int				cmd_id;
 	char			*cmd_line;
+	char			*path_name;
 	t_types			type;
 	t_quotes		quote;
 	struct s_token	*next;
@@ -53,6 +54,7 @@ typedef struct s_shell
 	t_token			*token;
 	int				n_inputs;
 	int				error_code;
+	char			**path_dirs;
 	bool			leave;
 	pid_t			*pids;
 	t_fd			*p_fds;
@@ -71,14 +73,15 @@ char				*adv_spaces(char *oldtoret, char *line, int *pos);
 char				*adv_sig_quote(char *oldtoret, char *line, int *pos);
 char				*adv_separator(char *oldtoret, char *line, int *pos);
 /* ==== get_line.c ==== */
-t_types				get_type(char *cmd);
+t_types				get_type(t_shell *mshell, t_token *new_node, char *cmd);
 char				*get_cmd(char *line);
 t_quotes			get_quote_type(char *cmd);
 void				treat_line(char *line, t_shell *cmd);
 /* ==== utils.c ==== */
 char				*alocpy(char *str);
-t_token				*add_node(char *content, int id);
+t_token				*add_node(t_shell *cmd, char *content, int id);
 void				print_list(t_shell *cmd);
+void				init_path_dirs(t_shell *cmd, char **envp);
 /* ==== utils2.c ==== */
 void				jump_spaces(char *line);
 int					ft_ispace(int c);
@@ -90,6 +93,10 @@ int					is_builtin(char *str);
 int					is_controler(char *str);
 int					is_redirect(char *str);
 int					is_var(char *str);
+int					is_command(t_shell *cmd, t_token *new_node, char *str);
+/* ==== define_type_utils ==== */
+int					find_slash(char *str);
+int					find_absolute_path(t_shell *cmd, t_token *new_node, char *str);
 /* ==== utils3.c ==== */
 int					sstrcmp(char *tocomp, char *str);
 void				del_char(char *str, int to_del);
@@ -98,7 +105,7 @@ int					true_ninput(t_token *cmds);
 int					is_there_pipe(t_token *cmd);
 /* ==== syntax_error.c ==== */
 void				print_error(t_shell *cmd, char *error_type,
- 				int error_code, char *compl);
+					int error_code, char *compl);
 /* ==== check_syntax ==== */
 int					check_syntax(t_shell *cmd, char *line);
 /* ==== syntax_utils ==== */
@@ -127,6 +134,7 @@ void				last_redirect(t_shell *cmd, int i);
 void				std_redirect(t_shell *cmd, int i);
 void				close_fds(t_shell *cmd);
 int					wait_for_child(t_shell *cmd);
+
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
