@@ -135,7 +135,7 @@ void				std_redirect(t_shell *cmd, int i);
 void				close_fds(t_shell *cmd);
 int					wait_for_child(t_shell *cmd);
 /* ==== cd.c ==== */
-void				cd(char *path, t_shell *cmd);
+void				cd(t_shell *cmd);
 /* ==== pwd.c ==== */
 int					pwd(void);
 
