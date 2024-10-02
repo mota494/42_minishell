@@ -57,18 +57,19 @@ t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd)
 	}
 	if (is_var(cmd) == 1)
 		return (var);
-	else if (is_arg == 1)
-		return (string);
 	else if (is_builtin(cmd) == 1)
 	{
 		is_arg = 1;
 		return (builtin);
 	}
+
 	else if (is_command(mshell, new_node, cmd) == 1)
 	{
-		printf("confirmo que é comando\n");
+		is_arg = 1;
 		return (command);
 	}
+	else if (is_arg == 1)
+		return (string);
 	return (error);
 }
 
