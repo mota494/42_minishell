@@ -14,6 +14,7 @@
 # define INC_H
 
 # include <stdio.h>
+# include <linux/limits.h>
 # include <readline/history.h>
 # include <readline/readline.h>
 # include <stdlib.h>
