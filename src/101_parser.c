@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parser.c                                           :+:      :+:    :+:   */
+/*   101_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/20 16:13:10 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/02 09:02:35 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,11 @@ void	parser(char *line, t_shell *cmd)
 	treat_line(line, cmd);
 	quote_removal(cmd->token);
 	cmd->n_inputs = true_ninput(cmd->token);
+	print_list(cmd);
 	check_err(cmd);
-	runtime(cmd);
-	free_all(cmd);
-	free(line);
-	get_type("|");
+	printf("completa\n");
+	//runtime(cmd);
+	//free_all(cmd);
+	//free(line);
+	//get_type("|");
 }

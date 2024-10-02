@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_line.c                                         :+:      :+:    :+:   */
+/*   200_get_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/19 12:11:44 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/02 08:54:31 by sofiabueno       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_quotes	get_quote_type(char *cmd)
 	return (no);
 }
 
-t_types	get_type(char *cmd)
+t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd)
 {
 	static int	is_arg;
 
@@ -63,6 +63,11 @@ t_types	get_type(char *cmd)
 	{
 		is_arg = 1;
 		return (builtin);
+	}
+	else if (is_command(mshell, new_node, cmd) == 1)
+	{
+		printf("confirmo que é comando\n");
+		return (command);
 	}
 	return (error);
 }
@@ -94,7 +99,7 @@ void	treat_line(char *line, t_shell *cmd)
 
 	i = 0;
 	jump_spaces(line);
-	cmd->token = add_node(get_cmd(line), i);
+	cmd->token = add_node(cmd, get_cmd(line), i);
 	cmd->n_inputs += 1;
 	cmd_list = cmd->token;
 	while (ft_strlen(line) > 0)
@@ -104,7 +109,7 @@ void	treat_line(char *line, t_shell *cmd)
 		{
 			while (cmd->token->next)
 				cmd->token = cmd->token->next;
-			cmd->token->next = add_node(get_cmd(line), i);
+			cmd->token->next = add_node(cmd, get_cmd(line), i);
 			i++;
 			cmd->n_inputs += 1;
 		}
