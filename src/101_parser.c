@@ -62,8 +62,8 @@ void	parser(char *line, t_shell *cmd)
 	print_list(cmd);
 	check_err(cmd);
 	printf("completa\n");
-	//runtime(cmd);
-	//free_all(cmd);
-	//free(line);
-	//get_type("|");
+	runtime(cmd);
+	free_all(cmd);
+	free(line);
+	//get_type("||", NULL, NULL);
 }

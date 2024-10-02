@@ -38,7 +38,7 @@ void	print_echo(t_token *cmd)
 	count_print = 0;
 	is_n = 0;
 	to_print = count_echo(cmd);
-	while (to_print >= 0 && cmd)
+	while (to_print > 0 && cmd)
 	{
 		to_print--;
 		if (sstrcmp(cmd->cmd_line, "-n") && count_print == 0)
@@ -60,8 +60,5 @@ void	echo_main(t_shell *cmd)
 
 	temp = cmd->token;
 	temp = temp->next;
-	//if (is_there_pipe(temp))
-		//send args to pipe
-	//else
 	print_echo(temp);
 }
