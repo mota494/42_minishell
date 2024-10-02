@@ -52,12 +52,13 @@ int	find_absolute_path(t_shell *cmd, t_token *new_node, char *str)
 	while (cmd->path_dirs[++i])
 	{
 		path_tmp = concatenate(cmd->path_dirs[i], str);
-		printf("concatenate ok\n");
+		//printf("concatenate ok\n");
 		if (access(path_tmp, X_OK) == 0)
 		{
 			new_node->path_name = ft_strdup(path_tmp);
 			free(path_tmp);
-			printf("acho o absolute path\n");
+			printf("%s", new_node->path_name);
+			//printf("acho o absolute path\n");
 			return (1);
 		}
 		free(path_tmp);
