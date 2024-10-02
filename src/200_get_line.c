@@ -62,7 +62,6 @@ t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd)
 		is_arg = 1;
 		return (builtin);
 	}
-
 	else if (is_command(mshell, new_node, cmd) == 1)
 	{
 		is_arg = 1;

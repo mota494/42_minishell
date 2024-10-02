@@ -65,5 +65,5 @@ void	parser(char *line, t_shell *cmd)
 	runtime(cmd);
 	free_all(cmd);
 	free(line);
-	//get_type("||", NULL, NULL);
+	get_type(NULL, NULL, "|");
 }

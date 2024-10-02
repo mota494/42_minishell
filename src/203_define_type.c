@@ -75,7 +75,6 @@ int	is_var(char *str)
 /*malloc em strdup liberar path_name no fim*/
 int	is_command(t_shell *cmd, t_token *new_node, char *str)
 {
-	printf("hello chego em is command\n");
 	if (find_slash(str) && (access(str, X_OK) == 0))
 	{
 		new_node->path_name = ft_strdup(str);
