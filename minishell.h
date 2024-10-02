@@ -134,11 +134,13 @@ void				last_redirect(t_shell *cmd, int i);
 void				std_redirect(t_shell *cmd, int i);
 void				close_fds(t_shell *cmd);
 int					wait_for_child(t_shell *cmd);
+/* ==== cd.c ==== */
+void				cd(char *path, t_shell *cmd);
+/* ==== pwd.c ==== */
+int					pwd(void);
 
-
-/*
-sstrcmp is a normal strcmp that will return 1 if the strings are correct
+/*sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain
-actions
-*/
+actions*/
+
 #endif
