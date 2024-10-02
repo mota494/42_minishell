@@ -18,6 +18,10 @@ int	go_builtin(t_shell *cmd)
 		cmd->error_code = exit_main(cmd);
 	else if (sstrcmp(cmd->token->cmd_line, "echo"))
 		echo_main(cmd);
+	else if (sstrcmp(cmd->token->cmd_line, "cd"))
+		cd(cmd);
+	else if (sstrcmp(cmd->token->cmd_line, "pwd"))
+		cmd->error_code = pwd();
 	return (1);
 }
 

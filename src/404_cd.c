@@ -16,7 +16,7 @@ int	count_args(t_token *cmds)
 	return (toret);
 }
 
-void	cd(char *path, t_shell *cmd)
+void	cd(t_shell *cmd)
 {
 	t_token	*temp;
 	
@@ -32,9 +32,9 @@ void	cd(char *path, t_shell *cmd)
 		cmd->error_code = 0;
 		return ;
 	}
-	if ((chdir(path) == -1))
+	if ((chdir(temp->cmd_line) == -1))
 	{
-		printf("bash: cd: %s: No such file or directory\n", path);
+		printf("bash: cd: %s: No such file or directory\n", temp->cmd_line);
 		cmd->error_code = 1;
 	}
 	else
