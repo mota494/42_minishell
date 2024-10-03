@@ -39,6 +39,8 @@ void	tilde(t_token *cmd)
 	{
 		if (cmd->cmd_line[1] == '/')
 			cmd->cmd_line = sub_tilde(cmd->cmd_line); 
+		else
+			return ;
 	}
 	else
 		cmd->cmd_line = sub_tilde(cmd->cmd_line);

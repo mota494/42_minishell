@@ -44,9 +44,9 @@ void	print_echo(t_token *cmd)
 		if (sstrcmp(cmd->cmd_line, "-n") && count_print == 0)
 			is_n = 1;
 		else if (to_print > 0)
-			write(1, &cmd->cmd_line, ft_strlen(cmd->cmd_line));
+			printf("%s ", cmd->cmd_line);
 		else
-			write(1, &cmd->cmd_line, ft_strlen(cmd->cmd_line));
+			printf("%s", cmd->cmd_line);
 		count_print++;
 		cmd = cmd->next;
 	}
