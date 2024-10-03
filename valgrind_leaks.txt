@@ -1,50 +1,37 @@
-==415599== Memcheck, a memory error detector
-==415599== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==415599== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==415599== Command: ./minishell
-==415599== Parent PID: 415598
-==415599== 
-==415599== 
-==415599== HEAP SUMMARY:
-==415599==     in use at exit: 212,834 bytes in 252 blocks
-==415599==   total heap usage: 551 allocs, 299 frees, 234,537 bytes allocated
-==415599== 
-==415599== 15 bytes in 1 blocks are definitely lost in loss record 9 of 75
-==415599==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==415599==    by 0x404593: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x4049D0: ft_strdup (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x402EAE: find_absolute_path (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x402D0D: is_command (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x40209D: get_type (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x4012C4: add_node (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x40223F: treat_line (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x401E2C: parser (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x401B8A: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x401CBB: main (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599== 
-==415599== 303 bytes in 17 blocks are indirectly lost in loss record 30 of 75
-==415599==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==415599==    by 0x404593: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x4047DC: writestr (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x404901: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x4013E7: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x401C28: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x401CB2: main (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599== 
-==415599== 447 (144 direct, 303 indirect) bytes in 1 blocks are definitely lost in loss record 31 of 75
-==415599==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==415599==    by 0x404593: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x4048D0: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x4013E7: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x401C28: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599==    by 0x401CB2: main (in /sgoinfre/mloureir/42_minishell/minishell)
-==415599== 
-==415599== LEAK SUMMARY:
-==415599==    definitely lost: 159 bytes in 2 blocks
-==415599==    indirectly lost: 303 bytes in 17 blocks
-==415599==      possibly lost: 0 bytes in 0 blocks
-==415599==    still reachable: 0 bytes in 0 blocks
-==415599==         suppressed: 212,372 bytes in 233 blocks
-==415599== 
-==415599== For lists of detected and suppressed errors, rerun with: -s
-==415599== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==512127== Memcheck, a memory error detector
+==512127== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==512127== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==512127== Command: ./minishell
+==512127== Parent PID: 512126
+==512127== 
+==512127== 
+==512127== HEAP SUMMARY:
+==512127==     in use at exit: 212,734 bytes in 245 blocks
+==512127==   total heap usage: 467 allocs, 222 frees, 233,260 bytes allocated
+==512127== 
+==512127== 303 bytes in 17 blocks are indirectly lost in loss record 29 of 74
+==512127==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==512127==    by 0x404820: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x404A69: writestr (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x404B8E: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x401417: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x401C58: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x401CE2: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127== 
+==512127== 447 (144 direct, 303 indirect) bytes in 1 blocks are definitely lost in loss record 30 of 74
+==512127==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==512127==    by 0x404820: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x404B5D: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x401417: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x401C58: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127==    by 0x401CE2: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==512127== 
+==512127== LEAK SUMMARY:
+==512127==    definitely lost: 144 bytes in 1 blocks
+==512127==    indirectly lost: 303 bytes in 17 blocks
+==512127==      possibly lost: 0 bytes in 0 blocks
+==512127==    still reachable: 0 bytes in 0 blocks
+==512127==         suppressed: 212,287 bytes in 227 blocks
+==512127== 
+==512127== For lists of detected and suppressed errors, rerun with: -s
+==512127== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

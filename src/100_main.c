@@ -21,6 +21,7 @@ void	free_all(t_shell *cmd)
 		temp = cmd->token;
 		cmd->token = cmd->token->next;
 		free(temp->cmd_line);
+		free(temp->orig_line);
 		free(temp);
 	}
 	cmd->token = NULL;
@@ -31,15 +32,14 @@ void	read_command(t_shell *cmd)
 {
 	char	*line;
 
-	while (1)
+	while (1 && cmd->leave == false)
 	{
 		line = readline("minishell: ");
 		if (check_syntax(cmd, line) == 1)
 		{
 			add_history(line);
 			parser(line, cmd);
-			if (cmd->leave == true)
-				break ;
+			free(line);
 		}
 	}
 	if (cmd->error_code > 255)

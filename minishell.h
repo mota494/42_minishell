@@ -42,6 +42,7 @@ typedef struct s_token
 {
 	int				cmd_id;
 	char			*cmd_line;
+	char			*orig_line;
 	char			*path_name;
 	t_types			type;
 	t_quotes		quote;
@@ -138,6 +139,8 @@ int					wait_for_child(t_shell *cmd);
 void				cd(t_shell *cmd);
 /* ==== pwd.c ==== */
 int					pwd(void);
+/* ==== special_case.c ==== */
+void				special_case(t_shell *cmd);
 
 /*sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain

@@ -5,7 +5,6 @@ int	count_args(t_token *cmds)
 	int	toret;
 	
 	toret = 0;
-	cmds = cmds->next;
 	while (cmds)
 	{
 		if (cmds->type != string)
@@ -21,6 +20,7 @@ void	cd(t_shell *cmd)
 	t_token	*temp;
 	
 	temp = cmd->token;
+	temp = temp->next;
 	if (count_args(temp) > 1)
 	{
 		printf("minishell: cd: too many arguments\n");
@@ -28,7 +28,6 @@ void	cd(t_shell *cmd)
 	}
 	if (count_args(temp) == 0)
 	{
-		printf("\n");
 		cmd->error_code = 0;
 		return ;
 	}
