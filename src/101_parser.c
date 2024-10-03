@@ -49,6 +49,7 @@ void	quote_removal(t_token *cmds)
 	temp = cmds;
 	while (temp)
 	{
+		temp->orig_line = alocpy(temp->cmd_line);
 		remove_quote(temp->cmd_line, temp->quote);
 		temp = temp->next;
 	}
@@ -59,11 +60,10 @@ void	parser(char *line, t_shell *cmd)
 	treat_line(line, cmd);
 	quote_removal(cmd->token);
 	cmd->n_inputs = true_ninput(cmd->token);
+	special_case(cmd);
 	print_list(cmd);
-	check_err(cmd);
-	printf("completa\n");
 	runtime(cmd);
+	check_err(cmd);
 	free_all(cmd);
-	free(line);
 	get_type(NULL, NULL, "|");
 }
