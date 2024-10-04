@@ -24,7 +24,7 @@ void	read_command(t_shell *cmd)
 		if (ft_strlen(line) > 0)
 		{
 			add_history(line);
-			if (check_syntax(cmd, line) == 1)
+			if (checksyntax(cmd, line) == 1)
 				continue ;
 			treat_line(line, cmd);
 		}
