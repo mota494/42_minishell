@@ -141,6 +141,11 @@ void				cd(t_shell *cmd);
 int					pwd(void);
 /* ==== special_case.c ==== */
 void				special_case(t_shell *cmd);
+void				tilde(t_token *cmd);
+
+/* ==== parse_vars ==== */
+void				parse_var(t_token *cmd);
+void				get_vars(t_shell *cmd);
 
 /*sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain

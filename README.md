@@ -25,3 +25,5 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 [Jarret B Bash documentation](https://www.linux.org/threads/bash-03-%E2%80%93-command-line-processing.38676/)
 
 [GNU Bash Manual](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
+
+[User and built-in variables](https://pressbooks.senecapolytechnic.ca/uli101/chapter/variables-in-shell-scripting/)
