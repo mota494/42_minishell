@@ -1,47 +1,160 @@
-==396720== Memcheck, a memory error detector
-==396720== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==396720== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==396720== Command: ./minishell
-==396720== Parent PID: 396719
-==396720== 
-==396720== 
-==396720== Process terminating with default action of signal 2 (SIGINT)
-==396720==    at 0x490775B: kill (syscall-template.S:120)
-==396720==    by 0x48A4F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
-==396720==    by 0x48A5BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
-==396720==    by 0x48A5460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
-==396720==    by 0x4889C86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
-==396720==    by 0x4892D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
-==396720==    by 0x401BAF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720== 
-==396720== HEAP SUMMARY:
-==396720==     in use at exit: 218,886 bytes in 273 blocks
-==396720==   total heap usage: 600 allocs, 327 frees, 235,706 bytes allocated
-==396720== 
-==396720== 144 bytes in 1 blocks are still reachable in loss record 34 of 88
-==396720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==396720==    by 0x404A83: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x404DC0: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x401427: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x401C68: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x401CF2: main (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720== 
-==396720== 303 bytes in 17 blocks are still reachable in loss record 41 of 88
-==396720==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==396720==    by 0x404A83: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x404CCC: writestr (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x404DF1: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x401427: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x401C68: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720==    by 0x401CF2: main (in /sgoinfre/mloureir/42_minishell/minishell)
-==396720== 
-==396720== LEAK SUMMARY:
-==396720==    definitely lost: 0 bytes in 0 blocks
-==396720==    indirectly lost: 0 bytes in 0 blocks
-==396720==      possibly lost: 0 bytes in 0 blocks
-==396720==    still reachable: 447 bytes in 18 blocks
-==396720==         suppressed: 218,439 bytes in 255 blocks
-==396720== 
-==396720== For lists of detected and suppressed errors, rerun with: -s
-==396720== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==437027== Memcheck, a memory error detector
+==437027== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==437027== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==437027== Command: ./minishell
+==437027== Parent PID: 437026
+==437027== 
+==437027== Invalid read of size 1
+==437027==    at 0x40535E: ft_strlen (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x40120C: alocpy (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E2B: quote_removal (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401EA1: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==  Address 0x4b62b50 is 0 bytes inside a block of size 7 free'd
+==437027==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x401892: strjoinchr (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404B40: replace_var (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404BB9: get_vars (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E95: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==  Block was alloc'd at
+==437027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x40121C: alocpy (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x4012A9: add_node (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x40252F: treat_line (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E8C: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== Invalid read of size 1
+==437027==    at 0x401230: alocpy (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E2B: quote_removal (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401EA1: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==  Address 0x4b62b50 is 0 bytes inside a block of size 7 free'd
+==437027==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x401892: strjoinchr (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404B40: replace_var (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404BB9: get_vars (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E95: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==  Block was alloc'd at
+==437027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x40121C: alocpy (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x4012A9: add_node (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x40252F: treat_line (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E8C: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== Invalid read of size 1
+==437027==    at 0x484ED16: strlen (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x493BD30: __vfprintf_internal (vfprintf-internal.c:1517)
+==437027==    by 0x492579E: printf (printf.c:33)
+==437027==    by 0x401371: print_list (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401EC8: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==  Address 0x4b62b50 is 0 bytes inside a block of size 7 free'd
+==437027==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x401892: strjoinchr (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404B40: replace_var (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404BB9: get_vars (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E95: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==  Block was alloc'd at
+==437027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x40121C: alocpy (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x4012A9: add_node (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x40252F: treat_line (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E8C: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== Invalid free() / delete / delete[] / realloc()
+==437027==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x401B53: free_all (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401EDA: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==  Address 0x4b62b50 is 0 bytes inside a block of size 7 free'd
+==437027==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x401892: strjoinchr (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404B40: replace_var (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404BB9: get_vars (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E95: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==  Block was alloc'd at
+==437027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x40121C: alocpy (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x4012A9: add_node (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x40252F: treat_line (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E8C: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== 
+==437027== Process terminating with default action of signal 2 (SIGINT)
+==437027==    at 0x490775B: kill (syscall-template.S:120)
+==437027==    by 0x48A4F39: _rl_signal_handler (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==437027==    by 0x48A5BEC: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==437027==    by 0x48A5460: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==437027==    by 0x4889C86: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==437027==    by 0x4892D14: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.1)
+==437027==    by 0x401BAF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== HEAP SUMMARY:
+==437027==     in use at exit: 218,899 bytes in 277 blocks
+==437027==   total heap usage: 506 allocs, 231 frees, 233,513 bytes allocated
+==437027== 
+==437027== 4 bytes in 2 blocks are definitely lost in loss record 1 of 90
+==437027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x40181A: strjoinchr (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404B40: replace_var (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404BB9: get_vars (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E95: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== 12 bytes in 2 blocks are definitely lost in loss record 12 of 90
+==437027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x40181A: strjoinchr (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404A9E: find_var (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404BA4: get_vars (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401E95: parser (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401BDF: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CFB: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== 144 bytes in 1 blocks are still reachable in loss record 36 of 90
+==437027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x404D50: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x4050BE: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401427: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401C68: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CF2: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== 303 bytes in 17 blocks are still reachable in loss record 43 of 90
+==437027==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==437027==    by 0x404D50: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x404FCA: writestr (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x4050EF: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401427: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401C68: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027==    by 0x401CF2: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==437027== 
+==437027== LEAK SUMMARY:
+==437027==    definitely lost: 16 bytes in 4 blocks
+==437027==    indirectly lost: 0 bytes in 0 blocks
+==437027==      possibly lost: 0 bytes in 0 blocks
+==437027==    still reachable: 447 bytes in 18 blocks
+==437027==         suppressed: 218,436 bytes in 255 blocks
+==437027== 
+==437027== For lists of detected and suppressed errors, rerun with: -s
+==437027== ERROR SUMMARY: 10 errors from 6 contexts (suppressed: 0 from 0)

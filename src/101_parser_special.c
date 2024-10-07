@@ -42,8 +42,6 @@ void	check_specials(t_token *cmd)
 {
 	if (cmd->orig_line[0] == '~')
 		tilde(cmd);
-	/*if (cmd->type == var)
-		parse_var(cmd);*/
 }
 
 void	special_case(t_shell *cmd)
