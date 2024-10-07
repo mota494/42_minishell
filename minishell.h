@@ -144,7 +144,6 @@ void				special_case(t_shell *cmd);
 void				tilde(t_token *cmd);
 
 /* ==== parse_vars ==== */
-void				parse_var(t_token *cmd);
 void				get_vars(t_shell *cmd);
 
 /*sstrcmp is a normal strcmp that will return 1 if the strings are correct
