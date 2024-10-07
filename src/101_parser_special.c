@@ -12,49 +12,43 @@
 
 #include "../minishell.h"
 
-char	*sub_tilde(char *old_cmd)
+void	free_node(t_token *node)
 {
-	int	i;
-	char	*home;
-	char	*toret;
-
-	i = 0;
-	while (old_cmd[i + 1])
-	{
-		old_cmd[i] = old_cmd[i + 1];
-		i++;
-	}
-	old_cmd[i] = '\0';
-	home = getenv("HOME");
-	toret = alocpy(home);
-	i = -1;
-	while (old_cmd[++i])
-		toret = strjoinchr(toret, old_cmd[i]);
-	return (toret);
+	free(node->cmd_line);
+	free(node->orig_line);
+	free(node);
 }
 
-void	tilde(t_token *cmd)
+void	check_empty(t_shell *cmd)
 {
-	if (ft_strlen(cmd->cmd_line) > 1)
+	t_token *temp;
+	t_token *prev;
+
+	temp = cmd->token;
+	while (temp->next)
 	{
-		if (cmd->cmd_line[1] == '/')
-			cmd->cmd_line = sub_tilde(cmd->cmd_line); 
-		else
-			return ;
+		prev = temp;
+		temp = temp->next;
+		if (ft_strlen(temp->cmd_line) <= 0)
+		{
+			prev->next = temp->next;
+			free_node(temp);
+			temp = prev->next;
+		}
 	}
-	else
-		cmd->cmd_line = sub_tilde(cmd->cmd_line);
 }
 
 void	check_specials(t_token *cmd)
 {
-	if (cmd->cmd_line[0] == '~')
+	if (cmd->orig_line[0] == '~')
 		tilde(cmd);
+	/*if (cmd->type == var)
+		parse_var(cmd);*/
 }
 
 void	special_case(t_shell *cmd)
 {
-	t_token *temp;
+	t_token	*temp;
 
 	temp = cmd->token;
 	while (temp)
