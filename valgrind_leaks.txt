@@ -1,37 +1,37 @@
-==512127== Memcheck, a memory error detector
-==512127== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==512127== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==512127== Command: ./minishell
-==512127== Parent PID: 512126
-==512127== 
-==512127== 
-==512127== HEAP SUMMARY:
-==512127==     in use at exit: 212,734 bytes in 245 blocks
-==512127==   total heap usage: 467 allocs, 222 frees, 233,260 bytes allocated
-==512127== 
-==512127== 303 bytes in 17 blocks are indirectly lost in loss record 29 of 74
-==512127==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==512127==    by 0x404820: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x404A69: writestr (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x404B8E: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x401417: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x401C58: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x401CE2: main (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127== 
-==512127== 447 (144 direct, 303 indirect) bytes in 1 blocks are definitely lost in loss record 30 of 74
-==512127==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==512127==    by 0x404820: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x404B5D: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x401417: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x401C58: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127==    by 0x401CE2: main (in /sgoinfre/mloureir/42_minishell/minishell)
-==512127== 
-==512127== LEAK SUMMARY:
-==512127==    definitely lost: 144 bytes in 1 blocks
-==512127==    indirectly lost: 303 bytes in 17 blocks
-==512127==      possibly lost: 0 bytes in 0 blocks
-==512127==    still reachable: 0 bytes in 0 blocks
-==512127==         suppressed: 212,287 bytes in 227 blocks
-==512127== 
-==512127== For lists of detected and suppressed errors, rerun with: -s
-==512127== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==383618== Memcheck, a memory error detector
+==383618== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==383618== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==383618== Command: ./minishell
+==383618== Parent PID: 383617
+==383618== 
+==383618== 
+==383618== HEAP SUMMARY:
+==383618==     in use at exit: 212,777 bytes in 248 blocks
+==383618==   total heap usage: 493 allocs, 245 frees, 233,570 bytes allocated
+==383618== 
+==383618== 303 bytes in 17 blocks are indirectly lost in loss record 29 of 74
+==383618==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==383618==    by 0x404D7B: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x404FF5: writestr (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x40511A: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x401427: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x401C68: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x401CF2: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618== 
+==383618== 447 (144 direct, 303 indirect) bytes in 1 blocks are definitely lost in loss record 30 of 74
+==383618==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==383618==    by 0x404D7B: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x4050E9: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x401427: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x401C68: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618==    by 0x401CF2: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==383618== 
+==383618== LEAK SUMMARY:
+==383618==    definitely lost: 144 bytes in 1 blocks
+==383618==    indirectly lost: 303 bytes in 17 blocks
+==383618==      possibly lost: 0 bytes in 0 blocks
+==383618==    still reachable: 0 bytes in 0 blocks
+==383618==         suppressed: 212,330 bytes in 230 blocks
+==383618== 
+==383618== For lists of detected and suppressed errors, rerun with: -s
+==383618== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)

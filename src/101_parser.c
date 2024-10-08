@@ -59,9 +59,14 @@ void	parser(char *line, t_shell *cmd)
 {
 	treat_line(line, cmd);
 	quote_removal(cmd->token);
+	get_vars(cmd);
 	cmd->n_inputs = true_ninput(cmd->token);
 	special_case(cmd);
+<<<<<<< HEAD
 	print_list(cmd);
+=======
+	//print_list(cmd);
+>>>>>>> a613dda4123f9f1c6f7ca1dc7d2d72b654293deb
 	runtime(cmd);
 	check_err(cmd);
 	//free_all(cmd);

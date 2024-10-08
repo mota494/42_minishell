@@ -142,6 +142,10 @@ void				cd(t_shell *cmd);
 int					pwd(void);
 /* ==== special_case.c ==== */
 void				special_case(t_shell *cmd);
+void				tilde(t_token *cmd);
+
+/* ==== parse_vars ==== */
+void				get_vars(t_shell *cmd);
 
 int					execute_pipeline(t_shell *cmd, char **envp);
 
