@@ -28,7 +28,7 @@ void	free_all(t_shell *cmd)
 }
 /**reads command line in a loop, checks for syntax errors
  * and tokenizes it*/
-void	read_command(t_shell *cmd)
+void	read_command(t_shell *cmd, char **envp)
 {
 	char	*line;
 
@@ -39,7 +39,15 @@ void	read_command(t_shell *cmd)
 		{
 			add_history(line);
 			parser(line, cmd);
+			if (cmd->n_inputs > 0)
+			{
+				if (execute_pipeline(cmd, envp) != 0)
+				{
+					fprintf(stderr, "Error executing pipeline\n");
+				}
+			}
 			free(line);
+			free_all(cmd);
 		}
 	}
 	if (cmd->error_code > 255)
@@ -72,6 +80,6 @@ int	main(int ac, char **av, char **envp)
 
 	check_input(ac, av);
 	init_tshell(&cmd, envp);
-	read_command(&cmd);
+	read_command(&cmd, envp);
 	return (cmd.error_code);
 }

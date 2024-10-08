@@ -23,7 +23,7 @@ OBJD = obj/
 
 #FILES
 SRCS =	$(SRCD)000_utils.c $(SRCD)001_utils2.c $(SRCD)002_utils3.c $(SRCD)100_main.c $(SRCD)101_parser.c $(SRCD)200_get_line.c $(SRCD)201_get_line_utils.c $(SRCD)203_define_type.c $(SRCD)204_define_type_utils.c $(SRCD)300_check_syntax.c $(SRCD)301_operators_check2.c $(SRCD)301_operators_check.c $(SRCD)302_syntax_error.c $(SRCD)303_syntax_utils.c $(SRCD)400_runtime.c $(SRCD)401_exit.c $(SRCD)402_echo.c $(SRCD)403_pwd.c $(SRCD)404_cd.c\
-		$(SRCD)500_execution.c $(SRCD)501_redirect_and_wait.c $(SRCD)502_run_cmdx.c $(SRCD)101_parser_special.c
+		$(SRCD)500_execution.c $(SRCD)501_redirect_and_wait.c $(SRCD)101_parser_special.c
 
 OBJS = $(patsubst $(SRCD)%.c, $(OBJD)%.o, $(SRCS))
 $(OBJD)%.o: $(SRCD)%.c
@@ -34,7 +34,7 @@ $(OBJD)%.o: $(SRCD)%.c
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) -lreadline $(INC) $(OBJS) $(LIBFT) -o $(NAME)
+	$(CC) $(CFLAGS) $(INC) $(OBJS) $(LIBFT) -lreadline -lncurses -o $(NAME)
 	echo "$(GREEN)All files compiled!$(RESET)"
 
 $(LIBFT):

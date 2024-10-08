@@ -51,8 +51,8 @@ void	print_list(t_shell *cmd)
 	temp = cmd->token;
 	while (temp)
 	{
-		printf("[%s∮%s∮%d∮%d]\n",
-			temp->orig_line ,temp->cmd_line,
+		printf("token id = %d: [%s∮%s∮%d∮%d]\n",
+			temp->cmd_id, temp->orig_line ,temp->cmd_line,
 			temp->type, temp->quote);
 		temp = temp->next;
 	}

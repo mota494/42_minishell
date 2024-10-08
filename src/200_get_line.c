@@ -102,6 +102,7 @@ void	treat_line(char *line, t_shell *cmd)
 	cmd->token = add_node(cmd, get_cmd(line), i);
 	cmd->n_inputs += 1;
 	cmd_list = cmd->token;
+	i++;
 	while (ft_strlen(line) > 0)
 	{
 		jump_spaces(line);
