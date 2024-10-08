@@ -58,14 +58,13 @@ void	quote_removal(t_token *cmds)
 void	parser(char *line, t_shell *cmd)
 {
 	treat_line(line, cmd);
-	get_vars(cmd);
 	quote_removal(cmd->token);
+	get_vars(cmd);
 	cmd->n_inputs = true_ninput(cmd->token);
 	special_case(cmd);
-	print_list(cmd);
-	//runtime(cmd);
+	//print_list(cmd);
+	runtime(cmd);
 	check_err(cmd);
 	free_all(cmd);
 	get_type(NULL, NULL, "|");
 }
-
