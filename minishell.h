@@ -56,6 +56,7 @@ typedef struct s_shell
 	int				n_inputs;
 	int				error_code;
 	char			**path_dirs;
+	char			**fork_cmds;
 	bool			leave;
 	pid_t			*pids;
 	t_fd			*p_fds;
@@ -141,6 +142,8 @@ void				cd(t_shell *cmd);
 int					pwd(void);
 /* ==== special_case.c ==== */
 void				special_case(t_shell *cmd);
+
+int					execute_pipeline(t_shell *cmd, char **envp);
 
 /*sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain
