@@ -66,7 +66,7 @@ char	*replace_var(char *var_name, t_token *cmd)
 
 	pos = 0;
 	toret = get_prefix(cmd->cmd_line, &pos);
-	toret = get_var_val(toret, var_name, &pos);
+	toret = get_var_val(toret, cmd, var_name, &pos);
 	toret = get_suffix(toret, cmd->cmd_line, &pos);
 	return (toret);
 }

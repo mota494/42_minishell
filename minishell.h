@@ -100,7 +100,7 @@ int					ft_iseparator(int c);
 int					scmp(char *tocomp, char *str);
 char				*strjoinchr(char *str, char c);
 /* ==== utils4.c ==== */
-void				*start_counters(t_count *counters);
+void				start_counters(t_count *counters);
 /* ==== define_type.c ==== */
 int					is_builtin(char *str);
 int					is_controler(char *str);
@@ -158,7 +158,7 @@ void				tilde(t_token *cmd);
 /* ==== parse_vars ==== */
 void				get_vars(t_shell *cmd);
 char				*get_prefix(char *str, int *pos);
-char				*get_var_val(char *toret, char *str, int *pos);
+char				*get_var_val(char *toret, t_token *cmd, char *str, int *pos);
 char				*get_suffix(char *toret, char *str, int *pos);
 
 int					execute_pipeline(t_shell *cmd, char **envp);
