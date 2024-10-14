@@ -84,6 +84,7 @@ char				*alocpy(char *str);
 t_token				*add_node(t_shell *cmd, char *content, int id);
 void				print_list(t_shell *cmd);
 void				init_path_dirs(t_shell *cmd, char **envp);
+int					find_dollar(char *str);
 /* ==== utils2.c ==== */
 void				jump_spaces(char *line);
 int					ft_ispace(int c);
@@ -146,6 +147,9 @@ void				tilde(t_token *cmd);
 
 /* ==== parse_vars ==== */
 void				get_vars(t_shell *cmd);
+char				*get_prefix(char *str, int *pos);
+char				*get_var_val(char *toret, char *str, int *pos);
+char				*get_suffix(char *toret, char *str, int *pos);
 
 int					execute_pipeline(t_shell *cmd, char **envp);
 
