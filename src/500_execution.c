@@ -90,6 +90,8 @@ int execute_builtin(char **args, t_shell *cmd)
 		echo_main(cmd);
 		return (1);
 	}
+	else if (strcmp(args[0], "pwd") == 0)
+		return (pwd());
 	// Adicionar outros built-ins
 	return (0);
 }

@@ -27,7 +27,7 @@ char	*get_prefix(char *str, int *pos)
 	return (toret);
 }
 
-char	*get_var_val(char *toret, char *str, int *pos)
+char	*get_var_val(char *toret, t_token *cmd, char *str, int *pos)
 {
 	int		i;
 	char	*var;
@@ -35,7 +35,10 @@ char	*get_var_val(char *toret, char *str, int *pos)
 	*pos = *pos + ft_strlen(str);
 	var = getenv(str);
 	if (!var)
+	{
+		cmd->type = string;
 		return (toret);
+	}
 	i = 0;
 	while (var[i])
 	{
