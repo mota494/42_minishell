@@ -37,6 +37,14 @@ typedef enum s_quotes
 }					t_quotes;
 
 /* ============ structs ============ */
+/*counts*/
+typedef struct s_count
+{
+	int	i;
+	int	j;
+	int	d;
+	int	p;
+}					t_count;
 /*token list*/
 typedef struct s_token
 {
@@ -91,6 +99,8 @@ int					ft_ispace(int c);
 int					ft_iseparator(int c);
 int					scmp(char *tocomp, char *str);
 char				*strjoinchr(char *str, char c);
+/* ==== utils4.c ==== */
+void				*start_counters(t_count *counters);
 /* ==== define_type.c ==== */
 int					is_builtin(char *str);
 int					is_controler(char *str);
