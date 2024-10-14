@@ -150,7 +150,7 @@ int					wait_for_child(t_shell *cmd);
 /* ==== cd.c ==== */
 void				cd(t_shell *cmd);
 /* ==== pwd.c ==== */
-int					pwd(void);
+int					pwd();
 /* ==== special_case.c ==== */
 void				special_case(t_shell *cmd);
 void				tilde(t_token *cmd);

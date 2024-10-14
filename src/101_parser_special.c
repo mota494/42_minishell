@@ -21,8 +21,8 @@ void	free_node(t_token *node)
 
 void	check_empty(t_shell *cmd)
 {
-	t_token *temp;
-	t_token *prev;
+	t_token	*temp;
+	t_token	*prev;
 
 	temp = cmd->token;
 	while (temp->next)
@@ -42,6 +42,8 @@ void	check_specials(t_token *cmd)
 {
 	if (cmd->orig_line[0] == '~')
 		tilde(cmd);
+	//if (parse_question(cmd->orig_line))
+		//dollar_question(cmd);
 }
 
 void	special_case(t_shell *cmd)
