@@ -62,6 +62,7 @@ void	parser(char *line, t_shell *cmd)
 	get_vars(cmd);
 	cmd->n_inputs = true_ninput(cmd->token);
 	special_case(cmd);
+	print_list(cmd);
 	check_err(cmd);
 	get_type(NULL, NULL, "|");
 }
