@@ -80,3 +80,17 @@ void	init_path_dirs(t_shell *cmd, char **envp)
 	else
 		cmd->path_dirs = NULL;
 }
+
+int	find_dollar(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}

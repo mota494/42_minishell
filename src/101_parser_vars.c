@@ -12,21 +12,7 @@
 
 #include "../minishell.h"
 
-int	find_dollar(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '$')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*find_var(char *str)
+char	*find_var(char *str, int *helper)
 {
 	int		i;
 	char	*toret;
@@ -42,28 +28,9 @@ char	*find_var(char *str)
 		toret = strjoinchr(toret, str[i]);
 		i++;
 	}
-	printf("[%s]", toret);
+	if (str[i] != '\0')
+		*helper = 0;
 	return (toret);
-}
-
-void	replace_var(char *var_name, t_token *cmd)
-{
-	int		i;
-	char	*var_value;
-
-	i = 0;
-	while (cmd->cmd_line[i] != '$')
-		i++;
-	cmd->cmd_line[i] = '\0';
-	i = 0;
-	var_value = getenv(var_name);
-	if (!var_value)
-		return ;
-	while (var_value[i])
-	{
-		cmd->cmd_line = strjoinchr(cmd->cmd_line, var_value[i]);
-		i++;
-	}
 }
 
 int	find_quote_pos(t_token *cmd)
@@ -92,6 +59,18 @@ int	find_quote_pos(t_token *cmd)
 		return (1);
 }
 
+char	*replace_var(char *var_name, t_token *cmd)
+{
+	char	*toret;
+	int		pos;
+
+	pos = 0;
+	toret = get_prefix(cmd->cmd_line, &pos);
+	toret = get_var_val(toret, var_name, &pos);
+	toret = get_suffix(toret, cmd->cmd_line, &pos);
+	return (toret);
+}
+
 void	get_vars(t_shell *cmd)
 {
 	t_token	*temp;
@@ -104,9 +83,8 @@ void	get_vars(t_shell *cmd)
 		helper = find_quote_pos(temp);
 		if (helper == 1)
 		{
-			temp->orig_line = alocpy(temp->cmd_line);
-			var_name = find_var(temp->orig_line);
-			replace_var(var_name, temp);
+			var_name = find_var(temp->orig_line, &helper);
+			temp->cmd_line = replace_var(var_name, temp);
 			free(var_name);
 		}
 		temp = temp->next;

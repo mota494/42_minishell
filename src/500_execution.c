@@ -60,7 +60,7 @@ char **get_command_tokens(t_shell *cmd, int *index, t_token **current_token)
 			token = token->next;
 			break;
 		}
-		args[i++] = token->cmd_line;
+		args[i++] = alocpy(token->cmd_line);
 		token = token->next;
 	}
 	args[i] = NULL;
@@ -115,7 +115,6 @@ int execute_command(t_shell *cmd, char **args, t_token *current_token, char **en
         perror("fork issue");
         return (1);
     }
-    
     if (cmd->pids[i] == 0)  // Código do processo filho
     {
         printf("In child process (fork successful)...\n");  // Depuração do processo filho
