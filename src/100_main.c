@@ -15,7 +15,15 @@
 void	free_all(t_shell *cmd)
 {
 	t_token	*temp;
+	t_count c;
 
+	start_counters(&c);
+	while (cmd->c_envp[c.i].var_name)
+	{
+		free(cmd->c_envp[c.i].var_name);
+		c.i++;
+	}
+	free(cmd->c_envp);
 	while (cmd->token)
 	{
 		temp = cmd->token;
@@ -59,6 +67,7 @@ void	init_tshell(t_shell *cmd, char **envp)
 	cmd->leave = false;
 	cmd->n_inputs = 0;
 	cmd->error_code = 0;
+	copy_envs(cmd, envp);
 	init_path_dirs(cmd, envp);
 }
 
