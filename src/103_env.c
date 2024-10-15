@@ -37,7 +37,6 @@ void	copy_envs(t_shell *cmd, char **envp)
 	cmd->c_envp = malloc(sizeof(t_c_envp) * c.d);
 	while (envp[c.i])
 	{
-		printf("[%d | %s]\n", c.i, envp[c.i]);
 		cmd->c_envp[c.i].var_name = get_env_var(envp[c.i]);
 		cmd->c_envp[c.i].var_value = getenv(cmd->c_envp[c.i].var_name);
 		c.i++;
