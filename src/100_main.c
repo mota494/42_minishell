@@ -12,13 +12,13 @@
 
 #include "../minishell.h"
 
-void	free_all(t_shell *cmd)
+void	free_all(t_shell *cmd, char **envp)
 {
 	t_token	*temp;
-	t_count c;
+	t_count	c;
 
 	start_counters(&c);
-	while (cmd->c_envp[c.i].var_name)
+	while (envp[c.i])
 	{
 		free(cmd->c_envp[c.i].var_name);
 		c.i++;
@@ -53,7 +53,7 @@ void	read_command(t_shell *cmd, char **envp)
 					fprintf(stderr, "Error executing pipeline\n");
 			}
 			free(line);
-			free_all(cmd);
+			free_all(cmd, envp);
 		}
 	}
 	if (cmd->error_code > 255)

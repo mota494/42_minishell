@@ -80,7 +80,7 @@ typedef struct s_shell
 /* ============ functions ============ */
 
 /* ==== main.c ==== */
-void				free_all(t_shell *cmd);
+void				free_all(t_shell *cmd, char **envp);
 /* ==== parser.c ==== */
 void				parser(char *line, t_shell *cmd);
 /* ==== get_line_utils.c ==== */
