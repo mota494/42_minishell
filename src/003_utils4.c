@@ -19,3 +19,12 @@ void	start_counters(t_count *counters)
 	counters->j = 0;
 	counters->p = 0;
 }
+
+char	*initalize_str(void)
+{
+	char	*newstr;
+
+	newstr = malloc(1);
+	newstr[0] = '\0';
+	return (newstr);
+}
