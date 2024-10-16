@@ -61,6 +61,7 @@ typedef struct s_cenvp
 {
 	char	*var_name;
 	char	*var_value;
+	int	id;
 }					t_c_envp;
 /*main structure - work in progress*/
 typedef struct s_shell
@@ -173,7 +174,7 @@ int					execute_pipeline(t_shell *cmd, char **envp);
 /* ==== copy_evn ==== */
 void				copy_envs(t_shell *cmd, char **envp);
 t_c_envp			*ret_env(t_c_envp *tosend);
-void				get_env(char *var);
+char				*get_env(char *var);
 /* ==== free ==== */
 void				free_env(t_shell *cmd);
 
