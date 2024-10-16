@@ -33,7 +33,7 @@ char	*get_var_val(char *toret, t_token *cmd, char *str, int *pos)
 	char	*var;
 
 	*pos = *pos + ft_strlen(str);
-	var = getenv(str);
+	var = get_env(str);
 	if (!var)
 	{
 		cmd->type = string;
