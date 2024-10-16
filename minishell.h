@@ -71,6 +71,7 @@ typedef struct s_shell
 	char			**path_dirs;
 	char			**fork_cmds;
 	t_c_envp		*c_envp;
+	int				env_cnt;
 	bool			leave;
 	pid_t			*pids;
 	t_fd			*p_fds;
@@ -80,7 +81,7 @@ typedef struct s_shell
 /* ============ functions ============ */
 
 /* ==== main.c ==== */
-void				free_all(t_shell *cmd, char **envp);
+void				free_all(t_shell *cmd);
 /* ==== parser.c ==== */
 void				parser(char *line, t_shell *cmd);
 /* ==== get_line_utils.c ==== */

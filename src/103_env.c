@@ -12,6 +12,8 @@
 
 #include "../minishell.h"
 
+char	*ret_var_value(t_shell *cmd, )
+
 char	*get_env_var(char *env)
 {
 	char	*var;
@@ -39,6 +41,7 @@ void	copy_envs(t_shell *cmd, char **envp)
 	{
 		cmd->c_envp[c.i].var_name = get_env_var(envp[c.i]);
 		cmd->c_envp[c.i].var_value = getenv(cmd->c_envp[c.i].var_name);
+		cmd->env_cnt++;
 		c.i++;
 	}
 }
