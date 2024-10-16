@@ -15,7 +15,7 @@
 int	count_args(t_token *cmds)
 {
 	int	toret;
-	
+
 	toret = 0;
 	while (cmds)
 	{
@@ -30,7 +30,7 @@ int	count_args(t_token *cmds)
 void	cd(t_shell *cmd)
 {
 	t_token	*temp;
-	
+
 	temp = cmd->token;
 	temp = temp->next;
 	if (count_args(temp) > 1)

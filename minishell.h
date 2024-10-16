@@ -56,7 +56,13 @@ typedef struct s_token
 	t_quotes		quote;
 	struct s_token	*next;
 }					t_token;
-
+/*copy envp*/
+typedef struct s_cenvp
+{
+	char	*var_name;
+	char	*var_value;
+	int	id;
+}					t_c_envp;
 /*main structure - work in progress*/
 typedef struct s_shell
 {
@@ -65,6 +71,8 @@ typedef struct s_shell
 	int				error_code;
 	char			**path_dirs;
 	char			**fork_cmds;
+	t_c_envp		*c_envp;
+	int				env_cnt;
 	bool			leave;
 	pid_t			*pids;
 	t_fd			*p_fds;
@@ -101,6 +109,7 @@ int					scmp(char *tocomp, char *str);
 char				*strjoinchr(char *str, char c);
 /* ==== utils4.c ==== */
 void				start_counters(t_count *counters);
+char				*initalize_str(void);
 /* ==== define_type.c ==== */
 int					is_builtin(char *str);
 int					is_controler(char *str);
@@ -162,6 +171,12 @@ char				*get_var_val(char *toret, t_token *cmd, char *str, int *pos);
 char				*get_suffix(char *toret, char *str, int *pos);
 
 int					execute_pipeline(t_shell *cmd, char **envp);
+/* ==== copy_evn ==== */
+void				copy_envs(t_shell *cmd, char **envp);
+t_c_envp			*ret_env(t_c_envp *tosend);
+char				*get_env(char *var);
+/* ==== free ==== */
+void				free_env(t_shell *cmd);
 
 /*sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain

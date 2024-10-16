@@ -15,7 +15,7 @@
 void	free_all(t_shell *cmd)
 {
 	t_token	*temp;
-
+	
 	while (cmd->token)
 	{
 		temp = cmd->token;
@@ -59,6 +59,8 @@ void	init_tshell(t_shell *cmd, char **envp)
 	cmd->leave = false;
 	cmd->n_inputs = 0;
 	cmd->error_code = 0;
+	cmd->env_cnt = 0;
+	copy_envs(cmd, envp);
 	init_path_dirs(cmd, envp);
 }
 
@@ -79,5 +81,6 @@ int	main(int ac, char **av, char **envp)
 	check_input(ac, av);
 	init_tshell(&cmd, envp);
 	read_command(&cmd, envp);
+	free_env(&cmd);
 	return (cmd.error_code);
 }

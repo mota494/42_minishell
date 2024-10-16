@@ -62,7 +62,10 @@ void	parser(char *line, t_shell *cmd)
 	get_vars(cmd);
 	cmd->n_inputs = true_ninput(cmd->token);
 	special_case(cmd);
+<<<<<<< HEAD
 	//print_list(cmd);
+=======
+>>>>>>> 86da0e51c9d722ecec9f229a9b890241c9c6e47a
 	check_err(cmd);
 	get_type(NULL, NULL, "|");
 }
