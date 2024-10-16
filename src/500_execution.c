@@ -58,7 +58,7 @@ char **get_command_tokens(t_token *token)
 {
 	int token_count = count_tokens(token);
 	char **args = malloc(sizeof(char *) * (token_count + 1));
-	int i = 0;	
+	int i = 0;
 	if (!args)
 		return (NULL);
 	while (token && strcmp(token->cmd_line, "|") != 0)
@@ -115,15 +115,39 @@ int	execute_command(t_shell *cmd, char **args, t_token *current_token, char **en
 	{
 		handle_redirection(cmd, i);
 		close_fds(cmd);
-		printf("%s\n", current_token->path_name);
+		//printf("%s\n", current_token->path_name);
 		if (execve(current_token->path_name, args, envp) == -1)
 			perror("execve");
-		exit(EXIT_FAILURE);
 	}
 	return (0);
 }
 
-int	execute_pipeline(t_shell *cmd, char **envp)
+void advance_to_next_command(t_token **current_token)
+{
+
+	while (*current_token && strcmp((*current_token)->cmd_line, "|") != 0)
+		*current_token = (*current_token)->next;
+	if (*current_token && strcmp((*current_token)->cmd_line, "|") == 0)
+		*current_token = (*current_token)->next;
+	if (*current_token)
+		printf("current token is %s\n", (*current_token)->cmd_line);
+	else
+		printf("current token is NULL\n");
+}
+
+void	free_args(char **args)
+{
+	int i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
+}
+
+/*fazer uma free_args que libere uma matriz de strings*/
+int execute_pipeline(t_shell *cmd, char **envp)
 {
 	int i = 0;
 	char **args;
@@ -131,37 +155,35 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 
 	if (create_pipes(cmd) != 0 || alloc_pids(cmd) != 0)
 		return (1);
-
 	while (i < cmd->n_inputs && current_token)
 	{
-		printf("current token: %s\n", current_token->cmd_line);
 		args = get_command_tokens(current_token);
 		if (!args)
 			return (1);
-		printf("current token after get_command_tokens: %s\n", current_token ? current_token->cmd_line : "NULL");
 		if (current_token->type == builtin)
 		{
+			handle_redirection(cmd, i);
+			close_fds(cmd);
 			execute_builtin(args, cmd);
+			free_args(args);
+			advance_to_next_command(&current_token);
+			i++;
+			continue;
 		}
-		else if (current_token->type == command)
+		else
 		{
+			close_fds(cmd);
 			if (execute_command(cmd, args, current_token, envp, i) != 0)
 			{
-				free(args);
+				free_args(args);
 				return (1);
 			}
+			free_args(args);
+			advance_to_next_command(&current_token);
+			i++;
 		}
-		free(args);
-		while (current_token && strcmp(current_token->cmd_line, "|") != 0)
-		{
-			current_token = current_token->next;
-		}
-		if (current_token && strcmp(current_token->cmd_line, "|") == 0)
-		{
-			current_token = current_token->next;
-		}
-		i++;
 	}
 	close_fds(cmd);
-	return wait_for_child(cmd);
+	wait_for_child(cmd);
+	return (0);
 }
