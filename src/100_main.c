@@ -15,15 +15,7 @@
 void	free_all(t_shell *cmd)
 {
 	t_token	*temp;
-	t_count	c;
-
-	start_counters(&c);
-	while (c.i < cmd->env_cnt)
-	{
-		free(cmd->c_envp[c.i].var_name);
-		c.i++;
-	}
-	free(cmd->c_envp);
+	
 	while (cmd->token)
 	{
 		temp = cmd->token;
@@ -89,5 +81,6 @@ int	main(int ac, char **av, char **envp)
 	check_input(ac, av);
 	init_tshell(&cmd, envp);
 	read_command(&cmd, envp);
+	free_env(&cmd);
 	return (cmd.error_code);
 }

@@ -172,7 +172,10 @@ char				*get_suffix(char *toret, char *str, int *pos);
 int					execute_pipeline(t_shell *cmd, char **envp);
 /* ==== copy_evn ==== */
 void				copy_envs(t_shell *cmd, char **envp);
-
+t_c_envp			*ret_env(t_c_envp *tosend);
+void				get_env(char *var);
+/* ==== free ==== */
+void				free_env(t_shell *cmd);
 
 /*sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain
