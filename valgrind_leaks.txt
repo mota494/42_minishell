@@ -1,147 +1,122 @@
-==9147== Memcheck, a memory error detector
-==9147== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==9147== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==9147== Command: ./minishell
-==9147== Parent PID: 9146
-==9147== 
-==9147== Syscall param wait4(pid) contains uninitialised byte(s)
-==9147==    at 0x49AA3EA: wait4 (wait4.c:30)
-==9147==    by 0x10CE6F: wait_for_child (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10CCEC: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D32: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147==  Uninitialised value was created by a heap allocation
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10C7A7: alloc_pids (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10CB63: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D32: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== Conditional jump or move depends on uninitialised value(s)
-==9147==    at 0x10CE88: wait_for_child (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10CCEC: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D32: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147==  Uninitialised value was created by a stack allocation
-==9147==    at 0x10CE1F: wait_for_child (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== Invalid read of size 8
-==9147==    at 0x109C04: free_all (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D71: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147==  Address 0x4b1d040 is 0 bytes inside a block of size 960 free'd
-==9147==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x109C38: free_all (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D71: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147==  Block was alloc'd at
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10D4A3: copy_envs (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109E0B: init_tshell (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EB0: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== Invalid free() / delete / delete[] / realloc()
-==9147==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x109C0E: free_all (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D71: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147==  Address 0x4b1d670 is 0 bytes inside a block of size 8 free'd
-==9147==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x109C0E: free_all (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D71: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147==  Block was alloc'd at
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x109959: strjoinchr (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10D419: get_env_var (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10D4E8: copy_envs (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109E0B: init_tshell (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EB0: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== Invalid free() / delete / delete[] / realloc()
-==9147==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x109C38: free_all (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D71: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147==  Address 0x4b1d040 is 0 bytes inside a block of size 960 free'd
-==9147==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x109C38: free_all (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D71: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147==  Block was alloc'd at
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10D4A3: copy_envs (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109E0B: init_tshell (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EB0: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== 
-==9147== HEAP SUMMARY:
-==9147==     in use at exit: 208,502 bytes in 248 blocks
-==9147==   total heap usage: 1,293 allocs, 1,105 frees, 236,786 bytes allocated
-==9147== 
-==9147== 0 bytes in 2 blocks are definitely lost in loss record 1 of 73
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10C703: create_pipes (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10CB53: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D32: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== 6 bytes in 1 blocks are definitely lost in loss record 2 of 73
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10943E: alocpy (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x1094C9: add_node (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10A6D9: treat_line (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10A03F: parser (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D14: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== 8 bytes in 2 blocks are definitely lost in loss record 5 of 73
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10C7A7: alloc_pids (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10CB63: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D32: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== 11 bytes in 1 blocks are definitely lost in loss record 6 of 73
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x109959: strjoinchr (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10D419: get_env_var (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10D4E8: copy_envs (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109E0B: init_tshell (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EB0: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== 17 bytes in 3 blocks are definitely lost in loss record 15 of 73
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10D6F9: ft_calloc (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10DB67: ft_strdup (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10C8A7: get_command_tokens (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10CBA0: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109D32: read_command (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EC3: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== 109 bytes in 10 blocks are indirectly lost in loss record 28 of 73
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10D6F9: ft_calloc (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10D973: writestr (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10DA98: ft_split (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109653: init_path_dirs (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109E1E: init_tshell (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EB0: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== 197 (88 direct, 109 indirect) bytes in 1 blocks are definitely lost in loss record 31 of 73
-==9147==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==9147==    by 0x10D6F9: ft_calloc (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x10DA67: ft_split (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109653: init_path_dirs (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109E1E: init_tshell (in /home/miguel/Documents/42_minishell/minishell)
-==9147==    by 0x109EB0: main (in /home/miguel/Documents/42_minishell/minishell)
-==9147== 
-==9147== LEAK SUMMARY:
-==9147==    definitely lost: 130 bytes in 10 blocks
-==9147==    indirectly lost: 109 bytes in 10 blocks
-==9147==      possibly lost: 0 bytes in 0 blocks
-==9147==    still reachable: 0 bytes in 0 blocks
-==9147==         suppressed: 208,263 bytes in 228 blocks
-==9147== 
-==9147== For lists of detected and suppressed errors, rerun with: -s
-==9147== ERROR SUMMARY: 129 errors from 11 contexts (suppressed: 0 from 0)
+==22730== Memcheck, a memory error detector
+==22730== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==22730== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==22730== Command: ./minishell
+==22730== Parent PID: 22729
+==22730== 
+==22732== Invalid read of size 4
+==22732==    at 0x10CD45: first_redirect (in /home/miguel/Documents/42_minishell/minishell)
+==22732==    by 0x10CA3A: handle_redirection (in /home/miguel/Documents/42_minishell/minishell)
+==22732==    by 0x10CAFF: execute_command (in /home/miguel/Documents/42_minishell/minishell)
+==22732==    by 0x10CC6D: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
+==22732==    by 0x109D64: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22732==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22732==  Address 0x4b6ed84 is 4 bytes after a block of size 0 alloc'd
+==22732==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22732==    by 0x10C741: create_pipes (in /home/miguel/Documents/42_minishell/minishell)
+==22732==    by 0x10CB91: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
+==22732==    by 0x109D64: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22732==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22732== 
+==22730== Syscall param wait4(pid) contains uninitialised byte(s)
+==22730==    at 0x49AA3EA: wait4 (wait4.c:30)
+==22730==    by 0x10CEAD: wait_for_child (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10CD2A: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109D64: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730==  Uninitialised value was created by a heap allocation
+==22730==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22730==    by 0x10C7E5: alloc_pids (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10CBA1: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109D64: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== Conditional jump or move depends on uninitialised value(s)
+==22730==    at 0x10CEC6: wait_for_child (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10CD2A: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109D64: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730==  Uninitialised value was created by a stack allocation
+==22730==    at 0x10CE5D: wait_for_child (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== 
+==22730== HEAP SUMMARY:
+==22730==     in use at exit: 212,569 bytes in 249 blocks
+==22730==   total heap usage: 1,336 allocs, 1,087 frees, 241,948 bytes allocated
+==22730== 
+==22730== 0 bytes in 2 blocks are definitely lost in loss record 1 of 79
+==22730==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22730==    by 0x10C741: create_pipes (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10CB91: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109D64: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== 8 bytes in 2 blocks are definitely lost in loss record 6 of 79
+==22730==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22730==    by 0x10C7E5: alloc_pids (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10CBA1: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109D64: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== 11 bytes in 2 blocks are definitely lost in loss record 8 of 79
+==22730==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22730==    by 0x10D801: ft_calloc (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10DC6F: ft_strdup (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10C8E5: get_command_tokens (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10CBDE: execute_pipeline (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109D64: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== 15 bytes in 1 blocks are definitely lost in loss record 13 of 79
+==22730==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22730==    by 0x10D801: ft_calloc (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10DD58: ft_strjoin (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10B123: concatenate (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10B1A3: find_absolute_path (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10B066: is_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10A4F3: get_type (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x1095C7: add_node (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10A682: treat_line (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10A07D: parser (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109D46: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== 15 bytes in 1 blocks are definitely lost in loss record 14 of 79
+==22730==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22730==    by 0x10D801: ft_calloc (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10DC6F: ft_strdup (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10B1C8: find_absolute_path (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10B066: is_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10A4F3: get_type (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x1095C7: add_node (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10A682: treat_line (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10A07D: parser (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109D46: read_command (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EF5: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== 109 bytes in 10 blocks are indirectly lost in loss record 31 of 79
+==22730==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22730==    by 0x10D801: ft_calloc (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10DA7B: writestr (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10DBA0: ft_split (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x1096FF: init_path_dirs (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109E50: init_tshell (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EE2: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== 197 (88 direct, 109 indirect) bytes in 1 blocks are definitely lost in loss record 34 of 79
+==22730==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==22730==    by 0x10D801: ft_calloc (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x10DB6F: ft_split (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x1096FF: init_path_dirs (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109E50: init_tshell (in /home/miguel/Documents/42_minishell/minishell)
+==22730==    by 0x109EE2: main (in /home/miguel/Documents/42_minishell/minishell)
+==22730== 
+==22730== LEAK SUMMARY:
+==22730==    definitely lost: 137 bytes in 9 blocks
+==22730==    indirectly lost: 109 bytes in 10 blocks
+==22730==      possibly lost: 0 bytes in 0 blocks
+==22730==    still reachable: 0 bytes in 0 blocks
+==22730==         suppressed: 212,323 bytes in 230 blocks
+==22730== 
+==22730== For lists of detected and suppressed errors, rerun with: -s
+==22730== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 0 from 0)

@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include <stdlib.h>
 
 t_c_envp	*ret_env(t_c_envp *tosend)
 {
@@ -35,11 +36,12 @@ char	*get_env_var(char *env)
 	return (var);
 }
 
-void	get_env(char *var)
+char	*get_env(char *var)
 {
-	t_c_envp *good_env;
+	char	*toret;
 
-	good_env = ret_env(NULL);
+	toret = var;
+	return (toret);
 }
 
 void	copy_envs(t_shell *cmd, char **envp)
@@ -49,13 +51,16 @@ void	copy_envs(t_shell *cmd, char **envp)
 	start_counters(&c);
 	while (envp[c.d])
 		c.d++;
+	c.d++;
 	cmd->c_envp = malloc(sizeof(t_c_envp) * c.d);
 	while (envp[c.i])
 	{
 		cmd->c_envp[c.i].var_name = get_env_var(envp[c.i]);
 		cmd->c_envp[c.i].var_value = getenv(cmd->c_envp[c.i].var_name);
+		cmd->c_envp[c.i].id = c.i;
 		cmd->env_cnt++;
 		c.i++;
 	}
+	cmd->c_envp[c.i].id = -1; 
 	ret_env(cmd->c_envp);
 }
