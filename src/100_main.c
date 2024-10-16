@@ -41,7 +41,7 @@ void	read_command(t_shell *cmd, char **envp)
 			parser(line, cmd);
 			if (cmd->n_inputs > 0)
 			{
-				if (execute_pipeline(cmd, envp) < 0)
+				if (execute_pipeline(cmd, envp) == 1)
 					fprintf(stderr, "Error executing pipeline\n");
 			}
 			free(line);
