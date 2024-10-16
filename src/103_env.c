@@ -12,7 +12,13 @@
 
 #include "../minishell.h"
 
-char	*ret_var_value(t_shell *cmd, )
+t_c_envp	*ret_env(t_c_envp *tosend)
+{
+	static	t_c_envp *toret;
+	if (tosend)
+		toret = tosend;
+	return (toret);
+}
 
 char	*get_env_var(char *env)
 {
@@ -27,6 +33,13 @@ char	*get_env_var(char *env)
 		i++;
 	}
 	return (var);
+}
+
+void	get_env(char *var)
+{
+	t_c_envp *good_env;
+
+	good_env = ret_env(NULL);
 }
 
 void	copy_envs(t_shell *cmd, char **envp)
@@ -44,4 +57,5 @@ void	copy_envs(t_shell *cmd, char **envp)
 		cmd->env_cnt++;
 		c.i++;
 	}
+	ret_env(cmd->c_envp);
 }
