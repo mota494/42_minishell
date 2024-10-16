@@ -38,10 +38,18 @@ char	*get_env_var(char *env)
 
 char	*get_env(char *var)
 {
-	char	*toret;
+	int	i;
+	t_c_envp	*b_env;
 
-	toret = var;
-	return (toret);
+	i = 0;
+	b_env = ret_env(NULL);
+	while (b_env[i].id != -1)
+	{
+		if (sstrcmp(var, b_env[i].var_name) == 1)
+			return (b_env[i].var_value);
+		i++;
+	}
+	return (NULL);
 }
 
 void	copy_envs(t_shell *cmd, char **envp)
