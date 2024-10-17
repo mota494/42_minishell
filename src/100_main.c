@@ -44,7 +44,7 @@ void	read_command(t_shell *cmd, char **envp)
 				if (execute_pipeline(cmd, envp) == 1)
 					fprintf(stderr, "Error executing pipeline\n");
 			}
-			free(line);
+			//free(line);
 			free_all(cmd);
 		}
 	}

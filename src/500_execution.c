@@ -46,8 +46,10 @@ int	alloc_pids(t_shell *cmd)
 
 int	count_tokens(t_token *current_token)
 {
-	int count = 0;
-	while (current_token && strcmp(current_token->cmd_line, "|") != 0)
+	int count;
+	
+	count = 0;
+	while (current_token && sstrcmp(current_token->cmd_line, "|") != 1)
 	{
 		count++;
 		current_token = current_token->next;
@@ -60,8 +62,9 @@ char	**get_command_tokens(t_token *token)
 	char **args;
 	t_count c;
 
+	
 	c.d = count_tokens(token);
-	args = malloc(sizeof(char *) * (c.d + 1));
+	args = malloc(sizeof(char *) * (8 + 1));
 	start_counters(&c);	
 	if (!args)
 		return (NULL);
@@ -82,22 +85,22 @@ char	**get_command_tokens(t_token *token)
 
 int	execute_builtin(char **args, t_shell *cmd)
 {
-	if (strcmp(args[0], "cd") == 0)
+	if (sstrcmp(args[0], "cd") == 1)
 	{
 		cd(cmd);
 		return (1);
 	}
-	else if (strcmp(args[0], "exit") == 0)
+	else if (sstrcmp(args[0], "exit") == 1)
 	{
 		exit_main(cmd);
 		return (1);
 	}
-	else if (strcmp(args[0], "echo") == 0)
+	else if (sstrcmp(args[0], "echo") == 1)
 	{
 		echo_main(cmd);
 		return (1);
 	}
-	else if (strcmp(args[0], "pwd") == 0)
+	else if (sstrcmp(args[0], "pwd") == 1)
 		return (pwd());
 	return (0);
 }
@@ -121,7 +124,6 @@ int	execute_command(t_shell *cmd, char **args, t_token *current_token, char **en
 	{
 		handle_redirection(cmd, i);
 		close_fds(cmd);
-		//printf("%s\n", current_token->path_name);
 		if (execve(current_token->path_name, args, envp) == -1)
 			perror("execve");
 	}
@@ -143,7 +145,9 @@ void advance_to_next_command(t_token **current_token)
 
 void	free_args(char **args)
 {
-	int i = 0;
+	int i;
+
+	i = 0;
 	while (args[i])
 	{
 		free(args[i]);
@@ -157,26 +161,25 @@ int execute_pipeline(t_shell *cmd, char **envp)
 {
 	int i = 0;
 	char **args;
-	t_token *current_token = cmd->token;
+	t_token *current_token;
 
 	if (create_pipes(cmd) != 0 || alloc_pids(cmd) != 0)
 		return (1);
-	while (i < cmd->n_inputs && current_token)
+	current_token = cmd->token;
+	while (current_token)
 	{
 		args = get_command_tokens(current_token);
 		if (!args)
 			return (1);
 		if (current_token->type == builtin)
 		{
-			handle_redirection(cmd, i);
-			close_fds(cmd);
+			//handle_redirection(cmd, i);
+			//close_fds(cmd);
 			execute_builtin(args, cmd);
 			free_args(args);
-			advance_to_next_command(&current_token);
 			i++;
-			continue;
 		}
-		else
+		else if (current_token->type == command)
 		{
 			close_fds(cmd);
 			if (execute_command(cmd, args, current_token, envp, i) != 0)
@@ -185,9 +188,9 @@ int execute_pipeline(t_shell *cmd, char **envp)
 				return (1);
 			}
 			free_args(args);
-			advance_to_next_command(&current_token);
 			i++;
 		}
+		current_token = current_token->next;
 	}
 	close_fds(cmd);
 	wait_for_child(cmd);
