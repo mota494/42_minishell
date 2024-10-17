@@ -46,7 +46,7 @@ void	close_fds(t_shell *cmd)
 	int	i;
 
 	i = -1;
-	while (++ i < cmd->n_inputs - 1)
+	while (++i < cmd->n_inputs - 1)
 	{
 		close(cmd->p_fds[i].fd[0]);
 		close(cmd->p_fds[i].fd[1]);
