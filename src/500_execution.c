@@ -36,7 +36,6 @@ int	alloc_pids(t_shell *cmd)
 	return (0);
 }
 
-
 /** 
  * Função auxiliar que identifica os comandos e seus argumentos
  * e ignora os pipes. Retorna  matriz de strings comando e argumentos
@@ -44,6 +43,7 @@ int	alloc_pids(t_shell *cmd)
  * fazer uma funcao que conta quantos tokens tem ate o final ou ate ao 
  * priximo pipe para substituir esse 10
  */
+
 int	count_tokens(t_token *current_token)
 {
 	int count = 0;
@@ -54,19 +54,24 @@ int	count_tokens(t_token *current_token)
 	}
 	return (count);
 }
-char **get_command_tokens(t_token *token)
+
+char	**get_command_tokens(t_token *token)
 {
-	int token_count = count_tokens(token);
-	char **args = malloc(sizeof(char *) * (token_count + 1));
-	int i = 0;
+	char **args;
+	t_count c;
+
+	c.d = count_tokens(token);
+	args = malloc(sizeof(char *) * (c.d + 1));
+	start_counters(&c);	
 	if (!args)
 		return (NULL);
 	while (token && strcmp(token->cmd_line, "|") != 0)
 	{
-		args[i++] = ft_strdup(token->cmd_line);
+		args[c.i] = alocpy(token->cmd_line);
 		token = token->next;
+		c.i++;
 	}
-	args[i] = NULL;
+	args[c.i] = NULL;
 	return (args);
 }
 
@@ -74,6 +79,7 @@ char **get_command_tokens(t_token *token)
  * Verifica se o comando é um built-in e o executa se for.
  * Retorna 1 se for built-in, 0 se não for.
  */
+
 int	execute_builtin(char **args, t_shell *cmd)
 {
 	if (strcmp(args[0], "cd") == 0)
