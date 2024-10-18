@@ -90,13 +90,13 @@ char	*get_cmd(char *line)
 	return (toret);
 }
 
-void	treat_line(char *line, t_shell *cmd)
+void	tokenize(char *line, t_shell *cmd)
 {
 	t_token	*cmd_list;
 	int		i;
 
 	i = 0;
-	jump_spaces(line);
+	//jump_spaces(line);
 	cmd->token = add_node(cmd, get_cmd(line), i);
 	cmd->n_inputs += 1;
 	cmd_list = cmd->token;

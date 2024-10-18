@@ -1,5 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   500_execution.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
@@ -37,9 +35,20 @@ int	create_pipes(t_shell *cmd)
 	return (0);
 }
 
-int	alloc_pids(t_shell *cmd)
+int	alloc_pids(t_shell *cmd, t_token *current_token)
 {
-	cmd->pids = (pid_t *)malloc(sizeof(pid_t) * cmd->n_inputs);
+	t_token *temp;
+	int i;
+
+	i = 0;
+	temp = current_token;
+	while (temp)
+	{
+		if (temp->type == command)
+			i++;
+		temp = temp->next;
+	}
+	cmd->pids = (pid_t *)malloc(sizeof(pid_t) * i);
 	if (!cmd->pids)
 	{
 		perror("Memory allocation issue - alloc_pids");
@@ -74,10 +83,9 @@ char	**get_command_tokens(t_token *token)
 	char **args;
 	t_count c;
 
-	
+	start_counters(&c);
 	c.d = count_tokens(token);
-	args = malloc(sizeof(char *) * (8 + 1));
-	start_counters(&c);	
+	args = malloc(sizeof(char *) * (c.d + 1));
 	if (!args)
 		return (NULL);
 	while (token && strcmp(token->cmd_line, "|") != 0)
@@ -142,18 +150,18 @@ int	execute_command(t_shell *cmd, char **args, t_token *current_token, char **en
 	return (0);
 }
 
-void advance_to_next_command(t_token **current_token)
-{
+// void advance_to_next_command(t_token **current_token)
+// {
 
-	while (*current_token && strcmp((*current_token)->cmd_line, "|") != 0)
-		*current_token = (*current_token)->next;
-	if (*current_token && strcmp((*current_token)->cmd_line, "|") == 0)
-		*current_token = (*current_token)->next;
-	if (*current_token)
-		printf("current token is %s\n", (*current_token)->cmd_line);
-	else
-		printf("current token is NULL\n");
-}
+// 	while (*current_token && strcmp((*current_token)->cmd_line, "|") != 0)
+// 		*current_token = (*current_token)->next;
+// 	if (*current_token && strcmp((*current_token)->cmd_line, "|") == 0)
+// 		*current_token = (*current_token)->next;
+// 	if (*current_token)
+// 		printf("current token is %s\n", (*current_token)->cmd_line);
+// 	else
+// 		printf("current token is NULL\n");
+// }
 
 void	free_args(char **args)
 {
@@ -175,9 +183,9 @@ int execute_pipeline(t_shell *cmd, char **envp)
 	char **args;
 	t_token *current_token;
 
-	if (create_pipes(cmd) != 0 || alloc_pids(cmd) != 0)
-		return (1);
 	current_token = cmd->token;
+	if ((create_pipes(cmd) != 0) || (alloc_pids(cmd, current_token) != 0))
+		return (1);
 	while (current_token)
 	{
 		args = get_command_tokens(current_token);

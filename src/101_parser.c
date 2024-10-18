@@ -57,7 +57,7 @@ void	quote_removal(t_token *cmds)
 
 void	parser(char *line, t_shell *cmd)
 {
-	treat_line(line, cmd);
+	tokenize(line, cmd);
 	quote_removal(cmd->token);
 	get_vars(cmd);
 	cmd->n_inputs = true_ninput(cmd->token);
