@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   500_execution.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/10/18 13:57:50 by mloureir          #+#    #+#             */
+/*   Updated: 2024/10/18 14:37:03 by mloureir         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 /**printf para debug - remover
@@ -92,7 +104,7 @@ int	execute_builtin(char **args, t_shell *cmd)
 	}
 	else if (sstrcmp(args[0], "exit") == 1)
 	{
-		exit_main(cmd);
+		cmd->error_code = exit_main(cmd);
 		return (1);
 	}
 	else if (sstrcmp(args[0], "echo") == 1)
@@ -173,8 +185,11 @@ int execute_pipeline(t_shell *cmd, char **envp)
 			return (1);
 		if (current_token->type == builtin)
 		{
-			//handle_redirection(cmd, i);
-			//close_fds(cmd);
+			if (cmd->n_inputs > 1)
+			{
+				handle_redirection(cmd, i);
+				close_fds(cmd);
+			}
 			execute_builtin(args, cmd);
 			free_args(args);
 			i++;
