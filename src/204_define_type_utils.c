@@ -49,6 +49,8 @@ int	find_absolute_path(t_shell *cmd, t_token *new_node, char *str)
 
 	path_tmp = NULL;
 	i = -1;
+	if (!cmd->path_dirs)
+		return (0);
 	while (cmd->path_dirs[++i])
 	{
 		path_tmp = concatenate(cmd->path_dirs[i], str);

@@ -94,7 +94,7 @@ char				*adv_separator(char *oldtoret, char *line, int *pos);
 t_types				get_type(t_shell *mshell, t_token *new_node, char *cmd);
 char				*get_cmd(char *line);
 t_quotes			get_quote_type(char *cmd);
-void				treat_line(char *line, t_shell *cmd);
+void				tokenize(char *line, t_shell *cmd);
 /* ==== utils.c ==== */
 char				*alocpy(char *str);
 t_token				*add_node(t_shell *cmd, char *content, int id);

@@ -24,9 +24,17 @@ int	check_quotes(t_shell *cmd, char *str)
 	while (str[++i])
 	{
 		if (str[i] == 34)
+		{
 			d_quotes++;
+			if (find_quote_closure(str, &i, 34))
+				d_quotes++;
+		}
 		else if (str[i] == 39)
+		{
 			s_quotes++;
+			if (find_quote_closure(str, &i, 39))
+				s_quotes++;
+		}
 	}
 	if (d_quotes % 2 != 0 || s_quotes % 2 != 0)
 	{
