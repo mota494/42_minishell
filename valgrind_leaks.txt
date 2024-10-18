@@ -1,145 +1,79 @@
-==25784== Memcheck, a memory error detector
-==25784== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==25784== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==25784== Command: ./minishell
-==25784== Parent PID: 25783
-==25784== 
-==25786== Invalid read of size 4
-==25786==    at 0x10CDFA: first_redirect (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x10CA49: handle_redirection (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x10CB0B: execute_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x10CD84: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==  Address 0x4b70a84 is 4 bytes after a block of size 0 alloc'd
-==25786==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25786==    by 0x10C726: create_pipes (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x10CCB1: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25786== 
-==25786== Invalid read of size 4
-==25786==    at 0x10CE11: first_redirect (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x10CA49: handle_redirection (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x10CB0B: execute_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x10CD84: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==  Address 0x4b70a84 is 4 bytes after a block of size 0 alloc'd
-==25786==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25786==    by 0x10C726: create_pipes (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x10CCB1: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25786==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25786== 
-==25784== Invalid read of size 4
-==25784==    at 0x10CDFA: first_redirect (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CA49: handle_redirection (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CD1D: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==  Address 0x4b71184 is 4 bytes after a block of size 0 alloc'd
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10C726: create_pipes (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CCB1: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== Invalid read of size 4
-==25784==    at 0x10CE11: first_redirect (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CA49: handle_redirection (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CD1D: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==  Address 0x4b71184 is 4 bytes after a block of size 0 alloc'd
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10C726: create_pipes (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CCB1: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== Syscall param wait4(pid) contains uninitialised byte(s)
-==25784==    at 0x49AA3EA: wait4 (wait4.c:30)
-==25784==    by 0x10CFD4: wait_for_child (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CDDA: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==  Uninitialised value was created by a heap allocation
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10C7CA: alloc_pids (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CCC1: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== 
-==25784== HEAP SUMMARY:
-==25784==     in use at exit: 212,942 bytes in 260 blocks
-==25784==   total heap usage: 1,421 allocs, 1,161 frees, 243,292 bytes allocated
-==25784== 
-==25784== 0 bytes in 2 blocks are definitely lost in loss record 1 of 79
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10C726: create_pipes (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CCB1: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== 8 bytes in 2 blocks are definitely lost in loss record 6 of 79
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10C7CA: alloc_pids (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10CCC1: execute_pipeline (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D64: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== 15 bytes in 1 blocks are definitely lost in loss record 13 of 79
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10D9A7: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10DEFE: ft_strjoin (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10B118: concatenate (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10B198: find_absolute_path (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10B05B: is_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10A4E8: get_type (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x1095C7: add_node (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10A677: treat_line (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10A072: parser (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D46: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== 15 bytes in 1 blocks are definitely lost in loss record 14 of 79
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10D9A7: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10DE15: ft_strdup (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10B1BD: find_absolute_path (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10B05B: is_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10A4E8: get_type (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x1095C7: add_node (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10A677: treat_line (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10A072: parser (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109D46: read_command (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109EEA: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== 388 bytes in 21 blocks are indirectly lost in loss record 34 of 79
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10D9A7: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10DC21: writestr (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10DD46: ft_split (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x1096FF: init_path_dirs (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109E45: init_tshell (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109ED7: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== 564 (176 direct, 388 indirect) bytes in 1 blocks are definitely lost in loss record 35 of 79
-==25784==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==25784==    by 0x10D9A7: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x10DD15: ft_split (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x1096FF: init_path_dirs (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109E45: init_tshell (in /home/mloureir/Documents/42_minishell/minishell)
-==25784==    by 0x109ED7: main (in /home/mloureir/Documents/42_minishell/minishell)
-==25784== 
-==25784== LEAK SUMMARY:
-==25784==    definitely lost: 214 bytes in 7 blocks
-==25784==    indirectly lost: 388 bytes in 21 blocks
-==25784==      possibly lost: 0 bytes in 0 blocks
-==25784==    still reachable: 0 bytes in 0 blocks
-==25784==         suppressed: 212,340 bytes in 232 blocks
-==25784== 
-==25784== For lists of detected and suppressed errors, rerun with: -s
-==25784== ERROR SUMMARY: 8 errors from 8 contexts (suppressed: 1 from 1)
+==545145== Memcheck, a memory error detector
+==545145== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==545145== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==545145== Command: ./minishell
+==545145== Parent PID: 545144
+==545145== 
+==545145== Syscall param wait4(pid) contains uninitialised byte(s)
+==545145==    at 0x4A093EA: wait4 (wait4.c:30)
+==545145==    by 0x405492: wait_for_child (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x4052BD: execute_pipeline (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401D5E: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401EBF: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==  Uninitialised value was created by a heap allocation
+==545145==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==545145==    by 0x404C0C: alloc_pids (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x405191: execute_pipeline (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401D5E: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401EBF: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145== 
+==545145== 
+==545145== HEAP SUMMARY:
+==545145==     in use at exit: 212,873 bytes in 256 blocks
+==545145==   total heap usage: 1,339 allocs, 1,083 frees, 242,282 bytes allocated
+==545145== 
+==545145== 0 bytes in 2 blocks are definitely lost in loss record 1 of 79
+==545145==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==545145==    by 0x404B38: create_pipes (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x40517F: execute_pipeline (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401D5E: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401EBF: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145== 
+==545145== 2 bytes in 1 blocks are indirectly lost in loss record 2 of 79
+==545145==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==545145==    by 0x40131C: alocpy (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x404D73: get_command_tokens (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x4051C5: execute_pipeline (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401D5E: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401EBF: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145== 
+==545145== 8 bytes in 2 blocks are definitely lost in loss record 7 of 79
+==545145==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==545145==    by 0x404C0C: alloc_pids (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x405191: execute_pipeline (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401D5E: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401EBF: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145== 
+==545145== 74 (72 direct, 2 indirect) bytes in 1 blocks are definitely lost in loss record 26 of 79
+==545145==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==545145==    by 0x404D01: get_command_tokens (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x4051C5: execute_pipeline (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401D5E: read_command (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401EBF: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145== 
+==545145== 305 bytes in 17 blocks are indirectly lost in loss record 34 of 79
+==545145==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==545145==    by 0x405DED: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x406067: writestr (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x40618C: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401527: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401E20: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401EB2: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145== 
+==545145== 449 (144 direct, 305 indirect) bytes in 1 blocks are definitely lost in loss record 35 of 79
+==545145==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==545145==    by 0x405DED: ft_calloc (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x40615B: ft_split (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401527: init_path_dirs (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401E20: init_tshell (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145==    by 0x401EB2: main (in /sgoinfre/mloureir/42_minishell/minishell)
+==545145== 
+==545145== LEAK SUMMARY:
+==545145==    definitely lost: 224 bytes in 6 blocks
+==545145==    indirectly lost: 307 bytes in 18 blocks
+==545145==      possibly lost: 0 bytes in 0 blocks
+==545145==    still reachable: 0 bytes in 0 blocks
+==545145==         suppressed: 212,342 bytes in 232 blocks
+==545145== 
+==545145== For lists of detected and suppressed errors, rerun with: -s
+==545145== ERROR SUMMARY: 6 errors from 5 contexts (suppressed: 1 from 1)
