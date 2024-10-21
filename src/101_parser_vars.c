@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/07 11:59:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/21 16:24:37 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ char	*find_var(char *str, int *helper)
 	while (str[i] != '$')
 		i++;
 	i++;
-	while (ft_isalpha(str[i]) == 1 && str[i])
+	while ((ft_isalpha(str[i]) == 1 || str[i] == '_') && str[i])
 	{
 		toret = strjoinchr(toret, str[i]);
 		i++;
