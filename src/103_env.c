@@ -6,12 +6,11 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:30:31 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/21 16:23:49 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:22:08 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <stdlib.h>
 
 t_c_envp	*ret_env(t_c_envp *tosend)
 {
