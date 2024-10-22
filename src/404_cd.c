@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/14 12:41:59 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:03:20 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	count_args(t_token *cmds)
 void	cd(t_shell *cmd)
 {
 	t_token	*temp;
+	char	buffer[PATH_MAX + 1];
 
 	temp = cmd->token;
 	temp = temp->next;
@@ -49,5 +50,8 @@ void	cd(t_shell *cmd)
 		cmd->error_code = 1;
 	}
 	else
+	{
 		cmd->error_code = 0;
+		cmd->curdir = getcwd(buffer, PATH_MAX); 
+	}
 }

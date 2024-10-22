@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/18 15:37:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:06:06 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,10 @@ void	read_command(t_shell *cmd, char **envp)
 /*initiates the main structure*/
 void	init_tshell(t_shell *cmd, char **envp)
 {
+	char	buffer[PATH_MAX];
+
 	ft_bzero(cmd, sizeof(t_shell));
+	cmd->curdir = getcwd(buffer, PATH_MAX);
 	copy_envs(cmd, envp);
 	init_path_dirs(cmd, envp);
 }

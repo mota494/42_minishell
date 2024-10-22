@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 12:30:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:04:22 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_shell
 	char			**fork_cmds;
 	t_c_envp		*c_envp;
 	int				env_cnt;
+	char			*curdir;
 	bool			leave;
 	pid_t			*pids;
 	t_fd			*p_fds;
@@ -159,7 +160,7 @@ int					wait_for_child(t_shell *cmd);
 /* ==== cd.c ==== */
 void				cd(t_shell *cmd);
 /* ==== pwd.c ==== */
-int					pwd();
+int					pwd(t_shell *cmd);
 /* ==== special_case.c ==== */
 void				special_case(t_shell *cmd);
 void				tilde(t_token *cmd);

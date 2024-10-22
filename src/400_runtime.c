@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:29 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/25 09:43:31 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/22 16:04:53 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	go_builtin(t_shell *cmd)
 	else if (sstrcmp(cmd->token->cmd_line, "cd"))
 		cd(cmd);
 	else if (sstrcmp(cmd->token->cmd_line, "pwd"))
-		cmd->error_code = pwd();
+		cmd->error_code = pwd(cmd);
 	return (1);
 }
 
