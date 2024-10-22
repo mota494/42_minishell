@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 12:33:12 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/22 13:31:30 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,18 @@ char	*var_to_char(t_c_envp node)
 	t_count	c;
 
 	start_counters(&c);
-	c.d = ft_strlen(node.var_value);
-	c.i = ft_strlen(node.var_name);
-	toret = malloc(c.i + c.d + 2);
-	while (node.var_name[c.j])
+	toret = initalize_str();
+	while (node.var_name[c.d])
 	{
-		toret[c.j] = node.var_name[c.j];
-		c.j++;
+		toret = strjoinchr(toret, node.var_name[c.d]);
+		c.d++;
 	}
-	c.j++;
-	toret[c.j] = '=';
-	while (node.var_value[c.p])
+	toret = strjoinchr(toret, '=');
+	while (node.var_value[c.i])
 	{
-		toret[c.j + c.p] = node.var_value[c.p];
-		c.p++;
+		toret = strjoinchr(toret, node.var_value[c.i]);
+		c.i++;
 	}
-	toret[c.j + c.p] = '\0';
 	return (toret);
 }
 
