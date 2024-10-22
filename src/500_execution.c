@@ -121,7 +121,7 @@ int	execute_builtin(char **args, t_shell *cmd)
 		return (1);
 	}
 	else if (sstrcmp(args[0], "pwd") == 1)
-		return (pwd());
+		return (pwd(cmd));
 	else if (sstrcmp(args[0], "env") == 1)
 	{
 		builtin_env();
