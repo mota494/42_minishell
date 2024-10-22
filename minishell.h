@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/21 12:13:00 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/22 12:30:22 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,9 +177,19 @@ t_c_envp			*ret_env(t_c_envp *tosend);
 char				*get_env(char *var);
 /* ==== free ==== */
 void				free_env(t_shell *cmd);
+/* === env_utils ==== */
+char	**send_env(void);
+void	builtin_env(void);
 
-/*sstrcmp is a normal strcmp that will return 1 if the strings are correct
+/*
+sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain
-actions*/
+actions
+
+ret_env is used to store and return a static variable, that way the copy of
+evnp is available at all times without having to use a global variable
+
+send_env returns the current envp in a matrix
+*/
 
 #endif
