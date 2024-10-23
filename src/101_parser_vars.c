@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/21 16:24:37 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/23 12:01:27 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,39 @@ char	*find_var(char *str, int *helper)
 	return (toret);
 }
 
+int	check_for_expand(t_token *cmd)
+{
+	t_count	c;
+
+	start_counters(&c);
+	while (cmd->cmd_line[c.i] != '$')
+		c.i++;
+	if (ft_isalpha(cmd->cmd_line[c.i + 1]) || cmd->cmd_line[c.i + 1] == '_')
+		return (1);
+	return (0);
+}
+
 int	find_quote_pos(t_token *cmd)
 {
-	int	i;
-	int	quote_found;
+	t_count	c;
 
-	i = 0;
-	quote_found = 0;
-	while (cmd->orig_line[i] && cmd->orig_line[i] != '$')
+	start_counters(&c);
+	if (check_for_expand(cmd) == 0)
+		return (0);
+	while (cmd->orig_line[c.i] && cmd->orig_line[c.i] != '$')
 	{
-		if (cmd->orig_line[i] == 39)
-			quote_found++;
-		i++;
+		if (cmd->orig_line[c.i] == 39)
+			c.d++;
+		c.i++;
 	}
 	if (find_dollar(cmd->orig_line) == 0)
 		return (0);
-	else if (find_dollar(cmd->orig_line) && quote_found == 1
+	else if (find_dollar(cmd->orig_line) && c.d == 1
 		&& cmd->quote == sgl)
 		return (0);
-	else if (find_dollar(cmd->orig_line) && quote_found == 1)
+	else if (find_dollar(cmd->orig_line) && c.d == 1)
 		return (0);
-	else if (find_dollar(cmd->orig_line) && quote_found == 2)
+	else if (find_dollar(cmd->orig_line) && c.d == 2)
 		return (1);
 	else
 		return (1);
