@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/23 12:01:27 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/23 13:07:38 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	check_for_expand(t_token *cmd)
 	t_count	c;
 
 	start_counters(&c);
-	while (cmd->cmd_line[c.i] != '$')
+	while (cmd->orig_line[c.i] != '$' && cmd->orig_line)
 		c.i++;
-	if (ft_isalpha(cmd->cmd_line[c.i + 1]) || cmd->cmd_line[c.i + 1] == '_')
+	if (ft_isalpha(cmd->orig_line[c.i + 1]) || cmd->orig_line[c.i + 1] == '_')
 		return (1);
 	return (0);
 }
@@ -50,8 +50,8 @@ int	find_quote_pos(t_token *cmd)
 	t_count	c;
 
 	start_counters(&c);
-	if (check_for_expand(cmd) == 0)
-		return (0);
+	//if (check_for_expand(cmd) == 0)
+	//	return (0);
 	while (cmd->orig_line[c.i] && cmd->orig_line[c.i] != '$')
 	{
 		if (cmd->orig_line[c.i] == 39)
