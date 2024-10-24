@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/24 14:19:52 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:44:05 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_all(t_shell *cmd)
 {
 	t_token	*temp;
-	
+
 	while (cmd->token)
 	{
 		temp = cmd->token;
@@ -28,6 +28,7 @@ void	free_all(t_shell *cmd)
 }
 /**reads command line in a loop, checks for syntax errors
  * and tokenizes it*/
+
 void	read_command(t_shell *cmd, char **envp)
 {
 	char	*line;

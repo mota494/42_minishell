@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 10:47:39 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/03 10:47:40 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:44:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,6 @@ void	check_specials(t_token *cmd)
 {
 	if (cmd->orig_line[0] == '~')
 		tilde(cmd);
-	//if (parse_question(cmd->orig_line))
-		//dollar_question(cmd);
 }
 
 void	special_case(t_shell *cmd)
