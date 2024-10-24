@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 16:04:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:16:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_token
 	char			*path_name;
 	t_types			type;
 	t_quotes		quote;
+	bool			expanded;
 	struct s_token	*next;
 }					t_token;
 /*copy envp*/
@@ -61,7 +62,7 @@ typedef struct s_cenvp
 {
 	char	*var_name;
 	char	*var_value;
-	int	id;
+	int		id;
 }					t_c_envp;
 /*main structure - work in progress*/
 typedef struct s_shell
@@ -119,7 +120,8 @@ int					is_var(char *str);
 int					is_command(t_shell *cmd, t_token *new_node, char *str);
 /* ==== define_type_utils ==== */
 int					find_slash(char *str);
-int					find_absolute_path(t_shell *cmd, t_token *new_node, char *str);
+int					find_absolute_path(t_shell *cmd, t_token *new_node,
+						char *str);
 /* ==== utils3.c ==== */
 int					sstrcmp(char *tocomp, char *str);
 void				del_char(char *str, int to_del);
@@ -128,7 +130,7 @@ int					true_ninput(t_token *cmds);
 int					is_there_pipe(t_token *cmd);
 /* ==== syntax_error.c ==== */
 void				print_error(t_shell *cmd, char *error_type,
-					int error_code, char *compl);
+						int error_code, char *compl);
 /* ==== check_syntax ==== */
 int					check_syntax(t_shell *cmd, char *line);
 /* ==== syntax_utils ==== */
@@ -168,7 +170,8 @@ void				tilde(t_token *cmd);
 /* ==== parse_vars ==== */
 void				get_vars(t_shell *cmd);
 char				*get_prefix(char *str, int *pos);
-char				*get_var_val(char *toret, t_token *cmd, char *str, int *pos);
+char				*get_var_val(char *toret, t_token *cmd, char *str,
+						int *pos);
 char				*get_suffix(char *toret, char *str, int *pos);
 
 int					execute_pipeline(t_shell *cmd, char **envp);
@@ -179,8 +182,8 @@ char				*get_env(char *var);
 /* ==== free ==== */
 void				free_env(t_shell *cmd);
 /* === env_utils ==== */
-char	**send_env(void);
-void	builtin_env(void);
+char				**send_env(void);
+void				builtin_env(void);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct

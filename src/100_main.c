@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/24 09:56:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:19:52 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,11 @@ void	read_command(t_shell *cmd, char **envp)
 		{
 			add_history(line);
 			parser(line, cmd);
-			/*if (cmd->n_inputs > 0)
+			if (cmd->n_inputs > 0)
 			{
 				if (execute_pipeline(cmd, envp) == 1)
 					fprintf(stderr, "Error executing pipeline\n");
-			}*/
+			}
 			free(line);
 			free_all(cmd);
 		}

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/21 16:06:05 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:19:09 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ t_token	*add_node(t_shell *cmd, char *content, int id)
 	new_node->quote = get_quote_type(new_node->cmd_line);
 	new_node->type = get_type(cmd, new_node, new_node->cmd_line);
 	new_node->cmd_id = id;
+	new_node->expanded = false;
 	return (new_node);
 }
 
