@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:23:27 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/02 08:58:15 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/10/24 14:43:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,8 @@ int	true_ninput(t_token *cmds)
 	toret = 0;
 	while (temp)
 	{
-		if (temp->type == builtin || temp->type == control || temp->type == command)
+		if (temp->type == builtin || temp->type == control
+			|| temp->type == command)
 			toret++;
 		temp = temp->next;
 	}
