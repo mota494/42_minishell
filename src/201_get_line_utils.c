@@ -6,27 +6,48 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:43:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 17:47:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/24 12:04:19 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+int	even_quote(char *str, int quote_type)
+{
+	t_count c;
+
+	start_counters(&c);
+	while (str[c.i])
+	{
+		if (str[c.i] == quote_type)
+			c.d++;
+		c.i++;
+	}
+	if (c.d % 2 == 0)
+		return (1);
+	else
+		return (0);
+}
+
 char	*adv_dbl_quote(char *oldtoret, char *line, int *pos)
 {
-	char	*novo_toro;
+	char	*trt;
 
-	novo_toro = alocpy(oldtoret);
-	novo_toro = strjoinchr(novo_toro, line[*pos]);
+	trt = alocpy(oldtoret);
+	trt = strjoinchr(trt, line[*pos]);
 	*pos += 1;
 	while (!ft_iseparator(line[*pos]) && line[*pos])
 	{
-		novo_toro = strjoinchr(novo_toro, line[*pos]);
+		trt = strjoinchr(trt, line[*pos]);
 		*pos += 1;
 	}
-	novo_toro = strjoinchr(novo_toro, line[*pos]);
+	while (!even_quote(trt, 34) && line[*pos])
+	{
+		trt = strjoinchr(trt, line[*pos]);
+		*pos += 1;
+	}
 	free(oldtoret);
-	return (novo_toro);
+	return (trt);
 }
 
 char	*adv_sig_quote(char *oldtoret, char *line, int *pos)
@@ -36,12 +57,16 @@ char	*adv_sig_quote(char *oldtoret, char *line, int *pos)
 	novo_toro = alocpy(oldtoret);
 	novo_toro = strjoinchr(novo_toro, line[*pos]);
 	*pos += 1;
-	while (!ft_iseparator(line[*pos]) && line[*pos])
+	while (!ft_iseparator(line[*pos]) && line[*pos] != 39 && line[*pos])
 	{
 		novo_toro = strjoinchr(novo_toro, line[*pos]);
 		*pos += 1;
 	}
-	novo_toro = strjoinchr(novo_toro, line[*pos]);
+	while (!even_quote(novo_toro, 34) && line[*pos])
+	{
+		novo_toro = strjoinchr(novo_toro, line[*pos]);
+		*pos += 1;
+	}
 	free(oldtoret);
 	return (novo_toro);
 }
