@@ -55,6 +55,9 @@ fclean: clean
 
 re: fclean all
 
+set: $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) -D SET_X=1 $(INC) $(OBJS) $(LIBFT) -lreadline -lncurses -o $(NAME)
+
 norm:
 	norminette $(SRCS) minishell.h inc.h
 

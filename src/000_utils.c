@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/21 16:06:05 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:03:16 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,13 @@ void	print_list(t_shell *cmd)
 	temp = cmd->token;
 	while (temp)
 	{
-		printf("token id = %d: [%s∮%s∮%d∮%d]\n",
-			temp->cmd_id, temp->orig_line ,temp->cmd_line,
-			temp->type, temp->quote);
+		if (temp->type == control)
+			printf("\n");
+		else
+			printf("+ %s", temp->cmd_line);
 		temp = temp->next;
 	}
+	printf("\n");
 }
 
 /** saves all the directories kept in the env PATH in an arr of strings

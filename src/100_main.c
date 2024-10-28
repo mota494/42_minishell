@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/24 09:56:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 12:18:55 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	read_command(t_shell *cmd, char **envp)
 {
 	char	*line;
 
-	printf("%s\n", envp[1]);
 	while (1 && cmd->leave == false)
 	{
 		line = readline("minishell: ");
@@ -40,11 +39,11 @@ void	read_command(t_shell *cmd, char **envp)
 		{
 			add_history(line);
 			parser(line, cmd);
-			/*if (cmd->n_inputs > 0)
+			if (cmd->n_inputs > 0)
 			{
 				if (execute_pipeline(cmd, envp) == 1)
 					fprintf(stderr, "Error executing pipeline\n");
-			}*/
+			}
 			free(line);
 			free_all(cmd);
 		}
@@ -63,7 +62,6 @@ void	init_tshell(t_shell *cmd, char **envp)
 	copy_envs(cmd, envp);
 	init_path_dirs(cmd, envp);
 }
-
 /*checks if the program receives any input*/
 void	check_input(int ac, char **av)
 {
