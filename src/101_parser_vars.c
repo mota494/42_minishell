@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/23 13:07:38 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:03:04 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,17 @@ int	check_for_expand(t_token *cmd)
 	t_count	c;
 
 	start_counters(&c);
-	while (cmd->orig_line[c.i] != '$' && cmd->orig_line)
+	while (cmd->orig_line[c.i] != '$' && cmd->orig_line[c.i])
 		c.i++;
+	if (c.i == ft_strlen(cmd->orig_line))
+		return (0);
 	if (ft_isalpha(cmd->orig_line[c.i + 1]) || cmd->orig_line[c.i + 1] == '_')
 		return (1);
+	else if (cmd->orig_line[c.i + 1] == 39)
+	{
+		del_char(cmd->cmd_line, '$');
+		return (0);
+	}
 	return (0);
 }
 
@@ -50,8 +57,8 @@ int	find_quote_pos(t_token *cmd)
 	t_count	c;
 
 	start_counters(&c);
-	//if (check_for_expand(cmd) == 0)
-	//	return (0);
+	if (check_for_expand(cmd) == 0)
+		return (0);
 	while (cmd->orig_line[c.i] && cmd->orig_line[c.i] != '$')
 	{
 		if (cmd->orig_line[c.i] == 39)
@@ -97,6 +104,7 @@ void	get_vars(t_shell *cmd)
 		{
 			var_name = find_var(temp->orig_line, &helper);
 			temp->cmd_line = replace_var(var_name, temp);
+			temp->expand = true;
 			free(var_name);
 		}
 		temp = temp->next;

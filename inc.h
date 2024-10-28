@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/30 16:14:51 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/10/28 11:07:18 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@
 # include "includes/libft/libft.h"
 # include <stdbool.h>
 
+# ifndef SET_X
+#  define SET_X 0
+# endif
 /********* syntax errors ********/
 # define OPERATORS "|<>"
 # define ERROR_QUOTE "quotation has not been closed"

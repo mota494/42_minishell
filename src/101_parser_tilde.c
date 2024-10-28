@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:08:59 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 14:40:49 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:49:15 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,18 @@ void	tilde(t_token *cmd)
 	if (ft_strlen(cmd->cmd_line) > 1)
 	{
 		if (cmd->cmd_line[1] == '/')
+		{
 			cmd->cmd_line = sub_tilde(cmd->cmd_line);
+			cmd->expand = true;
+		}
 		else
 			return ;
 	}
 	else
+	{
 		cmd->cmd_line = sub_tilde(cmd->cmd_line);
+		cmd->expand = true;
+	}
 	if (!cmd->cmd_line)
 		cmd->cmd_line = initalize_str();
 }

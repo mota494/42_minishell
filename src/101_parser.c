@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/24 09:55:07 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 13:55:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,23 +34,33 @@ int	check_err(t_shell *cmd)
 	return (1);
 }
 
-void	remove_quote(char *cmd, t_quotes quote)
+int	remove_quote(char *cmd, t_quotes quote)
 {
 	if (quote == sgl)
+	{
 		del_char(cmd, 39);
+		return (1);
+	}
 	else if (quote == dbl)
+	{
 		del_char(cmd, 34);
+		return (1);
+	}
+	return (0);
 }
 
 void	quote_removal(t_token *cmds)
 {
 	t_token	*temp;
+	int	help;
 
 	temp = cmds;
 	while (temp)
 	{
 		temp->orig_line = alocpy(temp->cmd_line);
-		remove_quote(temp->cmd_line, temp->quote);
+		help = remove_quote(temp->cmd_line, temp->quote);
+		if (help == 1)
+			cmds->expand = true;	
 		temp = temp->next;
 	}
 }
@@ -62,7 +72,7 @@ void	parser(char *line, t_shell *cmd)
 	get_vars(cmd);
 	cmd->n_inputs = true_ninput(cmd->token);
 	special_case(cmd);
-	print_list(cmd);
+	//red_type(cmd);
 	check_err(cmd);
 	get_type(NULL, NULL, "|");
 }

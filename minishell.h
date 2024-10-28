@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 16:04:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:04:04 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ typedef enum s_quotes
 /*counts*/
 typedef struct s_count
 {
-	int	i;
-	int	j;
-	int	d;
-	int	p;
+	size_t	i;
+	size_t	j;
+	size_t	d;
+	size_t	p;
 }					t_count;
 /*token list*/
 typedef struct s_token
@@ -52,6 +52,7 @@ typedef struct s_token
 	char			*cmd_line;
 	char			*orig_line;
 	char			*path_name;
+	bool			expand;
 	t_types			type;
 	t_quotes		quote;
 	struct s_token	*next;
@@ -128,7 +129,7 @@ int					true_ninput(t_token *cmds);
 int					is_there_pipe(t_token *cmd);
 /* ==== syntax_error.c ==== */
 void				print_error(t_shell *cmd, char *error_type,
-					int error_code, char *compl);
+						int error_code, char *compl);
 /* ==== check_syntax ==== */
 int					check_syntax(t_shell *cmd, char *line);
 /* ==== syntax_utils ==== */
@@ -168,7 +169,8 @@ void				tilde(t_token *cmd);
 /* ==== parse_vars ==== */
 void				get_vars(t_shell *cmd);
 char				*get_prefix(char *str, int *pos);
-char				*get_var_val(char *toret, t_token *cmd, char *str, int *pos);
+char				*get_var_val(char *toret, t_token *cmd, char *str,
+						int *pos);
 char				*get_suffix(char *toret, char *str, int *pos);
 
 int					execute_pipeline(t_shell *cmd, char **envp);
@@ -179,8 +181,10 @@ char				*get_env(char *var);
 /* ==== free ==== */
 void				free_env(t_shell *cmd);
 /* === env_utils ==== */
-char	**send_env(void);
-void	builtin_env(void);
+char				**send_env(void);
+void				builtin_env(void);
+/* ==== redifine_type ==== */
+void				red_type(t_shell *cmd);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
