@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/28 14:04:04 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/24 14:16:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_token
 	bool			expand;
 	t_types			type;
 	t_quotes		quote;
+	bool			expanded;
 	struct s_token	*next;
 }					t_token;
 /*copy envp*/
@@ -62,7 +63,7 @@ typedef struct s_cenvp
 {
 	char	*var_name;
 	char	*var_value;
-	int	id;
+	int		id;
 }					t_c_envp;
 /*main structure - work in progress*/
 typedef struct s_shell
@@ -120,7 +121,8 @@ int					is_var(char *str);
 int					is_command(t_shell *cmd, t_token *new_node, char *str);
 /* ==== define_type_utils ==== */
 int					find_slash(char *str);
-int					find_absolute_path(t_shell *cmd, t_token *new_node, char *str);
+int					find_absolute_path(t_shell *cmd, t_token *new_node,
+						char *str);
 /* ==== utils3.c ==== */
 int					sstrcmp(char *tocomp, char *str);
 void				del_char(char *str, int to_del);

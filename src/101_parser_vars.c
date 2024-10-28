@@ -104,7 +104,7 @@ void	get_vars(t_shell *cmd)
 		{
 			var_name = find_var(temp->orig_line, &helper);
 			temp->cmd_line = replace_var(var_name, temp);
-			temp->expand = true;
+			temp->expanded = true;
 			free(var_name);
 		}
 		temp = temp->next;

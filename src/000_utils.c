@@ -41,6 +41,7 @@ t_token	*add_node(t_shell *cmd, char *content, int id)
 	new_node->quote = get_quote_type(new_node->cmd_line);
 	new_node->type = get_type(cmd, new_node, new_node->cmd_line);
 	new_node->cmd_id = id;
+	new_node->expanded = false;
 	return (new_node);
 }
 
@@ -51,10 +52,16 @@ void	print_list(t_shell *cmd)
 	temp = cmd->token;
 	while (temp)
 	{
+<<<<<<< HEAD
 		if (temp->type == control)
 			printf("\n");
 		else
 			printf("+ %s", temp->cmd_line);
+=======
+		printf("token id = %d: [%s∮%s∮%d∮%d]\n",
+			temp->cmd_id, temp->orig_line, temp->cmd_line,
+			temp->type, temp->quote);
+>>>>>>> 8f96345b55edea6bb8fcec95980e1ce976cf4752
 		temp = temp->next;
 	}
 	printf("\n");
