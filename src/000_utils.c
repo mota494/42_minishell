@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/28 12:03:16 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 14:53:50 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,16 +52,10 @@ void	print_list(t_shell *cmd)
 	temp = cmd->token;
 	while (temp)
 	{
-<<<<<<< HEAD
 		if (temp->type == control)
 			printf("\n");
 		else
 			printf("+ %s", temp->cmd_line);
-=======
-		printf("token id = %d: [%s∮%s∮%d∮%d]\n",
-			temp->cmd_id, temp->orig_line, temp->cmd_line,
-			temp->type, temp->quote);
->>>>>>> 8f96345b55edea6bb8fcec95980e1ce976cf4752
 		temp = temp->next;
 	}
 	printf("\n");
