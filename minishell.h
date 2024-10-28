@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/24 14:16:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:21:14 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ typedef struct s_shell
 {
 	t_token			*token;
 	int				n_inputs;
+	int				n_builtin;
+	int				n_command;
 	int				error_code;
 	char			**path_dirs;
 	char			**fork_cmds;
@@ -174,8 +176,8 @@ char				*get_prefix(char *str, int *pos);
 char				*get_var_val(char *toret, t_token *cmd, char *str,
 						int *pos);
 char				*get_suffix(char *toret, char *str, int *pos);
-
 int					execute_pipeline(t_shell *cmd, char **envp);
+int					check_wrap_quote(char *str);
 /* ==== copy_evn ==== */
 void				copy_envs(t_shell *cmd, char **envp);
 t_c_envp			*ret_env(t_c_envp *tosend);
@@ -187,6 +189,9 @@ char				**send_env(void);
 void				builtin_env(void);
 /* ==== redifine_type ==== */
 void				red_type(t_shell *cmd);
+/* ==== counte ==== */
+int					count_command(t_token *cmd);
+int					count_builtins(t_token *cmd);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct

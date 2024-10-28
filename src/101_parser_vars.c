@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/28 14:03:04 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:54:36 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,10 @@ int	check_for_expand(t_token *cmd)
 		return (0);
 	if (ft_isalpha(cmd->orig_line[c.i + 1]) || cmd->orig_line[c.i + 1] == '_')
 		return (1);
-	else if (cmd->orig_line[c.i + 1] == 39)
+	else
 	{
-		del_char(cmd->cmd_line, '$');
+		if (check_wrap_quote(cmd->orig_line) == 1)
+			del_char(cmd->cmd_line, '$');
 		return (0);
 	}
 	return (0);

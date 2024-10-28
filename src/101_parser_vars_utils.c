@@ -6,11 +6,29 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:12:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/14 10:20:07 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/28 15:53:59 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	check_wrap_quote(char *str)
+{
+	t_count	c;
+
+	start_counters(&c);
+	while (str[c.i])
+	{
+		if (str[c.i] == 34 || str[c.i] == 39)
+			c.d++;
+		if (str[c.i] == '$')
+			break ;
+		c.i++;
+	}
+	if (c.d % 2 == 0)
+		return (1);
+	return (0);
+}
 
 char	*get_prefix(char *str, int *pos)
 {
