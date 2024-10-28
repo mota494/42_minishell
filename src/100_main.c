@@ -15,7 +15,7 @@
 void	free_all(t_shell *cmd)
 {
 	t_token	*temp;
-	
+
 	while (cmd->token)
 	{
 		temp = cmd->token;
@@ -28,6 +28,7 @@ void	free_all(t_shell *cmd)
 }
 /**reads command line in a loop, checks for syntax errors
  * and tokenizes it*/
+
 void	read_command(t_shell *cmd, char **envp)
 {
 	char	*line;
