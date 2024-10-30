@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/28 15:54:36 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:32:01 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	get_vars(t_shell *cmd)
 		{
 			var_name = find_var(temp->orig_line, &helper);
 			temp->cmd_line = replace_var(var_name, temp);
-			temp->expanded = true;
+			temp->expand = true;
 			free(var_name);
 		}
 		temp = temp->next;

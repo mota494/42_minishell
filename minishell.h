@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 10:46:29 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:31:54 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,6 @@ typedef struct s_token
 	bool			expand;
 	t_types			type;
 	t_quotes		quote;
-	bool			expanded;
 	struct s_token	*next;
 }					t_token;
 /*copy envp*/

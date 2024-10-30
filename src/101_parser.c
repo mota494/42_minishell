@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 11:42:59 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 16:05:34 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,33 +35,29 @@ int	check_err(t_shell *cmd)
 	return (1);
 }
 
-int	remove_quote(char *cmd, t_quotes quote)
+void	remove_quote(t_token *cmd)
 {
-	if (quote == sgl)
+	if (cmd->quote == sgl)
 	{
-		del_char(cmd, 39);
-		return (1);
+		del_char(cmd->cmd_line, 39);
+		cmd->expand = true;
 	}
-	else if (quote == dbl)
+	else if (cmd->quote == dbl)
 	{
-		del_char(cmd, 34);
-		return (1);
+		del_char(cmd->cmd_line, 34);
+		cmd->expand = true;
 	}
-	return (0);
 }
 
 void	quote_removal(t_token *cmds)
 {
 	t_token	*temp;
-	int	help;
 
 	temp = cmds;
 	while (temp)
 	{
 		temp->orig_line = alocpy(temp->cmd_line);
-		help = remove_quote(temp->cmd_line, temp->quote);
-		if (help == 1)
-			cmds->expand = true;	
+		remove_quote(temp);
 		temp = temp->next;
 	}
 }
@@ -75,8 +71,8 @@ void	parser(char *line, t_shell *cmd)
 	cmd->n_command = count_command(cmd->token);
 	cmd->n_inputs = cmd->n_command + cmd->n_builtin;
 	special_case(cmd);
-	//print_list(cmd);
-	//red_type(cmd);
+	red_type(cmd);
+	print_list(cmd);
 	check_err(cmd);
 	get_type(NULL, NULL, "|");
 }
