@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 09:51:11 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 11:22:07 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ int	check_err(t_shell *cmd)
 	in_command = 0;
 	while (temp)
 	{
-		if (temp->type == error && in_command == 0)
+		if (temp->type == error && in_command == 0
+			&& ft_strlen(temp->cmd_line) > 0)
 		{
 			cmd->error_code = 127;
 			in_command = 1;
