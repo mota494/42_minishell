@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 09:53:10 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:32:23 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_token	*add_node(t_shell *cmd, char *content, int id)
 	new_node->quote = get_quote_type(new_node->cmd_line);
 	new_node->type = get_type(cmd, new_node, new_node->cmd_line);
 	new_node->cmd_id = id;
-	new_node->expanded = false;
+	new_node->expand = false;
 	return (new_node);
 }
 
@@ -52,7 +52,8 @@ void	print_list(t_shell *cmd)
 	temp = cmd->token;
 	while (temp)
 	{
-		printf("[%s]\n", temp->cmd_line);
+		printf("[%s] [%s]", temp->cmd_line, temp->orig_line);
+		printf("[%d] [%d]\n", temp->type, temp->expand);
 		temp = temp->next;
 	}
 	printf("\n");

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:43:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 11:47:30 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 15:45:36 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,12 @@ char	*adv_dbl_quote(char *oldtoret, char *line, int *pos)
 	trt = alocpy(oldtoret);
 	trt = strjoinchr(trt, line[*pos]);
 	*pos += 1;
-	while (!ft_quote_iseparator(line[*pos]) && line[*pos])
+	while (line[*pos] && line[*pos] == 34)
+	{
+		trt = strjoinchr(trt, line[*pos]);
+		*pos += 1;
+	}
+	while (!ft_iseparator(line[*pos]) && line[*pos])
 	{
 		trt = strjoinchr(trt, line[*pos]);
 		*pos += 1;
@@ -52,23 +57,28 @@ char	*adv_dbl_quote(char *oldtoret, char *line, int *pos)
 
 char	*adv_sig_quote(char *oldtoret, char *line, int *pos)
 {
-	char	*novo_toro;
+	char	*trt;
 
-	novo_toro = alocpy(oldtoret);
-	novo_toro = strjoinchr(novo_toro, line[*pos]);
+	trt = alocpy(oldtoret);
+	trt = strjoinchr(trt, line[*pos]);
 	*pos += 1;
-	while (!ft_quote_iseparator(line[*pos]) && line[*pos])
+	while (line[*pos] && line[*pos] == 39)
 	{
-		novo_toro = strjoinchr(novo_toro, line[*pos]);
+		trt = strjoinchr(trt, line[*pos]);
 		*pos += 1;
 	}
-	while (!even_quote(novo_toro, 39) && line[*pos])
+	while (!ft_iseparator(line[*pos]) && line[*pos])
 	{
-		novo_toro = strjoinchr(novo_toro, line[*pos]);
+		trt = strjoinchr(trt, line[*pos]);
+		*pos += 1;
+	}
+	while (!even_quote(trt, 39) && line[*pos])
+	{
+		trt = strjoinchr(trt, line[*pos]);
 		*pos += 1;
 	}
 	free(oldtoret);
-	return (novo_toro);
+	return (trt);
 }
 
 char	*adv_spaces(char *oldtoret, char *line, int *pos)
