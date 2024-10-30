@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/28 15:21:14 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:46:29 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,7 @@ int					find_dollar(char *str);
 void				jump_spaces(char *line);
 int					ft_ispace(int c);
 int					ft_iseparator(int c);
+int					ft_quote_iseparator(int c);
 int					scmp(char *tocomp, char *str);
 char				*strjoinchr(char *str, char c);
 /* ==== utils4.c ==== */

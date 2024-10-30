@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:43:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/24 12:04:19 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:01:54 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ char	*adv_dbl_quote(char *oldtoret, char *line, int *pos)
 		trt = strjoinchr(trt, line[*pos]);
 		*pos += 1;
 	}
+	printf("[%d]", line[*pos]);
 	while (!even_quote(trt, 34) && line[*pos])
 	{
 		trt = strjoinchr(trt, line[*pos]);
