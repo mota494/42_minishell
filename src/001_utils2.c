@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:30:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/21 12:13:42 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:44:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,9 @@ int	ft_ispace(int c)
 	return (0);
 }
 
-int	ft_iseparator(int c)
+int	ft_quote_iseparator(int c)
 {
-	if ((ft_ispace(c)) == 1)
-		return (1);
-	else if (c == '|' || c == '&' || c == ';')
+	if (c == '|' || c == '&' || c == ';')
 		return (1);
 	else if (c == '<' || c == '>')
 		return (1);

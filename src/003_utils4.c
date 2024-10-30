@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:12:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/28 14:45:36 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/30 10:44:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,4 +59,17 @@ int	count_command(t_token *cmd)
 		temp = temp->next;
 	}
 	return (toret);
+}
+
+int	ft_iseparator(int c)
+{
+	if ((ft_ispace(c)) == 1)
+		return (1);
+	else if (c == '|' || c == '&' || c == ';')
+		return (1);
+	else if (c == '<' || c == '>')
+		return (1);
+	else if (c == '(' || c == ')')
+		return (1);
+	return (0);
 }
