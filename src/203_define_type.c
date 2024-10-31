@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:15:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/02 08:30:51 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/10/31 09:58:13 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	is_builtin(char *str)
 {
-	if (scmp("echo", str))
+	if (f_strcmp("echo", str))
 		return (1);
-	else if (scmp("cd", str))
+	else if (f_strcmp("cd", str))
 		return (1);
-	else if (scmp("pwd", str))
+	else if (f_strcmp("pwd", str))
 		return (1);
-	else if (scmp("export", str))
+	else if (f_strcmp("export", str))
 		return (1);
-	else if (scmp("unset", str))
+	else if (f_strcmp("unset", str))
 		return (1);
-	else if (scmp("env", str))
+	else if (f_strcmp("env", str))
 		return (1);
-	else if (scmp("exit", str))
+	else if (f_strcmp("exit", str))
 		return (1);
 	return (0);
 }

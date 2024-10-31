@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:30:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 10:44:28 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/31 09:57:16 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,6 @@ void	jump_spaces(char *line)
 int	ft_ispace(int c)
 {
 	if ((c >= 9 && c <= 13) || c == 32)
-		return (1);
-	return (0);
-}
-
-int	ft_quote_iseparator(int c)
-{
-	if (c == '|' || c == '&' || c == ';')
-		return (1);
-	else if (c == '<' || c == '>')
-		return (1);
-	else if (c == '(' || c == ')')
 		return (1);
 	return (0);
 }

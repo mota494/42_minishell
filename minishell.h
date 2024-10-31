@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 15:31:54 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/31 09:56:39 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ char				*strjoinchr(char *str, char c);
 /* ==== utils4.c ==== */
 void				start_counters(t_count *counters);
 char				*initalize_str(void);
+/* utils5.c */
+int					f_strcmp(char *tocomp, char *str);
 /* ==== define_type.c ==== */
 int					is_builtin(char *str);
 int					is_controler(char *str);
