@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 09:56:39 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/31 12:06:47 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,9 @@ void				red_type(t_shell *cmd);
 /* ==== counte ==== */
 int					count_command(t_token *cmd);
 int					count_builtins(t_token *cmd);
+/* parse_quotes */
+char				*parse_quotes(char *str);
+
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
