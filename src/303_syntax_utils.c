@@ -1,28 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   syntax_utils.c                                     :+:      :+:    :+:   */
+/*   303_syntax_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 08:37:45 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/09/19 15:44:49 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/10/31 15:08:38 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-/*go to utils*/
-int	only_spaces(char *str)
-{
-	while (*str)
-	{
-		if (!ft_ispace(*str))
-			return (0);
-		str++;
-	}
-	return (1);
-}
 
 void	trim_in_between(char **str)
 {

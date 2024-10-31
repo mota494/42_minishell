@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/03 10:47:39 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/24 14:44:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:58:19 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,6 @@ void	free_node(t_token *node)
 	free(node->cmd_line);
 	free(node->orig_line);
 	free(node);
-}
-
-void	check_empty(t_shell *cmd)
-{
-	t_token	*temp;
-	t_token	*prev;
-
-	temp = cmd->token;
-	while (temp->next)
-	{
-		prev = temp;
-		temp = temp->next;
-		if (ft_strlen(temp->cmd_line) <= 0)
-		{
-			prev->next = temp->next;
-			free_node(temp);
-			temp = prev->next;
-		}
-	}
 }
 
 void	check_specials(t_token *cmd)

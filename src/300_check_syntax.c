@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_syntax.c                                     :+:      :+:    :+:   */
+/*   300_check_syntax.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/09/23 14:43:54 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/10/31 15:07:47 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,29 +14,26 @@
 
 int	check_quotes(t_shell *cmd, char *str)
 {
-	int	d_quotes;
-	int	s_quotes;
-	int	i;
+	t_count	c;
 
-	d_quotes = 0;
-	s_quotes = 0;
-	i = -1;
-	while (str[++i])
+	start_counters(&c);
+	c.i_i = -1;
+	while (str[++c.i_i])
 	{
-		if (str[i] == 34)
+		if (str[c.i_i] == 34)
 		{
-			d_quotes++;
-			if (find_quote_closure(str, &i, 34))
-				d_quotes++;
+			c.d_i++;
+			if (find_quote_closure(str, &c.i_i, 34))
+				c.d_i++;
 		}
-		else if (str[i] == 39)
+		else if (str[c.i_i] == 39)
 		{
-			s_quotes++;
-			if (find_quote_closure(str, &i, 39))
-				s_quotes++;
+			c.j_i++;
+			if (find_quote_closure(str, &c.i_i, 39))
+				c.j_i++;
 		}
 	}
-	if (d_quotes % 2 != 0 || s_quotes % 2 != 0)
+	if (c.d_i % 2 != 0 || c.j_i % 2 != 0)
 	{
 		print_error(cmd, ERROR_QUOTE, 2, NULL);
 		return (0);
