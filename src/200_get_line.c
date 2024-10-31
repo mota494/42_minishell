@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/02 08:54:31 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2024/10/31 14:59:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,6 @@ void	tokenize(char *line, t_shell *cmd)
 	int		i;
 
 	i = 0;
-	//jump_spaces(line);
 	cmd->token = add_node(cmd, get_cmd(line), i);
 	cmd->n_inputs += 1;
 	cmd_list = cmd->token;

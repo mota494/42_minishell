@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:12:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 10:44:28 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:07:04 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@ void	start_counters(t_count *counters)
 	counters->i = 0;
 	counters->j = 0;
 	counters->p = 0;
+	counters->i_i = 0;
+	counters->d_i = 0;
+	counters->j_i = 0;
 }
 
 char	*initalize_str(void)

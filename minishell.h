@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 12:06:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/31 15:10:09 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@ typedef struct s_count
 	size_t	j;
 	size_t	d;
 	size_t	p;
+	int		i_i;
+	int		j_i;
+	int		d_i;
 }					t_count;
 /*token list*/
 typedef struct s_token
@@ -150,10 +153,6 @@ int					check_redout_apend(t_shell *cmd, char *str, int op_index);
 int					check_redin_heredoc(t_shell *cmd, char *str, int op_index);
 /* ==== operators_check2 ==== */
 int					check_heredoc(t_shell *cmd, char *str, int i);
-
-/* ==== runtime.c ==== */
-void				runtime(t_shell *cmd);
-
 /* ==== exit.c ==== */
 int					exit_main(t_shell *cmd);
 /* ==== echo.c ==== */

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:23:27 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/24 14:43:28 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/10/31 14:55:59 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,23 +51,6 @@ int	fix_exit(int val)
 	sup = val / 256;
 	toret = 256 * sup;
 	toret = val - toret;
-	return (toret);
-}
-
-int	true_ninput(t_token *cmds)
-{
-	int		toret;
-	t_token	*temp;
-
-	temp = cmds;
-	toret = 0;
-	while (temp)
-	{
-		if (temp->type == builtin || temp->type == control
-			|| temp->type == command)
-			toret++;
-		temp = temp->next;
-	}
 	return (toret);
 }
 
