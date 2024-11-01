@@ -9,6 +9,7 @@
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include <unistd.h>
 
 /**printf para debug - remover
  * malloc here!
@@ -39,18 +40,7 @@ pela chamada da função fork*/
 int	alloc_pids(t_shell *cmd)
 {
 
-	t_token *temp;
-	int i;
-
-	i = 0;
-	temp = cmd->token;
-	while (temp)
-	{
-		if (temp->type == command || temp->type == builtin)
-			i++;
-		temp = temp->next;
-	}
-	cmd->pids = (pid_t *)malloc(sizeof(pid_t) * i);
+	cmd->pids = (pid_t *)malloc(sizeof(pid_t) * cmd->n_inputs);
 	if (!cmd->pids)
 	{
 		perror("Memory allocation issue - alloc_pids");
@@ -218,8 +208,8 @@ void	run_cmdx_builtx(t_shell *cmd, int i, char **envp)
 
 	pipe_id = 0;
 	current = cmd->token;
-	printf("run command acessada\n");
-	printf("i recebido = %d\n", i);
+	//printf("run command acessada\n");
+	//printf("i recebido = %d\n", i);
 	while (pipe_id < i)
 	{
 		printf("entra no loop\n");
@@ -227,6 +217,7 @@ void	run_cmdx_builtx(t_shell *cmd, int i, char **envp)
 			pipe_id++;
 		current = current->next;
 	}
+	printf("%s", cmd->token->cmd_line);
 	if (current && current->type == builtin)
 		execute_builtin(cmd, current);
 	else if (current && current->type == command)
@@ -243,9 +234,8 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 	// caso seja um comando ou uma pipeline, a execução será fita em processos filhos
 	if ((create_pipes(cmd) != 0) || (alloc_pids(cmd) != 0))
 		return (1);
-	i = 0;
-	printf("número de comandos: %d\n", cmd->n_inputs);
-	while (i < cmd->n_inputs)
+	i = -1;
+	while (++i < cmd->n_inputs)
 	{
 		cmd->pids[i] = fork();
 		if (cmd->pids[i] == -1)
@@ -255,12 +245,10 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 		}
 		if (cmd->pids[i] == 0)
 		{
-			printf("i passado: %d\n", i);
 			handle_redirection(cmd, i);
 			close_fds(cmd);
 			run_cmdx_builtx(cmd, i, envp);
 		}
-		i++;
 	}
 	close_fds(cmd);
 	wait_for_child(cmd);

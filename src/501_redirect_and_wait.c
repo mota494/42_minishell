@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:11:19 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/10/18 14:23:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/01 16:45:54 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,8 @@ void	std_redirect(t_shell *cmd, int i)
 {
 	dup2(cmd->p_fds[i - 1].fd[0], STDIN_FILENO);
 	dup2(cmd->p_fds[i].fd[1], STDOUT_FILENO);
-	close(cmd->p_fds[i - 1].fd[0]);
-	close(cmd->p_fds[i].fd[1]);
+	//close(cmd->p_fds[i - 1].fd[0]);
+	//close(cmd->p_fds[i].fd[1]);
 }
 
 void	close_fds(t_shell *cmd)
