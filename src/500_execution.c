@@ -1,12 +1,10 @@
-/* ************************************************************************** */
-/*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   500_execution.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/24 15:27:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/28 14:53:09 by mloureir         ###   ########.fr       */
+/*   Created: 2024/10/18 13:57:50 by mloureir          #+#    #+#             */
+/*   Updated: 2024/10/18 14:37:03 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,10 +237,10 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 {
 	int		i;
 
-	//se só houver um builtin, executa e termina.
+	// se só houver um builtin, executa e termina.
 	if (one_builtin(cmd) == 0)
 		return (0);
-	//caso seja um comando ou uma pipeline, a execução será fita em processos filhos
+	// caso seja um comando ou uma pipeline, a execução será fita em processos filhos
 	if ((create_pipes(cmd) != 0) || (alloc_pids(cmd) != 0))
 		return (1);
 	i = 0;
@@ -269,3 +267,4 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 	//free_mem();
 	return (0);
 }
+
