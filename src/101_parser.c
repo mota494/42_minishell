@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 13:59:00 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/04 08:57:20 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	parser(char *line, t_shell *cmd)
 	cmd->n_command = count_command(cmd->token);
 	cmd->n_inputs = cmd->n_command + cmd->n_builtin;
 	special_case(cmd);
-	print_list(cmd);
+	//print_list(cmd);
 	check_err(cmd);
 	get_type(NULL, NULL, "|");
 }
