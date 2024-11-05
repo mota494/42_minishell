@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/04 09:48:21 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/05 11:19:54 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	free_all(t_shell *cmd)
 /**reads command line in a loop, checks for syntax errors
  * and tokenizes it*/
 
-void	read_command(t_shell *cmd)
+void	read_command(t_shell *cmd, char **envp)
 {
 	char	*line;
 
@@ -42,7 +42,7 @@ void	read_command(t_shell *cmd)
 			parser(line, cmd);
 			if (cmd->n_inputs > 0)
 			{
-				if (execute_pipeline(cmd, send_env()) == 1)
+				if (execute_pipeline(cmd, envp) == 1)
 					fprintf(stderr, "Error executing pipeline\n");
 			}
 			free(line);
@@ -79,7 +79,7 @@ int	main(int ac, char **av, char **envp)
 
 	check_input(ac, av);
 	init_tshell(&cmd, envp);
-	read_command(&cmd);
+	read_command(&cmd, envp);
 	free_env(&cmd);
 	return (cmd.error_code);
 }

@@ -12,7 +12,7 @@ WHITE 	= \033[1;37m
 #PROGRAM NAME | COMPILER | FLAGS 
 NAME = minishell
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 RM = rm -fr
 
 #PATHS
