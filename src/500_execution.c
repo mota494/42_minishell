@@ -12,30 +12,6 @@
 #include <stdio.h>
 #include <unistd.h>
 
-/**printf para debug - remover
- * malloc here!
- */
-int	create_pipes(t_shell *cmd)
-{
-	int i = 0;
-
-	cmd->p_fds = (t_fd *)malloc(sizeof(t_fd) * (cmd->n_inputs - 1));
-	if (!cmd->p_fds)
-	{
-		perror("Memory allocation issue - pipe fds");
-		return (1);
-	}
-	while (i < cmd->n_inputs - 1)
-	{
-		if (pipe(cmd->p_fds[i].fd) == -1)
-		{
-			perror("Error creating pipes");
-			return (2);
-		}
-		i++;
-	}
-	return (0);
-}
 /* aloca memória para os Process ids retornados 
 pela chamada da função fork*/
 int	alloc_pids(t_shell *cmd)
@@ -102,18 +78,6 @@ void	free_args(char **args)
 	free(args);
 }
 
-/* redireciona a entrada e saída dos cmds/builtins para
- * os processos se comunicarem via pipes */
-void	handle_redirection(t_shell *cmd, int i)
-{
-	if (i == 0)
-		first_redirect(cmd);
-	else if (i == cmd->n_inputs - 1)
-		last_redirect(cmd, i);
-	else
-		std_redirect(cmd, i);
-}
-
 /* Verifica se o comando é um built-in e o executa se for.
  * Retorna 1 se for built-in, 0 se não for. */
 int	call_builtin(char **args, t_shell *cmd)
@@ -177,23 +141,19 @@ int	execute_builtin(t_shell *cmd, t_token *token)
 
 	current_token = token;
 	args = get_command_tokens(current_token);
-	close_fds(cmd);
 	call_builtin(args, cmd);
 	free_args(args);
 	return (0);
 }
 
 /*executa os comandos*/
-int	execute_command(t_shell *cmd, t_token *token, char **envp)
+int	execute_command(t_token *token, char **envp)
 {
 	t_token	*current_token;
 	char	**args;
 
 	current_token = token;
 	args = get_command_tokens(current_token);
-	close_fds(cmd);
-	write(1, "comando será executado\n", 10);
-	write(1, &current_token->path_name, ft_strlen(current_token->path_name));
 	if (execve(current_token->path_name, args, envp) == -1)
 	{
 		perror("execve");
@@ -207,7 +167,7 @@ void	run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp)
 	if (current && current->type == builtin)
 		execute_builtin(cmd, current);
 	else if (current && current->type == command)
-		execute_command(cmd, current, envp);
+		execute_command(current, envp);
 	exit(0);
 }
 
@@ -230,41 +190,34 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 	int		i;
 	int	p[2];
 	int	help;
+	t_token *head;
 
 	if (cmd->n_inputs == 1 && cmd->n_builtin == 1)
 	{
 		one_builtin(cmd);
 		return (0);
 	}
-	if ((create_pipes(cmd) != 0) || (alloc_pids(cmd) != 0))
+	if ((alloc_pids(cmd) != 0))
 		return (1);
 	i = 0;
 	help = dup(STDIN_FILENO);
+	head = cmd->token;
 	while (cmd->token)
-	{
+	{	
 		pipe(p);
-		//handle_redirection(cmd, i);
 		cmd->pids[i] = fork();
 		if (cmd->pids[i] == -1)
-		{
-			perror("fork issue");
 			return (1);
-		}
-			if (cmd->pids[i] == 0)
-			{
-					if (i != 0)
-			{
-				dup2(help, STDIN_FILENO);
-			}
-			else
-			{
+		if (cmd->pids[i] == 0)
+		{
+			if (i != 0)
+				dup2(help, STDIN_FILENO);	
+			if (cmd->n_inputs > 1 && i != cmd->n_inputs - 1)
 				dup2(p[1], STDOUT_FILENO);
-			}
+			run_cmdx_builtx(cmd, cmd->token, envp);
 			close(p[0]);
 			close(p[1]);
 			close(help);
-			//close_fds(cmd);
-			run_cmdx_builtx(cmd, cmd->token, envp);
 		}
 		dup2(p[0], help);
 		close(p[0]);
@@ -272,8 +225,9 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 		i++;
 		cmd->token = get_next(cmd->token);
 	}
+	cmd->token = head;
 	close(help);
 	wait_for_child(cmd);
-	close_fds(cmd);
 	return (0);
 }
+
