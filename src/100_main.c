@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/05 11:19:54 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:17:10 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ void	free_all(t_shell *cmd)
 	}
 	cmd->token = NULL;
 }
-/**reads command line in a loop, checks for syntax errors
- * and tokenizes it*/
 
 void	read_command(t_shell *cmd, char **envp)
 {
@@ -53,7 +51,6 @@ void	read_command(t_shell *cmd, char **envp)
 		cmd->error_code = fix_exit(cmd->error_code);
 }
 
-/*initiates the main structure*/
 void	init_tshell(t_shell *cmd, char **envp)
 {
 	char	buffer[PATH_MAX];
@@ -63,7 +60,7 @@ void	init_tshell(t_shell *cmd, char **envp)
 	copy_envs(cmd, envp);
 	init_path_dirs(cmd, envp);
 }
-/*checks if the program receives any input*/
+
 void	check_input(int ac, char **av)
 {
 	if (ac != 1 || av[1])
