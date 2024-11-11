@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/11 15:12:15 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/11 16:37:03 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ typedef struct s_shell
 
 /* ============ functions ============ */
 
+
+/* parser_vars */
+char				*parser_vars(t_token *cmd);
 /* ==== main.c ==== */
 void				free_all(t_shell *cmd);
 /* ==== parser.c ==== */
@@ -171,13 +174,13 @@ char				*parse_quotes(char *str);
 /* exec_utils */
 void				free_args(char **args);
 char				**get_command_tokens(t_token *token);
-int				count_tokens(t_token *current_token);
-int				alloc_pids(t_shell *cmd);
-int	call_builtin(char **args, t_shell *cmd);
-int	one_builtin(t_shell *cmd);
-int	execute_builtin(t_shell *cmd, t_token *token);
-int	execute_command(t_token *token, char **envp);
-void	run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp);
+int					count_tokens(t_token *current_token);
+int					alloc_pids(t_shell *cmd);
+int					call_builtin(char **args, t_shell *cmd);
+int					one_builtin(t_shell *cmd);
+int					execute_builtin(t_shell *cmd, t_token *token);
+int					execute_command(t_token *token, char **envp);
+void				run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
