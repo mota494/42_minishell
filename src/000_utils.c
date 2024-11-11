@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 12:18:02 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:11:29 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ t_token	*add_node(t_shell *cmd, char *content, int id)
 	new_node = malloc(sizeof(t_token));
 	new_node->orig_line = alocpy(content);
 	new_node->cmd_line = parse_quotes(new_node->orig_line);
+	//new_node->cmd_line = parse_vars(new_node);
 	free(content);
 	new_node->next = NULL;
-	new_node->quote = get_quote_type(new_node->orig_line);
 	new_node->type = get_type(cmd, new_node, new_node->cmd_line);
 	new_node->cmd_id = id;
 	new_node->expand = false;
@@ -81,18 +81,4 @@ void	init_path_dirs(t_shell *cmd, char **envp)
 		cmd->path_dirs = ft_split(envp[i] + 5, ':');
 	else
 		cmd->path_dirs = NULL;
-}
-
-int	find_dollar(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '$')
-			return (1);
-		i++;
-	}
-	return (0);
 }

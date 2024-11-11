@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 14:59:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:09:18 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,22 +23,6 @@ void	clean_line(char *cmd, char *line)
 		i++;
 	}
 	line[i] = '\0';
-}
-
-t_quotes	get_quote_type(char *cmd)
-{
-	int	i;
-
-	i = 0;
-	while (cmd[i])
-	{
-		if (cmd[i] == 34)
-			return (dbl);
-		else if (cmd[i] == 39)
-			return (sgl);
-		i++;
-	}
-	return (no);
 }
 
 t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd)

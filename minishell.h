@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/11 10:50:08 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/11 15:12:15 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,6 @@ typedef enum s_types
 	error,
 }					t_types;
 
-typedef enum s_quotes
-{
-	dbl,
-	sgl,
-	no,
-}					t_quotes;
-
 /* ============ structs ============ */
 /*counts*/
 typedef struct s_count
@@ -57,7 +50,6 @@ typedef struct s_token
 	char			*path_name;
 	bool			expand;
 	t_types			type;
-	t_quotes		quote;
 	struct s_token	*next;
 }					t_token;
 /*copy envp*/
@@ -100,26 +92,21 @@ char				*adv_separator(char *oldtoret, char *line, int *pos);
 /* ==== get_line.c ==== */
 t_types				get_type(t_shell *mshell, t_token *new_node, char *cmd);
 char				*get_cmd(char *line);
-t_quotes			get_quote_type(char *cmd);
 void				tokenize(char *line, t_shell *cmd);
 /* ==== utils.c ==== */
 char				*alocpy(char *str);
 t_token				*add_node(t_shell *cmd, char *content, int id);
 void				print_list(t_shell *cmd);
 void				init_path_dirs(t_shell *cmd, char **envp);
-int					find_dollar(char *str);
 /* ==== utils2.c ==== */
 void				jump_spaces(char *line);
 int					ft_ispace(int c);
 int					ft_iseparator(int c);
-int					ft_quote_iseparator(int c);
 int					scmp(char *tocomp, char *str);
 char				*strjoinchr(char *str, char c);
 /* ==== utils4.c ==== */
 void				start_counters(t_count *counters);
 char				*initalize_str(void);
-/* utils5.c */
-int					f_strcmp(char *tocomp, char *str);
 /* ==== define_type.c ==== */
 int					is_builtin(char *str);
 int					is_controler(char *str);
@@ -142,8 +129,6 @@ void				print_error(t_shell *cmd, char *error_type,
 /* ==== check_syntax ==== */
 int					check_syntax(t_shell *cmd, char *line);
 /* ==== syntax_utils ==== */
-void				trim_spaces(char **str);
-void				trim_in_between(char **str);
 char				is_operator(char c);
 char				*find_quote_closure(char *str, int *i, char quote_type);
 /* ==== operators_check ==== */
@@ -158,10 +143,6 @@ int					exit_main(t_shell *cmd);
 /* ==== echo.c ==== */
 void				echo_main(t_shell *cmd);
 /* ==== redirect_and_wait ==== */
-void				first_redirect(t_shell *cmd);
-void				last_redirect(t_shell *cmd, int i);
-void				std_redirect(t_shell *cmd, int i);
-void				close_fds(t_shell *cmd);
 int					wait_for_child(t_shell *cmd);
 /* ==== cd.c ==== */
 void				cd(t_shell *cmd);
@@ -170,15 +151,7 @@ int					pwd(t_shell *cmd);
 /* ==== special_case.c ==== */
 void				special_case(t_shell *cmd);
 void				tilde(t_token *cmd);
-
-/* ==== parse_vars ==== */
-void				get_vars(t_shell *cmd);
-char				*get_prefix(char *str, int *pos);
-char				*get_var_val(char *toret, t_token *cmd, char *str,
-						int *pos);
-char				*get_suffix(char *toret, char *str, int *pos);
 int					execute_pipeline(t_shell *cmd, char **envp);
-int					check_wrap_quote(char *str);
 /* ==== copy_evn ==== */
 void				copy_envs(t_shell *cmd, char **envp);
 t_c_envp			*ret_env(t_c_envp *tosend);
