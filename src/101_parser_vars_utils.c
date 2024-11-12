@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:12:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 14:16:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:23:33 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,20 @@ int	check_wrap(char *str, int *pos)
 		return (1);
 	else
 		return (0);
+}
+
+char	*addprefix(char *cmd, int *pos, char *oldtoret)
+{
+	char	*newtoret;
+
+	newtoret = alocpy(oldtoret);
+	free(oldtoret);
+	while (cmd[*pos])
+	{
+		newtoret = strjoinchr(newtoret, cmd[*pos]);
+		*pos += 1;
+	}
+	return (newtoret);
 }
 
 char	*addsufix(char *cmd, int *pos)

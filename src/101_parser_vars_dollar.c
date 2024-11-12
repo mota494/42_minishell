@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:49:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 14:53:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/12 16:38:12 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,17 +53,17 @@ char	*not_rm_dollar(char *str, int *pos, char *newtoret)
 	return (newtoret);
 }
 
-char	*parse_dollar(t_token *cmd, int *pos, char *oldtoret)
+char	*parse_dollar(char *cmd, int *pos, char *oldtoret)
 {
 	char	*newtoret;
 
 	newtoret = alocpy(oldtoret);
 	free(oldtoret);
-	if (is_quote(cmd->orig_line[*pos + 1]) && c_if_wrap(cmd->orig_line, pos))
-		newtoret = rm_dollar(cmd->orig_line, pos, newtoret);
-	else if (is_quote(cmd->orig_line[*pos + 1]) && !c_if_wrap(cmd->orig_line, pos))
-		newtoret = not_rm_dollar(cmd->orig_line, pos, newtoret);
+	if (is_quote(cmd[*pos + 1]) && c_if_wrap(cmd, pos))
+		newtoret = rm_dollar(cmd, pos, newtoret);
+	else if (is_quote(cmd[*pos + 1]) && !c_if_wrap(cmd, pos))
+		newtoret = not_rm_dollar(cmd, pos, newtoret);
 	else
-		newtoret = get_replace_var(cmd->orig_line, pos, newtoret);
+		newtoret = get_replace_var(cmd, pos, newtoret);
 	return (newtoret);
 }
