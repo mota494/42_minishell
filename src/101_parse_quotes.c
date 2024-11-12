@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:05:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 12:24:30 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/12 12:10:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*jump_sql_quotes(char *oldtoret, char *tojump, size_t *pos)
 
 	*pos += 1;
 	newtoret = alocpy(oldtoret);
-	while (tojump[*pos] != 34 && tojump[*pos])
+	while (tojump[*pos] != 39 && tojump[*pos])
 	{
 		newtoret = strjoinchr(newtoret, tojump[*pos]);
 		*pos += 1;
@@ -54,7 +54,7 @@ char	*parse_quotes(char *str)
 		if (str[c.j] == 34)
 			toret = jump_dbl_quotest(toret, str, &c.j);
 		else if (str[c.j] == 39)
-			jump_sql_quotes(toret, str, &c.j);
+			toret = jump_sql_quotes(toret, str, &c.j);
 		else
 		{
 			toret = strjoinchr(toret, str[c.j]);

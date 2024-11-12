@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/11 16:37:03 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/12 14:14:39 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,10 +79,11 @@ typedef struct s_shell
 }					t_shell;
 
 /* ============ functions ============ */
-
-
 /* parser_vars */
+int					check_wrap(char *str, int *pos);
 char				*parser_vars(t_token *cmd);
+char				*addsufix(char *cmd, int *pos);
+char				*parse_dollar(t_token *cmd, int *pos, char *oldtoret);
 /* ==== main.c ==== */
 void				free_all(t_shell *cmd);
 /* ==== parser.c ==== */

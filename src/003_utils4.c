@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:12:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 15:07:04 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/12 10:50:23 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,8 @@ char	*initalize_str(void)
 
 int	count_builtins(t_token *cmd)
 {
-	t_token *temp;
-	int	toret;
+	t_token	*temp;
+	int		toret;
 
 	temp = cmd;
 	toret = 0;
@@ -50,8 +50,8 @@ int	count_builtins(t_token *cmd)
 
 int	count_command(t_token *cmd)
 {
-	t_token *temp;
-	int	toret;
+	t_token	*temp;
+	int		toret;
 
 	temp = cmd;
 	toret = 0;
