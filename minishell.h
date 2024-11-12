@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 14:56:10 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/12 17:23:39 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ char				*get_replace_var(char *orig_line, int *pos, char *newtoret);
 int					check_wrap(char *str, int *pos);
 char				*parser_vars(t_token *cmd);
 char				*addsufix(char *cmd, int *pos);
-char				*parse_dollar(t_token *cmd, int *pos, char *oldtoret);
+char				*addprefix(char *cmd, int *pos, char *oldtoret);
+char				*parse_dollar(char *cmd, int *pos, char *oldtoret);
 /* ==== main.c ==== */
 void				free_all(t_shell *cmd);
 /* ==== parser.c ==== */
