@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 14:10:01 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/12 15:13:10 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,7 @@ int	var_count(char *str)
 		if (str[c.d_i] == '$')
 		{
 			c.d_i++;
-			if (ft_isalpha(str[c.d_i])
-				|| str[c.d_i] == '?' || str[c.d_i] == '_')
-			{
-				c.i_i++;
-			}
+			c.i_i++;
 		}
 		else
 			c.d_i++;
@@ -39,15 +35,21 @@ char	*replace_var(t_token *cmd, int var_count, char *toret)
 	int		i;
 	int		pos;
 
-	i = 0;
+	i = 1;
 	pos = 0;
-	while (i < var_count)
+	if (var_count > 1)
 	{
 		toret = addsufix(cmd->orig_line, &pos);
 		toret = parse_dollar(cmd, &pos, toret);
 		i++;
+		while (i < var_count)
+		{
+			toret = addsufix(toret, &pos);
+			toret = parse_dollar(cmd, &pos, toret);
+			i++;
+		}
 	}
-	if (i > 0)
+	if (i > 1)
 		return (toret);
 	else
 		return (cmd->orig_line);
