@@ -6,11 +6,32 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:30:31 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 12:22:08 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/13 09:49:11 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	fix_env(void)
+{
+	t_c_envp	*b_env;
+	int			i;
+	int			help;
+
+	i = 0;
+	b_env = ret_env(NULL);
+	while (b_env[i].id != -1)
+	{
+		if (sstrcmp("SHLVL", b_env[i].var_name))
+		{
+			help = ft_atoi(b_env[i].var_value);
+			help++;
+			b_env[i].var_value = ft_itoa(help);
+			break ;
+		}
+		i++;
+	}
+}
 
 t_c_envp	*ret_env(t_c_envp *tosend)
 {
@@ -71,4 +92,5 @@ void	copy_envs(t_shell *cmd, char **envp)
 	}
 	cmd->c_envp[c.i].id = -1; 
 	ret_env(cmd->c_envp);
+	fix_env();
 }

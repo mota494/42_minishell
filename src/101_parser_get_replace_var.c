@@ -6,20 +6,28 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:54:42 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 15:08:26 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:53:52 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*get_replace_var(char *orig_line, int *pos, char *newtoret)
+void	free_replaced(char *oldtoret, char *var_name)
+{
+	free(oldtoret);
+	free(var_name);
+}
+
+char	*get_replace_var(char *orig_line, int *pos, char *oldtoret)
 {
 	char	*var;
 	char	*var_value;
 	int		i;
+	char	*newtoret;
 
 	var = initalize_str();
 	*pos += 1;
+	newtoret = alocpy(oldtoret);
 	while (orig_line[*pos] && (orig_line[*pos] == '_' || ft_isalpha(orig_line[*pos])))
 	{
 		var = strjoinchr(var, orig_line[*pos]);
@@ -35,5 +43,6 @@ char	*get_replace_var(char *orig_line, int *pos, char *newtoret)
 			i++;
 		}
 	}
+	free_replaced(oldtoret, var);
 	return (newtoret);
 }
