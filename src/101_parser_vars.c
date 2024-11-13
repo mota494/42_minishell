@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 17:23:52 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/13 11:32:16 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int	var_count(char *str)
 	return (c.i_i);
 }
 
-char	*replace_var(t_token *cmd, int var_count, char *toret)
+char	*replace_var(t_token *cmd, int var_count)
 {
 	int		i;
 	int		pos;
-	char		*helper;
+	char	*helper;
+	char	*toret;
 
 	i = 1;
 	pos = 0;
@@ -44,14 +45,13 @@ char	*replace_var(t_token *cmd, int var_count, char *toret)
 		toret = parse_dollar(cmd->orig_line, &pos, toret);
 		toret = addprefix(cmd->orig_line, &pos, toret);
 		i++;
-		while (i <= var_count)
+		while (i++ <= var_count)
 		{
 			pos = 0;
 			helper = alocpy(toret);
 			toret = addsufix(helper, &pos);
 			toret = parse_dollar(helper, &pos, toret);
 			toret = addprefix(helper, &pos, toret);
-			i++;
 		}
 	}
 	if (i > 1)
@@ -62,11 +62,10 @@ char	*replace_var(t_token *cmd, int var_count, char *toret)
 
 char	*parser_vars(t_token *cmd)
 {
-	char		*toret;
+	char	*toret;
 	int	count_vars;
 
-	toret = initalize_str();
 	count_vars = var_count(cmd->orig_line);
-	toret = replace_var(cmd, count_vars, toret);
+	toret = replace_var(cmd, count_vars);
 	return (toret);
 }

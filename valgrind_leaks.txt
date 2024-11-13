@@ -1,179 +1,73 @@
-==32352== Memcheck, a memory error detector
-==32352== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==32352== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==32352== Command: ./minishell
-==32352== Parent PID: 32351
-==32352== 
-==32352== Invalid read of size 1
-==32352==    at 0x40607D: get_replace_var (101_parser_get_replace_var.c:30)
-==32352==    by 0x405F8A: parse_dollar (101_parser_vars_dollar.c:67)
-==32352==    by 0x404AA2: replace_var (101_parser_vars.c:43)
-==32352==    by 0x404B24: parser_vars (101_parser_vars.c:59)
-==32352==    by 0x4013CD: add_node (000_utils.c:39)
-==32352==    by 0x4024AE: tokenize (200_get_line.c:94)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352==  Address 0x0 is not stack'd, malloc'd or (recently) free'd
-==32352== 
-==32352== 
-==32352== Process terminating with default action of signal 11 (SIGSEGV)
-==32352==  Access not within mapped region at address 0x0
-==32352==    at 0x40607D: get_replace_var (101_parser_get_replace_var.c:30)
-==32352==    by 0x405F8A: parse_dollar (101_parser_vars_dollar.c:67)
-==32352==    by 0x404AA2: replace_var (101_parser_vars.c:43)
-==32352==    by 0x404B24: parser_vars (101_parser_vars.c:59)
-==32352==    by 0x4013CD: add_node (000_utils.c:39)
-==32352==    by 0x4024AE: tokenize (200_get_line.c:94)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352==  If you believe this happened as a result of a stack
-==32352==  overflow in your program's main thread (unlikely but
-==32352==  possible), you can try to increase the size of the
-==32352==  main thread stack using the --main-stacksize= flag.
-==32352==  The main thread stack size used in this run was 8388608.
-==32352== 
-==32352== HEAP SUMMARY:
-==32352==     in use at exit: 217,582 bytes in 348 blocks
-==32352==   total heap usage: 1,372 allocs, 1,024 frees, 238,533 bytes allocated
-==32352== 
-==32352== 1 bytes in 1 blocks are still reachable in loss record 1 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x404E01: initalize_str (003_utils4.c:30)
-==32352==    by 0x404B00: parser_vars (101_parser_vars.c:57)
-==32352==    by 0x4013CD: add_node (000_utils.c:39)
-==32352==    by 0x4024AE: tokenize (200_get_line.c:94)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 1 bytes in 1 blocks are still reachable in loss record 2 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x40132C: alocpy (000_utils.c:22)
-==32352==    by 0x405EAC: parse_dollar (101_parser_vars_dollar.c:60)
-==32352==    by 0x404AA2: replace_var (101_parser_vars.c:43)
-==32352==    by 0x404B24: parser_vars (101_parser_vars.c:59)
-==32352==    by 0x4013CD: add_node (000_utils.c:39)
-==32352==    by 0x4024AE: tokenize (200_get_line.c:94)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 1 bytes in 1 blocks are definitely lost in loss record 3 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x404E01: initalize_str (003_utils4.c:30)
-==32352==    by 0x404B00: parser_vars (101_parser_vars.c:57)
-==32352==    by 0x4013CD: add_node (000_utils.c:39)
-==32352==    by 0x402406: tokenize (200_get_line.c:83)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 5 bytes in 1 blocks are still reachable in loss record 4 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x40132C: alocpy (000_utils.c:22)
-==32352==    by 0x4013B9: add_node (000_utils.c:38)
-==32352==    by 0x402406: tokenize (200_get_line.c:83)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 5 bytes in 1 blocks are still reachable in loss record 5 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x40189A: strjoinchr (001_utils2.c:70)
-==32352==    by 0x4056CA: parse_quotes (101_parse_quotes.c:60)
-==32352==    by 0x4013E5: add_node (000_utils.c:40)
-==32352==    by 0x402406: tokenize (200_get_line.c:83)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 23 bytes in 1 blocks are still reachable in loss record 21 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x40189A: strjoinchr (001_utils2.c:70)
-==32352==    by 0x40604C: get_replace_var (101_parser_get_replace_var.c:25)
-==32352==    by 0x405F8A: parse_dollar (101_parser_vars_dollar.c:67)
-==32352==    by 0x404AA2: replace_var (101_parser_vars.c:43)
-==32352==    by 0x404B24: parser_vars (101_parser_vars.c:59)
-==32352==    by 0x4013CD: add_node (000_utils.c:39)
-==32352==    by 0x4024AE: tokenize (200_get_line.c:94)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 24 bytes in 1 blocks are still reachable in loss record 26 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x40189A: strjoinchr (001_utils2.c:70)
-==32352==    by 0x402984: adv_spaces (201_get_line_utils.c:91)
-==32352==    by 0x402396: get_cmd (200_get_line.c:71)
-==32352==    by 0x40249F: tokenize (200_get_line.c:94)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 24 bytes in 1 blocks are still reachable in loss record 27 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x40132C: alocpy (000_utils.c:22)
-==32352==    by 0x4013B9: add_node (000_utils.c:38)
-==32352==    by 0x4024AE: tokenize (200_get_line.c:94)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 48 bytes in 1 blocks are still reachable in loss record 35 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x4013AC: add_node (000_utils.c:37)
-==32352==    by 0x402406: tokenize (200_get_line.c:83)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 48 bytes in 1 blocks are still reachable in loss record 36 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x4013AC: add_node (000_utils.c:37)
-==32352==    by 0x4024AE: tokenize (200_get_line.c:94)
-==32352==    by 0x401E6C: parser (101_parser.c:40)
-==32352==    by 0x401BF3: read_command (100_main.c:40)
-==32352==    by 0x401D72: main (100_main.c:79)
-==32352== 
-==32352== 152 bytes in 1 blocks are still reachable in loss record 42 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x406237: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
-==32352==    by 0x4065A5: ft_split (in /home/mloureir/Documents/42_minishell/minishell)
-==32352==    by 0x401567: init_path_dirs (000_utils.c:81)
-==32352==    by 0x401CD6: init_tshell (100_main.c:61)
-==32352==    by 0x401D65: main (100_main.c:78)
-==32352== 
-==32352== 348 bytes in 18 blocks are still reachable in loss record 49 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x406237: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
-==32352==    by 0x4064B1: writestr (in /home/mloureir/Documents/42_minishell/minishell)
-==32352==    by 0x4065D6: ft_split (in /home/mloureir/Documents/42_minishell/minishell)
-==32352==    by 0x401567: init_path_dirs (000_utils.c:81)
-==32352==    by 0x401CD6: init_tshell (100_main.c:61)
-==32352==    by 0x401D65: main (100_main.c:78)
-==32352== 
-==32352== 851 bytes in 67 blocks are still reachable in loss record 54 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x40189A: strjoinchr (001_utils2.c:70)
-==32352==    by 0x404FF5: get_env_var (103_env.c:33)
-==32352==    by 0x405141: copy_envs (103_env.c:66)
-==32352==    by 0x401CC9: init_tshell (100_main.c:60)
-==32352==    by 0x401D65: main (100_main.c:78)
-==32352== 
-==32352== 1,632 bytes in 1 blocks are still reachable in loss record 66 of 95
-==32352==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==32352==    by 0x405112: copy_envs (103_env.c:63)
-==32352==    by 0x401CC9: init_tshell (100_main.c:60)
-==32352==    by 0x401D65: main (100_main.c:78)
-==32352== 
-==32352== LEAK SUMMARY:
-==32352==    definitely lost: 1 bytes in 1 blocks
-==32352==    indirectly lost: 0 bytes in 0 blocks
-==32352==      possibly lost: 0 bytes in 0 blocks
-==32352==    still reachable: 3,162 bytes in 96 blocks
-==32352==         suppressed: 214,419 bytes in 251 blocks
-==32352== 
-==32352== For lists of detected and suppressed errors, rerun with: -s
-==32352== ERROR SUMMARY: 2 errors from 2 contexts (suppressed: 0 from 0)
+==255247== Memcheck, a memory error detector
+==255247== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==255247== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==255247== Command: ./minishell
+==255247== Parent PID: 255246
+==255247== 
+==255247== 
+==255247== HEAP SUMMARY:
+==255247==     in use at exit: 208,845 bytes in 250 blocks
+==255247==   total heap usage: 1,513 allocs, 1,263 frees, 241,075 bytes allocated
+==255247== 
+==255247== 13 bytes in 1 blocks are definitely lost in loss record 6 of 71
+==255247==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==255247==    by 0x4018DA: strjoinchr (001_utils2.c:70)
+==255247==    by 0x404DA0: addprefix (101_parser_vars_utils.c:50)
+==255247==    by 0x404AF9: replace_var (101_parser_vars.c:46)
+==255247==    by 0x404BD7: parser_vars (101_parser_vars.c:69)
+==255247==    by 0x40140D: add_node (000_utils.c:39)
+==255247==    by 0x4024EE: tokenize (200_get_line.c:94)
+==255247==    by 0x401EAC: parser (101_parser.c:40)
+==255247==    by 0x401C33: read_command (100_main.c:40)
+==255247==    by 0x401DB2: main (100_main.c:79)
+==255247== 
+==255247== 13 bytes in 1 blocks are definitely lost in loss record 7 of 71
+==255247==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==255247==    by 0x40136C: alocpy (000_utils.c:22)
+==255247==    by 0x404B2A: replace_var (101_parser_vars.c:51)
+==255247==    by 0x404BD7: parser_vars (101_parser_vars.c:69)
+==255247==    by 0x40140D: add_node (000_utils.c:39)
+==255247==    by 0x4024EE: tokenize (200_get_line.c:94)
+==255247==    by 0x401EAC: parser (101_parser.c:40)
+==255247==    by 0x401C33: read_command (100_main.c:40)
+==255247==    by 0x401DB2: main (100_main.c:79)
+==255247== 
+==255247== 46 bytes in 1 blocks are definitely lost in loss record 19 of 71
+==255247==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==255247==    by 0x4018DA: strjoinchr (001_utils2.c:70)
+==255247==    by 0x4062C3: get_replace_var (101_parser_get_replace_var.c:42)
+==255247==    by 0x40615E: parse_dollar (101_parser_vars_dollar.c:73)
+==255247==    by 0x404B50: replace_var (101_parser_vars.c:53)
+==255247==    by 0x404BD7: parser_vars (101_parser_vars.c:69)
+==255247==    by 0x40140D: add_node (000_utils.c:39)
+==255247==    by 0x4024EE: tokenize (200_get_line.c:94)
+==255247==    by 0x401EAC: parser (101_parser.c:40)
+==255247==    by 0x401C33: read_command (100_main.c:40)
+==255247==    by 0x401DB2: main (100_main.c:79)
+==255247== 
+==255247== 348 bytes in 18 blocks are indirectly lost in loss record 29 of 71
+==255247==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==255247==    by 0x406471: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
+==255247==    by 0x40688C: writestr (in /home/mloureir/Documents/42_minishell/minishell)
+==255247==    by 0x4069B1: ft_split (in /home/mloureir/Documents/42_minishell/minishell)
+==255247==    by 0x4015A7: init_path_dirs (000_utils.c:81)
+==255247==    by 0x401D16: init_tshell (100_main.c:61)
+==255247==    by 0x401DA5: main (100_main.c:78)
+==255247== 
+==255247== 500 (152 direct, 348 indirect) bytes in 1 blocks are definitely lost in loss record 30 of 71
+==255247==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==255247==    by 0x406471: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
+==255247==    by 0x406980: ft_split (in /home/mloureir/Documents/42_minishell/minishell)
+==255247==    by 0x4015A7: init_path_dirs (000_utils.c:81)
+==255247==    by 0x401D16: init_tshell (100_main.c:61)
+==255247==    by 0x401DA5: main (100_main.c:78)
+==255247== 
+==255247== LEAK SUMMARY:
+==255247==    definitely lost: 224 bytes in 4 blocks
+==255247==    indirectly lost: 348 bytes in 18 blocks
+==255247==      possibly lost: 0 bytes in 0 blocks
+==255247==    still reachable: 0 bytes in 0 blocks
+==255247==         suppressed: 208,273 bytes in 228 blocks
+==255247== 
+==255247== For lists of detected and suppressed errors, rerun with: -s
+==255247== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
