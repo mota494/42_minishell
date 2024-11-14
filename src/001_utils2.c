@@ -62,20 +62,20 @@ int	scmp(char *tocomp, char *str)
 	return (0);
 }
 
-char	*strjoinchr(char *str, char c)
+char	*strjoinchr(char *oldtoret, char car)
 {
-	char	*newstr;
-	size_t	i;
+	char	*newtoret;
+	int		i;
 
-	newstr = malloc(ft_strlen(str) + sizeof(char) + 1);
 	i = 0;
-	while (i < ft_strlen(str))
+	newtoret = malloc(ft_strlen(oldtoret) + 2);
+	while (oldtoret[i])
 	{
-		newstr[i] = str[i];
+		newtoret[i] = oldtoret[i];
 		i++;
 	}
-	newstr[i] = c;
-	newstr[i + 1] = '\0';
-	free(str);
-	return (newstr);
+	newtoret[i] = car;
+	newtoret[i + 1] = '\0';
+	free(oldtoret);
+	return (newtoret);
 }

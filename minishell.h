@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 11:30:49 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:21:27 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,8 @@ typedef struct s_shell
 }					t_shell;
 
 /* ============ functions ============ */
+/* free */
+void				free_pids(t_shell *cmd);
 /* parser_vars */
 int					is_quote(int c);
 char				*get_replace_var(char *orig_line, int *pos, char *newtoret);
@@ -110,7 +112,7 @@ void				jump_spaces(char *line);
 int					ft_ispace(int c);
 int					ft_iseparator(int c);
 int					scmp(char *tocomp, char *str);
-char				*strjoinchr(char *str, char c);
+char				*strjoinchr(char *oldtoret, char car);
 /* ==== utils4.c ==== */
 void				start_counters(t_count *counters);
 char				*initalize_str(void);

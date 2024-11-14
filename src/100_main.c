@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 17:25:07 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:46:43 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	free_all(t_shell *cmd)
 		free(temp->orig_line);
 		free(temp);
 	}
+	free_pids(cmd);
 	cmd->token = NULL;
 }
 
@@ -31,6 +32,7 @@ void	read_command(t_shell *cmd, char **envp)
 {
 	char	*line;
 
+	printf("%s", envp[0]);
 	while (1 && cmd->leave == false)
 	{
 		line = readline("minishell: ");
@@ -40,7 +42,7 @@ void	read_command(t_shell *cmd, char **envp)
 			parser(line, cmd);
 			if (cmd->n_inputs > 0)
 			{
-				if (execute_pipeline(cmd, envp) == 1)
+				if (execute_pipeline(cmd, send_env()) == 1)
 					fprintf(stderr, "Error executing pipeline\n");
 			}
 			free(line);

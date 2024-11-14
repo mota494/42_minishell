@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:26:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 13:31:54 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:19:06 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ void	builtin_env(void)
 	while (b_env[i].id != -1)
 	{
 		printf("%s\n", better_env[i]);
+		i++;
+	}
+	i = 0;
+	while (b_env[i].id != - 1)
+	{
+		free(better_env[i]);
 		i++;
 	}
 }
