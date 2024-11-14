@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:30:31 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/13 09:49:11 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 17:11:10 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void	fix_env(void)
 
 t_c_envp	*ret_env(t_c_envp *tosend)
 {
-	static	t_c_envp *toret;
-	
+	static t_c_envp	*toret;
+
 	if (tosend)
 		toret = tosend;
 	return (toret);
@@ -49,7 +49,7 @@ char	*get_env_var(char *env)
 
 	i = 0;
 	var = initalize_str();
-	while (env[i] != '=')
+	while (env[i] != '=' && env[i] != '\0')
 	{
 		var = strjoinchr(var, env[i]);
 		i++;
@@ -59,7 +59,7 @@ char	*get_env_var(char *env)
 
 char	*get_env(char *var)
 {
-	int	i;
+	int			i;
 	t_c_envp	*b_env;
 
 	i = 0;
@@ -85,9 +85,8 @@ void	copy_envs(t_shell *cmd, char **envp)
 	while (envp[c.i])
 	{
 		cmd->c_envp[c.i].var_name = get_env_var(envp[c.i]);
-		cmd->c_envp[c.i].var_value = getenv(cmd->c_envp[c.i].var_name);
+		cmd->c_envp[c.i].var_value = alocpy(getenv(cmd->c_envp[c.i].var_name));
 		cmd->c_envp[c.i].id = c.i;
-		cmd->env_cnt++;
 		c.i++;
 	}
 	cmd->c_envp[c.i].id = -1; 

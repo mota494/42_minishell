@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 13:11:28 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 16:54:11 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ char	*alocpy(char *str)
 	if (!str)
 		return (NULL);
 	toret = malloc(ft_strlen(str) * sizeof(char) + 1);
+	if (!toret)
+		return (NULL);
 	i = 0;
 	while (str[i])
 	{
