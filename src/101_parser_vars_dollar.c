@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:49:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/13 11:51:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:04:36 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,9 @@ char	*rm_dollar(char *str, int *pos, char *oldtoret)
 	char	*newtoret;
 
 	newtoret = alocpy(oldtoret);
+	free(oldtoret);
 	*pos += 1;
-	while (str[*pos] && str[*pos])
+	while (str[*pos])
 	{
 		newtoret = strjoinchr(newtoret, str[*pos]);
 		*pos += 1;
@@ -51,11 +52,12 @@ char	*not_rm_dollar(char *str, int *pos, char *oldtoret)
 	newtoret = alocpy(oldtoret);
 	newtoret = strjoinchr(newtoret, str[*pos]);
 	*pos += 1;
-	while (str[*pos] && str[*pos])
+	while (str[*pos])
 	{
 		newtoret = strjoinchr(newtoret, str[*pos]);
 		*pos += 1;
 	}
+	free(oldtoret);
 	return (newtoret);
 }
 
