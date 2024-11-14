@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/13 11:32:16 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 12:14:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,16 @@ int	var_count(char *str)
 	return (c.i_i);
 }
 
+char	*one_var(t_token *cmd, int *pos)
+{
+	char	*toret;
+
+	toret = addsufix(cmd->orig_line, pos);
+	toret = parse_dollar(cmd->orig_line, pos, toret);
+	toret = addprefix(cmd->orig_line, pos, toret);
+	return (toret);
+}
+
 char	*replace_var(t_token *cmd, int var_count)
 {
 	int		i;
@@ -41,9 +51,7 @@ char	*replace_var(t_token *cmd, int var_count)
 	pos = 0;
 	if (var_count >= 1)
 	{
-		toret = addsufix(cmd->orig_line, &pos);
-		toret = parse_dollar(cmd->orig_line, &pos, toret);
-		toret = addprefix(cmd->orig_line, &pos, toret);
+		toret = one_var(cmd, &pos);
 		i++;
 		while (i++ <= var_count)
 		{
@@ -52,6 +60,7 @@ char	*replace_var(t_token *cmd, int var_count)
 			toret = addsufix(helper, &pos);
 			toret = parse_dollar(helper, &pos, toret);
 			toret = addprefix(helper, &pos, toret);
+			free(helper);
 		}
 	}
 	if (i > 1)
@@ -63,7 +72,7 @@ char	*replace_var(t_token *cmd, int var_count)
 char	*parser_vars(t_token *cmd)
 {
 	char	*toret;
-	int	count_vars;
+	int		count_vars;
 
 	count_vars = var_count(cmd->orig_line);
 	toret = replace_var(cmd, count_vars);

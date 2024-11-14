@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 16:03:20 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 14:35:51 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	count_args(t_token *cmds)
 	return (toret);
 }
 
+//when cd is alone changedir to home and update OLDPWD and PWD
 void	cd(t_shell *cmd)
 {
 	t_token	*temp;
