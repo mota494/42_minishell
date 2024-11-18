@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/11 10:54:29 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/14 18:13:29 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ int	execute_command(t_token *token, char **envp)
 		perror("execve");
 		return (1);
 	}
+	free(args);
 	return (0);
 }
 

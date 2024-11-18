@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 17:47:33 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/18 09:10:11 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,14 @@ char	**send_env(void)
 
 	start_counters(&c);
 	c_envp = ret_env(NULL);
-	while (c_envp[c.d].id != -1)
+	while (c_envp[c.d].var_name)
 		c.d++;
-	toret = malloc(sizeof(char *) * c.d);
-	while (c_envp[c.i].id != -1)
+	toret = ft_calloc(c.d + 1, sizeof(char *));
+	while (c_envp[c.i].var_name)
 	{
 		toret[c.i] = var_to_char(c_envp[c.i]);
 		c.i++;
 	}
+	toret[c.i] = NULL;
 	return (toret);
 }
