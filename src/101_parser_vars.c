@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/18 14:43:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:26:19 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ char	*one_var(t_token *cmd, int *pos)
 	toret = parse_dollar(cmd->orig_line, pos, toret);
 	printf("Dollar Parsed: %s\n", toret);
 	already_analyzed(toret);
-	printf("%d", already_analyzed(NULL));
 	toret = addprefix(cmd->orig_line, pos, toret);
 	printf("Final: %s\n", toret);
 	return (toret);

@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:12:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/18 14:40:43 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/18 15:44:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 int	already_analyzed(char *str)
 {
 	static int	toret;
-	int			i;
 	int			sender;
 
 	if (!str && toret > 0)
@@ -26,12 +25,7 @@ int	already_analyzed(char *str)
 	}
 	else if (str)
 	{
-		i = 0;
-		while (str[i])
-		{
-			toret++;
-			i++;
-		}
+		toret = ft_strlen(str);
 		return (toret);
 	}
 	else
@@ -93,15 +87,11 @@ char	*addsufix(char *cmd, int *pos)
 			toret = strjoinchr(toret, cmd[*pos]);
 			*pos += 1;
 		}
-		return (toret);
 	}
-	else
+	while (cmd[*pos] && cmd[*pos] != '$')
 	{
-		while (cmd[*pos] && cmd[*pos] != '$')
-		{
-			toret = strjoinchr(toret, cmd[*pos]);
-			*pos += 1;
-		}
+		toret = strjoinchr(toret, cmd[*pos]);
+		*pos += 1;
 	}
 	if (cmd[*pos] == '$' && check_wrap(cmd, pos))
 		toret = wrapped_dollar(cmd, pos, toret);
