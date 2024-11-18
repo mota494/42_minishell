@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:30:31 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 17:11:10 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/18 09:05:40 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	fix_env(void)
 		{
 			help = ft_atoi(b_env[i].var_value);
 			help++;
+			free(b_env[i].var_value);
 			b_env[i].var_value = ft_itoa(help);
 			break ;
 		}
@@ -89,6 +90,8 @@ void	copy_envs(t_shell *cmd, char **envp)
 		cmd->c_envp[c.i].id = c.i;
 		c.i++;
 	}
+	cmd->c_envp[c.i].var_value = NULL;
+	cmd->c_envp[c.i].var_name = NULL;
 	cmd->c_envp[c.i].id = -1; 
 	ret_env(cmd->c_envp);
 	fix_env();
