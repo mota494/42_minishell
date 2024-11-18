@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/18 09:10:11 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/18 09:16:47 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ char	*var_to_char(t_c_envp node)
 
 char	**send_env(void)
 {
-	char	**toret;
-	t_c_envp *c_envp;
-	t_count	c;
+	char		**toret;
+	t_c_envp	*c_envp;
+	t_count		c;
 
 	start_counters(&c);
 	c_envp = ret_env(NULL);

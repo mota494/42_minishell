@@ -6,11 +6,37 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:12:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 11:35:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:40:43 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	already_analyzed(char *str)
+{
+	static int	toret;
+	int			i;
+	int			sender;
+
+	if (!str && toret > 0)
+	{
+		sender = toret;
+		toret = 0;
+		return (sender);
+	}
+	else if (str)
+	{
+		i = 0;
+		while (str[i])
+		{
+			toret++;
+			i++;
+		}
+		return (toret);
+	}
+	else
+		return (-1);
+}
 
 char	*wrapped_dollar(char *str, int *pos, char *newtoret)
 {
@@ -56,12 +82,26 @@ char	*addprefix(char *cmd, int *pos, char *toret)
 char	*addsufix(char *cmd, int *pos)
 {
 	char	*toret;
+	int		i;
 
 	toret = initalize_str();
-	while (cmd[*pos] && cmd[*pos] != '$')
+	i = already_analyzed(NULL);
+	if (i > 0)
 	{
-		toret = strjoinchr(toret, cmd[*pos]);
-		*pos += 1;
+		while (cmd[*pos] && *pos < i)
+		{
+			toret = strjoinchr(toret, cmd[*pos]);
+			*pos += 1;
+		}
+		return (toret);
+	}
+	else
+	{
+		while (cmd[*pos] && cmd[*pos] != '$')
+		{
+			toret = strjoinchr(toret, cmd[*pos]);
+			*pos += 1;
+		}
 	}
 	if (cmd[*pos] == '$' && check_wrap(cmd, pos))
 		toret = wrapped_dollar(cmd, pos, toret);
