@@ -6,33 +6,16 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 17:46:43 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/18 11:01:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free_all(t_shell *cmd)
-{
-	t_token	*temp;
-
-	while (cmd->token)
-	{
-		temp = cmd->token;
-		cmd->token = cmd->token->next;
-		free(temp->cmd_line);
-		free(temp->orig_line);
-		free(temp);
-	}
-	free_pids(cmd);
-	cmd->token = NULL;
-}
-
-void	read_command(t_shell *cmd, char **envp)
+void	read_command(t_shell *cmd)
 {
 	char	*line;
 
-	printf("%s", envp[0]);
 	while (1 && cmd->leave == false)
 	{
 		line = readline("minishell: ");
@@ -78,7 +61,7 @@ int	main(int ac, char **av, char **envp)
 
 	check_input(ac, av);
 	init_tshell(&cmd, envp);
-	read_command(&cmd, envp);
+	read_command(&cmd);
 	free_env(&cmd);
 	return (cmd.error_code);
 }

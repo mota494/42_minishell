@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 12:14:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/18 14:43:22 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,30 @@ char	*one_var(t_token *cmd, int *pos)
 	char	*toret;
 
 	toret = addsufix(cmd->orig_line, pos);
+	printf("Suffix: %s\n", toret);
 	toret = parse_dollar(cmd->orig_line, pos, toret);
+	printf("Dollar Parsed: %s\n", toret);
+	already_analyzed(toret);
+	printf("%d", already_analyzed(NULL));
 	toret = addprefix(cmd->orig_line, pos, toret);
+	printf("Final: %s\n", toret);
+	return (toret);
+}
+
+char	*more_vars(char *toret)
+{
+	char	*helper;
+	int		pos;
+
+	pos = 0;
+	helper = alocpy(toret);
+	toret = addsufix(helper, &pos);
+	printf("Suffix: %s\n", toret);
+	toret = parse_dollar(helper, &pos, toret);
+	printf("Dollar Parsed: %s\n", toret);
+	toret = addprefix(helper, &pos, toret);
+	printf("Final: %s\n", toret);
+	free(helper);
 	return (toret);
 }
 
@@ -44,7 +66,6 @@ char	*replace_var(t_token *cmd, int var_count)
 {
 	int		i;
 	int		pos;
-	char	*helper;
 	char	*toret;
 
 	i = 1;
@@ -54,14 +75,7 @@ char	*replace_var(t_token *cmd, int var_count)
 		toret = one_var(cmd, &pos);
 		i++;
 		while (i++ <= var_count)
-		{
-			pos = 0;
-			helper = alocpy(toret);
-			toret = addsufix(helper, &pos);
-			toret = parse_dollar(helper, &pos, toret);
-			toret = addprefix(helper, &pos, toret);
-			free(helper);
-		}
+			toret = more_vars(toret);
 	}
 	if (i > 1)
 		return (toret);
