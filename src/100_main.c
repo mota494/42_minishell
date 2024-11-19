@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/18 11:01:28 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:15:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	read_command(t_shell *cmd)
 
 	while (1 && cmd->leave == false)
 	{
+		cmd->copy_envp = send_env();
 		line = readline("minishell: ");
 		if (check_syntax(cmd, line) == 1)
 		{
@@ -25,7 +26,7 @@ void	read_command(t_shell *cmd)
 			parser(line, cmd);
 			if (cmd->n_inputs > 0)
 			{
-				if (execute_pipeline(cmd, send_env()) == 1)
+				if (execute_pipeline(cmd, cmd->copy_envp) == 1)
 					fprintf(stderr, "Error executing pipeline\n");
 			}
 			free(line);

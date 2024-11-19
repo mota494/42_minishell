@@ -6,11 +6,37 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/18 10:58:35 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:18:43 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	free_copy_envp(t_shell *cmd)
+{
+	int	i;
+	
+	i = 0;
+	while (cmd->copy_envp[i])
+	{
+		free(cmd->copy_envp[i]);
+		i++;
+	}
+	free(cmd->copy_envp);
+}
+
+void	free_dirs(t_shell *cmd)
+{
+	int	i;
+
+	i = 0;
+	while (cmd->path_dirs[i])
+	{
+		free(cmd->path_dirs[i]);
+		i++;
+	}
+	free(cmd->path_dirs);
+}
 
 void	free_all(t_shell *cmd)
 {
@@ -26,6 +52,7 @@ void	free_all(t_shell *cmd)
 	}
 	free_pids(cmd);
 	cmd->token = NULL;
+	free_copy_envp(cmd);
 }
 
 void	free_env(t_shell *cmd)
@@ -42,6 +69,7 @@ void	free_env(t_shell *cmd)
 		c.i++;
 	}
 	free(cmd->c_envp);
+	free_dirs(cmd);
 }
 
 void	free_pids(t_shell *cmd)
