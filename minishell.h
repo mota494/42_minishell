@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/19 12:06:55 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:15:18 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_shell
 	pid_t			*pids;
 	t_fd			*p_fds;
 	t_exec			*exec;
+	char			**copy_envp;
 }					t_shell;
 
 /* ============ functions ============ */

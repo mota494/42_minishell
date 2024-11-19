@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/19 12:09:15 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/19 14:11:04 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,6 @@ void	print_list(t_shell *cmd)
 	printf("\n");
 }
 
-/** saves all the directories kept in the env PATH in an arr of strings
- ** to be used to find the absolute path of a command.*/
 void	init_path_dirs(t_shell *cmd, char **envp)
 {
 	int	found;
