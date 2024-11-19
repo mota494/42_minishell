@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/18 11:10:33 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:06:55 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ char				*adv_spaces(char *oldtoret, char *line, int *pos);
 char				*adv_sig_quote(char *oldtoret, char *line, int *pos);
 char				*adv_separator(char *oldtoret, char *line, int *pos);
 /* ==== get_line.c ==== */
-t_types				get_type(t_shell *mshell, t_token *new_node, char *cmd);
+t_types				get_type(t_shell *mshell, t_token *new_node, char *cmd, char *orig);
 char				*get_cmd(char *line);
 void				tokenize(char *line, t_shell *cmd);
 /* ==== utils.c ==== */

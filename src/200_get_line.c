@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 14:42:52 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:08:37 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,11 @@ void	clean_line(char *cmd, char *line)
 	line[i] = '\0';
 }
 
-//pipes inside quotes are being parsed as pipes (very bad grrrrrr)
-
-t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd)
+t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd, char *orig)
 {
 	static int	is_arg;
 
-	if (is_controler(cmd) == 1)
+	if (is_controler(orig) == 1)
 	{
 		is_arg = 0;
 		return (control);

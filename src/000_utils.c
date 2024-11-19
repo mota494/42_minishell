@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 16:54:11 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/19 12:09:15 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ t_token	*add_node(t_shell *cmd, char *content, int id)
 	new_node->cmd_line = parse_quotes(new_node->cmd_line);
 	free(content);
 	new_node->next = NULL;
-	new_node->type = get_type(cmd, new_node, new_node->cmd_line);
+	new_node->type = get_type(cmd, new_node, new_node->cmd_line,
+			new_node->orig_line);
 	new_node->cmd_id = id;
 	new_node->expand = false;
 	return (new_node);
