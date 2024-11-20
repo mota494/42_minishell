@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/19 11:57:43 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:48:59 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ char	*more_vars(char *toret)
 	helper = alocpy(toret);
 	toret = addsufix(helper, &pos);
 	toret = parse_dollar(helper, &pos, toret);
+	already_analyzed(toret);
 	toret = addprefix(helper, &pos, toret);
 	free(helper);
 	return (toret);
