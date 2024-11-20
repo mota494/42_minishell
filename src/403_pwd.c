@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:48 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/22 16:06:30 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:05:55 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ int	pwd(t_shell *cmd)
 	if (access(curdir, X_OK) == -1)
 	{
 		printf("%s\n", cmd->curdir);
+		cmd->error_code = 1;
 	}
 	else
+	{
 		printf("%s\n", curdir);
+		cmd->error_code = 0;
+	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/19 14:15:18 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:15:17 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -171,7 +171,7 @@ char				*get_env(char *var);
 void				free_env(t_shell *cmd);
 /* === env_utils ==== */
 char				**send_env(void);
-void				builtin_env(void);
+void				builtin_env(t_shell *cmd);
 /* ==== redifine_type ==== */
 void				red_type(t_shell *cmd);
 /* ==== counte ==== */
@@ -184,7 +184,7 @@ void				free_args(char **args);
 char				**get_command_tokens(t_token *token);
 int					count_tokens(t_token *current_token);
 int					alloc_pids(t_shell *cmd);
-int					call_builtin(char **args, t_shell *cmd);
+void					call_builtin(char **args, t_shell *cmd);
 int					one_builtin(t_shell *cmd);
 int					execute_builtin(t_shell *cmd, t_token *token);
 int					execute_command(t_token *token, char **envp);

@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:58:43 by mloureir          #+#    #+#             */
-/*   Updated: 2024/09/25 13:58:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:06:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,4 +61,5 @@ void	echo_main(t_shell *cmd)
 	temp = cmd->token;
 	temp = temp->next;
 	print_echo(temp);
+	cmd->error_code = 0;
 }

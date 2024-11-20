@@ -6,13 +6,15 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/28 11:07:18 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:30:54 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef INC_H
 # define INC_H
 
+# include <sys/types.h>
+# include <sys/stat.h>
 # include <stdio.h>
 # include <linux/limits.h>
 # include <readline/history.h>

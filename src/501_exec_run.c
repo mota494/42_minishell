@@ -6,39 +6,26 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/19 14:21:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:16:17 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	call_builtin(char **args, t_shell *cmd)
+void	call_builtin(char **args, t_shell *cmd)
 {
 	if (!args || !args[0])
-		return (0);
+		return ;
 	if (sstrcmp(args[0], "cd") == 1)
-	{
 		cd(cmd);
-		return (1);
-	}
 	else if (sstrcmp(args[0], "exit") == 1)
-	{
 		cmd->error_code = exit_main(cmd);
-		return (1);
-	}
 	else if (sstrcmp(args[0], "echo") == 1)
-	{
 		echo_main(cmd);
-		return (1);
-	}
 	else if (sstrcmp(args[0], "pwd") == 1)
-		return (pwd(cmd));
+		pwd(cmd);
 	else if (sstrcmp(args[0], "env") == 1)
-	{
-		builtin_env();
-		return (1);
-	}
-	return (0);
+		builtin_env(cmd);
 }
 
 int	one_builtin(t_shell *cmd)
