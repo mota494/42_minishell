@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 14:35:51 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/20 15:09:08 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ void	cd(t_shell *cmd)
 		cmd->error_code = 0;
 		return ;
 	}
-	if ((chdir(temp->cmd_line) == -1))
+	else if ((chdir(temp->cmd_line) == -1))
 	{
-		printf("bash: cd: %s: No such file or directory\n", temp->cmd_line);
+		printf("minishell: cd: %s: No such file or directory\n", temp->cmd_line);
 		cmd->error_code = 1;
 	}
 	else
