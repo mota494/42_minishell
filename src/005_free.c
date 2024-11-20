@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/19 14:18:43 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/20 11:23:47 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	free_all(t_shell *cmd)
 		cmd->token = cmd->token->next;
 		free(temp->cmd_line);
 		free(temp->orig_line);
+		if (temp->type == command)
+			free(temp->path_name);
 		free(temp);
 	}
 	free_pids(cmd);
