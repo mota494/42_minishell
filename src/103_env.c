@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:30:31 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/18 09:05:40 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/21 14:25:52 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	fix_env(void)
 
 	i = 0;
 	b_env = ret_env(NULL);
-	while (b_env[i].id != -1)
+	while (b_env[i].var_name)
 	{
 		if (sstrcmp("SHLVL", b_env[i].var_name))
 		{
