@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/20 15:15:17 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/21 11:50:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,7 +189,8 @@ int					one_builtin(t_shell *cmd);
 int					execute_builtin(t_shell *cmd, t_token *token);
 int					execute_command(t_token *token, char **envp);
 void				run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp);
-
+/* export_builtin */
+void				export_main(t_shell *cmd);
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain
