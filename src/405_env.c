@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:26:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/21 12:15:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/25 12:27:05 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,5 @@ void	builtin_env(t_shell *cmd)
 		free(better_env[i]);
 		i++;
 	}
+	cmd->error_code = 0;
 }
