@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/21 11:50:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:55:03 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,9 @@ typedef struct s_shell
 }					t_shell;
 
 /* ============ functions ============ */
+/* export */
+void				print_export(void);
+size_t				size_env(t_c_envp *b_env);
 /* free */
 void				free_pids(t_shell *cmd);
 /* parser_vars */

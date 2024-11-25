@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 09:39:22 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/12 14:38:12 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/25 14:54:44 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,14 @@ int	find_quote_type(char *str)
 		i++;
 	}
 	return ((int) str[i]);
+}
+
+size_t	size_env(t_c_envp *b_env)
+{
+	size_t	i;
+
+	i = 0;
+	while (b_env[i].var_name)
+		i++;
+	return (i);
 }
