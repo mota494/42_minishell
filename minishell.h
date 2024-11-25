@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 14:55:03 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:53:08 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -194,6 +194,8 @@ int					execute_command(t_token *token, char **envp);
 void				run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp);
 /* export_builtin */
 void				export_main(t_shell *cmd);
+/* redirects */
+void	handle_redirect(t_token *token /*, int p[2]*/);
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain

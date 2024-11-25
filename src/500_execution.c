@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   500_execution.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 15:27:38 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/25 17:52:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ t_token	*get_next(t_token *current)
 
 void	child_process(t_shell *cmd, char **envp, int help, int i)
 {
+
 	int	p[2];
 
 	pipe(p);
@@ -40,6 +41,7 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 			dup2(help, STDIN_FILENO);
 		if (cmd->n_inputs > 1 && i != cmd->n_inputs - 1)
 			dup2(p[1], STDOUT_FILENO);
+		handle_redirect(cmd->token);
 		run_cmdx_builtx(cmd, cmd->token, envp);
 		close(p[0]);
 		close(p[1]);
