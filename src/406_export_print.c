@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:35:48 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 14:58:46 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:25:02 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	print_ordered(t_c_envp *or)
 			c.d_i++;
 		else
 		{
-			printf("declare -x %s=%s\n", or[c.d_i].var_name,
+			printf("declare -x %s=\"%s\"\n", or[c.d_i].var_name,
 				or[c.d_i].var_value);
 			c.d_i++;
 		}
@@ -102,4 +102,3 @@ void	print_export(void)
 	print_ordered(o_env);
 	free_ordered(o_env);
 }
-

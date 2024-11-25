@@ -1,38 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   406_export.c                                       :+:      :+:    :+:   */
+/*   406_export_vars.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 15:31:45 by mloureir         ###   ########.fr       */
+/*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
+/*   Updated: 2024/11/25 15:38:58 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	check_export_args(t_shell *cmd)
+void	export_new(void)
 {
-	t_token	*temp;
+	t_c_envp	*b_env;
 
-	temp = cmd->token;
-	if (!temp->next || temp->next->type != string)
-	{
-		print_export();
-		cmd->error_code = 0;
-		return (1);
-	}
-	else if (temp->next && temp->next == string)
-	{
-		export_new();
-		return (1);
-	}
-	return (0);
-}
-
-void	export_main(t_shell *cmd)
-{
-	if (check_export_args(cmd))
-		return ;
+	b_env = ret_env(NULL);
 }
