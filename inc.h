@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/20 15:30:54 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/25 15:37:57 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # ifndef SET_X
 #  define SET_X 0
 # endif
+
 /********* syntax errors ********/
 # define OPERATORS "|<>"
 # define ERROR_QUOTE "quotation has not been closed"
