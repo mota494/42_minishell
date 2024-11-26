@@ -6,11 +6,26 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/26 09:03:02 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/26 09:58:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	count_export_args(t_token *cmd)
+{
+	int	i;
+	t_token	*temp;
+
+	i = 0;
+	temp = cmd->next;
+	while (temp && temp->type == string)
+	{
+		i++;
+		temp = temp->next;
+	}
+	return (i);
+}
 
 int	check_export_args(t_shell *cmd)
 {
@@ -23,9 +38,9 @@ int	check_export_args(t_shell *cmd)
 		cmd->error_code = 0;
 		return (1);
 	}
-	else if (temp->next && temp->next == string)
+	else
 	{
-		//export_new();
+		export_new(count_export_args(temp), temp, cmd);
 		return (1);
 	}
 	return (0);
