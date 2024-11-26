@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/26 09:00:33 by miguel           ###   ########.fr       */
+/*   Updated: 2024/11/26 09:59:03 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void				handle_redirect(t_token *token /*, int p[2]*/);
 /* export */
 void				print_export(void);
 size_t				size_env(t_c_envp *b_env);
-void				export_new(void);
+void				export_new(int num_args, t_token *cmd, t_shell *sh);
 /* free */
 void				free_pids(t_shell *cmd);
 /* parser_vars */
@@ -178,6 +178,7 @@ void				free_env(t_shell *cmd);
 /* === env_utils ==== */
 char				**send_env(void);
 void				builtin_env(t_shell *cmd);
+void				change_env_value(char *var_name, char *value);
 /* ==== redifine_type ==== */
 void				red_type(t_shell *cmd);
 /* ==== counte ==== */
