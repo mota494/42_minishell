@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:30:31 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/21 14:25:52 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:25:15 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ char	*get_env(char *var)
 
 	i = 0;
 	b_env = ret_env(NULL);
-	while (b_env[i].id != -1)
+	while (b_env[i].var_name)
 	{
 		if (sstrcmp(var, b_env[i].var_name) == 1)
 			return (b_env[i].var_value);
@@ -87,12 +87,11 @@ void	copy_envs(t_shell *cmd, char **envp)
 	{
 		cmd->c_envp[c.i].var_name = get_env_var(envp[c.i]);
 		cmd->c_envp[c.i].var_value = alocpy(getenv(cmd->c_envp[c.i].var_name));
-		cmd->c_envp[c.i].id = c.i;
+		cmd->c_envp[c.i].id = 1;
 		c.i++;
 	}
 	cmd->c_envp[c.i].var_value = NULL;
 	cmd->c_envp[c.i].var_name = NULL;
-	cmd->c_envp[c.i].id = -1; 
 	ret_env(cmd->c_envp);
 	fix_env();
 }

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/26 09:37:20 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/26 15:32:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,8 @@ char	**send_env(void)
 
 void	change_env_value(char *var_name, char *value)
 {
-	t_c_envp *b_env;
-	int		i;
+	t_c_envp	*b_env;
+	int			i;
 
 	i = 0;
 	b_env = ret_env(NULL);
