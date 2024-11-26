@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 15:31:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/26 09:03:02 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_export_args(t_shell *cmd)
 	}
 	else if (temp->next && temp->next == string)
 	{
-		export_new();
+		//export_new();
 		return (1);
 	}
 	return (0);
