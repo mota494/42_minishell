@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 15:38:58 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/26 09:16:24 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	export_new(void)
 {
-	t_c_envp	*b_env;
+	//t_c_envp	*b_env;
 
-	b_env = ret_env(NULL);
+	//b_env = ret_env(NULL);
 }
