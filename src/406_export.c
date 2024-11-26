@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/26 09:58:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/26 14:15:23 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	count_export_args(t_token *cmd)
 {
-	int	i;
+	int		i;
 	t_token	*temp;
 
 	i = 0;
