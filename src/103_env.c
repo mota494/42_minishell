@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:30:31 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/26 15:25:15 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/27 09:40:35 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,6 @@ void	copy_envs(t_shell *cmd, char **envp)
 	{
 		cmd->c_envp[c.i].var_name = get_env_var(envp[c.i]);
 		cmd->c_envp[c.i].var_value = alocpy(getenv(cmd->c_envp[c.i].var_name));
-		cmd->c_envp[c.i].id = 1;
 		c.i++;
 	}
 	cmd->c_envp[c.i].var_value = NULL;
