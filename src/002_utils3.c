@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   002_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:23:27 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 14:55:59 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/27 15:47:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 int	sstrcmp(char *tocomp, char *str)
 {
 	size_t	i;
+	if (!tocomp || !str)
+		return (0);
 
 	i = 0;
 	while (tocomp[i] == str[i] && tocomp[i] && str[i])

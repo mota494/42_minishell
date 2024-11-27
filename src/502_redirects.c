@@ -6,11 +6,31 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:37:54 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/25 17:55:08 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/27 16:05:46 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	redirect_outfile(char **args, char *red)
+{
+	int	fd;
+	int	i;
+	char *file_name;
+
+	file_name = NULL;
+	i = -1;
+	while (args[++i])
+		if (!is_redirect(args[i]))
+	file_name = ft_strdup(args[i]);
+	if (sstrcmp(">", red))
+		fd = open(file_name, O_WRONLY | O_CREAT | O_TRUNC, 0644);
+	else
+		fd = open(file_name, O_WRONLY | O_CREAT | O_APPEND, 0644);
+	dup2(fd, STDOUT_FILENO);
+	close(fd);
+	free(file_name);
+}
 
 void	redirect_infile(char **args/*, int p[2]*/)
 {
@@ -33,6 +53,8 @@ void	ft_redirect(char **args, char *red/*, int p[2]*/)
 {
 	if (sstrcmp("<", red))
 		redirect_infile(args);
+	else if (sstrcmp(">>", red) || sstrcmp(">", red))
+		redirect_outfile(args, red);
 }
 
 void	check_red(char **args/*, int p[2]*/)
@@ -56,7 +78,7 @@ void	check_red(char **args/*, int p[2]*/)
 	}
 }
 
-void	handle_redirect(t_token *token /*, int p[2]*/)
+void	handle_redirect(t_token *token/*, int p[2]*/)
 {
 	t_token	*current_token;
 	char	**args;

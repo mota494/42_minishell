@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   101_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/19 12:07:20 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:05:36 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ void	parser(char *line, t_shell *cmd)
 	cmd->n_command = count_command(cmd->token);
 	cmd->n_inputs = cmd->n_command + cmd->n_builtin;
 	special_case(cmd);
-	check_err(cmd);
+	//check_err(cmd);
 	get_type(NULL, NULL, "|", "|");
+	//print_list(cmd);
 	already_analyzed(NULL);
 }

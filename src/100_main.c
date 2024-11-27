@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/21 14:35:52 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/27 16:04:29 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	reset_fds(int fd_in, int fd_out)
+{
+	dup2(fd_in, STDIN_FILENO);
+	dup2(fd_out, STDOUT_FILENO);
+}
 
 void	read_command(t_shell *cmd)
 {
@@ -19,6 +25,7 @@ void	read_command(t_shell *cmd)
 	while (1 && cmd->leave == false)
 	{
 		cmd->copy_envp = send_env();
+		reset_fds(cmd->fds[0], cmd->fds[1]);
 		line = readline("minishell: ");
 		if (check_syntax(cmd, line) == 1)
 		{

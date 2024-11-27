@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 17:53:08 by codespace        ###   ########.fr       */
+/*   Updated: 2024/11/27 15:08:13 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_shell
 	int				n_builtin;
 	int				n_command;
 	int				error_code;
+	int				fds[2];
 	char			**path_dirs;
 	char			**fork_cmds;
 	t_c_envp		*c_envp;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   501_exec_run.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/21 11:50:57 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/26 16:54:14 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int	one_builtin(t_shell *cmd)
 				return (1);
 			current_token = current_token->next;
 		}
+		handle_redirect(cmd->token);
 		call_builtin(args, cmd);
 		free_args(args);
 		return (0);

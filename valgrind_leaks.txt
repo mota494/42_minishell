@@ -1,20 +1,113 @@
-==1108288== Memcheck, a memory error detector
-==1108288== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==1108288== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==1108288== Command: ./minishell
-==1108288== Parent PID: 1108287
-==1108288== 
-==1108288== 
-==1108288== HEAP SUMMARY:
-==1108288==     in use at exit: 208,265 bytes in 228 blocks
-==1108288==   total heap usage: 13,945 allocs, 13,717 frees, 639,583 bytes allocated
-==1108288== 
-==1108288== LEAK SUMMARY:
-==1108288==    definitely lost: 0 bytes in 0 blocks
-==1108288==    indirectly lost: 0 bytes in 0 blocks
-==1108288==      possibly lost: 0 bytes in 0 blocks
-==1108288==    still reachable: 0 bytes in 0 blocks
-==1108288==         suppressed: 208,265 bytes in 228 blocks
-==1108288== 
-==1108288== For lists of detected and suppressed errors, rerun with: -s
-==1108288== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6782== Memcheck, a memory error detector
+==6782== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6782== Using Valgrind-3.15.0 and LibVEX; rerun with -h for copyright info
+==6782== Command: ./minishell
+==6782== Parent PID: 6781
+==6782== 
+==6782== 
+==6782== Process terminating with default action of signal 2 (SIGINT)
+==6782==    at 0x48E73DB: kill (syscall-template.S:78)
+==6782==    by 0x48817A2: ??? (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==6782==    by 0x4883C8E: rl_getc (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==6782==    by 0x4884502: rl_read_key (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==6782==    by 0x4869C81: readline_internal_char (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==6782==    by 0x486A4EC: readline (in /usr/lib/x86_64-linux-gnu/libreadline.so.8.0)
+==6782==    by 0x109E70: read_command (100_main.c:29)
+==6782==    by 0x10A097: main (100_main.c:72)
+==6782== 
+==6782== HEAP SUMMARY:
+==6782==     in use at exit: 222,949 bytes in 601 blocks
+==6782==   total heap usage: 22,209 allocs, 21,608 frees, 5,902,105 bytes allocated
+==6782== 
+==6782== 2 bytes in 1 blocks are still reachable in loss record 1 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x10F1E6: ft_calloc (in /workspaces/42_minishell/minishell)
+==6782==    by 0x10F307: ft_itoa (in /workspaces/42_minishell/minishell)
+==6782==    by 0x10D1FD: fix_env (103_env.c:30)
+==6782==    by 0x10D575: copy_envs (103_env.c:97)
+==6782==    by 0x109FBA: init_tshell (100_main.c:53)
+==6782==    by 0x10A08B: main (100_main.c:71)
+==6782== 
+==6782== 14 bytes in 4 blocks are definitely lost in loss record 8 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x10F1E6: ft_calloc (in /workspaces/42_minishell/minishell)
+==6782==    by 0x10F7F1: ft_strdup (in /workspaces/42_minishell/minishell)
+==6782==    by 0x10EDD0: redirect_outfile (502_redirects.c:24)
+==6782==    by 0x10EF6D: ft_redirect (502_redirects.c:53)
+==6782==    by 0x10F012: check_red (502_redirects.c:72)
+==6782==    by 0x10F057: handle_redirect (502_redirects.c:84)
+==6782==    by 0x10E0AF: one_builtin (501_exec_run.c:48)
+==6782==    by 0x10C89A: execute_pipeline (500_execution.c:63)
+==6782==    by 0x109ECD: read_command (100_main.c:36)
+==6782==    by 0x10A097: main (100_main.c:72)
+==6782== 
+==6782== 45 bytes in 2 blocks are still reachable in loss record 16 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x109BEC: strjoinchr (001_utils2.c:71)
+==6782==    by 0x10D615: var_to_char (103_env_utils.c:27)
+==6782==    by 0x10D738: send_env (103_env_utils.c:49)
+==6782==    by 0x109E45: read_command (100_main.c:27)
+==6782==    by 0x10A097: main (100_main.c:72)
+==6782== 
+==6782== 328 bytes in 1 blocks are still reachable in loss record 27 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x10F1E6: ft_calloc (in /workspaces/42_minishell/minishell)
+==6782==    by 0x10F6F1: ft_split (in /workspaces/42_minishell/minishell)
+==6782==    by 0x109999: init_path_dirs (000_utils.c:82)
+==6782==    by 0x109FD3: init_tshell (100_main.c:54)
+==6782==    by 0x10A08B: main (100_main.c:71)
+==6782== 
+==6782== 896 bytes in 1 blocks are still reachable in loss record 31 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x10F1E6: ft_calloc (in /workspaces/42_minishell/minishell)
+==6782==    by 0x10D6F2: send_env (103_env_utils.c:46)
+==6782==    by 0x109E45: read_command (100_main.c:27)
+==6782==    by 0x10A097: main (100_main.c:72)
+==6782== 
+==6782== 1,127 bytes in 40 blocks are still reachable in loss record 38 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x10F1E6: ft_calloc (in /workspaces/42_minishell/minishell)
+==6782==    by 0x10F5FC: writestr (in /workspaces/42_minishell/minishell)
+==6782==    by 0x10F722: ft_split (in /workspaces/42_minishell/minishell)
+==6782==    by 0x109999: init_path_dirs (000_utils.c:82)
+==6782==    by 0x109FD3: init_tshell (100_main.c:54)
+==6782==    by 0x10A08B: main (100_main.c:71)
+==6782== 
+==6782== 1,537 bytes in 111 blocks are still reachable in loss record 40 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x109BEC: strjoinchr (001_utils2.c:71)
+==6782==    by 0x10D2A3: get_env_var (103_env.c:55)
+==6782==    by 0x10D450: copy_envs (103_env.c:88)
+==6782==    by 0x109FBA: init_tshell (100_main.c:53)
+==6782==    by 0x10A08B: main (100_main.c:71)
+==6782== 
+==6782== 2,688 bytes in 1 blocks are still reachable in loss record 44 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x10D405: copy_envs (103_env.c:85)
+==6782==    by 0x109FBA: init_tshell (100_main.c:53)
+==6782==    by 0x10A08B: main (100_main.c:71)
+==6782== 
+==6782== 5,062 bytes in 110 blocks are still reachable in loss record 56 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x109745: alocpy (000_utils.c:22)
+==6782==    by 0x10D4A2: copy_envs (103_env.c:89)
+==6782==    by 0x109FBA: init_tshell (100_main.c:53)
+==6782==    by 0x10A08B: main (100_main.c:71)
+==6782== 
+==6782== 6,556 bytes in 109 blocks are still reachable in loss record 57 of 71
+==6782==    at 0x483B7F3: malloc (in /usr/lib/x86_64-linux-gnu/valgrind/vgpreload_memcheck-amd64-linux.so)
+==6782==    by 0x109BEC: strjoinchr (001_utils2.c:71)
+==6782==    by 0x10D63A: var_to_char (103_env_utils.c:30)
+==6782==    by 0x10D738: send_env (103_env_utils.c:49)
+==6782==    by 0x109E45: read_command (100_main.c:27)
+==6782==    by 0x10A097: main (100_main.c:72)
+==6782== 
+==6782== LEAK SUMMARY:
+==6782==    definitely lost: 14 bytes in 4 blocks
+==6782==    indirectly lost: 0 bytes in 0 blocks
+==6782==      possibly lost: 0 bytes in 0 blocks
+==6782==    still reachable: 18,241 bytes in 376 blocks
+==6782==         suppressed: 204,694 bytes in 221 blocks
+==6782== 
+==6782== For lists of detected and suppressed errors, rerun with: -s
+==6782== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
