@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/20 11:29:32 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:45:51 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ void	print_list(t_shell *cmd)
 	while (temp)
 	{
 		printf("[%s] [%s]", temp->cmd_line, temp->orig_line);
-		printf("[%d] [%d]\n", temp->type, temp->expand);
+		printf("[%d]\n", temp->type);
 		temp = temp->next;
 	}
-	printf("\n");
 }
 
 void	init_path_dirs(t_shell *cmd, char **envp)

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/26 09:59:03 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:33:27 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ typedef struct s_cenvp
 {
 	char	*var_name;
 	char	*var_value;
+	char	equal;
 	int		id;
 }					t_c_envp;
 /*main structure - work in progress*/
@@ -173,6 +174,7 @@ int					execute_pipeline(t_shell *cmd, char **envp);
 void				copy_envs(t_shell *cmd, char **envp);
 t_c_envp			*ret_env(t_c_envp *tosend);
 char				*get_env(char *var);
+int					check_equal(char *str);
 /* ==== free ==== */
 void				free_env(t_shell *cmd);
 /* === env_utils ==== */
