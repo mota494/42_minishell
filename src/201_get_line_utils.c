@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:43:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/30 15:45:36 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:47:32 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,6 +111,7 @@ char	*adv_separator(char *oldtoret, char *line, int *pos)
 {
 	char	*novo_toro;
 
+	printf("[%s] [%s]", oldtoret, line);
 	novo_toro = alocpy(oldtoret);
 	while (ft_iseparator(line[*pos]) && line[*pos])
 	{

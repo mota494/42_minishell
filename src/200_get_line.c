@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/19 12:08:37 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:19:47 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd, char *orig)
 		is_arg = 0;
 		return (control);
 	}
-	if (is_redirect(cmd) == 1)
+	if (is_redirect(orig) == 1)
 	{
 		is_arg = 0;
 		return (redirect);

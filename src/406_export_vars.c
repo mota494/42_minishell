@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/26 15:33:20 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:46:10 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	add_env_vars(t_c_envp *n_env, t_token *cmd)
 		{
 			n_env[i].var_name = ft_strdup(cmd->cmd_line);
 			n_env[i].var_value = initalize_str();
-			n_env[i].id = -1;
+			n_env[i].equal = 0;
 		}
 		i++;
 		cmd = cmd->next;
@@ -65,6 +65,7 @@ void	export_new(int num_args, t_token *cmd, t_shell *sh)
 			n_env[i].var_value = ft_strdup(b_env[i].var_value);
 			free(b_env[i].var_value);
 		}
+		n_env[i].equal = b_env[i].equal;
 		i++;
 	}
 	add_env_vars(n_env, cmd);

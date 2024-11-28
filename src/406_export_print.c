@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:35:48 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 15:25:02 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/28 15:41:52 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,11 @@ void	print_ordered(t_c_envp *or)
 			c.d_i++;
 		else
 		{
-			printf("declare -x %s=\"%s\"\n", or[c.d_i].var_name,
-				or[c.d_i].var_value);
+			if (or[c.d_i].equal == '=')
+				printf("declare -x %s=\"%s\"\n", or[c.d_i].var_name,
+					or[c.d_i].var_value);
+			else
+				printf("declare -x %s\n", or[c.d_i].var_name);
 			c.d_i++;
 		}
 	}
@@ -95,6 +98,7 @@ void	print_export(void)
 	{
 		o_env[c.i_i].var_name = strdup(b_env[c.i_i].var_name);
 		o_env[c.i_i].var_value = strdup(b_env[c.i_i].var_value);
+		o_env[c.i_i].equal = b_env[c.i_i].equal;
 		c.i_i++;
 	}
 	o_env[c.i_i].var_name = NULL;
