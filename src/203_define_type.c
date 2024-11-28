@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:15:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 15:01:02 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/11/28 11:09:00 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,11 +50,11 @@ int	is_controler(char *str)
 
 int	is_redirect(char *str)
 {
+	if (sstrcmp("<<", str) || sstrcmp(">>", str))
+		return (1);
 	if (sstrcmp(">|", str))
 		return (1);
 	if (sstrcmp("<", str) || sstrcmp(">", str))
-		return (1);
-	if (sstrcmp("<<", str) || sstrcmp(">>", str))
 		return (1);
 	if (sstrcmp("<&", str) || sstrcmp("<>", str) || sstrcmp(">&", str))
 		return (1);
