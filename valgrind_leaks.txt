@@ -1,43 +1,180 @@
-==234105== Memcheck, a memory error detector
-==234105== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==234105== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
-==234105== Command: ./minishell
-==234105== Parent PID: 234104
-==234105== 
-==234105== 
-==234105== HEAP SUMMARY:
-==234105==     in use at exit: 211,511 bytes in 294 blocks
-==234105==   total heap usage: 6,405 allocs, 6,111 frees, 429,820 bytes allocated
-==234105== 
-==234105== 19 bytes in 2 blocks are indirectly lost in loss record 13 of 71
-==234105==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==234105==    by 0x40187D: strjoinchr (001_utils2.c:71)
-==234105==    by 0x4036C1: var_to_char (103_env_utils.c:27)
-==234105==    by 0x4037BA: send_env (103_env_utils.c:49)
-==234105==    by 0x402025: read_command (100_main.c:21)
-==234105==    by 0x4021EE: main (100_main.c:65)
-==234105== 
-==234105== 2,468 bytes in 64 blocks are indirectly lost in loss record 45 of 71
-==234105==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==234105==    by 0x40187D: strjoinchr (001_utils2.c:71)
-==234105==    by 0x4036F4: var_to_char (103_env_utils.c:30)
-==234105==    by 0x4037BA: send_env (103_env_utils.c:49)
-==234105==    by 0x402025: read_command (100_main.c:21)
-==234105==    by 0x4021EE: main (100_main.c:65)
-==234105== 
-==234105== 3,023 (536 direct, 2,487 indirect) bytes in 1 blocks are definitely lost in loss record 46 of 71
-==234105==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==234105==    by 0x407488: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
-==234105==    by 0x403776: send_env (103_env_utils.c:46)
-==234105==    by 0x402025: read_command (100_main.c:21)
-==234105==    by 0x4021EE: main (100_main.c:65)
-==234105== 
-==234105== LEAK SUMMARY:
-==234105==    definitely lost: 536 bytes in 1 blocks
-==234105==    indirectly lost: 2,487 bytes in 66 blocks
-==234105==      possibly lost: 0 bytes in 0 blocks
-==234105==    still reachable: 0 bytes in 0 blocks
-==234105==         suppressed: 208,488 bytes in 227 blocks
-==234105== 
-==234105== For lists of detected and suppressed errors, rerun with: -s
-==234105== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 1 from 1)
+==373381== Memcheck, a memory error detector
+==373381== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==373381== Using Valgrind-3.18.1 and LibVEX; rerun with -h for copyright info
+==373381== Command: ./minishell
+==373381== Parent PID: 373380
+==373381== 
+==373381== Invalid write of size 8
+==373381==    at 0x4039C1: send_env (103_env_utils.c:57)
+==373381==    by 0x402185: read_command (100_main.c:21)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381==  Address 0x4c01ef0 is 0 bytes after a block of size 624 alloc'd
+==373381==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x407A48: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x40393B: send_env (103_env_utils.c:50)
+==373381==    by 0x402185: read_command (100_main.c:21)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381== 
+==373381== Invalid read of size 1
+==373381==    at 0x408205: ft_strlen (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x40803E: ft_strdup (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x403A7B: change_env_value (103_env_utils.c:74)
+==373381==    by 0x4069EA: change_env_var (406_export_vars.c:36)
+==373381==    by 0x406C65: add_env_vars (406_export_vars.c:75)
+==373381==    by 0x406EBF: export_new (406_export_vars.c:111)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==  Address 0x4d80670 is 0 bytes inside a block of size 1 free'd
+==373381==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x403A72: change_env_value (103_env_utils.c:73)
+==373381==    by 0x4069EA: change_env_var (406_export_vars.c:36)
+==373381==    by 0x406C65: add_env_vars (406_export_vars.c:75)
+==373381==    by 0x406EBF: export_new (406_export_vars.c:111)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381==  Block was alloc'd at
+==373381==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x407A48: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x408057: ft_strdup (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x406E2E: export_new (406_export_vars.c:104)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381== 
+==373381== Invalid read of size 1
+==373381==    at 0x408095: ft_strdup (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x403A7B: change_env_value (103_env_utils.c:74)
+==373381==    by 0x4069EA: change_env_var (406_export_vars.c:36)
+==373381==    by 0x406C65: add_env_vars (406_export_vars.c:75)
+==373381==    by 0x406EBF: export_new (406_export_vars.c:111)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381==  Address 0x4d80670 is 0 bytes inside a block of size 1 free'd
+==373381==    at 0x484B27F: free (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x403A72: change_env_value (103_env_utils.c:73)
+==373381==    by 0x4069EA: change_env_var (406_export_vars.c:36)
+==373381==    by 0x406C65: add_env_vars (406_export_vars.c:75)
+==373381==    by 0x406EBF: export_new (406_export_vars.c:111)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381==  Block was alloc'd at
+==373381==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x407A48: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x408057: ft_strdup (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x406E2E: export_new (406_export_vars.c:104)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381== 
+==373381== Invalid write of size 8
+==373381==    at 0x406D2B: add_env_vars (406_export_vars.c:85)
+==373381==    by 0x406EBF: export_new (406_export_vars.c:111)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381==  Address 0x4d7cec8 is 0 bytes after a block of size 1,896 alloc'd
+==373381==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x407A48: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x406D9C: export_new (406_export_vars.c:97)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381== 
+==373381== Invalid write of size 8
+==373381==    at 0x406D41: add_env_vars (406_export_vars.c:86)
+==373381==    by 0x406EBF: export_new (406_export_vars.c:111)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381==  Address 0x4d7ced0 is 8 bytes after a block of size 1,896 alloc'd
+==373381==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x407A48: ft_calloc (in /home/mloureir/Documents/42_minishell/minishell)
+==373381==    by 0x406D9C: export_new (406_export_vars.c:97)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381== 
+==373381== 
+==373381== HEAP SUMMARY:
+==373381==     in use at exit: 208,518 bytes in 240 blocks
+==373381==   total heap usage: 34,927 allocs, 34,687 frees, 1,344,127 bytes allocated
+==373381== 
+==373381== 2 bytes in 1 blocks are definitely lost in loss record 1 of 69
+==373381==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x40186D: strjoinchr (001_utils2.c:71)
+==373381==    by 0x401B4F: var_exist (002_utils3.c:80)
+==373381==    by 0x406319: count_export_args (406_export.c:24)
+==373381==    by 0x4063AC: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381== 
+==373381== 2 bytes in 1 blocks are definitely lost in loss record 2 of 69
+==373381==    at 0x4848899: malloc (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==373381==    by 0x40186D: strjoinchr (001_utils2.c:71)
+==373381==    by 0x401B4F: var_exist (002_utils3.c:80)
+==373381==    by 0x406C39: add_env_vars (406_export_vars.c:74)
+==373381==    by 0x406EBF: export_new (406_export_vars.c:111)
+==373381==    by 0x4063BB: check_export_args (406_export.c:44)
+==373381==    by 0x4063E4: export_main (406_export.c:52)
+==373381==    by 0x40727F: call_builtin (501_exec_run.c:30)
+==373381==    by 0x407314: one_builtin (501_exec_run.c:48)
+==373381==    by 0x407084: execute_pipeline (500_execution.c:62)
+==373381==    by 0x4021EE: read_command (100_main.c:29)
+==373381==    by 0x40234E: main (100_main.c:65)
+==373381== 
+==373381== LEAK SUMMARY:
+==373381==    definitely lost: 4 bytes in 2 blocks
+==373381==    indirectly lost: 0 bytes in 0 blocks
+==373381==      possibly lost: 0 bytes in 0 blocks
+==373381==    still reachable: 0 bytes in 0 blocks
+==373381==         suppressed: 208,514 bytes in 238 blocks
+==373381== 
+==373381== For lists of detected and suppressed errors, rerun with: -s
+==373381== ERROR SUMMARY: 10 errors from 7 contexts (suppressed: 0 from 0)

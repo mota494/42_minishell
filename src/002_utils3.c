@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:23:27 by mloureir          #+#    #+#             */
-/*   Updated: 2024/10/31 14:55:59 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:52:07 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,5 +65,23 @@ int	is_there_pipe(t_token *cmd)
 			return (1);
 		temp = temp->next;
 	}
+	return (0);
+}
+
+int	var_exist(char *str)
+{
+	char	*var_name;
+	int		i;
+
+	var_name = initalize_str();
+	i = 0;
+	while (str[i] && str[i] != '=')
+	{
+		var_name = strjoinchr(var_name, str[i]);
+		i++;
+	}
+	if (get_env(var_name))
+		return (1);
+	free(var_name);
 	return (0);
 }

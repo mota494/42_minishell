@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/28 15:33:27 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 10:51:44 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,12 @@ typedef struct s_shell
 /* redirect */
 void				handle_redirect(t_token *token /*, int p[2]*/);
 /* export */
+int					var_exist(char *str);
 void				print_export(void);
 size_t				size_env(t_c_envp *b_env);
 void				export_new(int num_args, t_token *cmd, t_shell *sh);
+int					check_equal(char *str);
+int					check_var_name(char *str);
 /* free */
 void				free_pids(t_shell *cmd);
 /* parser_vars */

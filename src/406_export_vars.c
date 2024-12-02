@@ -6,24 +6,44 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 09:54:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 11:41:43 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	check_equal(char *str)
+void	change_env_var(char *toadd)
 {
-	int	i;
+	char	*var_name;
+	int		i;
+	char	*var_value;
 
+	printf("AQUI");
+	var_name = initalize_str();
+	var_value = initalize_str();
 	i = 0;
-	while (str[i])
+	while (toadd[i] && toadd[i] != '=')
 	{
-		if (str[i] == '=')
-			return (1);
+		var_name = strjoinchr(var_name, toadd[i]);
 		i++;
 	}
-	return (0);
+	i++;
+	while (toadd[i])
+	{
+		var_value = strjoinchr(var_value, toadd[i]);
+		i++;
+	}
+	printf("[%s-%s]", var_name, var_value);
+	//change_env_value(var_name, get_env(var_name));
+	free(var_name);
+	free(var_value);
+}
+
+void	var_no_equal(t_c_envp *n_env, int pos, char *toadd)
+{
+	n_env[pos].var_name = strdup(toadd);
+	n_env[pos].var_value = initalize_str();
+	n_env[pos].equal = 0;
 }
 
 void	add_var(t_c_envp *n_env, int pos, char *toadd)
@@ -47,25 +67,15 @@ void	add_var(t_c_envp *n_env, int pos, char *toadd)
 	}
 }
 
-int	check_var_name(char *str)
-{
-	if (ft_isalpha(str[0]) == 1 || str[0] == '_')
-		return (1);
-	else
-		return (0);
-}
-
 void	add_env_vars(t_c_envp *n_env, t_token *cmd, int i)
 {
 	cmd = cmd->next;
 	while (cmd && cmd->type == string)
 	{
-		if (check_equal(cmd->cmd_line) == 0)
-		{
-			n_env[i].var_name = ft_strdup(cmd->cmd_line);
-			n_env[i].var_value = initalize_str();
-			n_env[i].equal = 0;
-		}
+		if (var_exist(cmd->cmd_line) && check_equal(cmd->cmd_line))
+			change_env_var(cmd->cmd_line);
+		else if (!var_exist(cmd->cmd_line) && !check_equal(cmd->cmd_line))
+			var_no_equal(n_env, i, cmd->cmd_line);
 		else if (check_var_name(cmd->cmd_line) == 0)
 			printf("minishell: export: %s, not a valid identifier", cmd->cmd_line);
 		else
@@ -98,8 +108,8 @@ void	export_new(int num_args, t_token *cmd, t_shell *sh)
 		n_env[i].equal = b_env[i].equal;
 		i++;
 	}
+	ret_env(n_env);
 	add_env_vars(n_env, cmd, size_env(n_env));
 	free(b_env);
-	ret_env(n_env);
 	sh->c_envp = n_env;
 }
