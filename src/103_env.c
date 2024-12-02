@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/15 11:30:31 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/28 15:34:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:23:58 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@ void	fix_env(void)
 			help++;
 			free(b_env[i].var_value);
 			b_env[i].var_value = ft_itoa(help);
-			break ;
+		}
+		if (sstrcmp("SHELL", b_env[i].var_name))
+		{
+			free(b_env[i].var_value);
+			b_env[i].var_value = send_shell_env();
 		}
 		i++;
 	}

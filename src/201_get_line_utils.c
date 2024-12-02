@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:43:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/28 11:47:32 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:44:37 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,16 +89,15 @@ char	*adv_spaces(char *oldtoret, char *line, int *pos)
 	while (!ft_iseparator(line[*pos]) && line[*pos])
 	{
 		novo_toro = strjoinchr(novo_toro, line[*pos]);
-		if (line[*pos] == 39 || line[*pos] == 34)
+		if ((line[*pos] == 39 || line[*pos] == 34))
 		{
 			*pos += 1;
-			while ((line[*pos] != 39 && line[*pos])
-				|| (line[*pos] != 34 && line[*pos]))
+			while ((line[*pos] != 39 || line[*pos] != 34)
+				&& line[*pos] && !ft_ispace(line[*pos]))
 			{
 				novo_toro = strjoinchr(novo_toro, line[*pos]);
 				*pos += 1;
 			}
-			novo_toro = strjoinchr(novo_toro, line[*pos]);
 		}
 		else
 			*pos += 1;
@@ -111,7 +110,6 @@ char	*adv_separator(char *oldtoret, char *line, int *pos)
 {
 	char	*novo_toro;
 
-	printf("[%s] [%s]", oldtoret, line);
 	novo_toro = alocpy(oldtoret);
 	while (ft_iseparator(line[*pos]) && line[*pos])
 	{

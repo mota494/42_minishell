@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 10:51:44 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:20:00 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -184,6 +184,7 @@ void				free_env(t_shell *cmd);
 char				**send_env(void);
 void				builtin_env(t_shell *cmd);
 void				change_env_value(char *var_name, char *value);
+char				*send_shell_env(void);
 /* ==== redifine_type ==== */
 void				red_type(t_shell *cmd);
 /* ==== counte ==== */
