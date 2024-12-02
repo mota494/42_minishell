@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:43:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 16:44:37 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:52:56 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*adv_dbl_quote(char *oldtoret, char *line, int *pos)
 	trt = alocpy(oldtoret);
 	trt = strjoinchr(trt, line[*pos]);
 	*pos += 1;
-	while (line[*pos] && line[*pos] == 34)
+	while (line[*pos] && line[*pos] != 34)
 	{
 		trt = strjoinchr(trt, line[*pos]);
 		*pos += 1;
@@ -62,7 +62,7 @@ char	*adv_sig_quote(char *oldtoret, char *line, int *pos)
 	trt = alocpy(oldtoret);
 	trt = strjoinchr(trt, line[*pos]);
 	*pos += 1;
-	while (line[*pos] && line[*pos] == 39)
+	while (line[*pos] && line[*pos] != 39)
 	{
 		trt = strjoinchr(trt, line[*pos]);
 		*pos += 1;
