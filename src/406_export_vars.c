@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/28 15:46:10 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:54:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,37 @@ int	check_equal(char *str)
 	return (0);
 }
 
-void	add_env_vars(t_c_envp *n_env, t_token *cmd)
+void	add_var(t_c_envp *n_env, int pos, char *toadd)
 {
-	int	i;
+	t_count	c;
 
-	i = size_env(n_env);
+	start_counters(&c);
+	n_env[pos].var_name = initalize_str();
+	n_env[pos].var_value = initalize_str();
+	while (toadd[c.d] && toadd[c.d] != '=')
+	{
+		n_env[pos].var_name = strjoinchr(n_env[pos].var_name, toadd[c.d]);
+		c.d++;
+	}
+	c.d++;
+	n_env[pos].equal = '=';
+	while (toadd[c.d])
+	{
+		n_env[pos].var_value = strjoinchr(n_env[pos].var_value, toadd[c.d]);
+		c.d++;
+	}
+}
+
+int	check_var_name(char *str)
+{
+	if (ft_isalpha(str[0]) == 1 || str[0] == '_')
+		return (1);
+	else
+		return (0);
+}
+
+void	add_env_vars(t_c_envp *n_env, t_token *cmd, int i)
+{
 	cmd = cmd->next;
 	while (cmd && cmd->type == string)
 	{
@@ -40,6 +66,10 @@ void	add_env_vars(t_c_envp *n_env, t_token *cmd)
 			n_env[i].var_value = initalize_str();
 			n_env[i].equal = 0;
 		}
+		else if (check_var_name(cmd->cmd_line) == 0)
+			printf("minishell: export: %s, not a valid identifier", cmd->cmd_line);
+		else
+			add_var(n_env, i, cmd->cmd_line);
 		i++;
 		cmd = cmd->next;
 	}
@@ -68,7 +98,7 @@ void	export_new(int num_args, t_token *cmd, t_shell *sh)
 		n_env[i].equal = b_env[i].equal;
 		i++;
 	}
-	add_env_vars(n_env, cmd);
+	add_env_vars(n_env, cmd, size_env(n_env));
 	free(b_env);
 	ret_env(n_env);
 	sh->c_envp = n_env;
