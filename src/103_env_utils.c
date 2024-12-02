@@ -6,11 +6,29 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 12:00:58 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:24:17 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+char	*send_shell_env(void)
+{
+	char	*toret;
+	char	buffer[PATH_MAX];
+	char	*toadd;
+	int		i;
+
+	i = 0;
+	toadd = "/minishell";
+	toret = ft_strdup(getcwd(buffer, PATH_MAX));
+	while (toadd[i])
+	{
+		toret = strjoinchr(toret, toadd[i]);
+		i++;
+	}
+	return (toret);
+}
 
 char	*var_to_char(t_c_envp node)
 {

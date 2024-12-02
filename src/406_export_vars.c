@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 12:18:58 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:45:29 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	add_var(t_c_envp *n_env, int pos, char *toadd)
 	}
 }
 
-void	add_env_vars(t_c_envp *n_env, t_token *cmd, int i)
+void	add_env_vars(t_c_envp *n_env, t_token *cmd, int i, t_shell *sh)
 {
 	cmd = cmd->next;
 	while (cmd && cmd->type == string)
@@ -78,7 +78,11 @@ void	add_env_vars(t_c_envp *n_env, t_token *cmd, int i)
 			i++;
 		}
 		else if (check_var_name(cmd->cmd_line) == 0)
-			printf("minishell: export: %s, not a valid identifier", cmd->cmd_line);
+		{
+			printf("minishell: export: %s, not a valid identifier\n",
+				cmd->cmd_line);
+			sh->error_code = 1;
+		}
 		else if (!var_exist(cmd->cmd_line) && check_equal(cmd->cmd_line))
 		{
 			add_var(n_env, i, cmd->cmd_line);
@@ -112,7 +116,9 @@ void	export_new(int num_args, t_token *cmd, t_shell *sh)
 		i++;
 	}
 	ret_env(n_env);
-	add_env_vars(n_env, cmd, size_env(n_env));
+	add_env_vars(n_env, cmd, size_env(n_env), sh);
+	if (sh->error_code != 1)
+		sh->error_code = 0;
 	free(b_env);
 	sh->c_envp = n_env;
 }

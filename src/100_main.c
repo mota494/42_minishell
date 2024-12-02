@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/28 15:44:21 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 16:30:34 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	check_input(int ac, char **av)
 {
 	if (ac != 1 || av[1])
 	{
-		printf("Minishell doesn't accept any arguments\n");
+		printf("Minishell v 0.9.5\n");
 		exit (1);
 	}
 }
