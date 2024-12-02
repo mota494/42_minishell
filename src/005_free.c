@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/20 14:46:49 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:29:06 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	free_copy_envp(t_shell *cmd)
 {
 	int	i;
-	
+
 	i = 0;
 	while (cmd->copy_envp[i])
 	{

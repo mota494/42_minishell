@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:26:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 12:27:05 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 09:22:22 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	check_env_args(t_shell *cmd)
 
 void	builtin_env(t_shell *cmd)
 {
-	char		**better_env;
 	t_c_envp	*b_env;
 	int			i;
 
@@ -49,17 +48,14 @@ void	builtin_env(t_shell *cmd)
 	if (check_env_args(cmd) == 0)
 		return ;
 	b_env = ret_env(NULL);
-	better_env = send_env();
 	while (b_env[i].var_name)
 	{
-		if (b_env[i].var_value)
-			printf("%s\n", better_env[i]);
-		i++;
-	}
-	i = 0;
-	while (b_env[i].var_name)
-	{
-		free(better_env[i]);
+		if (b_env[i].equal == '=')
+		{
+			printf("%s", b_env[i].var_name);
+			printf("=%s", b_env[i].var_value);
+			printf("\n");
+		}
 		i++;
 	}
 	cmd->error_code = 0;
