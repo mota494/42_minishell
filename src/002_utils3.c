@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:23:27 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 10:52:07 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:28:32 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,10 @@ int	var_exist(char *str)
 		i++;
 	}
 	if (get_env(var_name))
+	{
+		free(var_name);
 		return (1);
+	}
 	free(var_name);
 	return (0);
 }
