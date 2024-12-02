@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 11:41:43 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/02 12:05:30 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ void	change_env_var(char *toadd)
 	int		i;
 	char	*var_value;
 
-	printf("AQUI");
 	var_name = initalize_str();
 	var_value = initalize_str();
 	i = 0;
@@ -33,8 +32,7 @@ void	change_env_var(char *toadd)
 		var_value = strjoinchr(var_value, toadd[i]);
 		i++;
 	}
-	printf("[%s-%s]", var_name, var_value);
-	//change_env_value(var_name, get_env(var_name));
+	change_env_value(var_name, var_value);
 	free(var_name);
 	free(var_value);
 }
@@ -75,12 +73,17 @@ void	add_env_vars(t_c_envp *n_env, t_token *cmd, int i)
 		if (var_exist(cmd->cmd_line) && check_equal(cmd->cmd_line))
 			change_env_var(cmd->cmd_line);
 		else if (!var_exist(cmd->cmd_line) && !check_equal(cmd->cmd_line))
+		{
 			var_no_equal(n_env, i, cmd->cmd_line);
+			i++;
+		}
 		else if (check_var_name(cmd->cmd_line) == 0)
 			printf("minishell: export: %s, not a valid identifier", cmd->cmd_line);
 		else
+		{
 			add_var(n_env, i, cmd->cmd_line);
-		i++;
+			i++;
+		}
 		cmd = cmd->next;
 	}
 	n_env[i].var_name = NULL;
