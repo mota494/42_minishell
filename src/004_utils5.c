@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 09:39:22 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 10:09:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:52:11 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,17 @@ int	check_equal(char *str)
 
 int	check_var_name(char *str)
 {
-	if (ft_isalpha(str[0]) == 1 || str[0] == '_')
-		return (1);
-	else
+	int	i;
+
+	i = 0;
+	if (!ft_isalpha(str[0]) || str[0] != '_')
 		return (0);
+	i++;
+	while (str[i])
+	{
+		if (!ft_isalpha(str[i]) || str[i] != '_')
+			return (0);
+		i++;
+	}
+	return (1);
 }
