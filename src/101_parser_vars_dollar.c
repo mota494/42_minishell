@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:49:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/18 15:50:24 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/03 15:59:10 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,9 @@ char	*parse_dollar(char *cmd, int *pos, char *oldtoret)
 	free(oldtoret);
 	if (is_quote(cmd[*pos + 1]) && c_if_wrap(cmd, pos))
 		newtoret = rm_dollar(cmd, pos, newtoret);
-	else if (is_quote(cmd[*pos + 1]) && !c_if_wrap(cmd, pos))
+	else if ((is_quote(cmd[*pos + 1]) && !c_if_wrap(cmd, pos)))
 		newtoret = not_rm_dollar(cmd, pos, newtoret);
+	//#@!/-+ etc... are all ignored by $ and don't get parsed as vars
 	else
 		newtoret = get_replace_var(cmd, pos, newtoret);
 	return (newtoret);
