@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:43:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 16:52:56 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:28:17 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	even_quote(char *str, int quote_type)
 {
-	t_count c;
+	t_count	c;
 
 	start_counters(&c);
 	while (str[c.i])
