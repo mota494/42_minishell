@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 16:20:00 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:21:02 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ char				*parse_dollar(char *cmd, int *pos, char *oldtoret);
 void				free_all(t_shell *cmd);
 /* ==== parser.c ==== */
 void				parser(char *line, t_shell *cmd);
+int					even_quote(char *str, int quote_type);
 /* ==== get_line_utils.c ==== */
 char				*adv_dbl_quote(char *oldtoret, char *line, int *pos);
 char				*adv_spaces(char *oldtoret, char *line, int *pos);

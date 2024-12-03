@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/28 11:19:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/03 10:25:44 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,25 @@ t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd, char *orig)
 	return (error);
 }
 
+char	*fix_quotest_count(char *oldtoret, char *line, int *pos)
+{
+	char	*newtoret;
+
+	newtoret = alocpy(oldtoret);
+	free(oldtoret);
+	while (!even_quote(newtoret, 34) && line[*pos])
+	{
+		newtoret = strjoinchr(newtoret, line[*pos]);
+		*pos += 1;
+	}
+	while (!even_quote(newtoret, 39) && line[*pos])
+	{
+		newtoret = strjoinchr(newtoret, line[*pos]);
+		*pos += 1;
+	}
+	return (newtoret);
+}
+
 char	*get_cmd(char *line)
 {
 	char	*toret;
@@ -70,7 +89,10 @@ char	*get_cmd(char *line)
 	else
 		toret = adv_spaces(toret, line, &i);
 	if (toret)
+	{
+		toret = fix_quotest_count(toret, line, &i);
 		clean_line(toret, line);
+	}
 	return (toret);
 }
 
