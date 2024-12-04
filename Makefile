@@ -61,6 +61,11 @@ set: $(OBJS) $(LIBFT)
 norm:
 	norminette $(SRCS) minishell.h inc.h
 
+gdb: $(OBJS) $(LIBFT)
+	@make re
+	gdb -tui minishell
+	
+
 .PHONY: all clean fclean re
 
 .SILENT:
