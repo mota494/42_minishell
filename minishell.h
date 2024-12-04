@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/03 10:21:02 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/04 12:03:13 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ void				free_pids(t_shell *cmd);
 /* parser_vars */
 int					already_analyzed(char *str);
 int					is_quote(int c);
+int					is_var_char(int c);
 char				*get_replace_var(char *orig_line, int *pos, char *newtoret);
 int					check_wrap(char *str, int *pos);
 char				*parser_vars(t_token *cmd);
