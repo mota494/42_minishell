@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/04 12:03:13 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/04 14:55:59 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,6 +89,7 @@ void				print_export(void);
 size_t				size_env(t_c_envp *b_env);
 void				export_new(int num_args, t_token *cmd, t_shell *sh);
 int					check_equal(char *str);
+int					is_env_char(int c);
 int					check_var_name(char *str);
 /* free */
 void				free_pids(t_shell *cmd);
