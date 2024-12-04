@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 16:24:17 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:35:01 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ char	*var_to_char(t_c_envp node)
 		toret = strjoinchr(toret, node.var_name[c.d]);
 		c.d++;
 	}
+	if (node.equal == 0)
+		return (toret);
 	toret = strjoinchr(toret, '=');
 	while (node.var_value[c.i])
 	{
@@ -60,16 +62,11 @@ char	**send_env(void)
 	start_counters(&c);
 	c_envp = ret_env(NULL);
 	while (c_envp[c.j].var_name)
-	{
-		if (c_envp[c.j].equal == '=')
-			c.d++;
 		c.j++;
-	}
-	toret = ft_calloc(c.d + 1, sizeof(char *));
+	toret = ft_calloc(c.j + 1, sizeof(char *));
 	while (c_envp[c.i].var_name)
 	{
-		if (c_envp[c.i].equal == '=')
-			toret[c.i] = var_to_char(c_envp[c.i]);
+		toret[c.i] = var_to_char(c_envp[c.i]);
 		c.i++;
 	}
 	toret[c.i] = NULL;

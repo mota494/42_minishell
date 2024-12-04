@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:59:06 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/04 14:53:03 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:30:46 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	is_var_char(int c)
 
 int	is_env_char(int c)
 {
-	if (!ft_isalpha(c) || c != '_')
+	if (!ft_isalpha(c) && c != '_')
 		return (0);
 	return (1);	
 }
