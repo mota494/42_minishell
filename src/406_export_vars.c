@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 16:45:29 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:23:23 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	add_env_vars(t_c_envp *n_env, t_token *cmd, int i, t_shell *sh)
 			var_no_equal(n_env, i, cmd->cmd_line);
 			i++;
 		}
-		else if (check_var_name(cmd->cmd_line) == 0)
+		else if (!check_var_name(cmd->cmd_line))
 		{
 			printf("minishell: export: %s, not a valid identifier\n",
 				cmd->cmd_line);
@@ -102,7 +102,7 @@ void	export_new(int num_args, t_token *cmd, t_shell *sh)
 
 	i = 0;
 	b_env = ret_env(NULL);
-	n_env = ft_calloc(num_args + 1 + size_env(b_env), sizeof(t_c_envp));
+	n_env = ft_calloc(num_args + 2 + size_env(b_env), sizeof(t_c_envp));
 	while (b_env[i].var_name)
 	{
 		n_env[i].var_name = ft_strdup(b_env[i].var_name);
