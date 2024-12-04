@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/03 15:45:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/04 15:27:23 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_export_args(t_token *cmd)
 	temp = cmd->next;
 	while (temp && temp->type == string)
 	{
-		if (!var_exist(temp->cmd_line))
+		if (var_exist(temp->cmd_line))
 			temp = temp->next;
 		else if (!check_var_name(temp->cmd_line))
 			temp = temp->next;
