@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/05 09:59:53 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/05 10:25:59 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,25 +54,6 @@ t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd, char *orig)
 	return (error);
 }
 
-char	*fix_quotest_count(char *oldtoret, char *line, int *pos)
-{
-	char	*newtoret;
-
-	newtoret = alocpy(oldtoret);
-	free(oldtoret);
-	while (!even_quote(newtoret, 34) && line[*pos])
-	{
-		newtoret = strjoinchr(newtoret, line[*pos]);
-		*pos += 1;
-	}
-	while (!even_quote(newtoret, 39) && line[*pos])
-	{
-		newtoret = strjoinchr(newtoret, line[*pos]);
-		*pos += 1;
-	}
-	return (newtoret);
-}
-
 char	*get_cmd(char *line)
 {
 	char	*toret;
@@ -80,19 +61,12 @@ char	*get_cmd(char *line)
 
 	i = 0;
 	toret = ft_calloc(1, 1);
-	if (line[i] == 39)
-		toret = get_token(toret, line, &i);
-	else if (line[i] == 34)
-		toret = get_token(toret, line, &i);
-	else if (ft_iseparator(line[i]) == 1)
+	if (ft_iseparator(line[i]))
 		toret = adv_separator(toret, line, &i);
 	else
 		toret = get_token(toret, line, &i);
 	if (toret)
-	{
-		//toret = fix_quotest_count(toret, line, &i);
 		clean_line(toret, line);
-	}
 	return (toret);
 }
 

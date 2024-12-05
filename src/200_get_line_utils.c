@@ -6,11 +6,27 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/05 09:36:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/05 09:58:12 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/05 10:28:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+char	*adv_separator(char *oldtoret, char *line, int *pos)
+{
+	char	*novo_toro;
+
+	novo_toro = alocpy(oldtoret);
+	while (ft_iseparator(line[*pos]) && line[*pos])
+	{
+		if (ft_ispace(line[*pos]) == 1)
+			break ;
+		novo_toro = strjoinchr(novo_toro, line[*pos]);
+		*pos += 1;
+	}
+	free(oldtoret);
+	return (novo_toro);
+}
 
 char	*jump_quotes(char *oldtoret, char *line, int *pos, int quote)
 {
