@@ -27,3 +27,10 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 [GNU Bash Manual](https://www.gnu.org/software/bash/manual/html_node/Shell-Parameter-Expansion.html)
 
 [User and built-in variables](https://pressbooks.senecapolytechnic.ca/uli101/chapter/variables-in-shell-scripting/)
+
+# Issues
+
+"'"$USER"'" -> not expanding, HAS TO expand
+for some reason '"$USER"'$PWD'"$USER"' is adding a random ! to the end of the string
+echo -nnnnnnnnnnnn has to be dealt with and should accept it as a flag
+if the command line is empty than it shouldn't be added to the history
