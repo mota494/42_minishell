@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/03 10:25:44 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/05 09:59:53 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,16 +81,16 @@ char	*get_cmd(char *line)
 	i = 0;
 	toret = ft_calloc(1, 1);
 	if (line[i] == 39)
-		toret = adv_sig_quote(toret, line, &i);
+		toret = get_token(toret, line, &i);
 	else if (line[i] == 34)
-		toret = adv_dbl_quote(toret, line, &i);
+		toret = get_token(toret, line, &i);
 	else if (ft_iseparator(line[i]) == 1)
 		toret = adv_separator(toret, line, &i);
 	else
-		toret = adv_spaces(toret, line, &i);
+		toret = get_token(toret, line, &i);
 	if (toret)
 	{
-		toret = fix_quotest_count(toret, line, &i);
+		//toret = fix_quotest_count(toret, line, &i);
 		clean_line(toret, line);
 	}
 	return (toret);

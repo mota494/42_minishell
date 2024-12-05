@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/04 14:55:59 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/05 09:58:41 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_shell
 }					t_shell;
 
 /* ============ functions ============ */
+char				*get_token(char *oldtoret, char *line, int *pos);
 /* redirect */
 void				handle_redirect(t_token *token /*, int p[2]*/);
 /* export */
