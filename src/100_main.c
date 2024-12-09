@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 16:30:34 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/09 09:30:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void	read_command(t_shell *cmd)
 	{
 		cmd->copy_envp = send_env();
 		line = readline("minishell: ");
-		add_history(line);
+		if (ft_strlen(line) > 0)
+			add_history(line);
 		if (check_syntax(cmd, line) == 1)
 		{
 			parser(line, cmd);
@@ -33,8 +34,6 @@ void	read_command(t_shell *cmd)
 			free_all(cmd);
 		}
 	}
-	if (cmd->error_code > 255)
-		cmd->error_code = fix_exit(cmd->error_code);
 }
 
 void	init_tshell(t_shell *cmd, char **envp)
@@ -63,6 +62,8 @@ int	main(int ac, char **av, char **envp)
 	check_input(ac, av);
 	init_tshell(&cmd, envp);
 	read_command(&cmd);
+	if (cmd.error_code > 255)
+		cmd.error_code = fix_exit(cmd.error_code);
 	free_env(&cmd);
 	return (cmd.error_code);
 }
