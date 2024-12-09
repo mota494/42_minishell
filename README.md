@@ -33,7 +33,3 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 "'"$USER"'" -> not expanding, HAS TO expand
 
 for some reason '"$USER"'$PWD'"$USER"' is adding a random ! to the end of the string
-
-echo -nnnnnnnnnnnn has to be dealt with and should accept it as a flag
-
-if the command line is empty than it shouldn't be added to the history

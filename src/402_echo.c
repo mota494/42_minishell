@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:58:43 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/20 15:06:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/09 10:55:44 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,25 @@ int	count_echo(t_token *cmd)
 	return (toret);
 }
 
+int	check_echo_flag(char *str)
+{
+	int	i;
+
+	i = 2;
+	if (str[0] == '-' && str[1] == 'n')
+	{
+		while (str[i])
+		{
+			if (str[i] != 'n')
+				return (0);
+			i++;
+		}
+	}
+	else
+		return (0);
+	return (1);
+}
+
 void	print_echo(t_token *cmd)
 {
 	int	count_print;
@@ -41,7 +60,7 @@ void	print_echo(t_token *cmd)
 	while (to_print > 0 && cmd)
 	{
 		to_print--;
-		if (sstrcmp(cmd->cmd_line, "-n") && count_print == 0)
+		if (check_echo_flag(cmd->cmd_line) && count_print == 0)
 			is_n = 1;
 		else if (to_print > 0 && ft_strlen(cmd->cmd_line) > 0)
 			printf("%s ", cmd->cmd_line);
