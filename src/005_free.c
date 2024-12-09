@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/04 15:20:57 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/09 16:00:55 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	free_all(t_shell *cmd)
 	{
 		temp = cmd->token;
 		cmd->token = cmd->token->next;
+		printf("[[%p]]", temp->cmd_line);
 		free(temp->cmd_line);
 		free(temp->orig_line);
 		if (temp->type == command)
