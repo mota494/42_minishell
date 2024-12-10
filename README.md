@@ -30,4 +30,3 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 # Issues
 
-"'"$USER"'" -> not expanding, HAS TO expand

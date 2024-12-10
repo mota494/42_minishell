@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/28 11:26:32 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:37:08 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ t_token	*get_next(t_token *current)
 void	child_process(t_shell *cmd, char **envp, int help, int i)
 {
 	int	p[2];
-
+	
 	pipe(p);
 	cmd->pids[i] = fork();
-	if (cmd->pids[i] == -1)
-		return ;
 	if (cmd->pids[i] == 0)
 	{
 		if (i != 0)

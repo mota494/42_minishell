@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 10:12:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/09 15:51:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:47:48 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,12 @@ int	check_wrap(char *str, int *pos)
 	count_sgl = 0;
 	while (str[i] && i < *pos)
 	{
+		if (str[i] == 34)
+		{
+			i++;
+			while (str[i] != 34 && i < *pos && str[i])
+				i++;
+		}
 		if (str[i] == 39)
 			count_sgl++;
 		i++;
