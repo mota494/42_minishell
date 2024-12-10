@@ -31,5 +31,3 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 # Issues
 
 "'"$USER"'" -> not expanding, HAS TO expand
-
-for some reason '"$USER"'$PWD'"$USER"' is adding a random ! to the end of the string
