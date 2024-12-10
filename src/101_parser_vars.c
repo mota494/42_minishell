@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/09 16:08:09 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/10 09:03:38 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ char	*one_var(t_token *cmd, int *pos)
 	helper = alocpy(toret);
 	free(toret);
 	toret = addprefix(cmd->orig_line, pos, helper);
-	printf("[%p]", toret);
 	return (toret);
 }
 
@@ -55,6 +54,7 @@ char	*more_vars(char *toret)
 
 	pos = 0;
 	helper = alocpy(toret);
+	free(toret);
 	toret = addsufix(helper, &pos);
 	another_helper = alocpy(toret);
 	free(toret);
