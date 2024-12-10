@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/09 09:30:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/10 16:35:55 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	read_command(t_shell *cmd)
 				if (execute_pipeline(cmd, cmd->copy_envp) == 1)
 					write(2, "Error executing pipeline\n", 25);
 			}
+			check_err(cmd);
 			free(line);
 			free_all(cmd);
 		}
