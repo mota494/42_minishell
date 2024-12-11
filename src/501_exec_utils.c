@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   501_exec_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:35:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 18:04:44 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/10 15:29:56 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,14 @@ char	**get_command_tokens(t_token *token)
 	i = 0;
 	while (current && strcmp(current->cmd_line, "|") != 0)
 	{
-		args[i] = alocpy(current->cmd_line);
-		current = current->next;
-		i++;
+		if (current->type == redirect)
+			current = current->next;
+		else
+		{
+			args[i] = alocpy(current->cmd_line);
+			current = current->next;
+			i++;
+		}
 	}
 	args[i] = NULL;
 	return (args);

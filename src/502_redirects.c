@@ -6,11 +6,34 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:37:54 by codespace         #+#    #+#             */
-/*   Updated: 2024/11/27 16:05:46 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/10 15:30:43 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+char	**get_tokens(t_token *token)
+{
+	int		num_token;
+	char	**args;
+	t_token	*current;
+	int		i;
+
+	current = token;
+	num_token = count_tokens(current);
+	args = malloc(sizeof(char *) * (num_token + 1));
+	if (!args)
+		return (NULL);
+	i = 0;
+	while (current && strcmp(current->cmd_line, "|") != 0)
+	{
+			args[i] = alocpy(current->cmd_line);
+			current = current->next;
+			i++;
+	}
+	args[i] = NULL;
+	return (args);
+}
 
 void	redirect_outfile(char **args, char *red)
 {
@@ -84,7 +107,7 @@ void	handle_redirect(t_token *token/*, int p[2]*/)
 	char	**args;
 
 	current_token = token;
-	args = get_command_tokens(current_token);
+	args = get_tokens(current_token);
 	check_red(args/*, p*/);
 	free_args(args);
 }

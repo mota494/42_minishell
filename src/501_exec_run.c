@@ -6,11 +6,21 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/26 16:54:14 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/10 15:30:20 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void print_args(char **args)
+{
+    int i = 0;
+    while (args[i])
+    {
+        printf("args[%d]: %s\n", i, args[i]);
+        i++;
+    }
+}
 
 void	call_builtin(char **args, t_shell *cmd)
 {

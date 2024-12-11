@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   300_check_syntax.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/10/31 15:07:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/04 12:11:06 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ void	remove_spaces(char *str)
 
 	i = 0;
 	j = 0;
+	if (!str)
+		return ;
 	while (ft_ispace(str[i]) == 1)
 		i++;
 	if (i > 0)
@@ -86,13 +88,16 @@ int	check_operators(t_shell *cmd, char *str)
 					return (0);
 			if (op == '<')
 				if (check_redin_heredoc(cmd, str, i))
-					return (1);
+					return (0);
 		}
 	}
 	return (1);
 }
 
 /*checar os codigos de erro*/
+/* if any syntax error is found it returns 0
+** else, it returns 1 and parcing continues
+ */
 int	check_syntax(t_shell *cmd, char *line)
 {
 	if (ft_strlen(line) <= 0)

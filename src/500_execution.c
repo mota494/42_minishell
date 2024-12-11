@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 17:52:47 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/11 16:46:47 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@ t_token	*get_next(t_token *current)
 {
 	t_token	*temp;
 
+	if (current == NULL)
+		return (NULL);
 	temp = current->next;
 	while (temp)
 	{
-		if (temp->type == builtin || temp->type == command)
+		if (temp->type == 4) 
+		{
+			temp = temp->next;
 			break ;
+		}
 		temp = temp->next;
 	}
 	return (temp);

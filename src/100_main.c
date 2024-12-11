@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/27 16:04:29 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/10 16:30:32 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	read_command(t_shell *cmd)
 		cmd->copy_envp = send_env();
 		reset_fds(cmd->fds[0], cmd->fds[1]);
 		line = readline("minishell: ");
+		add_history(line);
 		if (check_syntax(cmd, line) == 1)
 		{
-			add_history(line);
 			parser(line, cmd);
 			if (cmd->n_inputs > 0)
 			{

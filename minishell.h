@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/27 15:08:13 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/10 15:05:15 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -197,6 +197,7 @@ void				run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp);
 void				export_main(t_shell *cmd);
 /* redirects */
 void	handle_redirect(t_token *token /*, int p[2]*/);
+char	**get_tokens(t_token *token);
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain
