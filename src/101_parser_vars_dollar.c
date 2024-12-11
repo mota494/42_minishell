@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:49:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/04 12:06:04 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:13:01 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,26 @@ char	*not_rm_dollar(char *str, int *pos, char *oldtoret)
 	return (newtoret);
 }
 
+char	*get_error_code(int *pos, char *oldtoret)
+{
+	char	*newtoret;
+	char	*error_code;
+	int		i;
+
+	newtoret = alocpy(oldtoret);
+	free(oldtoret);
+	i = 0;
+	*pos += 2;
+	error_code = ft_itoa(return_error_code(NULL));
+	while (error_code[i])
+	{
+		newtoret = strjoinchr(newtoret, error_code[i]);
+		i++;
+	}
+	free(error_code);
+	return (newtoret);
+}
+
 char	*parse_dollar(char *cmd, int *pos, char *oldtoret)
 {
 	char	*newtoret;
@@ -73,6 +93,8 @@ char	*parse_dollar(char *cmd, int *pos, char *oldtoret)
 		newtoret = not_rm_dollar(cmd, pos, newtoret);
 	else if (!is_var_char(cmd[*pos + 1]))
 		newtoret = not_rm_dollar(cmd, pos, newtoret);
+	else if (cmd[*pos + 1] == '?' && c_if_wrap(cmd, pos))
+		newtoret = get_error_code(pos, newtoret);
 	else
 		newtoret = get_replace_var(cmd, pos, newtoret);
 	return (newtoret);

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/10 16:20:42 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/11 09:47:22 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,23 @@ int	check_err(t_shell *cmd)
 	return (1);
 }
 
+void	get_redirect_type(t_token *sh)
+{
+	t_types	last_type;
+	t_token	*temp;
+
+	temp = sh;
+	last_type = temp->type;
+	temp = temp->next;
+	while (temp)
+	{
+		if (last_type == redirect)
+			temp->type = file;
+		last_type = temp->type;
+		temp = temp->next;
+	}
+}
+
 void	parser(char *line, t_shell *cmd)
 {
 	tokenize(line, cmd);
@@ -42,6 +59,7 @@ void	parser(char *line, t_shell *cmd)
 	cmd->n_command = count_command(cmd->token);
 	cmd->n_inputs = cmd->n_command + cmd->n_builtin;
 	special_case(cmd);
+	get_redirect_type(cmd->token);
 	get_type(NULL, NULL, "|", "|");
 	already_analyzed(NULL);
 }
