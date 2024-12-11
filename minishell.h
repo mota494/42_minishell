@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/10 16:23:47 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/11 10:01:40 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef enum s_types
 	control,
 	redirect,
 	var,
+	file,
 	error,
 }					t_types;
 
@@ -132,6 +133,7 @@ char				*strjoinchr(char *oldtoret, char car);
 /* ==== utils4.c ==== */
 void				start_counters(t_count *counters);
 char				*initalize_str(void);
+int					return_error_code(t_shell *sh);
 /* ==== define_type.c ==== */
 int					is_builtin(char *str);
 int					is_controler(char *str);
