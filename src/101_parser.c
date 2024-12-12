@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/12 10:02:32 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/12 12:32:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,20 @@
 int	check_err(t_shell *cmd)
 {
 	t_token	*temp;
-	int		in_command;
 
 	temp = cmd->token;
-	in_command = 0;
 	while (temp)
 	{
-		if (temp->type == error && in_command == 0
-			&& ft_strlen(temp->cmd_line) > 0)
+		if (temp->type == error && ft_strlen(temp->cmd_line) > 0)
 		{
 			cmd->error_code = 127;
-			in_command = 1;
 			printf("%s: command not found\n", temp->cmd_line);
 		}
-		if (temp->type == control)
-			in_command = 0;
+		if (temp->type == folder && ft_strlen(temp->cmd_line) > 0)
+		{
+			cmd->error_code = 126;
+			printf("minishell: %s: is a directory\n", temp->cmd_line);
+		}
 		temp = temp->next;
 	}
 	return (1);
@@ -52,6 +51,20 @@ void	get_redirect_type(t_token *sh)
 	}
 }
 
+void	get_folder_type(t_token *sh)
+{
+	struct stat	buffer;
+	t_token		*temp;
+
+	temp = sh;
+	while (temp)
+	{
+		if (stat(temp->cmd_line, &buffer) == 0 && temp->type != string)
+			temp->type = folder;
+		temp = temp->next;
+	}
+}
+
 void	parser(char *line, t_shell *cmd)
 {
 	tokenize(line, cmd);
@@ -60,6 +73,7 @@ void	parser(char *line, t_shell *cmd)
 	cmd->n_inputs = cmd->n_command + cmd->n_builtin;
 	special_case(cmd);
 	get_redirect_type(cmd->token);
+	get_folder_type(cmd->token);
 	get_type(NULL, NULL, "|", "|");
 	already_analyzed(NULL);
 }
