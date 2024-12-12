@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 09:39:22 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/04 14:56:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/12 10:10:26 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_var_name(char *str)
 	int	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] && str[i] != '=')
 	{
 		if (!is_env_char(str[i]))
 			return (0);
