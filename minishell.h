@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/11 10:01:40 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/12 11:05:01 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ typedef enum s_types
 	redirect,
 	var,
 	file,
+	folder,
 	error,
 }					t_types;
 
