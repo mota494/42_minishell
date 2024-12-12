@@ -32,3 +32,4 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 echo _'"'$USER'"' -> not expanding should expand GRRRRR
 
+flip the order that you expand and remove quotes

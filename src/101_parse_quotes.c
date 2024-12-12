@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:05:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/09 16:08:24 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:47:15 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,5 @@ char	*parse_quotes(char *str)
 			c.j++;
 		}
 	}
-	free(str);
 	return (toret);
 }
