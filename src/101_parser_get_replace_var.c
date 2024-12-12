@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:54:42 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/14 11:07:21 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/12 14:17:16 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ char	*get_replace_var(char *orig_line, int *pos, char *oldtoret)
 	if (var_value)
 	{
 		i = 0;
+		newtoret = strjoinchr(newtoret, '"');
 		while (var_value[i])
 		{
 			newtoret = strjoinchr(newtoret, var_value[i]);
 			i++;
 		}
+		newtoret = strjoinchr(newtoret, '"');
 	}
 	free_replaced(oldtoret, var);
 	return (newtoret);
