@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/12 14:48:29 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/12 17:28:07 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ char	*replace_var(t_token *cmd, int var_count)
 	if (i > 1)
 		return (toret);
 	else
-		return (alocpy(cmd->cmd_line));
+		return (alocpy(cmd->orig_line));
 }
 
 char	*parser_vars(t_token *cmd)
