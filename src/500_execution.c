@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/10 16:37:08 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:53:23 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@ t_token	*get_next(t_token *current)
 {
 	t_token	*temp;
 
+	if (current == NULL)
+		return (NULL);
 	temp = current->next;
 	while (temp)
 	{
-		if (temp->type == builtin || temp->type == command)
+		if (temp->type == 4) 
+		{
+			temp = temp->next;
 			break ;
+		}
 		temp = temp->next;
 	}
 	return (temp);
@@ -28,10 +33,13 @@ t_token	*get_next(t_token *current)
 
 void	child_process(t_shell *cmd, char **envp, int help, int i)
 {
+
 	int	p[2];
-	
+
 	pipe(p);
 	cmd->pids[i] = fork();
+	if (cmd->pids[i] == -1)
+		return ;
 	if (cmd->pids[i] == 0)
 	{
 		if (i != 0)

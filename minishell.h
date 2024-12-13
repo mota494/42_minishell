@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/12 11:05:01 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:49:38 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ typedef struct s_shell
 	int				n_builtin;
 	int				n_command;
 	int				error_code;
+	int				fds[2];
 	char			**path_dirs;
 	char			**fork_cmds;
 	t_c_envp		*c_envp;
@@ -211,6 +212,9 @@ int					execute_command(t_token *token, char **envp);
 void				run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp);
 /* export_builtin */
 void				export_main(t_shell *cmd);
+/* redirects */
+void				handle_redirect(t_token *token /*, int p[2]*/);
+char				**get_tokens(t_token *token);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct

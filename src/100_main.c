@@ -6,11 +6,17 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/11 10:10:10 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:49:03 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	reset_fds(int fd_in, int fd_out)
+{
+	dup2(fd_in, STDIN_FILENO);
+	dup2(fd_out, STDOUT_FILENO);
+}
 
 void	read_command(t_shell *cmd)
 {
@@ -19,6 +25,7 @@ void	read_command(t_shell *cmd)
 	while (1 && cmd->leave == false)
 	{
 		cmd->copy_envp = send_env();
+		reset_fds(cmd->fds[0], cmd->fds[1]);
 		line = readline("minishell: ");
 		if (ft_strlen(line) > 0)
 			add_history(line);
