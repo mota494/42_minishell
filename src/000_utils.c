@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/12 17:28:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/16 09:46:00 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,16 @@ char	*alocpy(char *str)
 t_token	*add_node(t_shell *cmd, char *content, int id)
 {
 	t_token	*new_node;
+	char	*helper;
 
 	new_node = malloc(sizeof(t_token));
 	new_node->orig_line = alocpy(content);
 	free(content);
 	new_node->cmd_line = parser_vars(new_node);
-	new_node->cmd_line = parse_quotes(new_node->cmd_line);
+	helper = alocpy(new_node->cmd_line);
+	free(new_node->cmd_line);
+	new_node->cmd_line = parse_quotes(helper);
+	free(helper);
 	new_node->next = NULL;
 	new_node->type = get_type(cmd, new_node, new_node->cmd_line,
 			new_node->orig_line);
