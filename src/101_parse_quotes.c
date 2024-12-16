@@ -6,13 +6,13 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/31 12:05:44 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/12 14:47:15 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/16 12:22:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*jump_dbl_quotest(char *oldtoret, char *tojump, size_t *pos)
+char	*jump_dbl_quotes(char *oldtoret, char *tojump, size_t *pos)
 {
 	char	*newtoret;
 
@@ -54,7 +54,7 @@ char	*parse_quotes(char *str)
 	while (str[c.j])
 	{
 		if (str[c.j] == 34)
-			toret = jump_dbl_quotest(toret, str, &c.j);
+			toret = jump_dbl_quotes(toret, str, &c.j);
 		else if (str[c.j] == 39)
 			toret = jump_sql_quotes(toret, str, &c.j);
 		else
