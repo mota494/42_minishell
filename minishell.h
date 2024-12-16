@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/13 15:49:38 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/16 17:00:17 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_shell
 	char			**copy_envp;
 }					t_shell;
 
+/* == parser == */
+char				*parse_line(char *o_line);
 /* ============ functions ============ */
 char				*get_token(char *oldtoret, char *line, int *pos);
 /* redirect */
