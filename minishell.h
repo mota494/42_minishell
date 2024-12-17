@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/16 17:00:17 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:39:44 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,6 +191,7 @@ int					check_equal(char *str);
 /* ==== free ==== */
 void				free_env(t_shell *cmd);
 /* === env_utils ==== */
+void				add_env_value(char *var_name, char *var_value, int i);
 char				**send_env(void);
 void				builtin_env(t_shell *cmd);
 void				change_env_value(char *var_name, char *value);

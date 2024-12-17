@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/13 15:56:14 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 09:43:06 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ void	get_folder_type(t_token *sh)
 	temp = sh;
 	while (temp)
 	{
-		if (stat(temp->cmd_line, &buffer) == 0 && temp->type != string)
+		if (!stat(temp->cmd_line, &buffer) && temp->type != string
+			&& temp->type != file)
 			temp->type = folder;
 		temp = temp->next;
 	}
