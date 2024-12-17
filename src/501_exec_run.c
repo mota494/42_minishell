@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/13 15:54:17 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:13:01 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ void	call_builtin(char **args, t_shell *cmd)
 		builtin_env(cmd);
 	else if (sstrcmp(args[0], "export"))
 		export_main(cmd);
+	else if (sstrcmp(args[0], "unset"))
+		unset_env(cmd);
 }
 
 int	one_builtin(t_shell *cmd)

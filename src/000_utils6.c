@@ -6,11 +6,26 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:59:06 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/16 16:39:15 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:17:10 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	count_args(t_token *cmds)
+{
+	int	toret;
+
+	toret = 0;
+	while (cmds)
+	{
+		if (cmds->type != string)
+			break ;
+		cmds = cmds->next;
+		toret++;
+	}
+	return (toret);
+}
 
 int	is_var_char(int c)
 {
