@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 14:30:25 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/17 14:51:34 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,11 @@ void	unset_env(t_shell *cmd)
 
 	temp = cmd->token->next;
 	args = count_args(temp);
+	if (args <= 0)
+	{
+		cmd->error_code = 0;
+		return ;
+	}
 	if (temp->cmd_line[0] == '-')
 	{
 		printf("Minishell: unset: -%c: invalid option\n", temp->cmd_line[1]);
@@ -75,7 +80,7 @@ void	unset_env(t_shell *cmd)
 	while (args > 0)
 	{
 		if (get_env(temp->cmd_line))
-			 cmd->c_envp = unset_env_value(temp->cmd_line);
+			cmd->c_envp = unset_env_value(temp->cmd_line);
 		temp = temp->next;
 		args--;
 	}
