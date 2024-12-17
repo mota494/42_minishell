@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 14:15:15 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/17 15:30:02 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	free_all(t_shell *cmd)
 {
 	t_token	*temp;
 
+	cmd->token = cmd->head;
 	while (cmd->token)
 	{
 		temp = cmd->token;

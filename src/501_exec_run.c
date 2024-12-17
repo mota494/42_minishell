@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 12:13:01 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/17 15:22:39 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ int	execute_builtin(t_shell *cmd, t_token *token)
 	args = get_command_tokens(current_token);
 	call_builtin(args, cmd);
 	free_args(args);
+	free_all(cmd);
+	free_env(cmd);
 	return (0);
 }
 
