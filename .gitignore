@@ -1,6 +1,7 @@
 # Custom files
 commit_message
 minishell
+*.txt
 
 # Folders
 .idea/

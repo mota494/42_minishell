@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/16 09:43:27 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:57:28 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	init_tshell(t_shell *cmd, char **envp)
 	char	buffer[PATH_MAX];
 
 	ft_bzero(cmd, sizeof(t_shell));
-	cmd->curdir = getcwd(buffer, PATH_MAX);
+	cmd->curdir = alocpy(getcwd(buffer, PATH_MAX));
 	copy_envs(cmd, envp);
 	init_path_dirs(cmd, envp);
 }

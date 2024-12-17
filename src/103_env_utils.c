@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/04 15:35:01 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 10:53:30 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,37 @@ void	change_env_value(char *var_name, char *value)
 		{
 			if (b_env[i].var_value)
 				free(b_env[i].var_value);
-			b_env[i].var_value = ft_strdup(value);
+			if (value)
+				b_env[i].var_value = ft_strdup(value);
 			break ;
 		}
 		i++;
 	}
+}
+
+void	add_env_value(char *var_name, char *var_value, int i)
+{
+	t_c_envp	*b_env;
+	t_c_envp	*n_env;
+
+	b_env = ret_env(NULL);
+	n_env = ft_calloc(2 + size_env(b_env), sizeof(t_c_envp));
+	while (b_env[i].var_name)
+	{
+		n_env[i].var_name = ft_strdup(b_env[i].var_name);
+		free(b_env[i].var_name);
+		if (b_env[i].var_value)
+		{
+			n_env[i].var_value = ft_strdup(b_env[i].var_value);
+			free(b_env[i].var_value);
+		}
+		n_env[i].equal = b_env[i].equal;
+		i++;
+	}
+	n_env[i].var_name = ft_strdup(var_name);
+	n_env[i].var_value = ft_strdup(var_value);
+	n_env[i].equal = '=';
+	n_env[i + 1].var_name = NULL;
+	n_env[i + 1].var_value = NULL;
+	ret_env(n_env);
 }
