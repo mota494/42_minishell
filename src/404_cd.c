@@ -6,26 +6,11 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 10:57:42 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:16:37 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	count_args(t_token *cmds)
-{
-	int	toret;
-
-	toret = 0;
-	while (cmds)
-	{
-		if (cmds->type != string)
-			break ;
-		cmds = cmds->next;
-		toret++;
-	}
-	return (toret);
-}
 
 void	cd_empty_args(t_shell *cmd)
 {

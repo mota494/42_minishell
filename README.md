@@ -30,6 +30,4 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 # Issues
 
-echo _'"'$USER'"' -> not expanding should expand GRRRRR
-
-flip the order that you expand and remove quotes
+exit error code update even if t doesn not execute

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 10:39:44 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 12:17:10 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,8 @@ typedef struct s_shell
 	char			**copy_envp;
 }					t_shell;
 
+/* == unset == */
+void				unset_env(t_shell *cmd);
 /* == parser == */
 char				*parse_line(char *o_line);
 /* ============ functions ============ */
@@ -138,6 +140,7 @@ char				*strjoinchr(char *oldtoret, char car);
 void				start_counters(t_count *counters);
 char				*initalize_str(void);
 int					return_error_code(t_shell *sh);
+int					count_args(t_token *cmds);
 /* ==== define_type.c ==== */
 int					is_builtin(char *str);
 int					is_controler(char *str);
