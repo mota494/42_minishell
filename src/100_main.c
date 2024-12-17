@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 10:57:28 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/17 15:58:59 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	read_command(t_shell *cmd)
 {
 	char	*line;
 
+	setup_signals();
 	while (1 && cmd->leave == false)
 	{
 		cmd->copy_envp = send_env();
@@ -31,7 +32,7 @@ void	read_command(t_shell *cmd)
 			add_history(line);
 		if (check_syntax(cmd, line) == 1)
 		{
-			return_error_code(cmd);	
+			return_error_code(cmd);
 			parser(line, cmd);
 			if (cmd->n_inputs > 0)
 			{

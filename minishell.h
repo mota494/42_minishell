@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 15:24:07 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/17 15:59:39 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ typedef struct s_shell
 	char			**copy_envp;
 }					t_shell;
 
+/* == sig_handler == */
+void				setup_signals(void);	
 /* == unset == */
 void				unset_env(t_shell *cmd);
 /* == parser == */
