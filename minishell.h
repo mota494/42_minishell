@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/18 10:40:23 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/18 12:33:45 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ typedef struct s_shell
 }					t_shell;
 
 /* == sig_handler == */
-void				setup_signals(void);	
+int					return_last_signal(int n_signal);
+void				setup_signals(int mode);	
 /* == unset == */
 void				unset_env(t_shell *cmd);
 /* == parser == */

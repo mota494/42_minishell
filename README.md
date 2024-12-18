@@ -30,4 +30,6 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 # Issues
 
-exit error code update even if t doesn not execute
+after pressing CTRL+\ the error code has to update to 131
+
+after stopping a command with CTRL+\ there's invalid free

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 15:24:31 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/18 11:45:18 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 	int	p[2];
 
 	pipe(p);
+	setup_signals(COMMANDS);
 	cmd->pids[i] = fork();
 	if (cmd->pids[i] == -1)
 		return ;
@@ -75,6 +76,7 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 	while (cmd->token)
 	{
 		child_process(cmd, envp, help, i);
+		setup_signals(IGNORE);
 		cmd->token = get_next(cmd->token);
 		i++;
 	}
