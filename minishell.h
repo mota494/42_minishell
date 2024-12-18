@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/10 15:05:15 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/18 16:45:34 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_token
 	char			*cmd_line;
 	char			*orig_line;
 	char			*path_name;
+	char			*eof;
 	bool			expand;
 	t_types			type;
 	struct s_token	*next;
@@ -198,6 +199,8 @@ void				export_main(t_shell *cmd);
 /* redirects */
 void	handle_redirect(t_token *token /*, int p[2]*/);
 char	**get_tokens(t_token *token);
+/* heredoc */
+void	find_heredoc(t_shell *cmd);
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
 scmp is a strcmp but it ignores quotes and double quotes, only used for certain

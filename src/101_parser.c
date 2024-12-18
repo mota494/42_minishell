@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/10 15:40:47 by codespace        ###   ########.fr       */
+/*   Updated: 2024/12/18 16:45:52 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	parser(char *line, t_shell *cmd)
 	get_type(NULL, NULL, "|", "|");
 	//print_list(cmd);
 	already_analyzed(NULL);
+	find_heredoc(cmd);
 }
