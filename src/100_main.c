@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/18 09:36:20 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/18 11:03:05 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void	read_command(t_shell *cmd)
 {
 	char	*line;
 
-	setup_signals();
 	while (1 && cmd->leave == false)
 	{
 		cmd->copy_envp = send_env();
@@ -34,12 +33,12 @@ void	read_command(t_shell *cmd)
 		{
 			return_error_code(cmd);
 			parser(line, cmd);
+			check_err(cmd);
 			if (cmd->n_inputs > 0)
 			{
 				if (execute_pipeline(cmd, cmd->copy_envp) == 1)
 					write(2, "Error executing pipeline\n", 25);
 			}
-			check_err(cmd);
 			free(line);
 		}
 		free_all(cmd);
@@ -52,6 +51,7 @@ void	init_tshell(t_shell *cmd, char **envp)
 
 	ft_bzero(cmd, sizeof(t_shell));
 	cmd->curdir = alocpy(getcwd(buffer, PATH_MAX));
+	setup_signals();
 	copy_envs(cmd, envp);
 	init_path_dirs(cmd, envp);
 }

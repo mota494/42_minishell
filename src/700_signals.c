@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:00:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 16:27:16 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/18 10:52:04 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	sig_handler(int sig)
 	if (sig == SIGINT)
 		printf("WOAH");
 	else if (sig == SIGQUIT)
-		printf("GRRRRR");
+		printf("test");
 }
 
 void	setup_signals(void)
