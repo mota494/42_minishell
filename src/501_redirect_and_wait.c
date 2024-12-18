@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:11:19 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/11/11 10:34:24 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/18 15:13:57 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ int	wait_for_child(t_shell *cmd)
 	{
 		waitpid(cmd->pids[i], &wstatus, 0);
 	}
+	cmd->error_code = wstatus;
 	return (0);
 }
