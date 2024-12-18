@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 15:30:02 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/18 11:02:49 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ void	free_all(t_shell *cmd)
 			free(temp->path_name);
 		free(temp);
 	}
+	cmd->head = NULL;
 	free_pids(cmd);
 	cmd->token = NULL;
 	free_copy_envp(cmd);
