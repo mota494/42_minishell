@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 15:58:59 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/18 09:36:20 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	read_command(t_shell *cmd)
 		cmd->copy_envp = send_env();
 		reset_fds(cmd->fds[0], cmd->fds[1]);
 		line = readline("minishell: ");
-		if (ft_strlen(line) > 0)
+		if (line && ft_strlen(line) > 0)
 			add_history(line);
 		if (check_syntax(cmd, line) == 1)
 		{
@@ -41,8 +41,8 @@ void	read_command(t_shell *cmd)
 			}
 			check_err(cmd);
 			free(line);
-			free_all(cmd);
 		}
+		free_all(cmd);
 	}
 }
 

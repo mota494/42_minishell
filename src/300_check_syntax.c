@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/13 15:51:53 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/18 09:37:12 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,12 @@ int	check_operators(t_shell *cmd, char *str)
  */
 int	check_syntax(t_shell *cmd, char *line)
 {
+	if (!line)
+	{
+		write(2, "exit\n", 5);
+		cmd->leave = true;
+		return (0);
+	}
 	if (ft_strlen(line) <= 0)
 		return (0);
 	remove_spaces(line);
