@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/25 15:37:57 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:36:10 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,10 @@
 # define ERROR_PIPE_END "minishell does not support this type of pipe"
 # define ERROR_REDIRECT "syntax error near unexpected token `newline'"
 # define ERR_GENERAL "syntax error near unexpected token"
+
+/********* signal_modes *********/
+# define IGNORE 0
+# define COMMANDS 1
 
 /********* syntax structs ********/
 typedef struct s_index_counter
