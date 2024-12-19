@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:37:54 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/13 15:55:08 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:20:24 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ char	**get_tokens(t_token *token)
 	i = 0;
 	while (current && strcmp(current->cmd_line, "|") != 0)
 	{
-			args[i] = alocpy(current->cmd_line);
-			current = current->next;
-			i++;
+		args[i] = alocpy(current->cmd_line);
+		current = current->next;
+		i++;
 	}
 	args[i] = NULL;
 	return (args);
