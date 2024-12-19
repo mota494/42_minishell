@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/19 09:44:13 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/19 09:55:06 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -56,6 +56,7 @@ char	*get_name(char *char_nb)
 	char	*template;
 	char	*filename;
 	char	*temp;
+
 	template = "heredoc_temp_";
 	temp = ft_strjoin(template, char_nb);
 	filename = ft_strjoin(temp, ".txt");
