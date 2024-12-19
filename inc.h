@@ -26,6 +26,7 @@
 # include <errno.h>
 # include <signal.h>
 # include "includes/libft/libft.h"
+# include "includes/ft_fprintf/ft_printf.h"
 # include <stdbool.h>
 
 # ifndef SET_X

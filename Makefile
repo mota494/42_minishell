@@ -18,6 +18,7 @@ RM = rm -fr
 #PATHS
 INC =  -I inc
 LIBFT = includes/libft/libft.a
+FPRINTF = includes/ft_fprintf/libftprintf.a
 SRCD = src/
 OBJD = obj/
 
@@ -32,14 +33,17 @@ $(OBJD)%.o: $(SRCD)%.c
 #RULES
 all: $(NAME)
 
-$(NAME): $(OBJS) $(LIBFT)
-	$(CC) $(CFLAGS) $(INC) $(OBJS) $(LIBFT) -lreadline -lncurses -o $(NAME)
+$(NAME): $(OBJS) $(LIBFT) $(FPRINTF)
+	$(CC) $(CFLAGS) $(INC) $(OBJS) $(LIBFT) $(FPRINTF) -lreadline -lncurses -o $(NAME)
 	echo "$(GREEN)All files compiled!$(RESET)"
 
 $(LIBFT):
 	make -s -C includes/libft
 	make bonus -s -C includes/libft
 
+$(FPRINTF):
+	make -s -C includes/ft_fprintf
+	
 valgrind:
 	@make re
 	@valgrind --leak-check=full --suppressions=readline_leaks --show-leak-kinds=all --track-origins=yes --tool=memcheck ./minishell
@@ -48,10 +52,12 @@ valgrind:
 clean:
 	$(RM) $(OBJS)
 	make -s -C includes/libft clean
+	make -s -C includes/ft_fprintf clean
 
 fclean: clean
 	$(RM) $(NAME)
 	make -s -C includes/libft fclean
+	make -s -C includes/ft_fprintf fclean
 	echo "$(RED)Deleted: $(RESET) $(GREEN)$(NAME)$(RESET)"
 
 re: fclean all
