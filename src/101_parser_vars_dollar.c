@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 11:49:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/16 17:12:17 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:51:35 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,15 @@ char	*get_error_code(int *pos, char *oldtoret)
 	return (newtoret);
 }
 
-char	*parse_dollar(char *cmd, int *pos, char *oldtoret)
+char	*parse_dollar(char *cmd, int *pos, char *oldtoret, int i_quote)
 {
 	char	*newtoret;
 
 	newtoret = alocpy(oldtoret);
 	free(oldtoret);
-	if (is_quote(cmd[*pos + 1]) && c_if_wrap(cmd, pos))
+	if (is_quote(cmd[*pos + 1]) && i_quote == 0)
 		newtoret = rm_dollar(cmd, pos, newtoret);
-	else if ((is_quote(cmd[*pos + 1]) && !c_if_wrap(cmd, pos)))
+	else if ((is_quote(cmd[*pos + 1]) && i_quote == 1))
 		newtoret = not_rm_dollar(cmd, pos, newtoret);
 	else if (!is_var_char(cmd[*pos + 1]))
 		newtoret = not_rm_dollar(cmd, pos, newtoret);

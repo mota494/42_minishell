@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/07 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/16 17:00:26 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:52:18 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	*one_var(t_token *cmd, int *pos)
 	toret = addsufix(cmd->orig_line, pos);
 	helper = alocpy(toret);
 	free(toret);
-	toret = parse_dollar(cmd->orig_line, pos, helper);
+	toret = parse_dollar(cmd->orig_line, pos, helper, 1);
 	already_analyzed(toret);
 	helper = alocpy(toret);
 	free(toret);
@@ -58,7 +58,7 @@ char	*more_vars(char *toret)
 	toret = addsufix(helper, &pos);
 	another_helper = alocpy(toret);
 	free(toret);
-	toret = parse_dollar(helper, &pos, another_helper);
+	toret = parse_dollar(helper, &pos, another_helper, 0);
 	already_analyzed(toret);
 	another_helper = alocpy(toret);
 	free(toret);

@@ -30,6 +30,6 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 # Issues
 
-after pressing CTRL+\ the error code has to update to 131
-
 after stopping a command with CTRL+\ there's invalid free
+
+exit with more than 1 arg has to print an error
