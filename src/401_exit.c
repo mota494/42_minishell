@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/18 10:40:39 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/19 15:59:48 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,9 +43,9 @@ int	exit_main(t_shell *cmd)
 {
 	cmd->error_code = analyze_exit_arg(cmd->token->next, cmd->error_code);
 	if (cmd->error_code == 2)
-		printf("minishell: exit: %s: numeric argument required\n",
+		ft_printf(2, "minishell: exit: %s: numeric argument required\n",
 			cmd->token->next->cmd_line);
-	else if (cmd->token->cmd_id == 0)
+	if (cmd->token->cmd_id == 0)
 	{
 		cmd->leave = true;
 		write(1, "exit\n", 5);

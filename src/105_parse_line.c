@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/16 15:33:48 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/16 17:00:37 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:50:52 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*parse_dbl_quotes(char *oldtoret, char *o_line, int *pos)
 	while (o_line[*pos] && o_line[*pos] != 34)
 	{
 		if (o_line[*pos] == '$')
-			newtoret = parse_dollar(o_line, pos, newtoret);
+			newtoret = parse_dollar(o_line, pos, newtoret, 1);
 		else
 		{
 			newtoret = strjoinchr(newtoret, o_line[*pos]);
@@ -63,7 +63,7 @@ char	*parse_line(char *o_line)
 		else if (o_line[i] == 39)
 			newtoret = parse_sgl_quotes(newtoret, o_line, &i);
 		else if (o_line[i] == '$')
-			newtoret = parse_dollar(o_line, &i, newtoret);
+			newtoret = parse_dollar(o_line, &i, newtoret, 0);
 		else
 		{
 			newtoret = strjoinchr(newtoret, o_line[i]);
