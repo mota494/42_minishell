@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 15:59:48 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/19 17:27:07 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ int	analyze_exit_arg(t_token *arg, int old_error)
 
 int	exit_main(t_shell *cmd)
 {
+	if (count_args(cmd->token->next) > 1)
+	{
+		ft_printf(2, "minishell: exit: too many arguments\n");
+		cmd->error_code = 1;
+		return (0);
+	}
 	cmd->error_code = analyze_exit_arg(cmd->token->next, cmd->error_code);
 	if (cmd->error_code == 2)
 		ft_printf(2, "minishell: exit: %s: numeric argument required\n",
