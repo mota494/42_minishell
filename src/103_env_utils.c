@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 10:53:30 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:50:52 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	change_env_value(char *var_name, char *value)
 				free(b_env[i].var_value);
 			if (value)
 				b_env[i].var_value = ft_strdup(value);
+			b_env[i].equal = '=';
 			break ;
 		}
 		i++;
