@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/04 15:27:23 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 14:03:43 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,21 @@ int	count_export_args(t_token *cmd)
 	return (i);
 }
 
+int	check_export_flag(t_shell *cmd)
+{
+	t_token	*temp;
+
+	temp = cmd->token->next;
+	if (!temp)
+		return (1);
+	if (temp->cmd_line[0] == '-')
+	{
+		printf("minishell: export: -%c invalid option\n", temp->cmd_line[1]);
+		return (0);
+	}
+	return (1);
+}
+
 int	check_export_args(t_shell *cmd)
 {
 	t_token	*temp;
@@ -43,6 +58,10 @@ int	check_export_args(t_shell *cmd)
 	{
 		print_export();
 		cmd->error_code = 0;
+		return (1);
+	}
+	else if (!check_export_flag(cmd))
+	{
 		return (1);
 	}
 	else

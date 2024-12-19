@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   002_utils3.c                                       :+:      :+:    :+:   */
+/*   000_utils3.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:23:27 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 12:28:32 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 13:46:37 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,21 +70,26 @@ int	is_there_pipe(t_token *cmd)
 
 int	var_exist(char *str)
 {
-	char	*var_name;
-	int		i;
+	char		*var_name;
+	t_count		c;
+	t_c_envp	*c_envp;
 
 	var_name = initalize_str();
-	i = 0;
-	while (str[i] && str[i] != '=')
+	start_counters(&c);
+	c_envp = ret_env(NULL);
+	while (str[c.i_i] && str[c.i_i] != '=')
 	{
-		var_name = strjoinchr(var_name, str[i]);
-		i++;
+		var_name = strjoinchr(var_name, str[c.i_i]);
+		c.i_i++;
 	}
-	if (get_env(var_name))
+	while (c_envp[c.d].var_name)
 	{
-		free(var_name);
-		return (1);
+		if (sstrcmp(c_envp[c.d].var_name, var_name))
+			break ;
+		c.d++;
 	}
 	free(var_name);
+	if (c.d < size_env(c_envp))
+		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:35:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/13 15:54:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 10:44:29 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	alloc_pids(t_shell *cmd)
 {
-	cmd->pids = (pid_t *)malloc(sizeof(pid_t) * cmd->n_inputs);
+	cmd->pids = (pid_t *) ft_calloc(cmd->n_inputs, sizeof(pid_t));
 	if (!cmd->pids)
 	{
 		perror("Memory allocation issue - alloc_pids");
