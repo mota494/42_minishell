@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:47:22 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/13 15:52:13 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 09:18:47 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,11 +80,6 @@ int	check_append(t_shell *cmd, char *str, int i)
 		}
 		else if (ft_ispace(str[i + 1]) && str[i + 2] && !is_operator(str[i + 2]))
 			return (0);
-		// else if (ft_ispace(str[i + 1]))
-		// {
-		// 	check_next_op(cmd, str, i + 1);
-		// 	return (1);
-		// }
 		else
 		{
 			check_next_op(cmd, str, i + 1);

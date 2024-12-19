@@ -49,6 +49,7 @@ typedef struct s_token
 	int				cmd_id;
 	char			*cmd_line;
 	char			*orig_line;
+	char			*eof;
 	char			*path_name;
 	bool			expand;
 	t_types			type;
@@ -225,6 +226,8 @@ void				export_main(t_shell *cmd);
 /* redirects */
 void				handle_redirect(t_token *token /*, int p[2]*/);
 char				**get_tokens(t_token *token);
+/* heredoc */
+void				find_heredoc(t_shell *cmd);
 
 /*
 sstrcmp is a normal strcmp that will return 1 if the strings are correct
