@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/12 14:54:42 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/16 11:50:12 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/19 15:29:49 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*return_var_value(char *oldtoret, char *var_value)
 	return (newtoret);
 }
 
-char	*get_replace_var(char *orig_line, int *pos, char *oldtoret)
+char	*get_replace_var(char *orig, int *pos, char *oldtoret)
 {
 	char	*var;
 	char	*newtoret;
@@ -39,9 +39,9 @@ char	*get_replace_var(char *orig_line, int *pos, char *oldtoret)
 
 	var = initalize_str();
 	*pos += 1;
-	while (orig_line[*pos] && (orig_line[*pos] == '_' || ft_isalpha(orig_line[*pos])))
+	while (orig[*pos] && (is_env_char(orig[*pos]) || ft_isdigit(orig[*pos])))
 	{
-		var = strjoinchr(var, orig_line[*pos]);
+		var = strjoinchr(var, orig[*pos]);
 		*pos += 1;
 	}
 	var_value = get_env(var);
