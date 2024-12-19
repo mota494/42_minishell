@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 14:10:55 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/19 15:18:19 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	add_env_vars(t_c_envp *n_env, t_token *cmd, int i, t_shell *sh)
 	cmd = cmd->next;
 	while (cmd && cmd->type == string)
 	{
-		if (!check_var_name(cmd->cmd_line))
+		if (!check_var_name(cmd->cmd_line) || cmd->cmd_line[0] == '=')
 		{
 			printf("minishell: export: %s, not a valid identifier\n",
 				cmd->cmd_line);
