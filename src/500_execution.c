@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   500_execution.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 15:37:52 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/21 18:26:04 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 		if (cmd->n_inputs > 1 && i != cmd->n_inputs - 1)
 			dup2(p[1], STDOUT_FILENO);
 		handle_redirect(cmd->token);
+		ft_putstr_fd("chego aqui\n", 2);
 		run_cmdx_builtx(cmd, cmd->token, envp);
+		//depois da execve nada no processo filho e feito
 		close(p[0]);
 		close(p[1]);
 		close(help);

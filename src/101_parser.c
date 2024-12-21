@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   101_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 13:43:00 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/21 18:02:03 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,4 +77,5 @@ void	parser(char *line, t_shell *cmd)
 	find_heredoc(cmd);
 	get_type(NULL, NULL, "|", "|");
 	already_analyzed(NULL);
+	print_list(cmd);
 }
