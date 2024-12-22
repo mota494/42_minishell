@@ -30,6 +30,6 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 # Issues
 
-after stopping a command with CTRL+\ there's invalid free
+builtins not returning proper exit code
 
-exit with more than 1 arg has to print an error
+<command/builtin> | <error> / not returning proper exit code

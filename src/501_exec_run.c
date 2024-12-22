@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 15:38:49 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/22 16:17:15 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	execute_builtin(t_shell *cmd, t_token *token)
 	free_args(args);
 	free_all(cmd);
 	free_env(cmd);
-	return (0);
+	return (cmd->error_code);
 }
 
 int	execute_command(t_token *token, char **envp)
@@ -89,5 +89,11 @@ void	run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp)
 		execute_builtin(cmd, current);
 	else if (current && current->type == command)
 		execute_command(current, envp);
-	exit(0);
+	else
+	{
+		free_all(cmd);
+		free_env(cmd);
+		cmd->error_code = 127;
+	}
+	exit(cmd->error_code);
 }
