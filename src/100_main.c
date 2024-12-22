@@ -6,13 +6,11 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/22 10:56:33 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/22 16:20:19 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
-int	g_last_sig;
 
 void	reset_fds(int fd_in, int fd_out)
 {
