@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/18 15:10:48 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/22 10:56:33 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	read_command(t_shell *cmd)
 			}
 			free(line);
 		}
+		return_last_signal(0);
 		free_all(cmd);
 	}
 }
