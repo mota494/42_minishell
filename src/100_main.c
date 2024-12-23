@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 09:19:08 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 09:23:46 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ void	read_command(t_shell *cmd)
 	{
 		reset_fds(cmd, cmd->fds[0], cmd->fds[1]);
 		line = readline("minishell: ");
-		cmd->line_len = ft_strlen(line);
+		if (line)
+			cmd->line_len = ft_strlen(line);
 		if (line && ft_strlen(line) > 0)
 			add_history(line);
 		if (check_syntax(cmd, line) == 1)
