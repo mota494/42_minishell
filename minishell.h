@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 08:52:11 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 10:57:59 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ typedef struct s_shell
 	int				line_len;
 }					t_shell;
 
-void	free_process_all(t_shell *cmd);
 /* == sig_handler == */
 int					return_last_signal(int n_signal);
 void				setup_signals(int mode);	
@@ -129,7 +128,8 @@ char				*adv_spaces(char *oldtoret, char *line, int *pos);
 char				*adv_sig_quote(char *oldtoret, char *line, int *pos);
 char				*adv_separator(char *oldtoret, char *line, int *pos);
 /* ==== get_line.c ==== */
-t_types				get_type(t_shell *mshell, t_token *new_node, char *cmd, char *orig);
+t_types				get_type(t_shell *mshell, t_token *new_node, char *cmd,
+						char *orig);
 char				*get_cmd(char *line);
 void				tokenize(char *line, t_shell *cmd);
 /* ==== utils.c ==== */
@@ -148,6 +148,7 @@ void				start_counters(t_count *counters);
 char				*initalize_str(void);
 int					return_error_code(t_shell *sh);
 int					count_args(t_token *cmds);
+long long int		ft_atoll(const char *nptr);
 /* ==== define_type.c ==== */
 int					is_builtin(char *str);
 int					is_controler(char *str);

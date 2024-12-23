@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/18 11:36:10 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 11:02:28 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@
 # include "includes/libft/libft.h"
 # include "includes/ft_fprintf/ft_printf.h"
 # include <stdbool.h>
+# include <limits.h>
 
 # ifndef SET_X
 #  define SET_X 0
