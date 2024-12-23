@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 09:12:13 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 14:17:54 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,5 +94,5 @@ void	run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp)
 		free_env(cmd);
 		cmd->error_code = 127;
 	}
-	exit(cmd->error_code);
+	exit (cmd->error_code);
 }

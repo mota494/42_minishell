@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:37:54 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/21 18:30:41 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/12/23 14:39:04 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ void	redirect_infile(char **args/*, int p[2]*/)
 		if (!is_redirect(args[i]))
 	file_name = ft_strdup(args[i]);
 	fd = open(file_name, O_RDONLY);
-	// if fd == -1 -> erro ao abrir o ficheiro
 	dup2(fd, STDIN_FILENO);
 	close(fd);
 	free(file_name);
@@ -92,8 +91,11 @@ void	check_red(char **args/*, int p[2]*/)
 		if (is_redirect(args[i]) == 1)
 			red = ft_strdup(args[i]);
 	}
+	
 	if (red == NULL)
+	{
 		return ;
+	}
 	else
 	{
 		ft_redirect(args, red/*, p*/);

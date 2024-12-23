@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/21 18:26:04 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:31:00 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_token	*get_next(t_token *current)
 	temp = current->next;
 	while (temp)
 	{
-		if (temp->type == 4)
+		if (temp->type == control)
 		{
 			temp = temp->next;
 			break ;
@@ -50,9 +50,9 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 		ft_putstr_fd("chego aqui\n", 2);
 		run_cmdx_builtx(cmd, cmd->token, envp);
 		//depois da execve nada no processo filho e feito
-		close(p[0]);
-		close(p[1]);
-		close(help);
+		//close(p[0]);
+		//close(p[1]);
+		//close(help);
 	}
 	dup2(p[0], help);
 	close(p[0]);
