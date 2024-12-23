@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 11:24:36 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 11:40:56 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	reset_fds(t_shell *cmd, int fd_in, int fd_out)
 {
 	cmd->copy_envp = send_env();
+	init_path_dirs(cmd, cmd->copy_envp);
 	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
 }
@@ -54,7 +55,6 @@ void	init_tshell(t_shell *cmd, char **envp)
 	cmd->curdir = alocpy(getcwd(buffer, PATH_MAX));
 	setup_signals(IGNORE);
 	copy_envs(cmd, envp);
-	init_path_dirs(cmd, envp);
 }
 
 void	check_input(int ac, char **av)
