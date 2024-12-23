@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:12:56 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/10 16:21:30 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/23 15:32:11 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	count_builtins(t_token *cmd)
 	toret = 0;
 	while (temp)
 	{
-		if (temp->type == builtin || temp->type == error)
+		if (temp->type == builtin)
 			toret++;
 		temp = temp->next;
 	}
