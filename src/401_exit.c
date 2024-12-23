@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 10:47:59 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 11:11:40 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	is_strdigit(char *str)
 	int	i;
 
 	i = 0;
+	if (str[0] == '-' || str[0] == '+')
+		i++;
 	while (str[i])
 	{
 		if (!ft_isdigit(str[i]))
@@ -26,14 +28,18 @@ int	is_strdigit(char *str)
 	return (1);
 }
 
-int	analyze_exit_arg(t_token *arg, int old_error)
+long long int	analyze_exit_arg(t_token *arg, int old_error)
 {
-	int	toret;
+	long long int	toret;
 
 	if (!arg)
 		return (old_error);
 	if (is_strdigit(arg->cmd_line) == 1)
-		toret = ft_atoi(arg->cmd_line);
+	{
+		toret = ft_atoll(arg->cmd_line);
+		if (toret >= LLONG_MAX || toret <= LLONG_MIN)
+			toret = -1;
+	}
 	else
 		toret = -1;
 	return (toret);

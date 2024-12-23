@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 09:23:46 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 11:24:36 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,8 @@ int	main(int ac, char **av, char **envp)
 {
 	t_shell	cmd;
 
+	if (!envp[0])
+		return (0);
 	check_input(ac, av);
 	init_tshell(&cmd, envp);
 	read_command(&cmd);
