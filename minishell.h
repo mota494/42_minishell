@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 15:49:59 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 08:52:11 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,8 +83,10 @@ typedef struct s_shell
 	t_fd			*p_fds;
 	t_exec			*exec;
 	char			**copy_envp;
+	int				line_len;
 }					t_shell;
 
+void	free_process_all(t_shell *cmd);
 /* == sig_handler == */
 int					return_last_signal(int n_signal);
 void				setup_signals(int mode);	

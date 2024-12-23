@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/22 10:55:45 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/23 08:53:49 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,8 @@ void	free_env(t_shell *cmd)
 
 void	free_pids(t_shell *cmd)
 {
+	if (cmd->line_len <= 0)
+		return ;
 	if (return_last_signal(-1) == SIGQUIT)
 		return ;
 	if (cmd->n_inputs > 1 || cmd->n_command >= 1)
