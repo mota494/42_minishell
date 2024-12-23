@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:59:06 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/18 12:37:25 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 10:45:27 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	count_args(t_token *cmds)
 	int	toret;
 
 	toret = 0;
+	if (!cmds)
+		return (0);
 	while (cmds)
 	{
 		if (cmds->type != string)

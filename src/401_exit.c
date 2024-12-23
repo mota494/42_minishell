@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 17:27:07 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/23 10:47:59 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	analyze_exit_arg(t_token *arg, int old_error)
 	if (is_strdigit(arg->cmd_line) == 1)
 		toret = ft_atoi(arg->cmd_line);
 	else
-		toret = 2;
+		toret = -1;
 	return (toret);
 }
 
@@ -48,9 +48,12 @@ int	exit_main(t_shell *cmd)
 		return (0);
 	}
 	cmd->error_code = analyze_exit_arg(cmd->token->next, cmd->error_code);
-	if (cmd->error_code == 2)
+	if (cmd->error_code == -1)
+	{
 		ft_printf(2, "minishell: exit: %s: numeric argument required\n",
 			cmd->token->next->cmd_line);
+		cmd->error_code = 2;
+	}
 	if (cmd->token->cmd_id == 0)
 	{
 		cmd->leave = true;
