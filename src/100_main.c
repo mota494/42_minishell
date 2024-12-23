@@ -6,14 +6,15 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 08:51:35 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/23 09:19:08 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	reset_fds(int fd_in, int fd_out)
+void	reset_fds(t_shell *cmd, int fd_in, int fd_out)
 {
+	cmd->copy_envp = send_env();
 	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
 }
@@ -24,9 +25,9 @@ void	read_command(t_shell *cmd)
 
 	while (1 && cmd->leave == false)
 	{
-		cmd->copy_envp = send_env();
-		reset_fds(cmd->fds[0], cmd->fds[1]);
+		reset_fds(cmd, cmd->fds[0], cmd->fds[1]);
 		line = readline("minishell: ");
+		cmd->line_len = ft_strlen(line);
 		if (line && ft_strlen(line) > 0)
 			add_history(line);
 		if (check_syntax(cmd, line) == 1)
@@ -35,10 +36,8 @@ void	read_command(t_shell *cmd)
 			parser(line, cmd);
 			check_err(cmd);
 			if (cmd->n_inputs > 0)
-			{
 				if (execute_pipeline(cmd, cmd->copy_envp) == 1)
 					write(2, "Error executing pipeline\n", 25);
-			}
 			free(line);
 		}
 		return_last_signal(0);
