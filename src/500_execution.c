@@ -6,11 +6,12 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 15:36:30 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/26 10:57:46 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+#include <signal.h>
 
 t_token	*get_next(t_token *current)
 {
@@ -47,7 +48,6 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 		if (cmd->n_inputs > 1 && i != cmd->n_inputs - 1)
 			dup2(p[1], STDOUT_FILENO);
 		handle_redirect(cmd->token);
-		ft_putstr_fd("chego aqui\n", 2);
 		run_cmdx_builtx(cmd, cmd->token, envp);
 	}
 	dup2(p[0], help);
@@ -74,7 +74,6 @@ int	execute_pipeline(t_shell *cmd, char **envp)
 	while (cmd->token)
 	{
 		child_process(cmd, envp, help, i);
-		setup_signals(IGNORE);
 		cmd->token = get_next(cmd->token);
 		i++;
 	}
