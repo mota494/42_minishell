@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/26 09:35:26 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/26 16:02:02 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -222,12 +222,13 @@ int	execute_builtin(t_shell *cmd, t_token *token);
 int	execute_command(t_token *token, char **envp);
 void	run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp);
 /* == exec_utils == */
-int	alloc_pids(t_shell *cmd);
-int	count_tokens(t_token *current_token);
+int		alloc_pids(t_shell *cmd);
+int		count_tokens(t_token *current_token);
 char	**get_command_tokens(t_token *token);
 void	free_args(char **args);
+int		check_type(t_token *token);
 /* == redirect_and_wait == */
-int	wait_for_child(t_shell *cmd);
+int		wait_for_child(t_shell *cmd);
 void	handle_redirect(t_token *token/*, int p[2]*/);
 /* == redirects == */
 char	**get_tokens(t_token *token);

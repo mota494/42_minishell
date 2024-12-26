@@ -1,27 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   501_redirect_and_wait.c                            :+:      :+:    :+:   */
+/*   510_redirect_and_wait.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:11:19 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/26 10:34:57 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/26 15:32:53 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	handle_redirect(t_token *token/*, int p[2]*/)
-{
-	t_token	*current_token;
-	char	**args;
-
-	current_token = token;
-	args = get_tokens(current_token);
-	check_red(args/*, p*/);
-	free_args(args);
-}
 
 int	wait_for_child(t_shell *cmd)
 {

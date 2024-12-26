@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   501_exec_utils.c                                   :+:      :+:    :+:   */
+/*   505_exec_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:35:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 08:53:21 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/26 16:45:42 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,19 @@ char	**get_command_tokens(t_token *token)
 	i = 0;
 	while (current && strcmp(current->cmd_line, "|") != 0)
 	{
+		if (current->type == builtin || current->type == command)
+		{
+			args[i++] = alocpy(current->cmd_line);
+			break ;
+		}
+		current = current->next;
+	}
+	current = token;
+	while (current && strcmp(current->cmd_line, "|") != 0)
+	{
 		if (current->type == redirect)
+			current = current->next;
+		if (current->type == command || current->type == builtin)
 			current = current->next;
 		else
 		{
@@ -61,6 +73,13 @@ char	**get_command_tokens(t_token *token)
 		}
 	}
 	args[i] = NULL;
+	i = -1;
+	ft_putstr_fd("commands arguments: \n\n", 2);
+	while (args[++i])
+	{
+		ft_putstr_fd(args[i], 2);
+		ft_putchar_fd('\n', 2);
+	}
 	return (args);
 }
 
@@ -75,4 +94,20 @@ void	free_args(char **args)
 		i++;
 	}
 	free(args);
+}
+
+int	check_type(t_token *token)
+{
+	t_token	*current;
+
+	current = token;
+	while (sstrcmp(token->cmd_line, "|") == 0)
+	{
+		if (current->type == builtin)
+			return (-1);
+		else if (current->type == command)
+			return (1);
+		current = current->next;
+	}
+	return (0);
 }

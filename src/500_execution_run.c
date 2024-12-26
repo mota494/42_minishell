@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   501_exec_run.c                                     :+:      :+:    :+:   */
+/*   500_execution_run.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 14:17:54 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/26 16:32:31 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int	execute_command(t_token *token, char **envp)
 	t_token	*current_token;
 	char	**args;
 
+	ft_putstr_fd("will execute cmd\n", 2);
 	current_token = token;
 	args = get_command_tokens(current_token);
 	if (execve(current_token->path_name, args, envp) == -1)
@@ -84,9 +85,11 @@ int	execute_command(t_token *token, char **envp)
 
 void	run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp)
 {
-	if (current && current->type == builtin)
+	int	type;
+	type = check_type(current);
+	if (type < 0)
 		execute_builtin(cmd, current);
-	else if (current && current->type == command)
+	else if (type > 0)
 		execute_command(current, envp);
 	else
 	{
