@@ -62,20 +62,42 @@ int	scmp(char *tocomp, char *str)
 	return (0);
 }
 
-char	*strjoinchr(char *oldtoret, char car)
+int	is_there_pipe(t_token *cmd)
 {
-	char	*newtoret;
-	int		i;
+	t_token	*temp;
 
-	i = 0;
-	newtoret = malloc(ft_strlen(oldtoret) + 2);
-	while (oldtoret[i])
+	temp = cmd;
+	while (temp)
 	{
-		newtoret[i] = oldtoret[i];
-		i++;
+		if (temp->type == control)
+			return (1);
+		temp = temp->next;
 	}
-	newtoret[i] = car;
-	newtoret[i + 1] = '\0';
-	free(oldtoret);
-	return (newtoret);
+	return (0);
+}
+
+int	var_exist(char *str)
+{
+	char		*var_name;
+	t_count		c;
+	t_c_envp	*c_envp;
+
+	var_name = initalize_str();
+	start_counters(&c);
+	c_envp = ret_env(NULL);
+	while (str[c.i_i] && str[c.i_i] != '=')
+	{
+		var_name = strjoinchr(var_name, str[c.i_i]);
+		c.i_i++;
+	}
+	while (c_envp[c.d].var_name)
+	{
+		if (sstrcmp(c_envp[c.d].var_name, var_name))
+			break ;
+		c.d++;
+	}
+	free(var_name);
+	if (c.d < size_env(c_envp))
+		return (1);
+	return (0);
 }

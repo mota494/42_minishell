@@ -48,31 +48,34 @@ int	count_builtins(t_token *cmd)
 	return (toret);
 }
 
-int	count_command(t_token *cmd)
+int	check_equal(char *str)
 {
-	t_token	*temp;
-	int		toret;
+	int	i;
 
-	temp = cmd;
-	toret = 0;
-	while (temp)
+	i = 0;
+	while (str[i])
 	{
-		if (temp->type == command)
-			toret++;
-		temp = temp->next;
+		if (str[i] == '=')
+			return (1);
+		i++;
 	}
-	return (toret);
+	return (0);
 }
 
-int	ft_iseparator(int c)
+int	check_var_name(char *str)
 {
-	if ((ft_ispace(c)) == 1)
-		return (1);
-	else if (c == '|' || c == '&' || c == ';')
-		return (1);
-	else if (c == '<' || c == '>')
-		return (1);
-	else if (c == '(' || c == ')')
-		return (1);
-	return (0);
+	int	i;
+
+	i = 0;
+	if (!is_env_char(str[i]))
+		return (0);
+	i++;
+	while (str[i] && str[i] != '=')
+	{
+		if (ft_isalpha(str[i]) || ft_isdigit(str[i]) || str[i] == '_')
+			i++;
+		else
+			return (0);
+	}
+	return (1);
 }

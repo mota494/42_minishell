@@ -105,13 +105,3 @@ void	check_red(char **args/*, int p[2]*/)
 	}
 }
 
-void	handle_redirect(t_token *token/*, int p[2]*/)
-{
-	t_token	*current_token;
-	char	**args;
-
-	current_token = token;
-	args = get_tokens(current_token);
-	check_red(args/*, p*/);
-	free_args(args);
-}
