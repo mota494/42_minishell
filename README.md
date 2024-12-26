@@ -31,12 +31,19 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 # File naming system
 
 0xx -> Utils that are used by multiple files
+
 10x -> Files that deal with starting minishell and ending minishell
+
 20x -> Files that deal with syntax checking and everything in between
+
 30x -> Files that deal with tokenization
+
 40x -> Files that deal with parsing quotes and variables
+
 50x -> Execution, redirection and heredoc
+
 60x -> Builtins
+
 70x -> Signal Handler
 
 # Issues
