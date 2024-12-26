@@ -77,6 +77,5 @@ void	parser(char *line, t_shell *cmd)
 	get_redirect_type(cmd->token);
 	find_heredoc(cmd);
 	get_type(NULL, NULL, "|", "|");
-	already_analyzed(NULL);
 	print_list(cmd);
 }
