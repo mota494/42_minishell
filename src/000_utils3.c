@@ -54,42 +54,31 @@ int	fix_exit(int val)
 	return (toret);
 }
 
-int	is_there_pipe(t_token *cmd)
+int	count_command(t_token *cmd)
 {
 	t_token	*temp;
+	int		toret;
 
 	temp = cmd;
+	toret = 0;
 	while (temp)
 	{
-		if (temp->type == control)
-			return (1);
+		if (temp->type == command)
+			toret++;
 		temp = temp->next;
 	}
-	return (0);
+	return (toret);
 }
 
-int	var_exist(char *str)
+int	ft_iseparator(int c)
 {
-	char		*var_name;
-	t_count		c;
-	t_c_envp	*c_envp;
-
-	var_name = initalize_str();
-	start_counters(&c);
-	c_envp = ret_env(NULL);
-	while (str[c.i_i] && str[c.i_i] != '=')
-	{
-		var_name = strjoinchr(var_name, str[c.i_i]);
-		c.i_i++;
-	}
-	while (c_envp[c.d].var_name)
-	{
-		if (sstrcmp(c_envp[c.d].var_name, var_name))
-			break ;
-		c.d++;
-	}
-	free(var_name);
-	if (c.d < size_env(c_envp))
+	if ((ft_ispace(c)) == 1)
+		return (1);
+	else if (c == '|' || c == '&' || c == ';')
+		return (1);
+	else if (c == '<' || c == '>')
+		return (1);
+	else if (c == '(' || c == ')')
 		return (1);
 	return (0);
 }

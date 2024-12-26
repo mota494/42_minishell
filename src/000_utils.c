@@ -81,3 +81,21 @@ void	init_path_dirs(t_shell *cmd, char **envp)
 	else
 		cmd->path_dirs = NULL;
 }
+
+char	*strjoinchr(char *oldtoret, char car)
+{
+	char	*newtoret;
+	int		i;
+
+	i = 0;
+	newtoret = malloc(ft_strlen(oldtoret) + 2);
+	while (oldtoret[i])
+	{
+		newtoret[i] = oldtoret[i];
+		i++;
+	}
+	newtoret[i] = car;
+	newtoret[i + 1] = '\0';
+	free(oldtoret);
+	return (newtoret);
+}

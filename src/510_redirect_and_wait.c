@@ -12,6 +12,17 @@
 
 #include "../minishell.h"
 
+void	handle_redirect(t_token *token/*, int p[2]*/)
+{
+	t_token	*current_token;
+	char	**args;
+
+	current_token = token;
+	args = get_tokens(current_token);
+	check_red(args/*, p*/);
+	free_args(args);
+}
+
 int	wait_for_child(t_shell *cmd)
 {
 	int	i;

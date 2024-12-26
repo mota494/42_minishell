@@ -43,34 +43,43 @@ size_t	size_env(t_c_envp *b_env)
 	return (i);
 }
 
-int	check_equal(char *str)
+int	return_error_code(t_shell *sh)
 {
-	int	i;
+	static t_shell	*sh_address;
 
-	i = 0;
-	while (str[i])
+	if (!sh)
+		return (sh_address->error_code);
+	else
 	{
-		if (str[i] == '=')
-			return (1);
-		i++;
+		sh_address = sh;
+		return (0);
 	}
-	return (0);
 }
 
-int	check_var_name(char *str)
+long long int	ft_atoll(const char *nptr)
 {
-	int	i;
+	long long int	toreturn;
+	int				index;
+	long long int	pos;
 
-	i = 0;
-	if (!is_env_char(str[i]))
-		return (0);
-	i++;
-	while (str[i] && str[i] != '=')
+	toreturn = 0;
+	index = 0;
+	pos = 1;
+	while ((nptr[index] >= 9 && nptr[index] <= 13) || nptr[index] == 32)
+		index++;
+	if (nptr[index] == '-' || nptr[index] == '+')
 	{
-		if (ft_isalpha(str[i]) || ft_isdigit(str[i]) || str[i] == '_')
-			i++;
-		else
-			return (0);
+		if (nptr[index] == '-')
+			pos = pos * -1;
+		index++;
 	}
-	return (1);
+	while (nptr[index] >= 48 && nptr[index] <= 57)
+	{
+		if (toreturn + 1 > LLONG_MAX)
+			return (LLONG_MAX);
+		toreturn = toreturn * 10;
+		toreturn = toreturn + (nptr[index] - 48);
+		index++;
+	}
+	return (toreturn * pos);
 }
