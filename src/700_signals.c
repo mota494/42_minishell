@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:00:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/18 15:12:50 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/26 10:54:35 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,40 @@ int	return_last_signal(int n_signal)
 	return (l_signal);
 }
 
-void	handle_quit(int sig)
+void	sig_handler(int sig)
 {
-	return_last_signal(sig);
-	signal(SIGQUIT, SIG_DFL);
+	if (sig == SIGQUIT)
+	{
+		return_last_signal(sig);
+		signal(SIGQUIT, SIG_DFL);
+	}
+	else if (sig == SIGINT)
+	{
+		return_last_signal(sig);
+		printf("\n");
+		rl_on_new_line();
+		rl_replace_line("", 0);
+		rl_redisplay();
+	}
+}
+
+void	sig_test(int signo)
+{
+	return_last_signal(signo);
+	printf("\n");
+	rl_on_new_line();
 }
 
 void	setup_signals(int mode)
 {
 	if (mode == IGNORE)
 	{
-		signal(SIGINT, SIG_IGN);
+		signal(SIGINT, sig_handler);
 		signal(SIGQUIT, SIG_IGN);
 	}
 	else if (mode == COMMANDS)
 	{
-		signal(SIGQUIT, handle_quit);
+		signal(SIGQUIT, sig_handler);
+		signal(SIGINT, sig_test);
 	}
 }
