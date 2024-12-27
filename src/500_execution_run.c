@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   501_exec_run.c                                     :+:      :+:    :+:   */
+/*   500_execution_run.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 14:17:54 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 09:17:13 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	execute_builtin(t_shell *cmd, t_token *token)
 	free_args(args);
 	free_all(cmd);
 	free_env(cmd);
+	exit(cmd->error_code);
 	return (cmd->error_code);
 }
 

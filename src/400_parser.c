@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   101_parser.c                                       :+:      :+:    :+:   */
+/*   400_parser.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 14:32:48 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 09:44:52 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	parser(char *line, t_shell *cmd)
 	tokenize(line, cmd);
 	cmd->n_builtin = count_builtins(cmd->token);
 	cmd->n_command = count_command(cmd->token);
-	cmd->n_inputs = cmd->n_command + cmd->n_builtin;
+	cmd->n_inputs = count_pipes(cmd->token);
 	special_case(cmd);
 	get_redirect_type(cmd->token);
 	find_heredoc(cmd);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   406_export_print.c                                 :+:      :+:    :+:   */
+/*   610_export_print.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:35:48 by mloureir          #+#    #+#             */
-/*   Updated: 2024/11/28 15:41:52 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/26 14:59:21 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,22 +64,22 @@ void	order_print(t_c_envp *o_env)
 	}
 }
 
-void	print_ordered(t_c_envp *or)
+void	print_ordered(t_c_envp *ord)
 {
 	t_count	c;
 
 	start_counters(&c);
-	while (or[c.d_i].var_name)
+	while (ord[c.d_i].var_name)
 	{
-		if (ft_strlen(or[c.d_i].var_name) == 1 && or[c.d_i].var_name[0] == '_')
+		if (ft_strlen(ord[c.d_i].var_name) == 1 && ord[c.d_i].var_name[0] == '_')
 			c.d_i++;
 		else
 		{
-			if (or[c.d_i].equal == '=')
-				printf("declare -x %s=\"%s\"\n", or[c.d_i].var_name,
-					or[c.d_i].var_value);
+			if (ord[c.d_i].equal == '=')
+				printf("declare -x %s=\"%s\"\n", ord[c.d_i].var_name,
+					ord[c.d_i].var_value);
 			else
-				printf("declare -x %s\n", or[c.d_i].var_name);
+				printf("declare -x %s\n", ord[c.d_i].var_name);
 			c.d_i++;
 		}
 	}
