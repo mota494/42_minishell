@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 09:17:13 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 10:36:59 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,6 @@ int	one_builtin(t_shell *cmd)
 				return (1);
 			current_token = current_token->next;
 		}
-		handle_redirect(cmd->token);
 		call_builtin(args, cmd);
 		free_args(args);
 		return (0);
