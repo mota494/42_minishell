@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:59:06 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 09:39:34 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 14:43:59 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	count_pipes(t_token *sh)
 	count = 0;
 	while (temp)
 	{
-		if (sstrcmp(temp->cmd_line, "|"))
+		if (sstrcmp(temp->orig_line, "|"))
 			count++;
 		temp = temp->next;
 	}

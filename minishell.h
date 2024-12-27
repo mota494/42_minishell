@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 09:43:55 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 14:54:33 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ typedef struct s_shell
 	t_exec			*exec;
 	char			**copy_envp;
 	int				line_len;
+	int				pids_alloc;
 }					t_shell;
 
 /* == utils == */
@@ -219,10 +220,11 @@ int				execute_pipeline(t_shell *cmd, char **envp);
 /* == exectuion_run == */
 void			call_builtin(char **args, t_shell *cmd);
 int				one_builtin(t_shell *cmd);
-int				execute_builtin(t_shell *cmd, t_token *token);
-int				execute_command(t_token *token, char **envp);
+int				execute_builtin(t_shell *cmd, char **args);
+int				execute_command(t_token *token, char **envp, char **args);
 void			run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp);
 /* == exec_utils == */
+char			**get_command_line(t_shell *cmd);
 int				alloc_pids(t_shell *cmd);
 int				count_tokens(t_token *current_token);
 char			**get_command_tokens(t_token *token);
@@ -236,6 +238,12 @@ void			redirect_outfile(char **args, char *red);
 void			redirect_infile(char **args/*, int p[2]*/);
 void			ft_redirect(char **args, char *red/*, int p[2]*/);
 void			check_red(char **args/*, int p[2]*/);
+/* == redirects_utils == */
+void			free_old_cmd(char **str);
+int				size_new_line(char **cmdline);
+void			infile_redirect(char *file_name);
+void			outfile_redirect(char *file_name);
+void			redirect_handler(char **cmdline);
 /* == cd == */
 void			cd(t_shell *cmd);
 void			cd_change_dir(t_shell *cmd);

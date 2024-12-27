@@ -48,6 +48,6 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 # Issues
 
-builtins not returning proper exit code
+missing quotation giving invalid read
 
-<command/builtin> | <error> / not returning proper exit code
+$export error

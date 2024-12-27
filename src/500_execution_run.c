@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 10:44:39 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 14:24:34 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,8 @@ int	one_builtin(t_shell *cmd)
 	return (1);
 }
 
-int	execute_builtin(t_shell *cmd, t_token *token)
+int	execute_builtin(t_shell *cmd, char **args)
 {
-	t_token	*current_token;
-	char	**args;
-
-	current_token = token;
-	args = get_command_tokens(current_token);
 	call_builtin(args, cmd);
 	free_args(args);
 	free_all(cmd);
@@ -69,30 +64,13 @@ int	execute_builtin(t_shell *cmd, t_token *token)
 	return (cmd->error_code);
 }
 
-int	execute_command(t_token *token, char **envp)
+int	execute_command(t_token *token, char **envp, char **args)
 {
 	t_token	*current_token;
-	char	**args;
 
 	current_token = token;
-	args = get_command_tokens(current_token);
 	if (execve(current_token->path_name, args, envp) == -1)
 		return (1);
 	free(args);
 	return (0);
-}
-
-void	run_cmdx_builtx(t_shell *cmd, t_token *current, char **envp)
-{
-	if (current && current->type == builtin)
-		execute_builtin(cmd, current);
-	else if (current && current->type == command)
-		execute_command(current, envp);
-	else
-	{
-		free_all(cmd);
-		free_env(cmd);
-		cmd->error_code = 127;
-	}
-	exit (cmd->error_code);
 }
