@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/26 09:41:24 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 10:55:29 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	reset_fds(t_shell *cmd, int fd_in, int fd_out)
 void	read_command(t_shell *cmd)
 {
 	char	*line;
-
+	
 	while (1 && cmd->leave == false)
 	{
 		reset_fds(cmd, cmd->fds[0], cmd->fds[1]);
@@ -61,7 +61,7 @@ void	check_input(int ac, char **av)
 {
 	if (ac != 1 || av[1])
 	{
-		printf("Minishell v 0.9.5\n");
+		printf("Minishell does not accept any arguments\n");
 		exit (1);
 	}
 }
