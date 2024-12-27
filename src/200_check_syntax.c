@@ -6,34 +6,68 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/27 14:57:06 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 18:23:00 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
+// int	check_quotes(t_shell *cmd, char *str)
+// {
+// 	t_count	c;
+
+// 	start_counters(&c);
+// 	c.i_i = -1;
+// 	while (str[++c.i_i])
+// 	{
+// 		if (str[c.i_i] == 34)
+// 		{
+// 			c.d_i++;
+// 			if (find_quote_closure(str, &c.i_i, 34))
+// 				c.d_i++;
+// 		}
+// 		else if (str[c.i_i] == 39)
+// 		{
+// 			c.j_i++;
+// 			if (find_quote_closure(str, &c.i_i, 39))
+// 				c.j_i++;
+// 		}
+// 	}
+// 	if (c.d_i % 2 != 0 || c.j_i % 2 != 0)
+// 	{
+// 		print_error(cmd, ERROR_QUOTE, 2, NULL);
+// 		return (0);
+// 	}
+// 	return (1);
+// }
+
 int	check_quotes(t_shell *cmd, char *str)
 {
-	t_count	c;
+	int i;
+	int double_quotes;
+	int single_quotes;
 
-	start_counters(&c);
-	c.i_i = -1;
-	while (str[++c.i_i])
+	i = 0;
+	double_quotes = 0;
+	single_quotes = 0;
+	while (str[i])
 	{
-		if (str[c.i_i] == 34)
+		if (str[i] == '"')
 		{
-			c.d_i++;
-			if (find_quote_closure(str, &c.i_i, 34))
-				c.d_i++;
+			double_quotes++;
+			if (find_quote_closure(str, &i, '"'))
+				double_quotes++;
 		}
-		else if (str[c.i_i] == 39)
+		else if (str[i] == '\'')
 		{
-			c.j_i++;
-			if (find_quote_closure(str, &c.i_i, 39))
-				c.j_i++;
+			single_quotes++;
+			if (find_quote_closure(str, &i, '\''))
+				single_quotes++;
 		}
+		else
+			i++;
 	}
-	if (c.d_i % 2 != 0 || c.j_i % 2 != 0)
+	if (double_quotes % 2 != 0 || single_quotes % 2 != 0)
 	{
 		print_error(cmd, ERROR_QUOTE, 2, NULL);
 		return (0);
