@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   102_parser_heredoc.c                               :+:      :+:    :+:   */
+/*   415_parser_heredoc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/19 09:55:06 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 11:02:15 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "../minishell.h"
@@ -44,7 +44,8 @@ void	ft_read(t_token *token, int fd)
 	while ((line = readline("> ")) != NULL)
 	{
 		if (sstrcmp(line, token->eof))
-			break ; 
+			break ;
+		
 		ft_putstr_fd(line, fd);
 		ft_putchar_fd('\n', fd);
 		free(line);

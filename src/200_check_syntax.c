@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/27 10:57:25 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 14:57:06 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	check_quotes(t_shell *cmd, char *str)
 	t_count	c;
 
 	start_counters(&c);
-	c.i_i = 0;
-	while (str[c.i_i++])
+	c.i_i = -1;
+	while (str[++c.i_i])
 	{
 		if (str[c.i_i] == 34)
 		{

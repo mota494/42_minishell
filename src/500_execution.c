@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 10:35:52 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 14:51:28 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,55 @@ t_token	*get_next(t_token *current)
 	return (temp);
 }
 
+char	**only_cmd_arg(char **cmdline)
+{
+	int		i;
+	int		y;
+	char	**new_cmd_line;
+
+	new_cmd_line = malloc(sizeof(char *) * (size_new_line(cmdline) + 1));
+	i = 0;
+	y = 0;
+	while (cmdline[i])
+	{
+		if (sstrcmp(cmdline[i], "<"))
+			i = i + 2;
+		else if (sstrcmp(cmdline[i], ">"))
+			i = i + 2;
+		else
+		{
+			new_cmd_line[y] = ft_strdup(cmdline[i]);
+			y++;
+			i++;
+		}
+	}
+	new_cmd_line[y] = NULL;
+	free_old_cmd(cmdline);
+	return (new_cmd_line);
+}
+
+void	run_final(char **cmdline, char **envp, t_token *token, t_shell *cmd)
+{
+	while (sstrcmp(token->cmd_line, cmdline[0]) == 0)
+		token = token->next;
+	if (token->type == builtin)
+		execute_builtin(cmd, cmdline);
+	else if (token->type == command)
+		execute_command(token, envp, cmdline);
+	else
+	{
+		free_all(cmd);
+		free_env(cmd);
+		free_args(cmdline);
+		cmd->error_code = 127;
+	}
+	exit (cmd->error_code);
+}
+
 void	child_process(t_shell *cmd, char **envp, int help, int i)
 {
-	int	p[2];
+	int		p[2];
+	char	**cmdline;
 
 	pipe(p);
 	setup_signals(COMMANDS);
@@ -46,8 +92,10 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 			dup2(help, STDIN_FILENO);
 		if (cmd->n_inputs > 1 && i != cmd->n_inputs - 1)
 			dup2(p[1], STDOUT_FILENO);
-		handle_redirect(cmd->token);
-		run_cmdx_builtx(cmd, cmd->token, envp);
+		cmdline = get_command_line(cmd);
+		redirect_handler(cmdline);
+		cmdline = only_cmd_arg(cmdline);
+		run_final(cmdline, envp, cmd->token, cmd);
 	}
 	dup2(p[0], help);
 	close(p[0]);

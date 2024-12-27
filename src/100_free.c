@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   005_free.c                                         :+:      :+:    :+:   */
+/*   100_free.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 11:50:09 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 14:55:13 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,9 @@ void	free_pids(t_shell *cmd)
 		return ;
 	if (return_last_signal(-1) == SIGQUIT)
 		return ;
-	if (cmd->n_inputs > 1 || cmd->n_command >= 1)
+	if (cmd->pids_alloc == 1)
+	{
 		free(cmd->pids);
+		cmd->pids_alloc = 0;
+	}
 }
