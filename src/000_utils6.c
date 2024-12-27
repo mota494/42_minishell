@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:59:06 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 11:11:40 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 09:39:34 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,3 +47,18 @@ int	is_env_char(int c)
 	return (1);
 }
 
+int	count_pipes(t_token *sh)
+{
+	int		count;
+	t_token	*temp;
+
+	temp = sh;
+	count = 0;
+	while (temp)
+	{
+		if (sstrcmp(temp->cmd_line, "|"))
+			count++;
+		temp = temp->next;
+	}
+	return (count + 1);
+}

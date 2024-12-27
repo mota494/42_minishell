@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   501_redirect_and_wait.c                            :+:      :+:    :+:   */
+/*   510_redirect_and_wait.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:11:19 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/26 10:34:57 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/27 09:26:42 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,10 @@ int	wait_for_child(t_shell *cmd)
 	while (++i < cmd->n_inputs)
 	{
 		waitpid(cmd->pids[i], &wstatus, 0);
-		cmd->error_code = wstatus;
+		if (wstatus > 255)
+			cmd->error_code = WEXITSTATUS(wstatus);
+		else
+			cmd->error_code = wstatus;
 		if (wstatus == 131)
 			return_last_signal(SIGQUIT);
 	}
