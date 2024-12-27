@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   402_echo.c                                         :+:      :+:    :+:   */
+/*   600_echo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:58:43 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/09 10:55:44 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/27 10:21:58 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	count_echo(t_token *cmd)
 	toret = 0;
 	while (temp)
 	{
-		if (temp->type != string && temp->type != var)
+		if (temp->type != string)
 			return (toret);
 		temp = temp->next;
 		toret++;
