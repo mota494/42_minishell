@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_main.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/28 13:19:49 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 13:45:07 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,8 @@ void	read_command(t_shell *cmd)
 			if (cmd->n_inputs > 0)
 				if (execute_pipeline(cmd, cmd->copy_envp) == 1)
 					write(2, "Error executing pipeline\n", 25);
-			unlink_files(cmd);
+			if (cmd->heredoc == true)
+				unlink_files(cmd);
 		}
 		return_last_signal(0);
 		free_all(cmd);
