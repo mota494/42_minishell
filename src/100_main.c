@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/28 13:45:07 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2024/12/28 15:50:17 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	read_command(t_shell *cmd)
 			if (cmd->heredoc == true)
 				unlink_files(cmd);
 		}
+		setup_signals(IGNORE);
 		return_last_signal(0);
 		free_all(cmd);
 		free_for_heredoc(cmd);
