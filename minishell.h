@@ -87,7 +87,7 @@ typedef struct s_shell
 	int				line_len;
 	int				pids_alloc;
 	pid_t			heredoc_pid;
-	char			*filename;
+	char			**filename;
 }					t_shell;
 
 char	*get_doc_file(char *toret);
@@ -136,6 +136,7 @@ void			free_env(t_shell *cmd);
 void			free_pids(t_shell *cmd);
 /* == free2 == */
 void   			free_for_heredoc(t_shell *cmd);
+void			unlink_files(t_shell *cmd);
 /* == main == */
 void			reset_fds(t_shell *cmd, int fd_in, int fd_out);
 void			read_command(t_shell *cmd);

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 10:55:29 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 13:19:49 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	reset_fds(t_shell *cmd, int fd_in, int fd_out)
 void	read_command(t_shell *cmd)
 {
 	char	*line;
-	
+
 	while (1 && cmd->leave == false)
 	{
 		reset_fds(cmd, cmd->fds[0], cmd->fds[1]);
@@ -36,14 +36,23 @@ void	read_command(t_shell *cmd)
 		{
 			return_error_code(cmd);
 			parser(line, cmd);
+			free(line);
+			if (ft_strlen(cmd->token->cmd_line) == 0)
+			{
+				return_last_signal(0);
+				free_all(cmd);
+				free_for_heredoc(cmd);
+				continue ;
+			}
 			check_err(cmd);
 			if (cmd->n_inputs > 0)
 				if (execute_pipeline(cmd, cmd->copy_envp) == 1)
 					write(2, "Error executing pipeline\n", 25);
-			free(line);
+			unlink_files(cmd);
 		}
 		return_last_signal(0);
 		free_all(cmd);
+		free_for_heredoc(cmd);
 	}
 }
 
@@ -52,6 +61,7 @@ void	init_tshell(t_shell *cmd, char **envp)
 	char	buffer[PATH_MAX];
 
 	ft_bzero(cmd, sizeof(t_shell));
+	cmd->filename = NULL;
 	cmd->curdir = alocpy(getcwd(buffer, PATH_MAX));
 	setup_signals(IGNORE);
 	copy_envs(cmd, envp);
