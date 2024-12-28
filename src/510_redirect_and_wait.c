@@ -38,6 +38,8 @@ int	wait_for_child(t_shell *cmd)
 			cmd->error_code = wstatus;
 		if (wstatus == 131)
 			return_last_signal(SIGQUIT);
+		if (wstatus == 2)
+			cmd->error_code = 2 + 128;
 	}
 	return (0);
 }

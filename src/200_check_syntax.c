@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/28 10:13:36 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 13:03:06 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ void	loop_quotes(char *str, int *double_quotes, int *single_quotes)
 			*double_quotes += 1;
 			if (find_quote_closure(str, &i, '"'))
 				*double_quotes += 1;
+			i++;
 		}
 		else if (str[i] == '\'')
 		{
 			*single_quotes += 1;
 			if (find_quote_closure(str, &i, '\''))
 				*single_quotes += 1;
+			i++;
 		}
 		else
 			i++;
@@ -73,7 +75,7 @@ void	remove_spaces(char *str)
 		str[j] = '\0';
 	}
 	i = ft_strlen(str);
-	while (ft_ispace(str[i - 1]) == 1)
+	while (i > 0 && ft_ispace(str[i - 1]) == 1)
 		i--;
 	str[i] = '\0';
 }
@@ -105,10 +107,6 @@ int	check_operators(t_shell *cmd, char *str)
 	return (1);
 }
 
-/*checar os codigos de erro*/
-/* if any syntax error is found it returns 0
-** else, it returns 1 and parcing continues
- */
 int	check_syntax(t_shell *cmd, char *line)
 {
 	if (!line)
@@ -123,6 +121,8 @@ int	check_syntax(t_shell *cmd, char *line)
 	if (!check_quotes(cmd, line))
 		return (0);
 	if (!check_operators(cmd, line))
+		return (0);
+	if (line[0] == '\0')
 		return (0);
 	return (1);
 }
