@@ -48,6 +48,8 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 # Issues
 
-missing quotation giving invalid read
+check cd $PWD and $OLDPWD
 
-$export error
+fix heredoc signals
+
+fix redirects with no spaces example: echo a >>test.txt

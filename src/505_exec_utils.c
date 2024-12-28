@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:35:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 14:54:47 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 15:41:55 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,14 @@ char	**get_command_line(t_shell *cmd)
 	i = 0;
 	while (temp && temp->type != control)
 	{
-		cmdline[i] = ft_strdup(temp->cmd_line);
-		i++;
-		temp = temp->next;
+		if (temp->type == error)
+			temp = temp->next;
+		else
+		{
+			cmdline[i] = ft_strdup(temp->cmd_line);
+			i++;
+			temp = temp->next;
+		}
 	}
 	cmdline[i] = NULL;
 	return (cmdline);

@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 12:23:27 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 13:46:37 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 15:57:13 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	sstrcmp(char *tocomp, char *str)
 	size_t	i;
 
 	i = 0;
+	if (!tocomp || !str)
+		return (1);
 	while (tocomp[i] == str[i] && tocomp[i] && str[i])
 		i++;
 	if (i == ft_strlen(tocomp) && i == ft_strlen(str))

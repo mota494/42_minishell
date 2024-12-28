@@ -91,9 +91,6 @@ typedef struct s_shell
 	char			**filename;
 }					t_shell;
 
-char	*get_doc_file(char *toret);
-
-
 /* == utils == */
 char			*alocpy(char *str);
 t_token			*add_node(t_shell *cmd, char *content, int id);
@@ -129,6 +126,7 @@ int				count_args(t_token *cmds);
 int				is_var_char(int c);
 int				is_env_char(int c);
 int				count_pipes(t_token *sh);
+char			*get_doc_file(char *toret);
 /* == free == */
 void			free_copy_envp(t_shell *cmd);
 void			free_dirs(t_shell *cmd);
@@ -218,12 +216,21 @@ void			special_case(t_shell *cmd);
 /* == parser_tilde == */
 char			*sub_tilde(char *old_cmd);
 void			tilde(t_token *cmd);
-/* == parser_heredoc == */
-char			*putnbr(int i);
+/* == heredoc == */
+void			heredoc_read(t_shell *cmd, int fd);
 void			ft_read(t_shell *cmd, int fd);
-char			*get_name(char *char_nb);
 int				heredoc(t_shell *cmd, int i);
+int				how_many_heredoc(t_token *temp);
+void			heredoc_son(t_shell *cmd, t_token *temp);
+/* == heredoc_utils == */
+char			*putnbr(int i);
+int				is_there_quote(char *str);
+char			*parser_heredoc(char *str, int mode);
+char			*get_name(char *char_nb);
 void			find_heredoc(t_shell *cmd);
+/* == heredoc_signals == */
+void			heredoc_sighandle(int signo);
+void			heredoc_signals(void);
 /* == execution == */
 char			**only_cmd_arg(char **cmdline);
 t_token			*get_next(t_token *current);

@@ -62,3 +62,16 @@ int	count_pipes(t_token *sh)
 	}
 	return (count + 1);
 }
+
+char	*get_doc_file(char *toret)
+{
+	static char *filename;
+
+	if (!toret)
+		return (filename);
+	else
+	{
+		filename = toret;
+		return (toret);		
+	}
+}

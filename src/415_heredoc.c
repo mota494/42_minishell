@@ -12,80 +12,6 @@
 
 #include "../minishell.h"
 
-char	*get_doc_file(char *toret)
-{
-	static char *filename;
-
-	if (!toret)
-		return (filename);
-	else
-	{
-		filename = toret;
-		return (toret);		
-	}
-}
-
-char	*putnbr(int i)
-{
-	int		nbr;
-	int		len;
-	char	*str;
-	nbr = i;
-	len = 0;
-	while (nbr > 0)
-	{
-		len++;
-		nbr /= 10;
-	}
-	str = (char *)malloc(sizeof(char) * (len + 1));
-	if (!str)
-		return (NULL);
-	nbr = i;
-	str[len] = '\0';
-	while (len > 0)
-	{
-		len--;
-		str[len] = (nbr % 10) + '0';
-		nbr /= 10;
-	}
-	return (str);
-}
-
-int	is_there_quote(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 34 || str[i] == 39)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*parser_heredoc(char *str, int mode)
-{
-	char	*newtoret;
-	int		i;
-
-	i = 0;
-	newtoret = initalize_str();
-	while (str[i])
-	{
-		if (str[i] == '$' && mode == 0)
-			newtoret = parse_dollar(str, &i, newtoret, 0);
-		else
-		{
-			newtoret = strjoinchr(newtoret, str[i]);
-			i++;
-		}
-	}
-	free(str);
-	return (newtoret);	
-}
-
 void	heredoc_read(t_shell *cmd, int fd)
 {
 	char	*line;
@@ -106,20 +32,6 @@ void	heredoc_read(t_shell *cmd, int fd)
 	exit(cmd->error_code);
 }
 
-void	heredoc_sighandle(int signo)
-{
-	if (signo == SIGQUIT)
-	{
-		return_last_signal(signo);
-	}
-}
-
-void	heredoc_signals(void)
-{
-	signal(SIGINT, SIG_DFL);
-	signal(SIGQUIT, heredoc_sighandle);	
-}
-
 void	ft_read(t_shell *cmd, int fd)
 {
 	int		wstatus;
@@ -137,18 +49,7 @@ void	ft_read(t_shell *cmd, int fd)
 			cmd->error_code = WEXITSTATUS(wstatus);
 	}
 }
-char	*get_name(char *char_nb)
-{
-	char	*template;
-	char	*filename;
-	char	*temp;
 
-	template = "heredoc_temp_";
-	temp = ft_strjoin(template, char_nb);
-	filename = ft_strjoin(temp, ".txt");
-	free(temp);
-	return (filename);
-}
 int	heredoc(t_shell *cmd, int i)
 {
 	int		fd;
@@ -205,12 +106,4 @@ void	heredoc_son(t_shell *cmd, t_token *temp)
 	}
 	cmd->filename[i] = NULL;
 	cmd->error_code = 0;
-}
-
-void	find_heredoc(t_shell *cmd)
-{
-	t_token	*temp;
-
-	temp = cmd->token;
-	heredoc_son(cmd, temp);
 }
