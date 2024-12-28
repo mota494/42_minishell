@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 14:54:33 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 10:53:56 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define MINISHELL_H
 
 # include "inc.h"
+#include <sys/types.h>
 
 /* ============ enums ===============*/
 
@@ -49,7 +50,6 @@ typedef struct s_token
 	int				cmd_id;
 	char			*cmd_line;
 	char			*orig_line;
-	char			*eof;
 	char			*path_name;
 	bool			expand;
 	t_types			type;
@@ -68,6 +68,7 @@ typedef struct s_shell
 {
 	t_token			*token;
 	t_token			*head;
+	char			*eof;
 	int				n_inputs;
 	int				n_builtin;
 	int				n_command;
@@ -85,7 +86,12 @@ typedef struct s_shell
 	char			**copy_envp;
 	int				line_len;
 	int				pids_alloc;
+	pid_t			heredoc_pid;
+	char			*filename;
 }					t_shell;
+
+char	*get_doc_file(char *toret);
+
 
 /* == utils == */
 char			*alocpy(char *str);
@@ -128,6 +134,8 @@ void			free_dirs(t_shell *cmd);
 void			free_all(t_shell *cmd);
 void			free_env(t_shell *cmd);
 void			free_pids(t_shell *cmd);
+/* == free2 == */
+void   			free_for_heredoc(t_shell *cmd);
 /* == main == */
 void			reset_fds(t_shell *cmd, int fd_in, int fd_out);
 void			read_command(t_shell *cmd);
@@ -151,6 +159,7 @@ int				check_quotes(t_shell *cmd, char *str);
 void			remove_spaces(char *str);
 int				check_operators(t_shell *cmd, char *str);
 int				check_syntax(t_shell *cmd, char *line);
+void			loop_quotes(char *str, int *double_quotes, int *single_quotes);
 /* == syntax_utils == */
 char			*find_quote_closure(char *str, int *i, char quote_type);
 char			is_operator(char c);
@@ -209,11 +218,12 @@ char			*sub_tilde(char *old_cmd);
 void			tilde(t_token *cmd);
 /* == parser_heredoc == */
 char			*putnbr(int i);
-void			ft_read(t_token *token, int fd);
+void			ft_read(t_shell *cmd, int fd);
 char			*get_name(char *char_nb);
-int				heredoc(t_token *token, int i);
+int				heredoc(t_shell *cmd, int i);
 void			find_heredoc(t_shell *cmd);
 /* == execution == */
+char			**only_cmd_arg(char **cmdline);
 t_token			*get_next(t_token *current);
 void			child_process(t_shell *cmd, char **envp, int help, int i);
 int				execute_pipeline(t_shell *cmd, char **envp);
@@ -232,6 +242,8 @@ void			free_args(char **args);
 /* == redirect_and_wait == */
 int				wait_for_child(t_shell *cmd);
 void			handle_redirect(t_token *token/*, int p[2]*/);
+/* == redirect_one == */
+void			one_redirect_handler(char **cmdline);
 /* == redirects == */
 char			**get_tokens(t_token *token);
 void			redirect_outfile(char **args, char *red);
@@ -241,8 +253,8 @@ void			check_red(char **args/*, int p[2]*/);
 /* == redirects_utils == */
 void			free_old_cmd(char **str);
 int				size_new_line(char **cmdline);
-void			infile_redirect(char *file_name);
-void			outfile_redirect(char *file_name);
+void			infile_redirect(char *file_name, char *red_type);
+void			outfile_redirect(char *file_name, int mode);
 void			redirect_handler(char **cmdline);
 /* == cd == */
 void			cd(t_shell *cmd);

@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 15:11:53 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 10:29:45 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,11 @@ char	**only_cmd_arg(char **cmdline)
 	y = 0;
 	while (cmdline[i])
 	{
-		if (sstrcmp(cmdline[i], "<"))
+		if (sstrcmp(cmdline[i], "<")  || sstrcmp(cmdline[i], "<<"))
 			i = i + 2;
 		else if (sstrcmp(cmdline[i], ">"))
+			i = i + 2;
+		else if (sstrcmp(cmdline[i], ">>"))
 			i = i + 2;
 		else
 		{

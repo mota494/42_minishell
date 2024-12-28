@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   404_cd.c                                           :+:      :+:    :+:   */
+/*   600_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 12:16:37 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 10:44:19 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	cd(t_shell *cmd)
 	}
 	if (count_args(temp) == 0)
 		cd_empty_args(cmd);
+	else if (sstrcmp(temp->cmd_line, "-"))
+		pwd(cmd);
 	else if ((chdir(temp->cmd_line) == -1))
 	{
 		printf("minishell: cd: %s: No such file or directory\n", temp->cmd_line);

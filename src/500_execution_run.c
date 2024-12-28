@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 14:24:34 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 10:41:27 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,9 @@ int	one_builtin(t_shell *cmd)
 	current_token = cmd->token;
 	if (current_token->type == builtin)
 	{
-		args = get_command_tokens(current_token);
-		while (current_token)
-		{
-			if (current_token->type == pipes)
-				return (1);
-			current_token = current_token->next;
-		}
+		args = get_command_line(cmd);
+		one_redirect_handler(args);
+		args = only_cmd_arg(args);
 		call_builtin(args, cmd);
 		free_args(args);
 		return (0);

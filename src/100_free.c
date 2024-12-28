@@ -60,6 +60,7 @@ void	free_all(t_shell *cmd)
 	if (cmd->path_dirs)
 		free_dirs(cmd);
 	free_copy_envp(cmd);
+	free_for_heredoc(cmd);
 }
 
 void	free_env(t_shell *cmd)
