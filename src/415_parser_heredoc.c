@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   415_parser_heredoc.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/28 13:06:38 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/28 13:44:39 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "../minishell.h"
 
 char	*get_doc_file(char *toret)
@@ -166,7 +167,7 @@ int	heredoc(t_shell *cmd, int i)
 int	how_many_heredoc(t_token *temp)
 {
 	int		i;
-	t_token *a_temp;
+	t_token	*a_temp;
 
 	i = 0;
 	a_temp = temp;
@@ -174,8 +175,8 @@ int	how_many_heredoc(t_token *temp)
 	{
 		if (sstrcmp(a_temp->cmd_line, "<<"))
 			i++;
-		a_temp = a_temp->next;		
-	}	
+		a_temp = a_temp->next;
+	}
 	return (i);
 }
 
@@ -188,6 +189,7 @@ void	heredoc_son(t_shell *cmd, t_token *temp)
 	d = how_many_heredoc(temp);
 	if (d == 0)
 		return ;
+	cmd->heredoc = true;
 	cmd->filename = ft_calloc(sizeof(char *), (d + 1));
 	while (temp)
 	{
