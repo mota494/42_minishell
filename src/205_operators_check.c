@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   301_operators_check.c                              :+:      :+:    :+:   */
+/*   205_operators_check.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:47:22 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/19 09:18:47 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/30 12:50:05 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	check_append(t_shell *cmd, char *str, int i)
 		else
 		{
 			check_next_op(cmd, str, i + 1);
-			return (1);
+			return (0);
 		}
 	}
 	return (0);
