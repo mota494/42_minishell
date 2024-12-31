@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   200_syntax_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 08:37:45 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/28 12:59:22 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/31 16:31:01 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,18 @@
 
 char	*find_quote_closure(char *str, int *i, char quote_type)
 {
+	if (!str[*i + 1])
+		return (NULL);
 	(*i)++;
 	while (str[*i])
 	{
-		if (str[*i] == '\\')
+		if (str[*i] == '\\' && str[*i + 1])
 		{
-			(*i)++;
-			if (str[*i] == '\0')
-				return (NULL);
+			(*i)+=2;
+			continue ;
 		}
-		else if (str[*i] == quote_type)
-		{
-			if (str[*i + 1] == quote_type)
-				(*i)++;
-			else
-				return (&str[*i]);
-		}
+		if (str[*i] == quote_type)
+			return (&str[*i]);
 		(*i)++;
 	}
 	return (NULL);

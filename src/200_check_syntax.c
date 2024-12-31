@@ -6,7 +6,7 @@
 /*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/28 13:03:06 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/31 16:18:58 by codespace        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,17 +21,19 @@ void	loop_quotes(char *str, int *double_quotes, int *single_quotes)
 	{
 		if (str[i] == '"')
 		{
-			*double_quotes += 1;
+			(*double_quotes)++;
 			if (find_quote_closure(str, &i, '"'))
-				*double_quotes += 1;
-			i++;
+				(*double_quotes)++;
+			else if (str[i])
+				i++;
 		}
 		else if (str[i] == '\'')
 		{
-			*single_quotes += 1;
+			(*single_quotes)++;
 			if (find_quote_closure(str, &i, '\''))
-				*single_quotes += 1;
-			i++;
+				(*single_quotes)++;
+			else if (str[i])
+				i++;
 		}
 		else
 			i++;
