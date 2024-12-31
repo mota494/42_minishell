@@ -51,7 +51,3 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 check cd $PWD and $OLDPWD
 
 fix heredoc signals
-
-fix "cat | cat | ls and echo a | <<EOF"
-
-fix redirects with no spaces example: echo a >>test.txt
