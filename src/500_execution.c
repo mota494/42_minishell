@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/28 16:20:18 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/31 11:53:33 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,9 +100,9 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 			dup2(help, STDIN_FILENO);
 		if (cmd->n_inputs > 1 && i != cmd->n_inputs - 1)
 			dup2(p[1], STDOUT_FILENO);
-		cmdline = get_command_line(cmd);
-		redirect_handler(cmdline);
-		cmdline = only_cmd_arg(cmdline);
+		cmdline = find_command_line(cmd);
+		if (cmd->eof)
+			free_for_heredoc(cmd);
 		close(p[1]);
 		close(p[0]);
 		run_final(cmdline, envp, cmd->token, cmd);

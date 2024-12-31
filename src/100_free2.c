@@ -18,6 +18,8 @@ void    unlink_files(t_shell *cmd)
     int i;
 
     i = 0;
+	if (!cmd->filename)
+		return ;
 	while (cmd->filename[i])
     {
         unlink(cmd->filename[i]);

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:35:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/28 15:41:55 by mloureir         ###   ########.pt       */
+/*   Updated: 2024/12/31 12:08:25 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ char	**get_command_line(t_shell *cmd)
 	i = 0;
 	while (temp && temp->type != control)
 	{
-		if (temp->type == error)
+		if (is_redirect(temp->cmd_line) && temp->type == string)
+			temp = temp->next;
+		else if (temp->type == error)
 			temp = temp->next;
 		else
 		{
