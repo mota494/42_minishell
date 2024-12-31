@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/31 12:58:24 by mloureir         ###   ########.fr       */
+/*   Updated: 2024/12/31 14:39:42 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	run_final(char **cmdline, char **envp, t_token *token, t_shell *cmd)
 {
 	while (sstrcmp(token->cmd_line, cmdline[0]) == 0)
 		token = token->next;
-	if (ft_strlen(token->cmd_line) == 0 || (token->type != builtin || token->type != command))
+	if (ft_strlen(token->cmd_line) == 0 || (token->type != builtin && token->type != command))
 	{
 		free_all(cmd);
 		free_env(cmd);
