@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 15:10:32 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 19:24:04 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,20 @@ void	cd_change_dir(t_shell *cmd)
 	cmd->curdir = alocpy(getcwd(buffer, PATH_MAX));
 }
 
+int	check_for_cd_flags(t_token *arg)
+{
+	if (arg->cmd_line[0] == '-')
+	{
+		if (arg->cmd_line[1] != '\0')
+		{
+			ft_printf(2, "minishell: cd: -%c invalid option\n",
+				arg->cmd_line[1]);
+			return (0);
+		}
+	}
+	return (1);
+}
+
 void	cd(t_shell *cmd)
 {
 	t_token	*temp;
@@ -69,11 +83,14 @@ void	cd(t_shell *cmd)
 	}
 	if (count_args(temp) == 0)
 		cd_empty_args(cmd);
+	else if (!check_for_cd_flags(temp))
+		cmd->error_code = 2;
 	else if (sstrcmp(temp->cmd_line, "-"))
 		pwd(cmd);
 	else if ((chdir(temp->cmd_line) == -1))
 	{
-		printf("minishell: cd: %s: No such file or directory\n", temp->cmd_line);
+		printf("minishell: cd: %s:No such file or directory\n",
+			temp->cmd_line);
 		cmd->error_code = 1;
 	}
 	else

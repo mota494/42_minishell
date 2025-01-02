@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:16:09 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 17:44:59 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 19:34:53 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	minishell_loop(t_shell *cmd, char *line)
 		return_error_code(cmd);
 		parser(line, cmd);
 		free(line);
+		check_err(cmd);
 		if (ft_strlen(cmd->token->cmd_line) == 0)
 			return ;
-		check_err(cmd);
 		if (cmd->n_inputs > 0)
 			if (execute_pipeline(cmd, cmd->copy_envp) == 1)
 				write(2, "Error executing pipeline\n", 25);

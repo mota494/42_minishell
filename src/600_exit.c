@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 18:57:55 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 19:19:48 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int	exit_main(t_shell *cmd)
 	if (cmd->token->cmd_id == 0)
 	{
 		cmd->leave = true;
-		if (cmd->error_code != 2)
+		if (cmd->error_code != 2 && cmd->token->next)
 			cmd->error_code = ft_atoll(cmd->token->next->cmd_line);
 		write(1, "exit\n", 5);
 	}
