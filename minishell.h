@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/31 11:44:37 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:19:05 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,6 +142,8 @@ void			read_command(t_shell *cmd);
 void			init_tshell(t_shell *cmd, char **envp);
 void			check_input(int ac, char **av);
 int				main(int ac, char **av, char **envp);
+/* == main_loop == */
+void			minishell_loop(t_shell *cmd, char *line);
 /* == env == */
 void			fix_env(void);
 t_c_envp		*ret_env(t_c_envp *tosend);
@@ -218,7 +220,7 @@ char			*sub_tilde(char *old_cmd);
 void			tilde(t_token *cmd);
 /* == heredoc == */
 void			heredoc_read(t_shell *cmd, int fd);
-void			ft_read(t_shell *cmd, int fd);
+int				ft_read(t_shell *cmd, int fd);
 int				heredoc(t_shell *cmd, int i);
 int				how_many_heredoc(t_token *temp);
 void			heredoc_son(t_shell *cmd, t_token *temp);

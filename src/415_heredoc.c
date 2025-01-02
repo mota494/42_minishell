@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   415_parser_heredoc.c                               :+:      :+:    :+:   */
+/*   415_heredoc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/28 13:44:39 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2025/01/02 14:14:48 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,9 @@ void	heredoc_read(t_shell *cmd, int fd)
 {
 	char	*line;
 
-	while ((line = readline("> ")))
+	while (1 && cmd->leave == false)
 	{
+		line = readline("> ");
 		if (sstrcmp(line, cmd->eof) || !line)
 			break ;
 		line = parser_heredoc(line, is_there_quote(cmd->eof));
@@ -32,10 +33,11 @@ void	heredoc_read(t_shell *cmd, int fd)
 	exit(cmd->error_code);
 }
 
-void	ft_read(t_shell *cmd, int fd)
+int	ft_read(t_shell *cmd, int fd)
 {
 	int		wstatus;
 
+	wstatus = 0;
 	cmd->heredoc_pid = fork();
 	if (cmd->heredoc_pid == 0)
 	{
@@ -48,6 +50,7 @@ void	ft_read(t_shell *cmd, int fd)
 		if (wstatus > 255)
 			cmd->error_code = WEXITSTATUS(wstatus);
 	}
+	return (wstatus);
 }
 
 int	heredoc(t_shell *cmd, int i)
