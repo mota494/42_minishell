@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/02 14:14:48 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 15:33:34 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	heredoc_read(t_shell *cmd, int fd)
 {
 	char	*line;
 
-	while (1 && cmd->leave == false)
+	while (1 && cmd->doc_leave == false)
 	{
 		line = readline("> ");
 		if (sstrcmp(line, cmd->eof) || !line)
@@ -26,10 +26,13 @@ void	heredoc_read(t_shell *cmd, int fd)
 		ft_putchar_fd('\n', fd);
 		free(line);
 	}
-	free(line);
+	if (line != NULL)
+		free(line);
 	free_for_heredoc(cmd);
 	free_all(cmd);
 	free_env(cmd);
+	if (return_last_signal(-1) == SIGINT)
+		cmd->error_code = SIGINT;
 	exit(cmd->error_code);
 }
 
@@ -38,6 +41,7 @@ int	ft_read(t_shell *cmd, int fd)
 	int		wstatus;
 
 	wstatus = 0;
+	setup_signals(TURNOFF);
 	cmd->heredoc_pid = fork();
 	if (cmd->heredoc_pid == 0)
 	{
@@ -47,6 +51,8 @@ int	ft_read(t_shell *cmd, int fd)
 	else
 	{
 		waitpid(cmd->heredoc_pid, &wstatus, 0);
+		ft_printf(2, "%d", wstatus);
+		cmd->error_code = wstatus;
 		if (wstatus > 255)
 			cmd->error_code = WEXITSTATUS(wstatus);
 	}

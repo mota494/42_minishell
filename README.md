@@ -48,6 +48,6 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 # Issues
 
-check cd $PWD and $OLDPWD
-
 fix heredoc signals
+
+fix flags

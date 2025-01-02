@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 14:19:24 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 14:38:03 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	read_command(t_shell *cmd)
 	{
 		minishell_loop(cmd, line);
 		setup_signals(IGNORE);
+		cmd->doc_leave = false;
 		return_last_signal(0);
 		free_all(cmd);
 		free_for_heredoc(cmd);

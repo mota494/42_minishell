@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   415_heredoc_utils.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/01/02 14:25:28 by mloureir          #+#    #+#             */
+/*   Updated: 2025/01/02 14:25:50 by mloureir         ###   ########.pt       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../minishell.h"
 
 char	*putnbr(int i)
@@ -5,6 +17,7 @@ char	*putnbr(int i)
 	int		nbr;
 	int		len;
 	char	*str;
+
 	nbr = i;
 	len = 0;
 	while (nbr > 0)
@@ -58,7 +71,7 @@ char	*parser_heredoc(char *str, int mode)
 		}
 	}
 	free(str);
-	return (newtoret);	
+	return (newtoret);
 }
 
 char	*get_name(char *char_nb)
