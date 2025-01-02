@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   505_exec_utils2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:01:57 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 16:09:08 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 21:20:35 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,17 @@ char	**find_command_line(t_shell *cmd)
 	redirect_handler(cmdline);
 	cmdline = only_cmd_arg(cmdline);
 	return (cmdline);
+}
+
+void	free_args(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
 }

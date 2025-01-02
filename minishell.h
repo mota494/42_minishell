@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 21:01:34 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2025/01/02 21:17:46 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -251,9 +251,9 @@ char			**get_command_line(t_shell *cmd);
 int				alloc_pids(t_shell *cmd);
 int				count_tokens(t_token *current_token);
 char			**get_command_tokens(t_token *token);
-void			free_args(char **args);
 /* == exec_utils2 == */
 char			**find_command_line(t_shell *cmd);
+void			free_args(char **args);
 /* == redirect_and_wait == */
 int				wait_for_child(t_shell *cmd);
 void			handle_redirect(t_token *token/*, int p[2]*/);

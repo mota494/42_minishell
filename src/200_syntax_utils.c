@@ -5,25 +5,20 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/09/18 08:37:45 by sofiabueno        #+#    #+#             */
-/*   Updated: 2025/01/02 15:58:00 by mloureir         ###   ########.pt       */
+/*   Created: 2025/01/02 21:07:43 by sbueno-s          #+#    #+#             */
+/*   Updated: 2025/01/02 21:07:57 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	* find_quote_closure(char *str, int *i, char quote_type)
+char	*find_quote_closure(char *str, int *i, char quote_type)
 {
 	if (!str[*i + 1])
 		return (NULL);
 	(*i)++;
 	while (str[*i])
 	{
-		// if (str[*i] == '\\' && str[*i + 1])
-		// {
-		// 	(*i)+=2;
-		// 	continue ;
-		// }
 		if (str[*i] == quote_type)
 			return (&str[*i]);
 		(*i)++;

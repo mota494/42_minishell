@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   600_cd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 15:10:32 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 21:21:16 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	cd(t_shell *cmd)
 		pwd(cmd);
 	else if ((chdir(temp->cmd_line) == -1))
 	{
-		printf("minishell: cd: %s: No such file or directory\n", temp->cmd_line);
+		printf("minishell: cd: %s: No such file or directory\n",
+			temp->cmd_line);
 		cmd->error_code = 1;
 	}
 	else

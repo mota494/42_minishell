@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   510_redirects_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 14:30:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 16:01:33 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 21:20:20 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int	size_new_line(char **cmdline)
 	i = 0;
 	while (cmdline[i])
 	{
-		if (sstrcmp(cmdline[i], "<")  || sstrcmp(cmdline[i], "<<"))
+		if (sstrcmp(cmdline[i], "<") || sstrcmp(cmdline[i], "<<"))
 			i = i + 2;
 		else if (sstrcmp(cmdline[i], ">"))
 			i = i + 2;

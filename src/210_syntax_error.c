@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   302_syntax_error.c                                 :+:      :+:    :+:   */
+/*   210_syntax_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 20:36:02 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/09/30 15:46:18 by sofiabueno       ###   ########.fr       */
+/*   Updated: 2025/01/02 21:10:08 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,3 @@ void	print_error(t_shell *cmd, char *error_type, int error_code, char *compl)
 	}
 	cmd->error_code = error_code;
 }
-

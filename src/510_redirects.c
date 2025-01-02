@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   502_redirects.c                                    :+:      :+:    :+:   */
+/*   510_redirects.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/20 17:37:54 by codespace         #+#    #+#             */
-/*   Updated: 2024/12/23 15:34:51 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 21:15:49 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ char	**get_tokens(t_token *token)
 
 void	redirect_outfile(char **args, char *red)
 {
-	int	fd;
-	int	i;
-	char *file_name;
+	int		fd;
+	int		i;
+	char	*file_name;
 
 	file_name = NULL;
 	i = -1;
@@ -55,11 +55,11 @@ void	redirect_outfile(char **args, char *red)
 	free(file_name);
 }
 
-void	redirect_infile(char **args/*, int p[2]*/)
+void	redirect_infile(char **args)
 {
-	int	fd;
-	int	i;
-	char *file_name;
+	int		fd;
+	int		i;
+	char	*file_name;
 
 	i = -1;
 	while (args[++i])
@@ -76,7 +76,7 @@ void	redirect_infile(char **args/*, int p[2]*/)
 	free(file_name);
 }
 
-void	ft_redirect(char **args, char *red/*, int p[2]*/)
+void	ft_redirect(char **args, char *red)
 {
 	if (sstrcmp("<", red))
 		redirect_infile(args);
@@ -84,10 +84,10 @@ void	ft_redirect(char **args, char *red/*, int p[2]*/)
 		redirect_outfile(args, red);
 }
 
-void	check_red(char **args/*, int p[2]*/)
+void	check_red(char **args)
 {
-	int	i;
-	char *red;
+	int		i;
+	char	*red;
 
 	i = -1;
 	red = NULL;
@@ -95,13 +95,12 @@ void	check_red(char **args/*, int p[2]*/)
 	{
 		if (is_redirect(args[i]) == 1)
 			red = ft_strdup(args[i]);
-	}	
+	}
 	if (red == NULL)
 		return ;
 	else
 	{
-		ft_redirect(args, red/*, p*/);
+		ft_redirect(args, red);
 		free (red);
 	}
 }
-
