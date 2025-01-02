@@ -3,55 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   200_check_syntax.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: codespace <codespace@student.42.fr>        +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/31 16:18:58 by codespace        ###   ########.fr       */
+/*   Updated: 2025/01/02 14:59:17 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	loop_quotes(char *str, int *double_quotes, int *single_quotes)
+int	find_match(char *str, int i, char type)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (!str[i + 1])
+		return (-1);
+	i++;
+	while(str[i])
 	{
-		if (str[i] == '"')
-		{
-			(*double_quotes)++;
-			if (find_quote_closure(str, &i, '"'))
-				(*double_quotes)++;
-			else if (str[i])
-				i++;
-		}
-		else if (str[i] == '\'')
-		{
-			(*single_quotes)++;
-			if (find_quote_closure(str, &i, '\''))
-				(*single_quotes)++;
-			else if (str[i])
-				i++;
-		}
-		else
-			i++;
+		if (str[i] == type)
+			return (i);
+		i++;
 	}
+	return (-1);
 }
 
 int	check_quotes(t_shell *cmd, char *str)
 {
-	int	double_quotes;
-	int	single_quotes;
+	int	i;
 
-	double_quotes = 0;
-	single_quotes = 0;
-	loop_quotes(str, &double_quotes, &single_quotes);
-	if (double_quotes % 2 != 0 || single_quotes % 2 != 0)
+	i = -1;
+	while (str[++i])
 	{
-		print_error(cmd, ERROR_QUOTE, 2, NULL);
-		return (0);
+		if (str[i] == '"')
+		{
+			i = find_match(str, i, '"');
+			if (i == -1)
+			{
+				print_error(cmd, ERROR_QUOTE, 2, NULL);
+				return (0);
+			}
+		}
+		else if (str[i] == '\'')
+		{
+			i = find_match(str, i, '\"');
+			if (i == -1)
+			{
+				print_error(cmd, ERROR_QUOTE, 2, NULL);
+				return (0);
+			}
+		}
 	}
 	return (1);
 }
