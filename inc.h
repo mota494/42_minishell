@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/18 10:59:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 11:02:28 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 14:33:33 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 /********* signal_modes *********/
 # define IGNORE 0
 # define COMMANDS 1
+# define TURNOFF 3
 
 /********* syntax structs ********/
 typedef struct s_index_counter

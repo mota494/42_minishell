@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:00:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/26 10:54:35 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 14:33:15 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,10 @@ void	setup_signals(int mode)
 	{
 		signal(SIGQUIT, sig_handler);
 		signal(SIGINT, sig_test);
+	}
+	else if (mode == TURNOFF)
+	{
+		signal(SIGINT, SIG_IGN);
+		signal(SIGQUIT, SIG_IGN);
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/28 10:44:19 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 15:10:32 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,24 @@
 
 void	cd_empty_args(t_shell *cmd)
 {
+	char	buffer[PATH_MAX];
+
 	cmd->error_code = 0;
 	if (get_env("HOME"))
+	{
 		chdir(get_env("HOME"));
+		cmd->error_code = 0;
+		if (get_env("PWD"))
+			change_env_value("PWD", getcwd(buffer, PATH_MAX));
+		else
+			add_env_value("PWD", getcwd(buffer, PATH_MAX), 0);
+		if (get_env("OLDPWD"))
+			change_env_value("OLDPWD", cmd->curdir);
+		else
+			add_env_value("OLDPWD", cmd->curdir, 0);
+		free(cmd->curdir);
+		cmd->curdir = alocpy(getcwd(buffer, PATH_MAX));
+	}
 	else
 	{
 		printf("Minishell: cd: HOME is not set");

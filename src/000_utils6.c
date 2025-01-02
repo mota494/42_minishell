@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 11:59:06 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 14:43:59 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 14:28:54 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,13 +65,13 @@ int	count_pipes(t_token *sh)
 
 char	*get_doc_file(char *toret)
 {
-	static char *filename;
+	static char	*filename;
 
 	if (!toret)
 		return (filename);
 	else
 	{
 		filename = toret;
-		return (toret);		
+		return (toret);
 	}
 }

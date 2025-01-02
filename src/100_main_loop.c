@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:16:09 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 14:18:30 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 16:17:51 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	minishell_loop(t_shell *cmd, char *line)
 		if (ft_strlen(cmd->token->cmd_line) == 0)
 		{
 			return_last_signal(0);
-			free_all(cmd);
-			free_for_heredoc(cmd);
 			return ;
 		}
 		check_err(cmd);

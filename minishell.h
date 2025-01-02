@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 14:19:05 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 15:00:49 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define MINISHELL_H
 
 # include "inc.h"
-#include <sys/types.h>
 
 /* ============ enums ===============*/
 
@@ -81,6 +80,7 @@ typedef struct s_shell
 	char			*curdir;
 	bool			leave;
 	bool			heredoc;
+	bool			doc_leave;
 	pid_t			*pids;
 	t_fd			*p_fds;
 	t_exec			*exec;
@@ -232,6 +232,8 @@ char			*get_name(char *char_nb);
 void			find_heredoc(t_shell *cmd);
 /* == heredoc_signals == */
 void			heredoc_sighandle(int signo);
+void			heredoc_sighandle(int signo);
+void			update_leave(void);
 void			heredoc_signals(void);
 /* == execution == */
 char			**only_cmd_arg(char **cmdline);
