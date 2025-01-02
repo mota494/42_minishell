@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   406_export.c                                       :+:      :+:    :+:   */
+/*   610_export.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 15:17:57 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 18:12:55 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	check_export_flag(t_shell *cmd)
 int	check_export_args(t_shell *cmd)
 {
 	t_token	*temp;
+	int		d;
 
 	temp = cmd->token;
 	if (!temp->next || temp->next->type != string)
@@ -69,7 +70,8 @@ int	check_export_args(t_shell *cmd)
 	}
 	else
 	{
-		export_new(count_export_args(temp), temp, cmd);
+		d = count_export_args(temp);
+		export_new(d, temp, cmd);
 		return (1);
 	}
 	return (0);

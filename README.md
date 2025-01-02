@@ -40,6 +40,8 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 40x -> Files that deal with parsing quotes and variables
 
+41x -> Heredoc files
+
 50x -> Execution, redirection and heredoc
 
 60x -> Builtins

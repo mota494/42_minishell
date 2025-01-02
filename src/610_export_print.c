@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:35:48 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/26 14:59:21 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 18:22:17 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	swap_values(t_c_envp *o_env, int i)
 {
 	char	*temp_name;
 	char	*temp_value;
+	int		temp_equal;
 
 	temp_name = strdup(o_env[i].var_name);
 	free(o_env[i].var_name);
@@ -43,6 +44,9 @@ void	swap_values(t_c_envp *o_env, int i)
 	free(o_env[i + 1].var_value);
 	o_env[i + 1].var_value = ft_strdup(temp_value);
 	free(temp_value);
+	temp_equal = o_env[i].equal;
+	o_env[i].equal = o_env[i + 1].equal;
+	o_env[i + 1].equal = temp_equal;
 }
 
 void	order_print(t_c_envp *o_env)

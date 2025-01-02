@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 15:00:49 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 18:47:04 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -285,7 +285,7 @@ int				check_env_args(t_shell *cmd);
 void			builtin_env(t_shell *cmd);
 /* == exit == */
 int				is_strdigit(char *str);
-long long int	analyze_exit_arg(t_token *arg, int old_error);
+long long int	analyze_exit_arg(t_token *arg);
 int				exit_main(t_shell *cmd);
 /* == pwd == */
 int				pwd(t_shell *cmd);
