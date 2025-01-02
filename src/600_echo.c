@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:58:43 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/27 10:21:58 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 20:21:28 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,23 +50,25 @@ int	check_echo_flag(char *str)
 
 void	print_echo(t_token *cmd)
 {
-	int	count_print;
+	int	end_flag;
 	int	is_n;
 	int	to_print;
 
-	count_print = 0;
+	end_flag = 1;
 	is_n = 0;
 	to_print = count_echo(cmd);
 	while (to_print > 0 && cmd)
 	{
 		to_print--;
-		if (check_echo_flag(cmd->cmd_line) && count_print == 0)
+		if (check_echo_flag(cmd->cmd_line) && end_flag != 0)
 			is_n = 1;
 		else if (to_print > 0 && ft_strlen(cmd->cmd_line) > 0)
+		{
 			printf("%s ", cmd->cmd_line);
+			end_flag = 0;
+		}
 		else if (to_print == 0 && ft_strlen(cmd->cmd_line) > 0)
 			printf("%s", cmd->cmd_line);
-		count_print++;
 		cmd = cmd->next;
 	}
 	if (is_n == 0)
