@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   401_exit.c                                         :+:      :+:    :+:   */
+/*   600_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 11:11:40 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 17:49:03 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ long long int	analyze_exit_arg(t_token *arg, int old_error)
 	long long int	toret;
 
 	if (!arg)
+		return (old_error);
+	if (sstrcmp(arg->cmd_line, "|"))
 		return (old_error);
 	if (is_strdigit(arg->cmd_line) == 1)
 	{
