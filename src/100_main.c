@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/28 15:50:17 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 14:19:24 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,10 @@ void	read_command(t_shell *cmd)
 {
 	char	*line;
 
+	line = NULL;
 	while (1 && cmd->leave == false)
 	{
-		reset_fds(cmd, cmd->fds[0], cmd->fds[1]);
-		line = readline("minishell: ");
-		if (line)
-			cmd->line_len = ft_strlen(line);
-		if (line && ft_strlen(line) > 0)
-			add_history(line);
-		if (check_syntax(cmd, line) == 1)
-		{
-			return_error_code(cmd);
-			parser(line, cmd);
-			free(line);
-			if (ft_strlen(cmd->token->cmd_line) == 0)
-			{
-				return_last_signal(0);
-				free_all(cmd);
-				free_for_heredoc(cmd);
-				continue ;
-			}
-			check_err(cmd);
-			if (cmd->n_inputs > 0)
-				if (execute_pipeline(cmd, cmd->copy_envp) == 1)
-					write(2, "Error executing pipeline\n", 25);
-			if (cmd->heredoc == true)
-				unlink_files(cmd);
-		}
+		minishell_loop(cmd, line);
 		setup_signals(IGNORE);
 		return_last_signal(0);
 		free_all(cmd);
