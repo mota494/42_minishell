@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 15:00:49 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 21:01:34 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef struct s_shell
 	char			*curdir;
 	bool			leave;
 	bool			heredoc;
+	bool			eof_quotes;
 	bool			doc_leave;
 	pid_t			*pids;
 	t_fd			*p_fds;
@@ -226,8 +227,7 @@ int				how_many_heredoc(t_token *temp);
 void			heredoc_son(t_shell *cmd, t_token *temp);
 /* == heredoc_utils == */
 char			*putnbr(int i);
-int				is_there_quote(char *str);
-char			*parser_heredoc(char *str, int mode);
+char			*parser_heredoc(t_shell *cmd, char *str);
 char			*get_name(char *char_nb);
 void			find_heredoc(t_shell *cmd);
 /* == heredoc_signals == */

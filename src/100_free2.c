@@ -1,6 +1,6 @@
 #include "../minishell.h"
 
-void    free_for_heredoc(t_shell *cmd)
+void	free_for_heredoc(t_shell *cmd)
 {
     if (cmd->filename)
 	{
@@ -10,7 +10,7 @@ void    free_for_heredoc(t_shell *cmd)
     if (cmd->eof)
     {
         free(cmd->eof);
-        cmd->eof = NULL;        
+        cmd->eof = NULL;
     }
 }
 void    unlink_files(t_shell *cmd)

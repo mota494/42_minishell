@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/02 15:33:34 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 20:49:24 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	heredoc_read(t_shell *cmd, int fd)
 		line = readline("> ");
 		if (sstrcmp(line, cmd->eof) || !line)
 			break ;
-		line = parser_heredoc(line, is_there_quote(cmd->eof));
+		line = parser_heredoc(cmd, line);
 		ft_putstr_fd(line, fd);
 		ft_putchar_fd('\n', fd);
 		free(line);
@@ -108,6 +108,8 @@ void	heredoc_son(t_shell *cmd, t_token *temp)
 			if (cmd->eof)
 				free(cmd->eof);
 			cmd->eof = ft_strdup(temp->next->cmd_line);
+			if (sstrcmp(cmd->eof, temp->next->orig_line) == 0)
+				cmd->eof_quotes = true;
 			heredoc(cmd, i);
 			i++;
 		}

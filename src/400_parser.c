@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/31 11:13:46 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/02 20:13:18 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,5 +77,8 @@ void	parser(char *line, t_shell *cmd)
 	get_redirect_type(cmd->token);
 	if (ft_strlen(cmd->token->cmd_line) > 0)
 		find_heredoc(cmd);
+	if (cmd->heredoc)
+		printf("%s\n", cmd->eof);
 	get_type(NULL, NULL, "|", "|");
+	print_list(cmd);
 }

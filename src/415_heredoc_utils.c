@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   415_heredoc_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:25:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 14:25:50 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 21:01:17 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,21 +39,7 @@ char	*putnbr(int i)
 	return (str);
 }
 
-int	is_there_quote(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 34 || str[i] == 39)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*parser_heredoc(char *str, int mode)
+char	*parser_heredoc(t_shell *cmd, char *str)
 {
 	char	*newtoret;
 	int		i;
@@ -62,7 +48,7 @@ char	*parser_heredoc(char *str, int mode)
 	newtoret = initalize_str();
 	while (str[i])
 	{
-		if (str[i] == '$' && mode == 0)
+		if (str[i] == '$' && cmd->eof_quotes == false)
 			newtoret = parse_dollar(str, &i, newtoret, 0);
 		else
 		{
@@ -92,5 +78,6 @@ void	find_heredoc(t_shell *cmd)
 	t_token	*temp;
 
 	temp = cmd->token;
+	cmd->eof_quotes = false;
 	heredoc_son(cmd, temp);
 }
