@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2025/01/02 15:57:35 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/02 18:46:20 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	check_quotes(t_shell *cmd, char *str)
 		}
 		else if (str[i] == '\'')
 		{
-			i = find_match(str, i, '\"');
+			i = find_match(str, i, '\'');
 			if (i == -1)
 			{
 				print_error(cmd, ERROR_QUOTE, 2, NULL);
