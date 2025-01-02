@@ -1,0 +1,15 @@
+$USER
+en.subject.pdf
+inc.h
+includes
+Makefile
+minishell
+minishell_evaluation_page.pdf
+minishell.h
+obj
+readline_leaks
+README.md
+sbueno-s
+src
+test.txt
+valgrind_leaks.txt
