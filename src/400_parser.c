@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 14:50:38 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 15:20:02 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,10 @@ void	get_folder_type(t_token *sh)
 	{
 		if (!stat(temp->cmd_line, &buffer) && temp->type != string
 			&& temp->type != file)
-			temp->type = folder;
+		{
+			if (S_ISREG(buffer.st_mode) == 0)
+				temp->type = folder;
+		}
 		temp = temp->next;
 	}
 }
