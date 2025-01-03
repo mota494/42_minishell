@@ -3,14 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   415_heredoc_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:25:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 14:25:50 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 16:26:49 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	heredoc_loop(t_shell *cmd, t_token *temp, int i)
+{
+	if (cmd->eof)
+		free(cmd->eof);
+	cmd->eof = ft_strdup(temp->next->cmd_line);
+	if (sstrcmp(cmd->eof, temp->next->orig_line) == 0)
+		cmd->eof_quotes = true;
+	heredoc(cmd, i);
+	if (cmd->error_code == 2)
+		cmd->doc_leave = true;
+}
 
 char	*putnbr(int i)
 {
@@ -39,21 +51,7 @@ char	*putnbr(int i)
 	return (str);
 }
 
-int	is_there_quote(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == 34 || str[i] == 39)
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	*parser_heredoc(char *str, int mode)
+char	*parser_heredoc(t_shell *cmd, char *str)
 {
 	char	*newtoret;
 	int		i;
@@ -62,7 +60,7 @@ char	*parser_heredoc(char *str, int mode)
 	newtoret = initalize_str();
 	while (str[i])
 	{
-		if (str[i] == '$' && mode == 0)
+		if (str[i] == '$' && cmd->eof_quotes == false)
 			newtoret = parse_dollar(str, &i, newtoret, 0);
 		else
 		{
@@ -92,5 +90,6 @@ void	find_heredoc(t_shell *cmd)
 	t_token	*temp;
 
 	temp = cmd->token;
+	cmd->eof_quotes = false;
 	heredoc_son(cmd, temp);
 }
