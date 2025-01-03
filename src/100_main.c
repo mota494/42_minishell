@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 17:43:57 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 15:50:00 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int	main(int ac, char **av, char **envp)
 	if (!envp[0])
 		return (0);
 	check_input(ac, av);
+	setup_signals(IGNORE);
 	init_tshell(&cmd, envp);
 	read_command(&cmd);
 	if (cmd.error_code > 255)
