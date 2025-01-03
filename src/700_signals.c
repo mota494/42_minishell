@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 16:00:01 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 15:46:12 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 15:52:50 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void	sig_handler(int sig)
 void	sig_test(int signo)
 {
 	return_last_signal(signo);
-	printf("\n");
 	rl_on_new_line();
 }
 
