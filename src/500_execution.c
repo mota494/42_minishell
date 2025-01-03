@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 14:41:40 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 15:39:33 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,9 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 	char	**cmdline;
 
 	pipe(p);
-	setup_signals(COMMANDS);
+	setup_signals(TURNOFF);
 	cmd->pids[i] = fork();
+	setup_signals(COMMANDS);
 	if (cmd->pids[i] == -1)
 		return ;
 	if (cmd->pids[i] == 0)
