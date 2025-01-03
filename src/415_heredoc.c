@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/02 18:07:32 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 16:27:21 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,21 @@
 void	heredoc_read(t_shell *cmd, int fd)
 {
 	char	*line;
+	int		i;
 
+	i = 0;
 	line = initalize_str();
 	while (1 && cmd->doc_leave == false)
 	{
-		free(line);
+		if (i == 0)
+			free(line);
 		line = readline("> ");
 		if (sstrcmp(line, cmd->eof) || !line)
 			break ;
-		line = parser_heredoc(line, is_there_quote(cmd->eof));
+		line = parser_heredoc(cmd, line);
 		ft_putstr_fd(line, fd);
 		ft_putchar_fd('\n', fd);
+		i++;
 		free(line);
 	}
 	free(line);
@@ -56,7 +60,7 @@ int	ft_read(t_shell *cmd, int fd)
 		if (wstatus > 255)
 			cmd->error_code = WEXITSTATUS(wstatus);
 	}
-	return (cmd->error_code);
+	return (wstatus);
 }
 
 int	heredoc(t_shell *cmd, int i)
@@ -105,12 +109,7 @@ void	heredoc_son(t_shell *cmd, t_token *temp)
 	{
 		if (sstrcmp(temp->cmd_line, "<<"))
 		{
-			if (cmd->eof)
-				free(cmd->eof);
-			cmd->eof = ft_strdup(temp->next->cmd_line);
-			heredoc(cmd, i);
-			if (cmd->error_code == 2)
-				cmd->doc_leave = true;
+			heredoc_loop(cmd, temp, i);
 			i++;
 		}
 		temp = temp->next;
