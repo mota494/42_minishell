@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 18:47:04 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 14:52:21 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,7 +134,7 @@ void			free_all(t_shell *cmd);
 void			free_env(t_shell *cmd);
 void			free_pids(t_shell *cmd);
 /* == free2 == */
-void   			free_for_heredoc(t_shell *cmd);
+void			free_for_heredoc(t_shell *cmd);
 void			unlink_files(t_shell *cmd);
 /* == main == */
 void			reset_fds(t_shell *cmd, int fd_in, int fd_out);
@@ -174,10 +174,12 @@ int				check_redin_heredoc(t_shell *cmd, char *str, int op_index);
 /* == operators_check2 == */
 int				check_heredoc(t_shell *cmd, char *str, int i);
 /* == syntax_error == */
-void			print_error(t_shell *cmd, char *error_type, int error_code, char *compl);
+void			print_error(t_shell *cmd, char *error_type,
+					int error_code, char *compl);
 /* == get_line == */
 void			clean_line(char *cmd, char *line);
-t_types			get_type(t_shell *mshell, t_token *new_node, char *cmd, char *orig);
+t_types			get_type(t_shell *mshell, t_token *new_node,
+					char *cmd, char *orig);
 char			*get_cmd(char *line);
 void			tokenize(char *line, t_shell *cmd);
 /* == get_line_utils == */
@@ -254,17 +256,18 @@ char			**get_command_tokens(t_token *token);
 void			free_args(char **args);
 /* == exec_utils2 == */
 char			**find_command_line(t_shell *cmd);
+void			free_end_exec(t_shell *cmd);
 /* == redirect_and_wait == */
 int				wait_for_child(t_shell *cmd);
-void			handle_redirect(t_token *token/*, int p[2]*/);
+void			handle_redirect(t_token *token);
 /* == redirect_one == */
 void			one_redirect_handler(char **cmdline);
 /* == redirects == */
 char			**get_tokens(t_token *token);
 void			redirect_outfile(char **args, char *red);
-void			redirect_infile(char **args/*, int p[2]*/);
-void			ft_redirect(char **args, char *red/*, int p[2]*/);
-void			check_red(char **args/*, int p[2]*/);
+void			redirect_infile(char **args);
+void			ft_redirect(char **args, char *red);
+void			check_red(char **args);
 /* == redirects_utils == */
 void			free_old_cmd(char **str);
 int				size_new_line(char **cmdline);
@@ -291,7 +294,8 @@ int				exit_main(t_shell *cmd);
 int				pwd(t_shell *cmd);
 /* == unset == */
 void			old_env_free(t_c_envp *c_env);
-void			copy_env_values(t_c_envp *n_env, t_c_envp *b_env, int pos_n, int pos_b);
+void			copy_env_values(t_c_envp *n_env,
+					t_c_envp *b_env, int pos_n, int pos_b);
 t_c_envp		*unset_env_value(char *var_value);
 void			unset_env(t_shell *cmd);
 /* == export == */

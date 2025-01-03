@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:48:32 by sofiabueno        #+#    #+#             */
-/*   Updated: 2025/01/02 18:46:20 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 14:22:39 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	find_match(char *str, int i, char type)
 	if (!str[i + 1])
 		return (-1);
 	i++;
-	while(str[i])
+	while (str[i])
 	{
 		if (str[i] == type)
 			return (i);

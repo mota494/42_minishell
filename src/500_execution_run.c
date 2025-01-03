@@ -6,12 +6,11 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 19:31:28 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 14:28:54 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-#include <stdio.h>
 
 void	call_builtin(char **args, t_shell *cmd)
 {

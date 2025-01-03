@@ -6,14 +6,12 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 13:47:22 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/30 12:50:05 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:51:03 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-/** decidir se vamos tratar open pipes 
- *  Check error values;
-*/
+
 int	check_pipe(t_shell *cmd, char *str, int op_index)
 {
 	int	i;
@@ -78,7 +76,8 @@ int	check_append(t_shell *cmd, char *str, int i)
 			check_next_op(cmd, str, i + 2);
 			return (1);
 		}
-		else if (ft_ispace(str[i + 1]) && str[i + 2] && !is_operator(str[i + 2]))
+		else if (ft_ispace(str[i + 1])
+			&& str[i + 2] && !is_operator(str[i + 2]))
 			return (0);
 		else
 		{

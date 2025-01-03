@@ -6,20 +6,20 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:11:19 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/12/27 09:26:42 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 14:23:41 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	handle_redirect(t_token *token/*, int p[2]*/)
+void	handle_redirect(t_token *token)
 {
 	t_token	*current_token;
 	char	**args;
 
 	current_token = token;
 	args = get_tokens(current_token);
-	check_red(args/*, p*/);
+	check_red(args);
 	free_args(args);
 }
 
