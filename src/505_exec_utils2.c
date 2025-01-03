@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:01:57 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 16:09:08 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 14:42:12 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,23 @@ char	**find_command_line(t_shell *cmd)
 	redirect_handler(cmdline);
 	cmdline = only_cmd_arg(cmdline);
 	return (cmdline);
+}
+
+void	free_end_exec(t_shell *cmd)
+{
+	free_all(cmd);
+	free_env(cmd);
+}
+
+void	free_args(char **args)
+{
+	int	i;
+
+	i = 0;
+	while (args[i])
+	{
+		free(args[i]);
+		i++;
+	}
+	free(args);
 }

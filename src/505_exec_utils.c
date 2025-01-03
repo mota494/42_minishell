@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:35:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/31 12:08:25 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/03 14:42:19 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,17 +102,4 @@ char	**get_command_tokens(t_token *token)
 	}
 	args[i] = NULL;
 	return (args);
-}
-
-void	free_args(char **args)
-{
-	int	i;
-
-	i = 0;
-	while (args[i])
-	{
-		free(args[i]);
-		i++;
-	}
-	free(args);
 }

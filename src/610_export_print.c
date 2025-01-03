@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:35:48 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 18:22:17 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 14:42:50 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void	print_ordered(t_c_envp *ord)
 	start_counters(&c);
 	while (ord[c.d_i].var_name)
 	{
-		if (ft_strlen(ord[c.d_i].var_name) == 1 && ord[c.d_i].var_name[0] == '_')
+		if (ft_strlen(ord[c.d_i].var_name) == 1
+			&& ord[c.d_i].var_name[0] == '_')
 			c.d_i++;
 		else
 		{

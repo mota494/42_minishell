@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 19:34:13 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 14:50:38 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	check_err(t_shell *cmd)
 			cmd->error_code = 126;
 			printf("minishell: %s: is a directory\n", temp->cmd_line);
 		}
-		if (sstrcmp(temp->orig_line, "\"\"") || sstrcmp(temp->orig_line, "\'\'"))
+		if (sstrcmp(temp->orig_line, "\"\"")
+			|| sstrcmp(temp->orig_line, "\'\'"))
 		{
 			cmd->error_code = 127;
 			printf("%s: command not found\n", temp->orig_line);

@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 16:09:35 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 14:41:40 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	**only_cmd_arg(char **cmdline)
 	y = 0;
 	while (cmdline[i])
 	{
-		if (sstrcmp(cmdline[i], "<")  || sstrcmp(cmdline[i], "<<"))
+		if (sstrcmp(cmdline[i], "<") || sstrcmp(cmdline[i], "<<"))
 			i = i + 2;
 		else if (sstrcmp(cmdline[i], ">"))
 			i = i + 2;
@@ -60,30 +60,28 @@ char	**only_cmd_arg(char **cmdline)
 	return (new_cmd_line);
 }
 
-void	run_final(char **cmdline, char **envp, t_token *token, t_shell *cmd)
+void	run_final(char **cmdline, char **envp, t_token *sh, t_shell *cmd)
 {
 	if (!cmdline)
 	{
-		free_all(cmd);
-		free_env(cmd);
+		free_end_exec(cmd);
 		exit (1);
 	}
-	while (sstrcmp(token->cmd_line, cmdline[0]) == 0)
-		token = token->next;
-	if (ft_strlen(token->cmd_line) == 0 || (token->type != builtin && token->type != command))
+	while (sstrcmp(sh->cmd_line, cmdline[0]) == 0)
+		sh = sh->next;
+	if (ft_strlen(sh->cmd_line) == 0
+		|| (sh->type != builtin && sh->type != command))
 	{
-		free_all(cmd);
-		free_env(cmd);
+		free_end_exec(cmd);
 		free_args(cmdline);
 	}
-	else if (token->type == builtin)
+	else if (sh->type == builtin)
 		execute_builtin(cmd, cmdline);
-	else if (token->type == command)
-		execute_command(token, envp, cmdline);
+	else if (sh->type == command)
+		execute_command(sh, envp, cmdline);
 	else
 	{
-		free_all(cmd);
-		free_env(cmd);
+		free_end_exec(cmd);
 		free_args(cmdline);
 		cmd->error_code = 127;
 	}
