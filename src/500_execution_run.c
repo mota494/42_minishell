@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 14:28:54 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 15:07:51 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ int	execute_command(t_token *token, char **envp, char **args)
 	t_token	*current_token;
 
 	current_token = token;
+	token->type = command;
 	if (execve(current_token->path_name, args, envp) == -1)
 		return (1);
 	free(args);
