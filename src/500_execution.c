@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 15:39:33 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/05 15:56:33 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,24 +117,24 @@ void	child_process(t_shell *cmd, char **envp, int help, int i)
 	close(p[1]);
 }
 
-int	execute_pipeline(t_shell *cmd, char **envp)
+int	execute_pipeline(t_shell *cmd, char **envp, int i)
 {
 	int		help;
-	int		i;
 	t_token	*head;
 
 	if (cmd->n_inputs == 1 && cmd->n_builtin == 1)
 	{
+		find_heredoc(cmd);
 		one_builtin(cmd);
 		return (0);
 	}
 	if ((alloc_pids(cmd) != 0))
 		return (1);
-	i = 0;
 	help = dup(STDIN_FILENO);
 	head = cmd->token;
 	while (cmd->token)
 	{
+		find_heredoc(cmd);
 		child_process(cmd, envp, help, i);
 		cmd->token = get_next(cmd->token);
 		i++;

@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 17:31:00 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/05 14:46:59 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	parser(char *line, t_shell *cmd)
 	cmd->n_inputs = count_pipes(cmd->token);
 	get_redirect_type(cmd->token);
 	get_folder_type(cmd->token);
-	if (ft_strlen(cmd->token->cmd_line) > 0)
-		find_heredoc(cmd);
+	/*if (ft_strlen(cmd->token->cmd_line) > 0)
+		find_heredoc(cmd);*/
 	get_type(NULL, NULL, "|", "|");
 }
