@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 15:06:38 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 17:31:12 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	free_all(t_shell *cmd)
 		cmd->token = cmd->token->next;
 		free(temp->cmd_line);
 		free(temp->orig_line);
-		if (temp->type == command || temp->type == folder)
+		if (temp->got_path == true)
 			free(temp->path_name);
 		free(temp);
 	}

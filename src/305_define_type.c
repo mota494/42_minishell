@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:15:44 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 15:16:03 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 17:29:09 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ int	is_command(t_shell *cmd, t_token *new_node, char *str)
 	if (find_slash(str) && (access(str, X_OK) == 0))
 	{
 		new_node->path_name = ft_strdup(str);
+		new_node->got_path = true;
 		return (1);
 	}
 	else if (find_absolute_path(cmd, new_node, str))

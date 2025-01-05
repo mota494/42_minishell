@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:40 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/23 11:24:36 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 17:29:46 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_token	*add_node(t_shell *cmd, char *content, int id)
 	t_token	*new_node;
 
 	new_node = malloc(sizeof(t_token));
+	new_node->got_path = false;
 	new_node->orig_line = alocpy(content);
 	free(content);
 	new_node->cmd_line = parse_line(new_node->orig_line);
