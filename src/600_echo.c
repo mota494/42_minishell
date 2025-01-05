@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:58:43 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 20:21:28 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/05 14:38:25 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,12 @@ void	print_echo(t_token *cmd)
 void	echo_main(t_shell *cmd)
 {
 	t_token	*temp;
+	int		i;
 
+	i = 0;
 	temp = cmd->token;
+	while (temp && sstrcmp("echo", temp->cmd_line) == 0)
+		temp = temp->next;
 	temp = temp->next;
 	print_echo(temp);
 	cmd->error_code = 0;

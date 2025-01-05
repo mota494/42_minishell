@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 15:51:35 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/05 13:17:51 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	call_builtin(char **args, t_shell *cmd)
 	if (sstrcmp(args[0], "cd") == 1)
 		cd(cmd);
 	else if (sstrcmp(args[0], "exit") == 1)
-		cmd->error_code = exit_main(cmd);
+		exit_main(cmd);
 	else if (sstrcmp(args[0], "echo") == 1)
 		echo_main(cmd);
 	else if (sstrcmp(args[0], "pwd") == 1)
@@ -38,6 +38,8 @@ int	one_builtin(t_shell *cmd)
 	char	**args;
 
 	current_token = cmd->token;
+	while (current_token && current_token->type != builtin)
+		current_token = current_token->next;
 	if (current_token->type == builtin)
 	{
 		args = get_command_line(cmd);

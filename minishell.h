@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 16:27:10 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/05 12:49:10 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ typedef struct s_token
 	char			*orig_line;
 	char			*path_name;
 	bool			expand;
+	bool			got_path;
 	t_types			type;
 	struct s_token	*next;
 }					t_token;
@@ -291,7 +292,7 @@ void			builtin_env(t_shell *cmd);
 /* == exit == */
 int				is_strdigit(char *str);
 long long int	analyze_exit_arg(t_token *arg);
-int				exit_main(t_shell *cmd);
+void			exit_main(t_shell *cmd);
 /* == pwd == */
 int				pwd(t_shell *cmd);
 /* == unset == */

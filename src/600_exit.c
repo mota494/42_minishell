@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 19:19:48 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/05 14:36:08 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ long long int	analyze_exit_arg(t_token *arg)
 	return (1);
 }
 
-int	exit_main(t_shell *cmd)
+void	exit_main(t_shell *cmd)
 {
 	if (analyze_exit_arg(cmd->token->next) == 0)
 	{
@@ -55,14 +55,17 @@ int	exit_main(t_shell *cmd)
 		printf("exit\n");
 		ft_printf(2, "minishell: exit: too many arguments\n");
 		cmd->error_code = 1;
-		return (0);
 	}
 	if (cmd->token->cmd_id == 0)
 	{
 		cmd->leave = true;
-		if (cmd->error_code != 2 && cmd->token->next)
+		if (cmd->token->next)
 			cmd->error_code = ft_atoll(cmd->token->next->cmd_line);
 		write(1, "exit\n", 5);
 	}
-	return (cmd->error_code);
+	else
+	{
+		if (cmd->token->next)
+			cmd->error_code = ft_atoll(cmd->token->next->cmd_line);
+	}
 }
