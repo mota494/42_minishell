@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   204_define_type_utils.c                            :+:      :+:    :+:   */
+/*   305_define_type_utils.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:28:48 by sofiabueno        #+#    #+#             */
-/*   Updated: 2024/11/20 11:23:09 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/03 17:32:26 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	find_absolute_path(t_shell *cmd, t_token *new_node, char *str)
 		if (access(path_tmp, X_OK) == 0)
 		{
 			new_node->path_name = ft_strdup(path_tmp);
+			new_node->got_path = true;
 			free(path_tmp);
 			return (1);
 		}

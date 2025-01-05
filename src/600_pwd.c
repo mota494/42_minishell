@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:48 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 19:23:53 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/03 17:18:57 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	check_for_pwd_flags(t_token *arg)
 {
+	if (!arg)
+		return (1);
 	if (arg->cmd_line[0] == '-')
 	{
 		if (arg->cmd_line[1] != '\0')
