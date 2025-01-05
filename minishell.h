@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/05 12:49:10 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/05 15:56:48 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ typedef struct s_shell
 	char			*curdir;
 	bool			leave;
 	bool			heredoc;
+	int				heredoc_id;
 	bool			doc_leave;
 	bool			eof_quotes;
 	pid_t			*pids;
@@ -244,7 +245,7 @@ void			heredoc_signals(void);
 char			**only_cmd_arg(char **cmdline);
 t_token			*get_next(t_token *current);
 void			child_process(t_shell *cmd, char **envp, int help, int i);
-int				execute_pipeline(t_shell *cmd, char **envp);
+int				execute_pipeline(t_shell *cmd, char **envp, int i);
 /* == exectuion_run == */
 void			call_builtin(char **args, t_shell *cmd);
 int				one_builtin(t_shell *cmd);
