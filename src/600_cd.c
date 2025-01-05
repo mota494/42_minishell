@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 19:24:04 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/05 13:07:37 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	cd_change_dir(t_shell *cmd)
 	char	buffer[PATH_MAX];
 
 	cmd->error_code = 0;
+	if (!getcwd(buffer, PATH_MAX))
+		return ;
 	if (get_env("PWD"))
 		change_env_value("PWD", getcwd(buffer, PATH_MAX));
 	else
