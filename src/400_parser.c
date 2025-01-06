@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/05 14:46:59 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/06 16:56:50 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,10 @@ int	check_err(t_shell *cmd)
 	{
 		if (temp->type == error && ft_strlen(temp->cmd_line) > 0)
 		{
-			cmd->error_code = 127;
 			printf("%s: command not found\n", temp->cmd_line);
 		}
 		if (temp->type == folder && ft_strlen(temp->cmd_line) > 0)
 		{
-			cmd->error_code = 126;
 			printf("minishell: %s: is a directory\n", temp->cmd_line);
 		}
 		if (sstrcmp(temp->orig_line, "\"\"")
@@ -84,7 +82,5 @@ void	parser(char *line, t_shell *cmd)
 	cmd->n_inputs = count_pipes(cmd->token);
 	get_redirect_type(cmd->token);
 	get_folder_type(cmd->token);
-	/*if (ft_strlen(cmd->token->cmd_line) > 0)
-		find_heredoc(cmd);*/
 	get_type(NULL, NULL, "|", "|");
 }

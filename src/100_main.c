@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:40:01 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 15:50:00 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/06 16:35:16 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	reset_fds(t_shell *cmd, int fd_in, int fd_out)
 {
 	cmd->copy_envp = send_env();
+	cmd->heredoc_id = 0;
 	init_path_dirs(cmd, cmd->copy_envp);
 	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
