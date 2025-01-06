@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:25:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 16:26:49 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/06 16:55:47 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	heredoc_loop(t_shell *cmd, t_token *temp, int i)
 {
 	if (cmd->eof)
 		free(cmd->eof);
-	cmd->eof = ft_strdup(temp->next->cmd_line);
-	if (sstrcmp(cmd->eof, temp->next->orig_line) == 0)
+	cmd->eof = get_eof(temp->next->orig_line);
+	if (is_there_quote(temp->next->orig_line) == 1)
 		cmd->eof_quotes = true;
 	heredoc(cmd, i);
 	if (cmd->error_code == 2)
