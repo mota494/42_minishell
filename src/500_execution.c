@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/05 15:56:33 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/06 17:30:35 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ void	run_final(char **cmdline, char **envp, t_token *sh, t_shell *cmd)
 	if (ft_strlen(sh->cmd_line) == 0
 		|| (sh->type != builtin && sh->type != command))
 	{
+		cmd->error_code = 127;
 		free_end_exec(cmd);
 		free_args(cmdline);
 	}
