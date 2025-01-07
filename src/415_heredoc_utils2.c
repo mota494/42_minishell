@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 16:41:11 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/06 16:55:07 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/07 09:38:26 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,12 @@ int	is_there_quote(char *str)
 		i++;
 	}
 	return (0);
+}
+
+void	free_loop_heredoc(char *line, t_shell *cmd)
+{
+	free(line);
+	free_for_heredoc(cmd);
+	free_all(cmd);
+	free_env(cmd);
 }

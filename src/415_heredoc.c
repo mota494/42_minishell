@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/05 15:52:16 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/07 09:41:23 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,19 @@ void	heredoc_read(t_shell *cmd, int fd)
 	line = initalize_str();
 	while (1 && cmd->doc_leave == false)
 	{
+		if (fd == -1)
+			break ;
 		if (i == 0)
 			free(line);
 		line = readline("> ");
 		if (sstrcmp(line, cmd->eof) || !line)
 			break ;
 		line = parser_heredoc(cmd, line);
-		ft_putstr_fd(line, fd);
-		ft_putchar_fd('\n', fd);
+		ft_printf(fd, "%s\n", line);
 		i++;
 		free(line);
 	}
-	free(line);
-	free_for_heredoc(cmd);
-	free_all(cmd);
-	free_env(cmd);
+	free_loop_heredoc(line, cmd);
 	if (return_last_signal(-1) == SIGINT)
 		cmd->error_code = SIGINT;
 	exit(cmd->error_code);
