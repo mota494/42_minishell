@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/07 09:41:23 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/07 10:01:39 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,8 @@ int	how_many_heredoc(t_token *temp)
 	a_temp = temp;
 	while (a_temp)
 	{
-		if (sstrcmp(a_temp->cmd_line, "<<"))
+		if (sstrcmp(a_temp->cmd_line, "<<") && a_temp->type != string &&
+			a_temp->type != error)
 			i++;
 		a_temp = a_temp->next;
 	}
@@ -104,7 +105,8 @@ void	heredoc_son(t_shell *cmd, t_token *temp)
 		cmd->filename = ft_calloc(sizeof(char *), (d + 1));
 	while (temp && temp->type != control)
 	{
-		if (sstrcmp(temp->cmd_line, "<<"))
+		if (sstrcmp(temp->cmd_line, "<<") && temp->type != string &&
+			temp->type != error)
 		{
 			heredoc_loop(cmd, temp, cmd->heredoc_id);
 			cmd->heredoc_id++;
