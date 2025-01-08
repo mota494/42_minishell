@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 16:01:57 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 14:42:12 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 10:06:11 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ char	**find_command_line(t_shell *cmd)
 		return (NULL);
 	}
 	redirect_handler(cmdline);
-	cmdline = only_cmd_arg(cmdline);
+	free_args(cmdline);
+	cmdline = only_cmd_arg(cmd);
 	return (cmdline);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/06 17:30:35 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 10:10:21 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,33 +31,26 @@ t_token	*get_next(t_token *current)
 	return (temp);
 }
 
-char	**only_cmd_arg(char **cmdline)
+char	**only_cmd_arg(t_shell *cmd)
 {
+	t_token	*temp;
+	char	**args;
 	int		i;
-	int		y;
-	char	**new_cmd_line;
 
-	new_cmd_line = malloc(sizeof(char *) * (size_new_line(cmdline) + 1));
+	temp = cmd->token;
+	args = malloc(sizeof(char *) * (size_new_line(cmd) + 1));
 	i = 0;
-	y = 0;
-	while (cmdline[i])
+	while (temp && temp->type != control)
 	{
-		if (sstrcmp(cmdline[i], "<") || sstrcmp(cmdline[i], "<<"))
-			i = i + 2;
-		else if (sstrcmp(cmdline[i], ">"))
-			i = i + 2;
-		else if (sstrcmp(cmdline[i], ">>"))
-			i = i + 2;
-		else
+		if (temp->type != redirect && temp->type != file)
 		{
-			new_cmd_line[y] = ft_strdup(cmdline[i]);
-			y++;
+			args[i] = ft_strdup(temp->cmd_line);
 			i++;
 		}
+		temp = temp->next;
 	}
-	new_cmd_line[y] = NULL;
-	free_old_cmd(cmdline);
-	return (new_cmd_line);
+	args[i] = NULL;
+	return (args);
 }
 
 void	run_final(char **cmdline, char **envp, t_token *sh, t_shell *cmd)

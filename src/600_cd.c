@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/07 09:47:52 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:18:56 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	change_dir_to(char *foldername, t_shell *cmd)
 		if (get_env("OLDPWD"))
 			change_env_value("OLDPWD", cmd->curdir);
 		else
-			add_env_value("OLDPWD", cmd->curdir, 0);	
+			add_env_value("OLDPWD", cmd->curdir, 0);
 		free(cmd->curdir);
 		cmd->curdir = alocpy(getcwd(buffer, PATH_MAX));
 	}
