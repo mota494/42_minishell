@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/08 10:05:21 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 10:38:44 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ typedef struct s_shell
 	int				pids_alloc;
 	pid_t			heredoc_pid;
 	char			**filename;
+	bool			filename_tick;
 }					t_shell;
 
 /* == utils == */
@@ -239,6 +240,7 @@ void			heredoc_loop(t_shell *cmd, t_token *temp, int i);
 int				is_there_quote(char *str);
 char			*get_eof(char *str);
 void			free_loop_heredoc(char *line, t_shell *cmd);
+int				heredoc_this_cmd(t_token *token);
 /* == heredoc_signals == */
 void			heredoc_sighandle(int signo);
 void			heredoc_sighandle(int signo);
