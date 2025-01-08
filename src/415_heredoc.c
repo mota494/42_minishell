@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/08 14:58:51 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 15:47:06 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	how_many_heredoc(t_token *temp)
 
 	i = 0;
 	a_temp = temp;
-	while (a_temp && a_temp->type != control)
+	while (a_temp)
 	{
 		if (sstrcmp(a_temp->cmd_line, "<<") && a_temp->type != string
 			&& a_temp->type != error)
@@ -93,7 +93,7 @@ int	how_many_heredoc(t_token *temp)
 	return (i);
 }
 
-void	heredoc_son(t_shell *cmd, t_token *temp, int i)
+void	heredoc_son(t_shell *cmd, t_token *temp)
 {
 	int	d;
 
@@ -102,22 +102,16 @@ void	heredoc_son(t_shell *cmd, t_token *temp, int i)
 		return ;
 	cmd->heredoc = true;
 	if (!cmd->filename)
-		cmd->filename = ft_calloc(sizeof(char *), (d + 1));
-	else
-	{
-		free_args(cmd->filename);
-		cmd->filename = ft_calloc(sizeof(char *), (d + 1));
-	}
+		cmd->filename = ft_calloc(sizeof(char *), d + 1);
 	while (temp && temp->type != control)
 	{
-		if (sstrcmp(temp->cmd_line, "<<") && temp->type != string
-			&& temp->type != error)
+		if (sstrcmp(temp->cmd_line, "<<") && temp->type == redirect)
 		{
 			heredoc_loop(cmd, temp, cmd->heredoc_id);
 			cmd->heredoc_id++;
 		}
 		temp = temp->next;
 	}
-	cmd->filename[i] = NULL;
+	cmd->filename[cmd->heredoc_id] = NULL;
 	cmd->error_code = 0;
 }
