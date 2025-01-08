@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/08 10:39:34 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 12:05:52 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,6 +103,11 @@ void	heredoc_son(t_shell *cmd, t_token *temp)
 	cmd->heredoc = true;
 	if (!cmd->filename)
 		cmd->filename = ft_calloc(sizeof(char *), (d + 1));
+	else
+	{
+		free_args(cmd->filename);
+		cmd->filename = ft_calloc(sizeof(char *), (d + 1));
+	}
 	while (temp && temp->type != control)
 	{
 		if (sstrcmp(temp->cmd_line, "<<") && temp->type != string
