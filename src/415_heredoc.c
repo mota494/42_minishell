@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/08 10:18:30 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 10:39:34 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ int	how_many_heredoc(t_token *temp)
 
 	i = 0;
 	a_temp = temp;
-	while (a_temp)
+	while (a_temp && a_temp->type != control)
 	{
 		if (sstrcmp(a_temp->cmd_line, "<<") && a_temp->type != string
 			&& a_temp->type != error)
