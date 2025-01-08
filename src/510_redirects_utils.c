@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/27 14:30:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 14:43:26 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 10:11:28 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,28 +69,20 @@ void	redirect_handler(char **cmdline)
 	}
 }
 
-int	size_new_line(char **cmdline)
+int	size_new_line(t_shell *cmd)
 {
-	int	i;
-	int	count;
+	int		i;
+	t_token	*temp;
 
-	count = 0;
 	i = 0;
-	while (cmdline[i])
+	temp = cmd->token;
+	while (temp && temp->type != control)
 	{
-		if (sstrcmp(cmdline[i], "<") || sstrcmp(cmdline[i], "<<"))
-			i = i + 2;
-		else if (sstrcmp(cmdline[i], ">"))
-			i = i + 2;
-		else if (sstrcmp(cmdline[i], ">>"))
-			i = i + 2;
-		else
-		{
+		if (temp->type != redirect && temp->type != file)
 			i++;
-			count++;
-		}
+		temp = temp->next;
 	}
-	return (count);
+	return (i);
 }
 
 void	free_old_cmd(char **str)

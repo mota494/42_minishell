@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 10:46:10 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/05 13:17:51 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 10:10:43 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ int	one_builtin(t_shell *cmd)
 	{
 		args = get_command_line(cmd);
 		one_redirect_handler(args);
-		args = only_cmd_arg(args);
+		free_args(args);
+		args = only_cmd_arg(cmd);
 		call_builtin(args, cmd);
 		free_args(args);
 		return (0);

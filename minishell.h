@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/07 09:38:05 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:05:21 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -245,7 +245,7 @@ void			heredoc_sighandle(int signo);
 void			update_leave(void);
 void			heredoc_signals(void);
 /* == execution == */
-char			**only_cmd_arg(char **cmdline);
+char			**only_cmd_arg(t_shell *cmd);
 t_token			*get_next(t_token *current);
 void			child_process(t_shell *cmd, char **envp, int help, int i);
 int				execute_pipeline(t_shell *cmd, char **envp, int i);
@@ -277,7 +277,7 @@ void			ft_redirect(char **args, char *red);
 void			check_red(char **args);
 /* == redirects_utils == */
 void			free_old_cmd(char **str);
-int				size_new_line(char **cmdline);
+int				size_new_line(t_shell *cmd);
 void			infile_redirect(char *file_name, char *red_type);
 void			outfile_redirect(char *file_name, int mode);
 void			redirect_handler(char **cmdline);

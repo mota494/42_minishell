@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 15:34:21 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 18:18:59 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 10:19:48 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	change_env_var(char *toadd)
 
 void	var_no_equal(t_c_envp *n_env, int pos, char *toadd)
 {
-	n_env[pos].var_name = strdup(toadd);
+	n_env[pos].var_name = ft_strdup(toadd);
 	n_env[pos].var_value = initalize_str();
 	n_env[pos].equal = 0;
 }

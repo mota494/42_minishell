@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/25 14:35:48 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 14:42:50 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 10:19:34 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,13 +32,13 @@ void	swap_values(t_c_envp *o_env, int i)
 	char	*temp_value;
 	int		temp_equal;
 
-	temp_name = strdup(o_env[i].var_name);
+	temp_name = ft_strdup(o_env[i].var_name);
 	free(o_env[i].var_name);
 	o_env[i].var_name = ft_strdup(o_env[i + 1].var_name);
 	free(o_env[i + 1].var_name);
 	o_env[i + 1].var_name = ft_strdup(temp_name);
 	free(temp_name);
-	temp_value = strdup(o_env[i].var_value);
+	temp_value = ft_strdup(o_env[i].var_value);
 	free(o_env[i].var_value);
 	o_env[i].var_value = ft_strdup(o_env[i + 1].var_value);
 	free(o_env[i + 1].var_value);
@@ -101,8 +101,8 @@ void	print_export(void)
 	o_env = malloc(sizeof(t_c_envp) * (size_env(b_env) + 1));
 	while (b_env[c.i_i].var_name)
 	{
-		o_env[c.i_i].var_name = strdup(b_env[c.i_i].var_name);
-		o_env[c.i_i].var_value = strdup(b_env[c.i_i].var_value);
+		o_env[c.i_i].var_name = ft_strdup(b_env[c.i_i].var_name);
+		o_env[c.i_i].var_value = ft_strdup(b_env[c.i_i].var_value);
 		o_env[c.i_i].equal = b_env[c.i_i].equal;
 		c.i_i++;
 	}
