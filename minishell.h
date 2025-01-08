@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/08 10:38:44 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 14:57:14 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,7 @@ void			heredoc_read(t_shell *cmd, int fd);
 int				ft_read(t_shell *cmd, int fd);
 int				heredoc(t_shell *cmd, int i);
 int				how_many_heredoc(t_token *temp);
-void			heredoc_son(t_shell *cmd, t_token *temp);
+void			heredoc_son(t_shell *cmd, t_token *temp, int i);
 /* == heredoc_utils == */
 char			*putnbr(int i);
 char			*parser_heredoc(t_shell *cmd, char *str);

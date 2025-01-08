@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/12 14:46:51 by codespace         #+#    #+#             */
-/*   Updated: 2025/01/08 12:05:52 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 14:58:51 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	how_many_heredoc(t_token *temp)
 	return (i);
 }
 
-void	heredoc_son(t_shell *cmd, t_token *temp)
+void	heredoc_son(t_shell *cmd, t_token *temp, int i)
 {
 	int	d;
 
@@ -118,6 +118,6 @@ void	heredoc_son(t_shell *cmd, t_token *temp)
 		}
 		temp = temp->next;
 	}
-	cmd->filename[cmd->heredoc_id] = NULL;
+	cmd->filename[i] = NULL;
 	cmd->error_code = 0;
 }

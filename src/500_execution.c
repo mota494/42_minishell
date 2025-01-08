@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 09:25:05 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/08 11:59:43 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 14:58:50 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,6 @@ int	execute_pipeline(t_shell *cmd, char **envp, int i)
 	head = cmd->token;
 	while (cmd->token)
 	{
-		cmd->heredoc_id = 0;
 		find_heredoc(cmd);
 		child_process(cmd, envp, help, i);
 		cmd->token = get_next(cmd->token);
