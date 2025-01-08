@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:25:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/08 14:57:05 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 15:40:33 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,5 +91,5 @@ void	find_heredoc(t_shell *cmd)
 
 	temp = cmd->token;
 	cmd->eof_quotes = false;
-	heredoc_son(cmd, temp, 0);
+	heredoc_son(cmd, temp);
 }
