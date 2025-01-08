@@ -6,11 +6,31 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:16:09 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/08 10:33:24 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/08 11:29:20 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	minishell_exec(t_shell *cmd, char *line)
+{
+	if (return_last_signal(-1) == SIGINT)
+		cmd->error_code = 130;
+	return_error_code(cmd);
+	parser(line, cmd);
+	free(line);
+	if (ft_strlen(cmd->token->cmd_line) == 0)
+	{
+		cmd->error_code = 0;
+		return ;
+	}
+	if (cmd->n_inputs > 0)
+		if (execute_pipeline(cmd, cmd->copy_envp, 0) == 1)
+			write(2, "Error executing pipeline\n", 25);
+	check_err(cmd);
+	if (cmd->heredoc == true)
+		unlink_files(cmd);
+}
 
 void	minishell_loop(t_shell *cmd, char *line)
 {
@@ -22,18 +42,6 @@ void	minishell_loop(t_shell *cmd, char *line)
 		add_history(line);
 	if (check_syntax(cmd, line) == 1)
 	{
-		if (return_last_signal(-1) == SIGINT)
-			cmd->error_code = 130;
-		return_error_code(cmd);
-		parser(line, cmd);
-		free(line);
-		if (ft_strlen(cmd->token->cmd_line) == 0)
-			return ;
-		if (cmd->n_inputs > 0)
-			if (execute_pipeline(cmd, cmd->copy_envp, 0) == 1)
-				write(2, "Error executing pipeline\n", 25);
-		check_err(cmd);
-		if (cmd->heredoc == true)
-			unlink_files(cmd);
+		minishell_exec(cmd, line);
 	}
 }
