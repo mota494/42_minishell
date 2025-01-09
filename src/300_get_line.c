@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   200_get_line.c                                     :+:      :+:    :+:   */
+/*   300_get_line.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/11 16:19:34 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 15:29:26 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/09 11:47:02 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,7 @@ t_types	get_type(t_shell *mshell, t_token *new_node, char *cmd, char *orig)
 		return (control);
 	}
 	if (is_redirect(orig) == 1)
-	{
-		is_arg = 0;
 		return (redirect);
-	}
 	else if (is_arg == 1)
 		return (string);
 	else if (is_builtin(cmd) == 1)

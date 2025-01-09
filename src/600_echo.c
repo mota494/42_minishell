@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 13:58:43 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/07 09:29:31 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/09 11:48:19 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,15 @@ int	count_echo(t_token *cmd)
 
 	temp = cmd;
 	toret = 0;
-	while (temp)
+	while (temp && temp->type != control)
 	{
 		if (temp->type != string)
-			return (toret);
-		temp = temp->next;
-		toret++;
+			temp = temp->next;
+		else
+		{
+			temp = temp->next;
+			toret++;
+		}
 	}
 	return (toret);
 }
