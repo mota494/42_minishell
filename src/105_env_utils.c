@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   103_env_utils.c                                    :+:      :+:    :+:   */
+/*   105_env_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:22:13 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/19 13:50:52 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/09 11:43:08 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	change_env_value(char *var_name, char *value)
 	}
 }
 
-void	add_env_value(char *var_name, char *var_value, int i)
+t_c_envp	*add_env_value(char *var_name, char *var_value, int i)
 {
 	t_c_envp	*b_env;
 	t_c_envp	*n_env;
@@ -119,5 +119,7 @@ void	add_env_value(char *var_name, char *var_value, int i)
 	n_env[i].equal = '=';
 	n_env[i + 1].var_name = NULL;
 	n_env[i + 1].var_value = NULL;
+	free(b_env);
 	ret_env(n_env);
+	return (n_env);
 }

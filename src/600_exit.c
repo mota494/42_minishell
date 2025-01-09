@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/05 14:36:08 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/09 11:21:36 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	exit_main(t_shell *cmd)
 		printf("exit\n");
 		ft_printf(2, "minishell: exit: too many arguments\n");
 		cmd->error_code = 1;
+		return ;
 	}
 	if (cmd->token->cmd_id == 0)
 	{
