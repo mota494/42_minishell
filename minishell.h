@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/08 15:40:49 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/09 11:30:13 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -159,7 +159,7 @@ char			*send_shell_env(void);
 char			*var_to_char(t_c_envp node);
 char			**send_env(void);
 void			change_env_value(char *var_name, char *value);
-void			add_env_value(char *var_name, char *var_value, int i);
+t_c_envp		*add_env_value(char *var_name, char *var_value, int i);
 /* == check_syntax == */
 int				check_quotes(t_shell *cmd, char *str);
 void			remove_spaces(char *str);
