@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/08 10:11:53 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/09 11:46:24 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,4 +79,5 @@ void	parser(char *line, t_shell *cmd)
 	get_redirect_type(cmd->token);
 	get_folder_type(cmd->token);
 	get_type(NULL, NULL, "|", "|");
+	print_list(cmd);
 }
