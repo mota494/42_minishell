@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   407_unset.c                                        :+:      :+:    :+:   */
+/*   600_unset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/17 14:51:34 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/10 23:13:43 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	unset_env(t_shell *cmd)
 	}
 	if (temp->cmd_line[0] == '-')
 	{
-		printf("Minishell: unset: -%c: invalid option\n", temp->cmd_line[1]);
+		ft_printf(2, "Minishell: unset: -%c: invalid option\n", temp->cmd_line[1]);
 		cmd->error_code = 2;
 		return ;
 	}

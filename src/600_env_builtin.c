@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   405_env.c                                          :+:      :+:    :+:   */
+/*   600_env_builtin.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:26:51 by mloureir          #+#    #+#             */
-/*   Updated: 2024/12/02 09:22:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:17:22 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,12 @@ int	check_env_args(t_shell *cmd)
 	{
 		if (stat(temp->cmd_line, &buf))
 		{
-			printf("env: ‘%s’: Permission denied\n", temp->cmd_line);
+			ft_printf(2 ,"env: ‘%s’: Permission denied\n", temp->cmd_line);
 			cmd->error_code = 126;
 		}
 		else
 		{
-			printf("env: ‘%s’: No such file or directory\n", temp->cmd_line);
+			ft_printf(2, "env: ‘%s’: No such file or directory\n", temp->cmd_line);
 			cmd->error_code = 127;
 		}
 		return (0);

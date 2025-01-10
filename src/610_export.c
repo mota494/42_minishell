@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/02 18:12:55 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/10 23:20:01 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	check_export_flag(t_shell *cmd)
 		return (1);
 	if (temp->cmd_line[0] == '-')
 	{
-		ft_printf(0, "minishell: export: -%c invalid option\n",
+		ft_printf(2, "minishell: export: -%c invalid option\n",
 			temp->cmd_line[1]);
 		return (0);
 	}
