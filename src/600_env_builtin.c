@@ -6,11 +6,27 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:26:51 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/10 23:17:22 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:25:31 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+int	check_for_env_flags(t_token *arg)
+{
+	if (!arg)
+		return (1);
+	if (arg->cmd_line[0] == '-')
+	{
+		if (arg->cmd_line[1] != '\0')
+		{
+			ft_printf(2, "minishell: env: -%c invalid option\n",
+				arg->cmd_line[1]);
+			return (0);
+		}
+	}
+	return (1);
+}
 
 int	check_env_args(t_shell *cmd)
 {
@@ -45,6 +61,11 @@ void	builtin_env(t_shell *cmd)
 	int			i;
 
 	i = 0;
+	if (check_for_env_flags(cmd->token->next) == 0)
+	{
+		cmd->error_code = 125;
+		return ;
+	}
 	if (check_env_args(cmd) == 0)
 		return ;
 	b_env = ret_env(NULL);

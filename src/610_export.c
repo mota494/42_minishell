@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:41:02 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/10 23:20:01 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:26:24 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	check_export_args(t_shell *cmd)
 	}
 	else if (!check_export_flag(cmd))
 	{
+		cmd->error_code = 2;
 		return (1);
 	}
 	else
