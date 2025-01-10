@@ -6,7 +6,7 @@
 /*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/14 12:41:58 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/09 11:31:12 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/10 23:12:33 by mloureir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	change_dir_to(char *foldername, t_shell *cmd)
 	folder = get_env(foldername);
 	if (!folder)
 	{
-		printf("Minishell: cd: OLDPWD is not set");
+		ft_printf(2, "Minishell: cd: OLDPWD is not set\n");
 		cmd->error_code = 1;
 	}
 	else
@@ -63,7 +63,7 @@ void	cd_empty_args(t_shell *cmd)
 	}
 	else
 	{
-		printf("Minishell: cd: HOME is not set");
+		ft_printf(2, "Minishell: cd: HOME is not set\n");
 		cmd->error_code = 1;
 	}
 }
@@ -120,10 +120,10 @@ void	cd(t_shell *cmd)
 	temp = temp->next;
 	if (count_args(temp) > 1)
 	{
-		printf("minishell: cd: too many arguments\n");
+		ft_printf(2 ,"minishell: cd: too many arguments\n");
 		cmd->error_code = 1;
 	}
-	if (count_args(temp) == 0 || sstrcmp(temp->cmd_line, "--"))
+	else if (count_args(temp) == 0 || sstrcmp(temp->cmd_line, "--"))
 		cd_empty_args(cmd);
 	else if (!check_for_cd_flags(temp))
 		cmd->error_code = 2;
