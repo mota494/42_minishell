@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/11 17:12:22 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:16:53 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	check_err(t_shell *cmd)
 		if (temp->type == folder && ft_strlen(temp->cmd_line) > 0)
 			printf("minishell: %s: is a directory\n", temp->cmd_line);
 		if ((sstrcmp(temp->orig_line, "\"\"")
-				|| sstrcmp(temp->orig_line, "\'\'")) && temp->type != file)
+				|| sstrcmp(temp->orig_line, "\'\'"))
+			&& temp->type != file && temp->type != string)
 		{
 			cmd->error_code = 127;
 			printf("%s: command not found\n", temp->orig_line);
