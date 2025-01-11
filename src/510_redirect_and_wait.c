@@ -6,7 +6,7 @@
 /*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/30 17:11:19 by sofiabueno        #+#    #+#             */
-/*   Updated: 2025/01/03 14:23:41 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/11 16:11:57 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int	wait_for_child(t_shell *cmd)
 	i = -1;
 	while (++i < cmd->n_inputs)
 	{
+		setup_signals(TURNOFF);
 		waitpid(cmd->pids[i], &wstatus, 0);
 		if (wstatus > 255)
 			cmd->error_code = WEXITSTATUS(wstatus);
