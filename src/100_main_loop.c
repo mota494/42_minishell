@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   100_main_loop.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 14:16:09 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/11 15:12:42 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/11 16:57:15 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	minishell_loop(t_shell *cmd, char *line)
 	line = readline("minishell: ");
 	if (line)
 		cmd->line_len = ft_strlen(line);
-	if (line && ft_strlen(line) > 0 && check_if_only_spaces(line) != 1)
+	if (line && ft_strlen(line) > 0)
 		add_history(line);
 	if (check_syntax(cmd, line) == 1)
 	{

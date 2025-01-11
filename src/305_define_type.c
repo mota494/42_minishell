@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   305_define_type.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sofiabueno <sofiabueno@student.42.fr>      +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/17 12:15:44 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/03 17:29:09 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/11 17:04:26 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,6 @@ int	is_controler(char *str)
 	if (sstrcmp("\n", str))
 		return (1);
 	if (sstrcmp("|", str) || sstrcmp("||", str))
-		return (1);
-	if (sstrcmp("&", str) || sstrcmp("&&", str))
-		return (1);
-	if (sstrcmp(";", str) || sstrcmp(";;", str) || sstrcmp(";&", str))
-		return (1);
-	if (sstrcmp(";;&", str) || sstrcmp("|&", str))
-		return (1);
-	if (sstrcmp("(", str) || sstrcmp(")", str))
 		return (1);
 	return (0);
 }

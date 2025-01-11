@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   600_exit.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mloureir <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/25 09:43:19 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/09 11:21:36 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/11 16:48:46 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,14 @@ long long int	analyze_exit_arg(t_token *arg)
 	return (1);
 }
 
+void	actual_exit(t_shell *cmd)
+{
+	cmd->leave = true;
+	if (cmd->token->next)
+		cmd->error_code = ft_atoll(cmd->token->next->cmd_line);
+	write(1, "exit\n", 5);
+}
+
 void	exit_main(t_shell *cmd)
 {
 	if (analyze_exit_arg(cmd->token->next) == 0)
@@ -49,6 +57,7 @@ void	exit_main(t_shell *cmd)
 		ft_printf(2, "minishell: exit: %s: numeric argument required\n",
 			cmd->token->next->cmd_line);
 		cmd->error_code = 2;
+		cmd->leave = true;
 	}
 	else if (count_args(cmd->token->next) > 1)
 	{
@@ -57,12 +66,9 @@ void	exit_main(t_shell *cmd)
 		cmd->error_code = 1;
 		return ;
 	}
-	if (cmd->token->cmd_id == 0)
+	else if (cmd->token->cmd_id == 0)
 	{
-		cmd->leave = true;
-		if (cmd->token->next)
-			cmd->error_code = ft_atoll(cmd->token->next->cmd_line);
-		write(1, "exit\n", 5);
+		actual_exit(cmd);
 	}
 	else
 	{
