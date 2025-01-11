@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/11 15:02:39 by mloureir         ###   ########.pt       */
+/*   Updated: 2025/01/11 16:00:09 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	red_type(t_shell *cmd, t_token *sh)
 	t_token	*temp;
 
 	temp = sh->next;
-	while (temp)
+	while (temp && temp->type != control)
 	{
 		temp->type = get_type(cmd, temp, temp->cmd_line, temp->orig_line);
 		temp = temp->next;
