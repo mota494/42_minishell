@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/19 10:01:28 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/11 11:13:51 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/11 15:02:39 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,20 @@ int	check_err(t_shell *cmd)
 	return (1);
 }
 
-void	get_redirect_type(t_token *sh)
+void	red_type(t_shell *cmd, t_token *sh)
+{
+	t_token	*temp;
+
+	temp = sh->next;
+	while (temp)
+	{
+		temp->type = get_type(cmd, temp, temp->cmd_line, temp->orig_line);
+		temp = temp->next;
+	}
+	get_type(NULL, NULL, "|", "|");
+}
+
+void	get_redirect_type(t_shell *cmd, t_token *sh)
 {
 	t_types	last_type;
 	t_token	*temp;
@@ -45,7 +58,10 @@ void	get_redirect_type(t_token *sh)
 	while (temp)
 	{
 		if (last_type == redirect)
+		{
 			temp->type = file;
+			red_type(cmd, temp);
+		}
 		last_type = temp->type;
 		temp = temp->next;
 	}
@@ -74,7 +90,7 @@ void	parser(char *line, t_shell *cmd)
 	cmd->line_len = ft_strlen(line);
 	tokenize(line, cmd);
 	get_type(NULL, NULL, "|", "|");
-	get_redirect_type(cmd->token);
+	get_redirect_type(cmd, cmd->token);
 	get_folder_type(cmd->token);
 	cmd->n_builtin = count_builtins(cmd->token);
 	cmd->n_command = count_command(cmd->token);

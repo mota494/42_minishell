@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/09 15:35:04 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/09 11:30:13 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:52:16 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +202,7 @@ char			*concatenate(char *dir, char *str);
 int				find_absolute_path(t_shell *cmd, t_token *new_node, char *str);
 /* == parser == */
 int				check_err(t_shell *cmd);
-void			get_redirect_type(t_token *sh);
+void			get_redirect_type(t_shell *cmd, t_token *sh);
 void			get_folder_type(t_token *sh);
 void			parser(char *line, t_shell *cmd);
 /* == parse_line == */

@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/23 09:37:46 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/09 11:37:26 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:48:50 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,6 @@ void	free_env(t_shell *cmd)
 		c.i++;
 	}
 	free(b_env);
-	//free(cmd->c_envp);
 	free(cmd->curdir);
 }
 

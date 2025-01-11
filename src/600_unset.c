@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 11:59:33 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/10 23:13:43 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:50:49 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void	unset_env(t_shell *cmd)
 	}
 	if (temp->cmd_line[0] == '-')
 	{
-		ft_printf(2, "Minishell: unset: -%c: invalid option\n", temp->cmd_line[1]);
+		ft_printf(2, "Minishell: unset: -%c: invalid option\n",
+			temp->cmd_line[1]);
 		cmd->error_code = 2;
 		return ;
 	}
