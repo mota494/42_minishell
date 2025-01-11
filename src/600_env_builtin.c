@@ -6,7 +6,7 @@
 /*   By: mloureir <mloureir@42porto.com>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/22 12:26:51 by mloureir          #+#    #+#             */
-/*   Updated: 2025/01/10 23:25:31 by mloureir         ###   ########.fr       */
+/*   Updated: 2025/01/11 14:50:22 by mloureir         ###   ########.pt       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,13 @@ int	check_env_args(t_shell *cmd)
 	{
 		if (stat(temp->cmd_line, &buf))
 		{
-			ft_printf(2 ,"env: ‘%s’: Permission denied\n", temp->cmd_line);
+			ft_printf(2, "env: ‘%s’: Permission denied\n", temp->cmd_line);
 			cmd->error_code = 126;
 		}
 		else
 		{
-			ft_printf(2, "env: ‘%s’: No such file or directory\n", temp->cmd_line);
+			ft_printf(2, "env: ‘%s’: No such file or directory\n",
+				temp->cmd_line);
 			cmd->error_code = 127;
 		}
 		return (0);
