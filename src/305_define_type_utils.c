@@ -6,7 +6,7 @@
 /*   By: sbueno-s <sbueno-s@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/01 16:28:48 by sofiabueno        #+#    #+#             */
-/*   Updated: 2025/01/11 16:41:42 by sbueno-s         ###   ########.fr       */
+/*   Updated: 2025/01/11 17:14:57 by sbueno-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	find_absolute_path(t_shell *cmd, t_token *new_node, char *str)
 		if (access(path_tmp, X_OK) == 0)
 		{
 			if (new_node->got_path == true)
-				free(new_node->path_name);			
+				free(new_node->path_name);
 			new_node->got_path = true;
 			new_node->path_name = ft_strdup(path_tmp);
 			free(path_tmp);
