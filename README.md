@@ -1,3 +1,12 @@
+<div align = "center">
+
+# Minishell
+
+![Static Badge](https://img.shields.io/badge/Score-%3101%2F100-green?style=for-the-badge&logo=42&labelColor=%23323030&color=%2381D2C7)
+![Static Badge](https://img.shields.io/badge/Language-green?style=for-the-badge&logo=C&labelColor=%23323030&color=%2381D2C7)
+
+</div>
+
 # Functions HOORAY
 
 ```c
@@ -48,8 +57,8 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 70x -> Signal Handler
 
-# Issues
+# Notes
 
-fix heredoc signals
+This project was made by me and Sofia Bueno
 
-fix flags
+If you're from 42, feel free to test it out but if you find any errors or memory leaks I don't care the project was already handed and i don't plan on updating it to solve every issue that i know it exists I'd have to redo the project from the start 
