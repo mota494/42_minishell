@@ -61,4 +61,4 @@ char *getenv(const char *name); //searches for the variable with *name and retur
 
 This project was made by me and Sofia Bueno
 
-If you're from 42, feel free to test it out but if you find any errors or memory leaks I don't care the project was already handed and i don't plan on updating it to solve every issue that i know it exists I'd have to redo the project from the start 
+If you're from 42, feel free to test it out but if you find any errors or memory leaks I don't care the project was already handed and i don't plan on updating it, to solve every issue that i know of we'd have to redo the project from the start 
